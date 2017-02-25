@@ -1,12 +1,12 @@
 ---
-title: "Support for Statistical Modeling"
+title: "Formula Interface for ggplot2"
 author: "Daniel Kaplan"
 date: "February 25, 2016"
 output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{Functions for Statistical Modeling}
+  %\VignetteIndexEntry{Formula Interface for ggplot2}
 ---
 
 ```{r include = FALSE}
