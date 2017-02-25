@@ -10,6 +10,19 @@ utils::globalVariables("role")
 # These are unexported helper functions to create the gf_ functions. The gf_ functions
 # themselves are at the end of this file....
 
+# traverse a formula and return a nested list of "nodes"
+formula_slots <- function(x) {
+  if (length(x) == 2L && deparse(x[[1]]) == "~") {
+    formula_slots(x[[2]])
+  } else if (length(x) == 3L && deparse(x[[1]]) %in% c(":")) {
+    list(x)
+  } else if (length(x) <= 2L) {
+    list(x)
+  } else {
+    list(formula_slots(x[[2]]), formula_slots(x[[3]]))
+  }
+}
+
 # add quotes to character elements of list x and returns a vector of character
 .quotify <- function(x) {
   as.character(
@@ -76,7 +89,7 @@ gf_factory <- function(type, extras = NULL, aes_form = y ~ x) {
                            add = add, extras = extras,
                            aes_form = aes_form,
                            data_name = data_name)
-    if (verbose) cat(gsub("+", "+\n", gg_string, fixed = TRUE), "\n")
+    if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
 
     P <- eval(parse(text = gg_string))
     if (add)  #  don't need this part: && inherits(placeholder, c("gg", "ggplot")))
@@ -142,13 +155,15 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
     return(data.frame(role = character(0),
                       var = character(0),
                       map = logical(0)))
-  fc <- as.character(formula)
-  parts <- unlist(strsplit(fc, "+", fixed = TRUE))
+  parts <- formula_slots(formula) %>% rapply(deparse, how = "replace") %>% unlist()
+  aes_names <- formula_slots(aes_form) %>% rapply(deparse, how = "replace") %>% unlist()
+
   # trim leading blanks
   parts <- gsub("^\\s+|\\s+$", "", parts)
-  # identify the pairs
+
+  # split into pairs/nonpairs
   pairs <- parts[grepl(":+", parts)]
-  nonpairs <- parts[ ! grepl(":+", parts)] # the x- and y-part of the formula
+  nonpairs <- parts[ ! grepl(":+", parts)]
 
   pair_list <- list()
   for (pair in pairs) {
@@ -156,7 +171,7 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
     pair_list[this_pair[1]] <- this_pair[2]
   }
 
-  nonpair_list <- nonpairs[-1]  # remove ~
+  nonpair_list <- nonpairs
   # remove items specified explicitly
   aes_names <- setdiff(all.vars(aes_form), names(pair_list))
   names(nonpair_list) <- head(aes_names, length(nonpair_list))
