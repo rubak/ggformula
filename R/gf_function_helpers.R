@@ -35,7 +35,7 @@ utils::globalVariables("role")
 gf_generic <- function(placeholder = NULL, formula = NULL, data = NULL,
                        extras = list(), geom = "point", aes_form = y ~ x,
                        ... ) {
-  data_name <- as.character(substitute(data))
+  data_name <- deparse(substitute(data))
   if (inherits(placeholder, c("gg", "ggplot"))) {
     # things are already set up
     add <- TRUE
@@ -60,7 +60,7 @@ gf_factory <- function(type, extras = NULL, aes_form = y ~ x) {
            add = inherits(placeholder, c("gg", "ggplot")),
            ...) {
     extras <- c(list(...), extras)
-    data_name <- as.character(substitute(data))
+    data_name <- deparse(substitute(data))
 
     if (inherits(placeholder, "formula")) {
       formula <- placeholder
