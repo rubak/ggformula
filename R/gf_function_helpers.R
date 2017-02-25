@@ -2,8 +2,9 @@ utils::globalVariables("role")
 
 #' @importFrom utils head tail
 #' @importFrom tibble data_frame
+#' @importFrom stringr str_split str_match
 #' @import ggplot2
-#'
+
 # The actual graphing functions are created dynamically.
 #  See the functions at the bottom of this file
 
@@ -168,9 +169,10 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
   pair_list <- list()
   mapped_pairs <- character(0)
   for (pair in pairs) {
-    this_pair <- unlist(strsplit(pair, ":+"))
+    this_pair <- stringr::str_split(pair, ":+", n = 2)[[1]]
     pair_list[this_pair[1]] <- this_pair[2]
-    if (grepl("::", pair)) mapped_pairs <- c(mapped_pairs, this_pair[1])
+    if (stringr::str_match(pair, ":+") == "::")
+      mapped_pairs <- c(mapped_pairs, this_pair[1])
   }
 
   nonpair_list <- nonpairs
@@ -240,7 +242,7 @@ pairs_in_formula <- function(formula) {
   xy <- parts[ ! grepl(":", parts)][-1] # logic for x:, y: explicit
   res <- list()
   for (pair in pairs) {
-    this_pair <- unlist(strsplit(pair, ":+"))
+    this_pair <- stringr::str_split(pair, ":+", n = 2)
     res[this_pair[1] ] <- this_pair[2]
   }
   # more logic for x:, y: explicit.

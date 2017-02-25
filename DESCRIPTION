@@ -12,7 +12,8 @@ Depends:
     ggplot2
 Imports:
     magrittr,
-    tibble
+    tibble,
+    stringr
 RoxygenNote: 5.0.1
 Suggests:
     mosaic,
