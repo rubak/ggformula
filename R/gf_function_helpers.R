@@ -1,4 +1,8 @@
+utils::globalVariables("role")
+
 #' @importFrom utils head tail
+#' @importFrom tibble data_frame
+#' @import ggplot2
 #'
 # The actual graphing functions are created dynamically.
 #  See the functions at the bottom of this file
@@ -169,7 +173,7 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
   res <- c(nonpair_list, pair_list)
 
   res <-
-    data_frame(
+    tibble::data_frame(
       role = names(res),
       var = unlist(res),
       map = unlist(res) %in% c(data_names) | role %in% aes_names)
