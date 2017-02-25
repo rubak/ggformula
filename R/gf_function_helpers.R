@@ -153,7 +153,7 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
                           aes_form = y ~ x) {
   if (is.null(formula))
     return(data.frame(role = character(0),
-                      var = character(0),
+                      expr = character(0),
                       map = logical(0)))
   parts <- formula_slots(formula) %>% rapply(deparse, how = "replace") %>% unlist()
   aes_names <- formula_slots(aes_form) %>% rapply(deparse, how = "replace") %>% unlist()
@@ -166,9 +166,11 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
   nonpairs <- parts[ ! grepl(":+", parts)]
 
   pair_list <- list()
+  mapped_pairs <- character(0)
   for (pair in pairs) {
     this_pair <- unlist(strsplit(pair, ":+"))
     pair_list[this_pair[1]] <- this_pair[2]
+    if (grepl("::", pair)) mapped_pairs <- c(mapped_pairs, this_pair[1])
   }
 
   nonpair_list <- nonpairs
@@ -190,8 +192,8 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
   res <-
     tibble::data_frame(
       role = names(res),
-      var = unlist(res),
-      map = unlist(res) %in% c(data_names) | role %in% aes_names)
+      expr = unlist(res),
+      map = unlist(res) %in% c(data_names) | role %in% aes_names | role %in% mapped_pairs)
   row.names(res) <- NULL
   res
 }
@@ -203,7 +205,7 @@ df_to_aesthetics <- function(formula_df, data_names = NULL, prefix = "") {
     } else {
       paste0("aes(",
              with(subset(formula_df, formula_df$map),
-                  paste(role, var, sep = " = ", collapse = ", ")),
+                  paste(role, expr, sep = " = ", collapse = ", ")),
              ")",
              ifelse(any( ! formula_df$map), ", ", "") # prepare for more args
       )
@@ -212,7 +214,7 @@ df_to_aesthetics <- function(formula_df, data_names = NULL, prefix = "") {
               ifelse(nchar(prefix) > 0, ", ", ""),
               aes_substr,
               with(subset(formula_df, ! formula_df$map),
-                   paste(role, var, sep = " = ", collapse = ", ")),
+                   paste(role, expr, sep = " = ", collapse = ", ")),
               ")")
   S
 }

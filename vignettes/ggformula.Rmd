@@ -1,8 +1,8 @@
 ---
 title: "Support for Statistical Modeling"
 author: "Daniel Kaplan"
-date: "February 24, 2016"
-output: rmarkdown::html_vignette
+date: "February 25, 2016"
+output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
@@ -14,6 +14,7 @@ library(ggformula)
 library(dplyr)
 library(ggplot2)
 library(mosaic)
+theme_set(theme_light())
 ```
 
 
@@ -71,19 +72,24 @@ geom layer, all in one operation.)  This is what happens for the first
 `gf_` function in a chain.  For subsequent `gf_` functions, new layers are added.
 
 In the `gf_` functions, you specify the graphical attributes using a formula.
-Each such specification takes the form `attribute:value`, where `attribute` is
-one of `color`, `shape`, etc. and `value` is either a constant (e.g. `"red"` or
-`0.5` as appropriate) or a variable (e.g. `cyl`). For instance:
+Each such specification takes the form `attribute:value` 
+where `attribute` is one of `color`, `shape`, etc. and `value` is either a constant 
+(e.g. `"red"` or `0.5` as appropriate) or a variable (e.g. `cyl`). Altenatively,
+if the specification has the form `attribute::value`, then `value` may be
+an expression that can be evaluated in the data (although often is is better
+to create a new variable in the data and use `:`). For instance:
 ```{r}
 gf_point(mpg ~ hp + color:cyl + size:carb + alpha:0.75, data = mtcars) %>%
   gf_labs(x = "Miles per gallon", y = "Horsepower", 
           title = "Horsepower and fuel efficiency")
 ```
 
-TRYING TO FIND THE PROBLEM:
 ```{r}
 gf_point(mpg ~ hp + color:cyl, data = mtcars)
 gf_point(mpg ~ hp + color:cyl + size:carb + alpha:0.75, data = mtcars)
+gf_point(mpg ~ hp + color::factor(cyl) + size:carb + alpha:0.75, data = mtcars)
+gf_point(mpg ~ hp + color:cylinders + size:carb + alpha:0.75, 
+         data = mtcars %>% mutate(cylinders = factor(cyl)))
 ```
 
 You add labels and facets using the standard `ggplot2` notation.  `xlab()` and `ylab()` are adding the axis labels in the above. (For faceting, see below.)
