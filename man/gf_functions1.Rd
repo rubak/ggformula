@@ -11,34 +11,32 @@
 \alias{gf_qq}
 \title{Univariate gf_ plotting functions}
 \usage{
-gf_counts(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_counts(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_bar(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_bar(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_freqpoly(placeholder = NULL, formula = NULL, data = NULL,
-  geom = type, verbose = FALSE, add = inherits(placeholder, c("gg",
-  "ggplot")), ...)
+gf_freqpoly(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_density(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_density(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_histogram(placeholder = NULL, formula = NULL, data = NULL,
-  geom = type, verbose = FALSE, add = inherits(placeholder, c("gg",
-  "ggplot")), ...)
+gf_histogram(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_dotplot(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_dotplot(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_dens(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_dens(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_qq(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_qq(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 }
 \arguments{
-\item{placeholder}{Ignore this argument. See details.}
+\item{object}{Ignore this argument. See details.}
 
 \item{formula}{A formula describing the x variable and other aesthetics in
 a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}}
@@ -63,7 +61,7 @@ setting \code{verbose = TRUE} as an argument.
 }
 \details{
 These \code{gf_} functions are written to interact with ggplot objects.
-The \code{placeholder}
+The \code{object}
 argument is part of this interaction system; the end user can ignore it.
 }
 \examples{

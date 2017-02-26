@@ -7,19 +7,19 @@
 \alias{gf_vline}
 \title{gf_ functions with no formula part}
 \usage{
-gf_hline(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_hline(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_vline(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_vline(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_abline(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_abline(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_coefline(placeholder = NULL, formula = NULL, coef, model, ...)
+gf_coefline(object = NULL, formula = NULL, coef, model, ...)
 }
 \arguments{
-\item{placeholder}{Ignore this argument. See details.}
+\item{object}{Ignore this argument. See details.}
 
 \item{formula}{ignored.}
 

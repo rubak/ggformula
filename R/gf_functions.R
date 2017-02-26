@@ -9,7 +9,9 @@
 #'
 #' @rdname gf_functions
 #'
-#' @param placeholder Ignore this argument. See details.
+#' @param object When chaining, this holds the gg object produced in the early portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
 #' @param data A data frame with the variables to be plotted
 #' @param formula A formula describing the x and y variables and other aesthetics in
 #' a form like \code{y ~ x + color:red + shape:sex + alpha:0.5}
@@ -21,7 +23,7 @@
 #' @param ... Other arguments such as \code{position="dodge"}.
 #'
 #' @details These \code{gf_} functions are written to interact with ggplot objects.
-#' The \code{placeholder}
+#' The \code{object}
 #' argument is part of this interaction system; the end user can ignore it.
 #'
 #' @examples
@@ -134,7 +136,7 @@ gf_tile <- gf_factory(type = "tile")
 #'
 #' @rdname gf_functions1
 #'
-#' @param placeholder Ignore this argument. See details.
+#' @param object Ignore this argument. See details.
 #' @param data A data frame with the variables to be plotted
 #' @param formula A formula describing the x variable and other aesthetics in
 #' a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}
@@ -145,7 +147,7 @@ gf_tile <- gf_factory(type = "tile")
 #' @param ... Other arguments such as \code{position="dodge"}.
 #'
 #' @details These \code{gf_} functions are written to interact with ggplot objects.
-#' The \code{placeholder}
+#' The \code{object}
 #' argument is part of this interaction system; the end user can ignore it.
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}.
 #
@@ -208,7 +210,7 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' setting \code{verbose = TRUE} as an argument.
 #'
 #' @rdname gf_functions3
-#' @param placeholder Ignore this argument. See details.
+#' @param object Ignore this argument. See details.
 #' @param data A data frame with the variables to be plotted
 #' @param formula A formula describing the manditory aesthetics and possibly other
 #' aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}
@@ -266,7 +268,7 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' setting \code{verbose = TRUE} as an argument.
 #'
 #' @rdname gf_functions0
-#' @param placeholder Ignore this argument. See details.
+#' @param object Ignore this argument. See details.
 #' @param data A data frame with the variables to be plotted
 #' @param formula ignored.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
@@ -295,10 +297,10 @@ gf_abline <- gf_factory(type = "abline", aes_form = NULL)
 
 #' @rdname gf_functions0
 #' @export
-gf_coefline <- function(placeholder = NULL, formula = NULL, coef, model, ...) {
+gf_coefline <- function(object = NULL, formula = NULL, coef, model, ...) {
   if (missing(coef)) coef <- coef(model)
   if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
   if (length(coef) < 2) stop("coef must be of length at least 2.")
-  gf_abline(placeholder = placeholder, formula = formula,
+  gf_abline(object = object, formula = formula,
             intercept = coef[1], slope = coef[2], ...)
 }

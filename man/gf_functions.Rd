@@ -24,74 +24,73 @@
 \alias{gf_violin}
 \title{bivariate gf_ plotting functions}
 \usage{
-gf_frame(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_frame(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_point(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_point(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_jitter(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_jitter(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_line(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_line(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_path(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_path(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_smooth(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_smooth(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_spline(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_spline(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_rug(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_rug(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_quantile(placeholder = NULL, formula = NULL, data = NULL,
-  geom = type, verbose = FALSE, add = inherits(placeholder, c("gg",
-  "ggplot")), ...)
+gf_quantile(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_density_2d(placeholder = NULL, formula = NULL, data = NULL,
-  geom = type, verbose = FALSE, add = inherits(placeholder, c("gg",
-  "ggplot")), ...)
+gf_density_2d(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_density2d(placeholder = NULL, formula = NULL, data = NULL,
-  geom = type, verbose = FALSE, add = inherits(placeholder, c("gg",
-  "ggplot")), ...)
+gf_density2d(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_contour(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_contour(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_hex(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_hex(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_boxplot(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_boxplot(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_text(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_text(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_label(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_label(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_area(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_area(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_violin(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_violin(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_spoke(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_spoke(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_step(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_step(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 
-gf_tile(placeholder = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(placeholder, c("gg", "ggplot")), ...)
+gf_tile(object = NULL, formula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
 }
 \arguments{
-\item{placeholder}{Ignore this argument. See details.}
+\item{object}{When chaining, this holds the gg object produced in the early portions
+of the chain.  Most users can safely ignore this argument.
+See details and examples.}
 
 \item{formula}{A formula describing the x and y variables and other aesthetics in
 a form like \code{y ~ x + color:red + shape:sex + alpha:0.5}}
@@ -116,7 +115,7 @@ setting \code{verbose = TRUE} as an argument.
 }
 \details{
 These \code{gf_} functions are written to interact with ggplot objects.
-The \code{placeholder}
+The \code{object}
 argument is part of this interaction system; the end user can ignore it.
 }
 \examples{

@@ -46,21 +46,21 @@ formula_slots <- function(x) {
 
 # This doen't appear to be used anywhere.
 
-gf_generic <- function(placeholder = NULL, formula = NULL, data = NULL,
+gf_generic <- function(object = NULL, formula = NULL, data = NULL,
                        extras = list(), geom = "point", aes_form = y ~ x,
                        ... ) {
   data_name <- deparse(substitute(data))
-  if (inherits(placeholder, c("gg", "ggplot"))) {
+  if (inherits(object, c("gg", "ggplot"))) {
     # things are already set up
     add <- TRUE
-  } else if (inherits(placeholder, "formula")) {
-    formula <- placeholder
-    placeholder <- NULL
+  } else if (inherits(object, "formula")) {
+    formula <- object
+    object <- NULL
     add <- FALSE
   }
 
   gg_string <- gf_master(formula = formula, data = data, add = add,
-                         geom = geom, gg_object = placeholder,
+                         geom = geom, gg_object = object,
                          extras = extras, aes_form = aes_form,
                          data_name = data_name)
   gg_string
@@ -69,32 +69,32 @@ gf_generic <- function(placeholder = NULL, formula = NULL, data = NULL,
 gf_factory <- function(type, extras = NULL, aes_form = y ~ x) {
   # this is a copy of the body of gf_generic() with some of the
   # arguments Curried.
-  function(placeholder = NULL, formula = NULL,
+  function(object = NULL, formula = NULL,
            data = NULL, geom = type, verbose = FALSE,
-           add = inherits(placeholder, c("gg", "ggplot")),
+           add = inherits(object, c("gg", "ggplot")),
            ...) {
     extras <- c(list(...), extras)
     data_name <- deparse(substitute(data))
 
-    if (inherits(placeholder, "formula")) {
-      formula <- placeholder
-      placeholder <- NULL
+    if (inherits(object, "formula")) {
+      formula <- object
+      object <- NULL
     }
 
 
-    if (!inherits(placeholder, c("gg", "ggplot"))) {
+    if (!inherits(object, c("gg", "ggplot"))) {
       add <- FALSE  # can't add if we don't have a plot to add to
     }
     gg_string <- gf_master(formula = formula, data = data,
-                           geom = geom, gg_object = placeholder,
+                           geom = geom, gg_object = object,
                            add = add, extras = extras,
                            aes_form = aes_form,
                            data_name = data_name)
     if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
 
     P <- eval(parse(text = gg_string))
-    if (add)  #  don't need this part: && inherits(placeholder, c("gg", "ggplot")))
-      return(placeholder + P)
+    if (add)  #  don't need this part: && inherits(object, c("gg", "ggplot")))
+      return(object + P)
     else
       return(P)
   }
