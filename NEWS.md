@@ -1,6 +1,16 @@
-# statisticalModeling 0.3.0
+# ggformula 0.4.0
 
-* Added a `NEWS.md` file to track changes to the package.
+  * Separated `ggformula` from `statisticalModeling`.
+  * Added support for many more geoms.
+  * Improved parsing of formulas.
+  * `data` may now be an expression (like `data = KidsFeet %>% filter(sex == "G")`)
+  * Added support for geoms that have different required aesthetics
+  * Added support for on-the-fly computations in formulas.
+  * Use `::` to indicate mapping aesthetics.  (`:` will autodetect, but only if the value
+is the name of a variable in the data set.)
+  * added wrappers `gf_lims()`, `gf_labs()`, `gf_theme()`, `gf_facet_grid()`, `gf_facet_wrap()`
+  * added `gf_refine()` which can be used to pass by chaining anything that would have been "added" in ``ggplot2`
+  
 
 
 
