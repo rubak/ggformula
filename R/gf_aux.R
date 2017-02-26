@@ -11,6 +11,12 @@
 #' ggplot2
 #' @return a modified gg object
 #'
+#' @details \code{gf_refine()} provides a mechanism to replace \code{+} with
+#' \code{%>%}.  Each of its \code{\dots} arguments is added in turn to the
+#' base plot in \code{object}.  The other functions are thin wrappers around
+#' specific \code{ggplot2} refinement functions and pass their \code{\dots}
+#' arguments through to the similarly named \code{ggplot2} functions.
+#'
 #' @rdname gf_aux
 #' @export
 gf_labs <- function(object, ...) {
@@ -40,3 +46,10 @@ gf_facet_wrap <- function(object, ...) {
 gf_facet_grid <- function(object, ...) {
   object + ggplot2::facet_grid(...)
 }
+
+#' @rdname gf_aux
+#' @export
+gf_refine <- function(object, ...) {
+  Reduce(`+`, list(...), init = object)
+}
+
