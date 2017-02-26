@@ -2,7 +2,7 @@ Package: ggformula
 Title: Formula Interface to ggplot2
 Description: Provides a formula interface to ggplot2 graphics.
 Type: Package
-Version: 0.3.9002
+Version: 0.3.9003
 Author: Daniel Kaplan
 Maintainer: Daniel Kaplan <kaplan@macalester.edu>
 License: MIT + file LICENSE

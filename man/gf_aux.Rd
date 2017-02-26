@@ -5,6 +5,7 @@
 \alias{gf_facet_wrap}
 \alias{gf_labs}
 \alias{gf_lims}
+\alias{gf_refine}
 \alias{gf_theme}
 \title{Non-layer functions for gf plots}
 \usage{
@@ -17,6 +18,8 @@ gf_theme(object, ..., theme = theme_minimal)
 gf_facet_wrap(object, ...)
 
 gf_facet_grid(object, ...)
+
+gf_refine(object, ...)
 }
 \arguments{
 \item{object}{a gg object}
