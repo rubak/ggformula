@@ -1,6 +1,6 @@
 ---
 title: "Formula Interface for ggplot2"
-author: "Daniel Kaplan"
+author: "Daniel Kaplan and Randall Pruim"
 date: "February 25, 2016"
 output:  rmarkdown::html_vignette
 vignette: >
