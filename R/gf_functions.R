@@ -9,7 +9,7 @@
 #'
 #' @rdname gf_functions
 #'
-#' @param object When chaining, this holds the gg object produced in the early portions
+#' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
@@ -41,6 +41,9 @@
 #'   gf_point(mpg ~ hp + group:cyl) +
 #'   facet_grid(~ am)
 #' gf_text(Sepal.Length ~ Sepal.Width + label:Species + color:Species , data = iris)
+#'
+#' # Chaining in the data
+#' mtcars %>% gf_point(mpg ~ wt)
 #'
 #' @rdname gf_functions
 #' @export
@@ -126,6 +129,11 @@ gf_step <- gf_factory(type = "step")
 #' @export
 gf_tile <- gf_factory(type = "tile")
 
+#' @rdname gf_functions
+#' @export
+gf_col <- gf_factory(type = "col")
+
+
 #' Univariate gf_ plotting functions
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
@@ -136,7 +144,9 @@ gf_tile <- gf_factory(type = "tile")
 #'
 #' @rdname gf_functions1
 #'
-#' @param object Ignore this argument. See details.
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
 #' @param data A data frame with the variables to be plotted
 #' @param formula A formula describing the x variable and other aesthetics in
 #' a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}
@@ -155,10 +165,11 @@ gf_tile <- gf_factory(type = "tile")
 #' gf_histogram(~ Sepal.Length + fill:Species, data = iris)
 #' gf_density(~ Sepal.Length + color:Species, data = iris)
 #' gf_dens(~ Sepal.Length + color:Species, data = iris)
-# gf_ash(~ Sepal.Length + color:Species, data = iris)
 #' gf_freqpoly(~ Sepal.Length + color:Species, data = iris)
 #' gf_dotplot(~ Sepal.Length + fill:Species, data = iris)
 #' gf_counts(~ Species, data = iris)
+#' # Chaining in the data
+#' iris %>% gf_dens(~ Sepal.Length + color:Species)
 
 # Separate functions for a count-type bar chart and a value-based bar chart.
 #' @rdname gf_functions1
@@ -209,8 +220,9 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' The functions generate a \code{ggplot} command string which can be displayed by
 #' setting \code{verbose = TRUE} as an argument.
 #'
-#' @rdname gf_functions3
-#' @param object Ignore this argument. See details.
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
 #' @param data A data frame with the variables to be plotted
 #' @param formula A formula describing the manditory aesthetics and possibly other
 #' aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}
@@ -220,7 +232,32 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param ... Other arguments such as \code{position="dodge"}.
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}.
-#' @export
+#'
+#' @examples
+#' if (require(weatherData) & require(dplyr)) {
+#' Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
+#' bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
+#' bind_rows(London2013 %>% mutate(city = "London")) %>%
+#'   mutate(date = lubridate::date(Time),
+#'          month = lubridate::month(Time)) %>%
+#'   group_by(city, date) %>%
+#'   summarise(
+#'     hi = max(Temperature, na.rm = TRUE),
+#'     lo = min(Temperature, na.rm = TRUE),
+#'     mid = (hi + lo)/2
+#'   )
+#'
+#' gf_ribbon(lo + hi ~ date + fill:city, data = Temps, alpha = 0.4) %>%
+#'    gf_theme(theme = theme_minimal)
+#' gf_linerange(lo + hi + color:mid ~ date, data = Temps) %>%
+#'   gf_facet_grid(city ~ .) %>%
+#'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
+#' gf_ribbon(lo + hi ~ date, data = Temps, alpha = 0.4) %>%
+#'   gf_facet_grid(city ~ .)
+#' # Chaining in the data
+#' Temps %>% gf_ribbon(lo + hi ~ date, alpha = 0.4) %>%
+#'   gf_facet_grid(city ~ .)
+#' }
 
 #' @rdname gf_functions3
 #' @export
@@ -259,16 +296,18 @@ gf_errorbarh <- gf_factory(type = "errorbarh", aes_form = y ~ x + xmin + xmax)
 gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 
 
+
 #' gf_ functions with no formula part
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
 #' various geoms. For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and mosaic notation.
+#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #' The functions generate a \code{ggplot} command string which can be displayed by
 #' setting \code{verbose = TRUE} as an argument.
 #'
-#' @rdname gf_functions0
-#' @param object Ignore this argument. See details.
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
 #' @param data A data frame with the variables to be plotted
 #' @param formula ignored.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
@@ -282,7 +321,17 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' This is equivalent to \code{coef = coef(model)}.
 #' @param ... Other arguments such as \code{position="dodge"}.
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_pointrange}()}
-#' @export
+#'
+#' @examples
+#' mtcars.model <- lm(mpg ~ wt, data = mtcars)
+#' gf_point(mpg ~ wt, data = mtcars) %>%
+#'   gf_coefline(model = mtcars.model, alpha = 0.6) %>%
+#'   gf_hline(yintercept = 20, color = "red", alpha = 0.4) %>%
+#'   gf_vline(xintercept = 3, color = "navy", alpha = 0.4)
+#' # Chaining in the data
+#' mtcars %>% gf_point(mpg ~ wt, data = mtcars) %>%
+#'   gf_coefline(model = mtcars.model, alpha = 0.6, col = "red")
+#'
 #' @rdname gf_functions0
 #' @export
 gf_hline <- gf_factory(type = "hline", aes_form = NULL)
@@ -297,10 +346,12 @@ gf_abline <- gf_factory(type = "abline", aes_form = NULL)
 
 #' @rdname gf_functions0
 #' @export
-gf_coefline <- function(object = NULL, formula = NULL, coef, model, ...) {
-  if (missing(coef)) coef <- coef(model)
+gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL, ...) {
+  if (is.null(coef) + is.null(model) != 1) stop("must specify exactly one of coef or model")
+  if (is.null(coef)) coef <- coef(model)
   if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
   if (length(coef) < 2) stop("coef must be of length at least 2.")
   gf_abline(object = object, formula = formula,
             intercept = coef[1], slope = coef[2], ...)
 }
+

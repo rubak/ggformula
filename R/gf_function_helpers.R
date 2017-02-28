@@ -75,12 +75,20 @@ gf_factory <- function(type, extras = NULL, aes_form = y ~ x) {
            ...) {
     extras <- c(list(...), extras)
     data_name <- deparse(substitute(data))
+    object_name <- deparse(substitute(object))
 
     if (inherits(object, "formula")) {
       formula <- object
       object <- NULL
     }
 
+    dot_eval <- FALSE
+    if (inherits(object, "data.frame")) {
+      data <- object
+      data_name <- object_name
+      object <- NULL
+      dot_eval <- TRUE
+    }
 
     if (!inherits(object, c("gg", "ggplot"))) {
       add <- FALSE  # can't add if we don't have a plot to add to
@@ -92,7 +100,16 @@ gf_factory <- function(type, extras = NULL, aes_form = y ~ x) {
                            data_name = data_name)
     if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
 
-    P <- eval(parse(text = gg_string))
+    if (dot_eval) {
+      gg_string <- gf_master(formula = formula, data = data,
+                           geom = geom, gg_object = object,
+                           add = TRUE, extras = extras,
+                           aes_form = aes_form,
+                           data_name = NULL)
+      P <- ggplot(data) + eval(parse(text = gg_string))
+    } else {
+      P <- eval(parse(text = gg_string))
+    }
     if (add)  #  don't need this part: && inherits(object, c("gg", "ggplot")))
       return(object + P)
     else
