@@ -8,8 +8,9 @@
   * Added support for on-the-fly computations in formulas.
   * Use `::` to indicate mapping aesthetics.  (`:` will autodetect, but only if the value
 is the name of a variable in the data set.)
-  * added wrappers `gf_lims()`, `gf_labs()`, `gf_theme()`, `gf_facet_grid()`, `gf_facet_wrap()`
-  * added `gf_refine()` which can be used to pass by chaining anything that would have been "added" in ``ggplot2`
+  * Added wrappers `gf_lims()`, `gf_labs()`, `gf_theme()`, `gf_facet_grid()`, `gf_facet_wrap()`
+  * Added `gf_refine()` which can be used to pass by chaining anything that would have been "added" in ``ggplot2`
+  * Expanded and improved vignette describing use of the package.
   
 
 
