@@ -12,28 +12,36 @@
 \title{Univariate gf_ plotting functions}
 \usage{
 gf_counts(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_bar(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_freqpoly(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_density(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_histogram(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_dotplot(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_dens(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_qq(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -53,6 +61,11 @@ a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}}
 can be added to an existing frame.}
 
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,
+the help will show (a) which geom from \pkg{ggplot2} is used,
+(b) how aesthetics are assigned based on \code{formula}, and (c)
+any default values of arguments to the geom.}
 }
 \description{
 These functions provide a formula interface to \code{ggplot2} and

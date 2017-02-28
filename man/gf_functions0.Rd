@@ -8,13 +8,16 @@
 \title{gf_ functions with no formula part}
 \usage{
 gf_hline(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_vline(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_abline(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_coefline(object = NULL, formula = NULL, coef = NULL, model = NULL,
   ...)
@@ -36,6 +39,11 @@ See details and examples.}
 can be added to an existing frame.}
 
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,
+the help will show (a) which geom from \pkg{ggplot2} is used,
+(b) how aesthetics are assigned based on \code{formula}, and (c)
+any default values of arguments to the geom.}
 
 \item{coef}{A numeric vector of length at least 2, treated as intercept and slope.
 Additional components, if any, are ignored (with a warning).}

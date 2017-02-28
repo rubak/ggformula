@@ -26,70 +26,92 @@
 \title{bivariate gf_ plotting functions}
 \usage{
 gf_frame(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_point(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_jitter(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_line(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_path(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_smooth(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_spline(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_rug(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_quantile(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_density_2d(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_density2d(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_contour(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_hex(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_boxplot(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_text(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_label(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_area(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_violin(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_spoke(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_step(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_tile(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_col(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -109,6 +131,11 @@ a form like \code{y ~ x + color:red + shape:sex + alpha:0.5}}
 can be added to an existing frame.}
 
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,
+the help will show (a) which geom from \pkg{ggplot2} is used,
+(b) how aesthetics are assigned based on \code{formula}, and (c)
+any default values of arguments to the geom.}
 }
 \description{
 These functions provide a formula interface to \code{ggplot2} and

@@ -66,14 +66,28 @@ gf_generic <- function(object = NULL, formula = NULL, data = NULL,
   gg_string
 }
 
-gf_factory <- function(type, extras = NULL, aes_form = y ~ x) {
+gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
   # this is a copy of the body of gf_generic() with some of the
   # arguments Curried.
   function(object = NULL, formula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
-           ...) {
-    extras <- c(list(...), extras)
+           ..., show.help = FALSE) {
+    if (show.help) {
+      fun <- match.call()[1]
+      message(fun, " uses a formula with shape ", format(aes_form), ".")
+      message("See ?geom_", geom, " for additional information.  ",
+              if(length(extras) > 0)
+                paste0( "[",
+                        paste(names(extras), sapply(extras, .quotify),
+                              sep = " = ", collapse = ", "),
+                        "]")
+              else ""
+      )
+      return(invisible(NULL))
+    }
+    dots <- list(...)
+    if (length(dots) > 0) extras <- modifyList(extras, dots)
     data_name <- deparse(substitute(data))
     object_name <- deparse(substitute(object))
 

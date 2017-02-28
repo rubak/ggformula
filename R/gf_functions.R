@@ -21,6 +21,10 @@
 # Not current: @param system Which graphics system to use, e.g. ggplot2, and so on.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param ... Other arguments such as \code{position="dodge"}.
+#' @param show.help If \code{TRUE}, display some minimal help.  In particular,
+#' the help will show (a) which geom from \pkg{ggplot2} is used,
+#' (b) how aesthetics are assigned based on \code{formula}, and (c)
+#' any default values of arguments to the geom.
 #'
 #' @details These \code{gf_} functions are written to interact with ggplot objects.
 #' The \code{object}
@@ -155,6 +159,10 @@ gf_col <- gf_factory(type = "col")
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param ... Other arguments such as \code{position="dodge"}.
+#' @param show.help If \code{TRUE}, display some minimal help.  In particular,
+#' the help will show (a) which geom from \pkg{ggplot2} is used,
+#' (b) how aesthetics are assigned based on \code{formula}, and (c)
+#' any default values of arguments to the geom.
 #'
 #' @details These \code{gf_} functions are written to interact with ggplot objects.
 #' The \code{object}
@@ -231,6 +239,10 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param ... Other arguments such as \code{position="dodge"}.
+#' @param show.help If \code{TRUE}, display some minimal help.  In particular,
+#' the help will show (a) which geom from \pkg{ggplot2} is used,
+#' (b) how aesthetics are assigned based on \code{formula}, and (c)
+#' any default values of arguments to the geom.
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}.
 #'
 #' @examples
@@ -252,7 +264,7 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' gf_linerange(lo + hi + color:mid ~ date, data = Temps) %>%
 #'   gf_facet_grid(city ~ .) %>%
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
-#' gf_ribbon(lo + hi ~ date, data = Temps, alpha = 0.4) %>%
+#' gf_ribbon(lo + hi ~ date, data = Temps) %>%
 #'   gf_facet_grid(city ~ .)
 #' # Chaining in the data
 #' Temps %>% gf_ribbon(lo + hi ~ date, alpha = 0.4) %>%
@@ -269,7 +281,8 @@ gf_segment <- gf_factory(type = "segment", aes_form = y + yend ~ x + xend)
 
 #' @rdname gf_functions3
 #' @export
-gf_ribbon <- gf_factory(type = "ribbon", aes_form = ymin + ymax ~ x)
+gf_ribbon <- gf_factory(type = "ribbon", aes_form = ymin + ymax ~ x,
+                        extras = list(alpha = 0.3))
 
 #' @rdname gf_functions3
 #' @export
@@ -277,7 +290,8 @@ gf_linerange <- gf_factory(type = "linerange", aes_form = ymin + ymax ~ x)
 
 #' @rdname gf_functions3
 #' @export
-gf_pointrange <- gf_factory(type = "pointrange", aes_form = y + ymin + ymax ~ x)
+gf_pointrange <- gf_factory(type = "pointrange", aes_form = y + ymin + ymax ~ x,
+                            extras = list(fatten = 2))
 
 #' @rdname gf_functions3
 #' @export
@@ -320,6 +334,11 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' numeric vector, the first two elements of which are intercept and slope.
 #' This is equivalent to \code{coef = coef(model)}.
 #' @param ... Other arguments such as \code{position="dodge"}.
+#' @param show.help If \code{TRUE}, display some minimal help.  In particular,
+#' the help will show (a) which geom from \pkg{ggplot2} is used,
+#' (b) how aesthetics are assigned based on \code{formula}, and (c)
+#' any default values of arguments to the geom.
+#'
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_pointrange}()}
 #'
 #' @examples

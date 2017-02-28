@@ -13,31 +13,40 @@
 \title{Multivariate gf_ plotting functions}
 \usage{
 gf_curve(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_segment(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_ribbon(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_linerange(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_pointrange(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_crossbar(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_errorbar(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_errorbarh(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 
 gf_rect(object = NULL, formula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...)
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  show.help = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -57,6 +66,11 @@ aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 +
 can be added to an existing frame.}
 
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,
+the help will show (a) which geom from \pkg{ggplot2} is used,
+(b) how aesthetics are assigned based on \code{formula}, and (c)
+any default values of arguments to the geom.}
 }
 \description{
 These functions provide a formula interface to \code{ggplot2} and
@@ -84,7 +98,7 @@ gf_ribbon(lo + hi ~ date + fill:city, data = Temps, alpha = 0.4) \%>\%
 gf_linerange(lo + hi + color:mid ~ date, data = Temps) \%>\%
   gf_facet_grid(city ~ .) \%>\%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
-gf_ribbon(lo + hi ~ date, data = Temps, alpha = 0.4) \%>\%
+gf_ribbon(lo + hi ~ date, data = Temps) \%>\%
   gf_facet_grid(city ~ .)
 # Chaining in the data
 Temps \%>\% gf_ribbon(lo + hi ~ date, alpha = 0.4) \%>\%
