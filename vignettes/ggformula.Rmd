@@ -290,11 +290,11 @@ the zigs and zags in the connecting lines. It would be better to use
 work!
 
 Here's a more useful example.  We begin with a scatter plot showing the number of 
-live births in the US for each day of 1978.
+live births in the US for each day of 2015.
 
 ```{r}
 library(mosaicData)
-gf_point(births ~ date, data = Births78)
+gf_point(births ~ date, data = Births2015)
 ```
 
 Can this interesting pattern be explained by a weekday/weekend effect?  We could use 
@@ -302,15 +302,48 @@ color to show the days of the week.
 
 ```{r}
 library(mosaicData)
-gf_point(births ~ date + color:wday, data = Births78)
+gf_point(births ~ date + color:wday, data = Births2015)
 ```
 
 Converting to a line plot highlights the pattern and makes it easier to spot the unusual days.
 
 ```{r}
-gf_line(births ~ date + color:wday, data = Births78)
+gf_line(births ~ date + color:wday, data = Births2015)
 ```
 
+
+
+## Plots with more than 2 required attributes
+
+Some layers require more than two attributes.  Typically this happens when the glyphs
+of a layer are complex objects that could have been made using multiple layers, but 
+belong together conceptually.  Examples include
+
+  * `gf_pointrange()` -- plots a dot flanked by a line segment.  
+  * `gf_linrange()` -- like `gf_pointrange()` but without the point.
+  * `gf_errorbar()` -- vertical error bars.
+  * `gf_errorbarh()` -- horizontal error bars.
+  * `gf_ribbon()` -- a band between a line above and line below.
+  
+Often these are used to depict some sort of estimate of uncertainty in a
+measurement or a prediction, but they can be used to represent any data of the
+correct form.  Here we will use `gf_linerange()` and `gf_ribbon()` 
+to indicate the high and low temperatures in New York for the first few months of 2013.
+
+```{r}
+require(weatherData)
+Temps <- NewYork2013 %>%
+  mutate(date = lubridate::date(Time),
+         month = lubridate::month(Time)) %>% 
+  filter(month <= 4) %>%
+  group_by(date) %>%
+  summarise(
+    hi = max(Temperature, na.rm = TRUE),
+    lo = min(Temperature, na.rm = TRUE)
+  )   
+gf_linerange(lo + hi + color:hi ~ date, data = Temps)
+gf_ribbon(lo + hi ~ date, data = Temps, color = "navy", alpha = 0.3)
+```
 
 
 ## Chaining to create complex plots
@@ -351,6 +384,31 @@ gf_density_2d(net ~ age, data = Runners) %>% gf_facet_grid( sex ~ .)
 gf_density_2d(net ~ age, data = Runners) %>% gf_facet_wrap( ~ the_year)
 gf_density_2d(net ~ age, data = Runners) %>% gf_facet_grid(start_position ~ sex)
 ```
+One use of facets is to create side-by-side plots of different data sources.  
+First we merge the data into a single data frame with a variable to indicate 
+the original data source.  Then we use facets to separate
+the data into the various sources for the display.
+
+```{r}
+require(weatherData)
+Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
+  bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
+  bind_rows(London2013 %>% mutate(city = "London")) %>%
+  mutate(date = lubridate::date(Time),
+         month = lubridate::month(Time)) %>% 
+  group_by(city, date) %>%
+  summarise(
+    hi = max(Temperature, na.rm = TRUE),
+    lo = min(Temperature, na.rm = TRUE),
+    mid = (hi + lo)/2
+  )   
+gf_ribbon(lo + hi ~ date, data = Temps, alpha = 0.3) %>%
+  gf_facet_grid(city ~ .)
+
+gf_linerange(lo + hi + color:mid ~ date, data = Temps) %>%
+  gf_facet_grid(city ~ .) %>%
+  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
+```
 
 ### Global plot adjustments
 
@@ -360,17 +418,19 @@ labels, colors, fonts, etc.  `ggformula` provides wrappers to the `ggplot2` func
 for this so that the chaining syntax can be used.
 
 ```{r}
-gf_histogram( ~ age, data = Runners, alpha = 0.2, fill = "navy") %>%
-  gf_freqpoly( ~ age) %>%
+gf_histogram( ~ age, data = Runners, alpha = 0.2, fill = "navy",
+              binwidth = 5) %>%
+  gf_freqpoly( ~ age, binwidth = 5) %>%
   gf_labs(x = "age (years)", title = "Age of runners") %>%
   gf_lims(x = c(20, 80)) %>%
   gf_theme(theme = theme_minimal)
 
-gf_histogram( ~ age, data = Runners, alpha = 0.2, fill = "navy") %>%
-  gf_freqpoly( ~ age) %>%
+gf_histogram( ~ age, data = Runners, alpha = 0.5, fill = "white",
+              binwidth = 5) %>%
+  gf_freqpoly( ~ age, color = "skyblue", binwidth = 5, size = 1.5) %>%
   gf_labs(x = "age (years)", title = "Age of runners") %>%
   gf_lims(x = c(20, 80)) %>%
-  gf_theme(theme = theme_light)
+  gf_theme(theme = theme_dark)
 ```
 
 
