@@ -290,11 +290,11 @@ the zigs and zags in the connecting lines. It would be better to use
 work!
 
 Here's a more useful example.  We begin with a scatter plot showing the number of 
-live births in the US for each day of 2015.
+live births in the US for each day of 1978.
 
 ```{r}
 library(mosaicData)
-gf_point(births ~ date, data = Births2015)
+gf_point(births ~ date, data = Births78)
 ```
 
 Can this interesting pattern be explained by a weekday/weekend effect?  We could use 
@@ -302,13 +302,13 @@ color to show the days of the week.
 
 ```{r}
 library(mosaicData)
-gf_point(births ~ date + color:wday, data = Births2015)
+gf_point(births ~ date + color:wday, data = Births78)
 ```
 
 Converting to a line plot highlights the pattern and makes it easier to spot the unusual days.
 
 ```{r}
-gf_line(births ~ date + color:wday, data = Births2015)
+gf_line(births ~ date + color:wday, data = Births78)
 ```
 
 
