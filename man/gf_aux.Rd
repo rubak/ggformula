@@ -24,7 +24,8 @@ gf_refine(object, ...)
 \arguments{
 \item{object}{a gg object}
 
-\item{...}{additional arguments passed through to the similarly named function in}
+\item{...}{additional arguments passed through to the similarly named function in
+\pkg{ggplot2}.}
 
 \item{theme}{a ggplot2 theme function like \code{\link{theme_minimal}}.
 ggplot2}

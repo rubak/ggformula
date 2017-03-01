@@ -7,6 +7,7 @@
 #'
 #' @param object a gg object
 #' @param ... additional arguments passed through to the similarly named function in
+#' \pkg{ggplot2}.
 #' @param theme a ggplot2 theme function like \code{\link{theme_minimal}}.
 #' ggplot2
 #' @return a modified gg object
