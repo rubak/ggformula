@@ -144,11 +144,6 @@ is more compact and is consistent with modeling and mosaic notation.
 The functions generate a \code{ggplot} command string which can be displayed by
 setting \code{verbose = TRUE} as an argument.
 }
-\details{
-These \code{gf_} functions are written to interact with ggplot objects.
-The \code{object}
-argument is part of this interaction system; the end user can ignore it.
-}
 \examples{
 gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
 gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) \%>\%

@@ -26,7 +26,8 @@
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
-#' @details These \code{gf_} functions are written to interact with ggplot objects.
+#' @tag details
+#' These \code{gf_} functions are written to interact with ggplot objects.
 #' The \code{object}
 #' argument is part of this interaction system; the end user can ignore it.
 #'
@@ -164,7 +165,8 @@ gf_col <- gf_factory(type = "col")
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
-#' @details These \code{gf_} functions are written to interact with ggplot objects.
+#' @tag details
+#' These \code{gf_} functions are written to interact with ggplot objects.
 #' The \code{object}
 #' argument is part of this interaction system; the end user can ignore it.
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}.
