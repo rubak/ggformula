@@ -12,10 +12,11 @@ utils::globalVariables("role")
 # themselves are at the end of this file....
 
 # traverse a formula and return a nested list of "nodes"
-formula_slots <- function(x) {
+# stop traversal if we encouter a binary operator in stop_binops
+formula_slots <- function(x, stop_binops = c(":", "::")) {
   if (length(x) == 2L && deparse(x[[1]]) == "~") {
     formula_slots(x[[2]])
-  } else if (length(x) == 3L && deparse(x[[1]]) %in% c(":")) {
+  } else if (length(x) == 3L && deparse(x[[1]]) %in% stop_binops) {
     list(x)
   } else if (length(x) <= 2L) {
     list(x)
