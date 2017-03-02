@@ -1,7 +1,7 @@
 ---
 title: "Formula Interface for ggplot2"
 author: "Daniel Kaplan and Randall Pruim"
-date: "February 25, 2016"
+date: "March 2, 2017"
 output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
