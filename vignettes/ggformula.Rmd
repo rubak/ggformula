@@ -113,18 +113,33 @@ in this case smallish black filled-in circles.
 ### Specifying attributes
 
 In the `gf_` functions, you specify the non-position graphical attributes using 
-an extension of the basic formula.
-Each such specification takes the form `attribute:value` (or `attribute::value`)
+an extension of the basic formula.  Attributes can be **set** to a constant value
+(e.g, set the color to "blue"; set the size to 2) 
+or they can be **mapped** to a variable in the data or some 
+expression involving the variables 
+(e.g., map the color to `sex`, so sex determines the color groupings)
+
+Attributes can be specified in 3 ways:
+
+ * adding term of the form `attribute:value` to the formula [auto chooses set or map]
+ * adding a term of the form `attribute::value` [map]
+ * adding an argument of the form `attribute = value` [set]
+ 
 where `attribute` is one of `color`, `shape`, etc. and `value` is either a constant 
-(e.g. `"red"` or `0.5` as appropriate), a variable (e.g. `cyl`), or some more general
-expression that can be computed using the variables in `data` 
+(e.g. `"red"` or `0.5`, as appropriate), a variable (e.g. `cyl`), 
+or some more general expression that can be computed using the variables in `data` 
 (although often is is better to create a new variable in the data and to
 use that variable instead of an on-the-fly calculation within the plot).
+When using the `:` separator, mapping will be used if `value` is the name of 
+a variable in `data` and setting will be used otehrwise.  The other two forms 
+can be used when this auto-detection method doesn't yield the desired results
+to make things explicit.
+
 
 The following plot, for instance, 
 
  * We use `cyl` to determine the color and `carb` to  determine the size of each
- dot. We will say that color and size are **mapped** to `cyl` and `carb`. 
+ dot.  Color and size are **mapped** to `cyl` and `carb`. 
  A legend is provided to show us how the mapping is being done.
  (Later, we can use scales to control precisly how the mapping is done -- 
  which colors and sizes are used to represent which values of `cyl` and `carb`.)  
@@ -136,12 +151,11 @@ The following plot, for instance,
 gf_point(mpg ~ hp + color:cyl + size:carb + alpha:0.50, data = mtcars) 
 ```
 
-For convenience, we can also set attributes using function arguments.  (This does not work
-for mapping, only for setting.)
-
+Here is the same plot where mapping and setting are indicated 
+explicitly.
 ```{r}
 # set alpha using a function argument instead of in the formula
-gf_point(mpg ~ hp + color:cyl + size:carb, alpha = 0.50, data = mtcars) 
+gf_point(mpg ~ hp + color::cyl + size::carb, alpha = 0.50, data = mtcars) 
 ```
 
 ### On-the-fly caclulations
