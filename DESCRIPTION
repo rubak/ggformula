@@ -1,5 +1,5 @@
 Package: ggformula
-Title: Formula Interface to ggplot2
+Title: Formula Interface to the Grammar of Graphics
 Description: Provides a formula interface to ggplot2 graphics.
 Type: Package
 Version: 0.3.9005
