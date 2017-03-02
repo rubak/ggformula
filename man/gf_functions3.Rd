@@ -74,10 +74,13 @@ any default values of arguments to the geom.}
 }
 \description{
 These functions provide a formula interface to \code{ggplot2} and
-various geoms. For plots with just one layer, the formula interface
-is more compact and is consistent with modeling and mosaic notation.
-The functions generate a \code{ggplot} command string which can be displayed by
-setting \code{verbose = TRUE} as an argument.
+various geoms. The formula interface is similar to the one used
+for \pkg{lattice} plots, but more expressive, and consistent with
+its use in modeling functions like \code{\link{lm}()}.  These functions
+can be used to create a complete plot, or they can be chained together
+using the pipe operator from \pkg{magrittr} to create multi-layer plots.
+The functions generate a \code{ggplot2} command string which can be
+displayed by setting \code{verbose = TRUE} as an argument.
 }
 \examples{
 if (require(weatherData) & require(dplyr)) {
@@ -106,5 +109,6 @@ Temps \%>\% gf_ribbon(lo + hi ~ date, alpha = 0.4) \%>\%
 }
 }
 \seealso{
-\code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}.
+\code{\link{gf_histogram}()}, \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_refine}()},
+and the other functions documented with these functions.
 }

@@ -1,11 +1,14 @@
-
-#' bivariate gf_ plotting functions
+#' Bivariate gf_ plotting functions
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
 #' various geoms. For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and mosaic notation.
 #' The functions generate a \code{ggplot} command string which can be displayed by
 #' setting \code{verbose = TRUE} as an argument.
+#'
+#' @seealso  \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()},
+#' and the other functions documented with these functions.
+#'
 #'
 #' @rdname gf_functions
 #'
@@ -25,11 +28,6 @@
 #' the help will show (a) which geom from \pkg{ggplot2} is used,
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
-#'
-#' @tag details
-#' These \code{gf_} functions are written to interact with ggplot objects.
-#' The \code{object}
-#' argument is part of this interaction system; the end user can ignore it.
 #'
 #' @examples
 #' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
@@ -137,15 +135,18 @@ gf_tile <- gf_factory(type = "tile")
 #' @rdname gf_functions
 #' @export
 gf_col <- gf_factory(type = "col")
-
-
 #' Univariate gf_ plotting functions
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
-#' various geoms. For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and mosaic notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
+#' various geoms. The formula interface is similar to the one used
+#' for \pkg{lattice} plots, but more expressive, and consistent with
+#' its use in modeling functions like \code{\link{lm}()}.  These functions
+#' can be used to create a complete plot, or they can be chained together
+#' using the pipe operator from \pkg{magrittr} to create multi-layer plots.
+#' The functions generate a \code{ggplot2} command string which can be
+#' displayed by setting \code{verbose = TRUE} as an argument.
+#'
+#' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()}, and the other functions documented with these functions.
 #'
 #' @rdname gf_functions1
 #'
@@ -165,11 +166,6 @@ gf_col <- gf_factory(type = "col")
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
-#' @tag details
-#' These \code{gf_} functions are written to interact with ggplot objects.
-#' The \code{object}
-#' argument is part of this interaction system; the end user can ignore it.
-#' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}.
 #
 #' @examples
 #' gf_histogram(~ Sepal.Length + fill:Species, data = iris)
@@ -225,10 +221,16 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' Multivariate gf_ plotting functions
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
-#' various geoms. For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and mosaic notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
+#' various geoms. The formula interface is similar to the one used
+#' for \pkg{lattice} plots, but more expressive, and consistent with
+#' its use in modeling functions like \code{\link{lm}()}.  These functions
+#' can be used to create a complete plot, or they can be chained together
+#' using the pipe operator from \pkg{magrittr} to create multi-layer plots.
+#' The functions generate a \code{ggplot2} command string which can be
+#' displayed by setting \code{verbose = TRUE} as an argument.
+#'
+#' @seealso \code{\link{gf_histogram}()}, \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_refine}()},
+#' and the other functions documented with these functions.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
@@ -245,7 +247,6 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' the help will show (a) which geom from \pkg{ggplot2} is used,
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
-#' @seealso \code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}.
 #'
 #' @examples
 #' if (require(weatherData) & require(dplyr)) {
@@ -316,10 +317,18 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' gf_ functions with no formula part
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
-#' various geoms. For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
+#' various geoms. The formula interface is similar to the one used
+#' for \pkg{lattice} plots, but more expressive, and consistent with
+#' its use in modeling functions like \code{\link{lm}()}.  These functions
+#' can be used to create a complete plot, or they can be chained together
+#' using the pipe operator from \pkg{magrittr} to create multi-layer plots.
+#' The functions generate a \code{ggplot2} command string which can be
+#' displayed by setting \code{verbose = TRUE} as an argument.
+#'
+#' @seealso \code{\link{gf_histogram}()},
+#' \code{\link{gf_point}()},
+#' \code{\link{gf_pointrange}()},
+#' \code{\link{gf_refine}()}, and the other functions documented with these functions.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
@@ -341,7 +350,6 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
-#' @seealso \code{\link{gf_point}()}, \code{\link{gf_histogram}()}, \code{\link{gf_pointrange}()}
 #'
 #' @examples
 #' mtcars.model <- lm(mpg ~ wt, data = mtcars)

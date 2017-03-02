@@ -23,7 +23,7 @@
 \alias{gf_step}
 \alias{gf_tile}
 \alias{gf_col}
-\title{bivariate gf_ plotting functions}
+\title{Bivariate gf_ plotting functions}
 \usage{
 gf_frame(object = NULL, formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
@@ -163,4 +163,8 @@ gf_text(Sepal.Length ~ Sepal.Width + label:Species + color:Species , data = iris
 # Chaining in the data
 mtcars \%>\% gf_point(mpg ~ wt)
 
+}
+\seealso{
+\code{\link{gf_histogram}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()},
+and the other functions documented with these functions.
 }
