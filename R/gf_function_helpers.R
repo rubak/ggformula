@@ -142,8 +142,8 @@ gf_master <- function(formula = NULL, data = NULL,
     if (is.null(data)) ""
   else paste("data =", data_name)
 
-  if ( (! add) && is.null(data) )
-    stop("Must provide a frame or a data argument for a frame.")
+  # if ( (! add) && is.null(data) )
+  #   warning("No data supplied.  Was that intentional?")
 
   var_names <-
     if (is.null(data)) {
