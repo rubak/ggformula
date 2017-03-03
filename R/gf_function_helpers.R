@@ -131,6 +131,33 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
       return(P)
   }
 }
+formula_split <- function(formula) {
+  # split A | B into formula <- A; condition <- B
+  fs <-
+    stringr::str_split(deparse(formula), "\\|")[[1]]
+  # try to split, else leave formula unchanged and set condition to NULL
+  if ( (length(fs) != 2) ||
+       ! tryCatch({
+         formula_string <- fs[1]
+         condition_string <- fs[2]
+         if (! grepl("~", condition_string)) {
+           condition_string <- paste0("~", condition_string)
+           condition <- as.formula(condition_string, env = environment(formula))
+           facet_type <- "facet_wrap"
+         } else {
+           condition <- as.formula(condition_string, env = environment(formula))
+           facet_type <- "facet_grid"
+         }
+         formula <- as.formula(formula_string, env = environment(formula))
+         TRUE
+       }, error = function(e) {warning(e); FALSE}
+       )
+  ) {
+    condition <- NULL
+    facet_type <- "none"
+  }
+  list(formula = formula, condition = condition, facet_type = facet_type)
+}
 
 gf_master <- function(formula = NULL, data = NULL,
                       add = FALSE,
@@ -145,6 +172,12 @@ gf_master <- function(formula = NULL, data = NULL,
 
   # if ( (! add) && is.null(data) )
   #   warning("No data supplied.  Was that intentional?")
+
+  # split A | B into formula <- A; condition <- B
+  fs <- formula_split(formula)
+  formula <- fs[["formula"]]
+  condition <- fs[["condition"]]
+  facet_type <- fs[["facet_type"]]
 
   var_names <-
     if (is.null(data)) {
@@ -179,7 +212,11 @@ gf_master <- function(formula = NULL, data = NULL,
   if (! add) gg_string <-   # need ggplot() call, too
     paste0("ggplot(", data_string, ") + ", gg_string)
 
-  gg_string
+  if (is.null(condition)) {
+    gg_string
+  } else {
+    paste0(gg_string, " + ", facet_type, "(", deparse(condition), ")")
+  }
 }
 
 formula_to_df <- function(formula = NULL, data_names = character(0),
