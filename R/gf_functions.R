@@ -22,13 +22,8 @@
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
 #'
-#'
-#'
 #' @seealso  \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()},
 #' and the other functions documented with these functions.
-#'
-#'
-#' @rdname gf_functions
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
@@ -39,7 +34,6 @@
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-# Not current: @param system Which graphics system to use, e.g. ggplot2, and so on.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param ... Other arguments such as \code{position="dodge"}.
 #' @param show.help If \code{TRUE}, display some minimal help.  In particular,
@@ -189,8 +183,6 @@ gf_frame <- gf_factory(type = "blank")
 #'
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()}, and the other functions documented with these functions.
 #'
-#' @rdname gf_functions1
-#'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
@@ -207,7 +199,6 @@ gf_frame <- gf_factory(type = "blank")
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
-#
 #' @examples
 #' gf_dens(show.help = TRUE)
 #' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
@@ -251,11 +242,6 @@ gf_bar <- gf_factory(type = "bar",
 #' @export
 gf_freqpoly <- gf_factory(type = "freqpoly", aes_form = ~ x)
 
-# #' @rdname gf_functions1
-# #' @export
-# gf_ash <- gf_factory(type = "ash", aes_form = ~ x)
-
-#'
 #' @rdname gf_functions1
 #' @export
 gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
@@ -434,7 +420,6 @@ gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL
             intercept = coef[1], slope = coef[2], ...)
 }
 
-#'
 #' @rdname gf_functions0
 #' @export
 gf_hline <- gf_factory(type = "hline", aes_form = NULL)
