@@ -25,91 +25,91 @@
 \alias{gf_frame}
 \title{Bivariate gf_ plotting functions}
 \usage{
-gf_point(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_point(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_jitter(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_jitter(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_line(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_line(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_path(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_path(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_smooth(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_smooth(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_spline(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_spline(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_rug(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_rug(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_quantile(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_quantile(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_density_2d(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_density_2d(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_density2d(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_density2d(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_contour(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_contour(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_hex(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_hex(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_boxplot(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_boxplot(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_text(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_text(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_label(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_label(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_area(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_area(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_violin(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_violin(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_spoke(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_spoke(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_step(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_step(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_tile(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_tile(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_col(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_col(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_frame(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_frame(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 }
@@ -118,7 +118,7 @@ gf_frame(object = NULL, formula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{formula}{A formula describing the x and y variables and other aesthetics in
+\item{.formula}{A formula describing the x and y variables and other aesthetics in
 a form like \code{y ~ x + color:"red" + shape:sex + alpha:0.5}.  See details.}
 
 \item{data}{A data frame with the variables to be plotted}

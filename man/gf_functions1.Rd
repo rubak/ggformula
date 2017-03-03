@@ -11,35 +11,35 @@
 \alias{gf_qq}
 \title{Univariate gf_ plotting functions}
 \usage{
-gf_histogram(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_histogram(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_density(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_density(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_dens(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_dens(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_dotplot(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_dotplot(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_counts(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_counts(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_bar(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_bar(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_freqpoly(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_freqpoly(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_qq(object = NULL, formula = NULL, data = NULL, geom = type,
+gf_qq(object = NULL, .formula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 }
@@ -48,7 +48,7 @@ gf_qq(object = NULL, formula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{formula}{A formula describing the x variable and other aesthetics in
+\item{.formula}{A formula describing the x variable and other aesthetics in
 a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}}
 
 \item{data}{A data frame with the variables to be plotted}

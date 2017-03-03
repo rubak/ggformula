@@ -29,7 +29,7 @@
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param formula A formula describing the x and y variables and other aesthetics in
+#' @param .formula A formula describing the x and y variables and other aesthetics in
 #' a form like \code{y ~ x + color:"red" + shape:sex + alpha:0.5}.  See details.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
@@ -187,7 +187,7 @@ gf_frame <- gf_factory(type = "blank")
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param formula A formula describing the x variable and other aesthetics in
+#' @param .formula A formula describing the x variable and other aesthetics in
 #' a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
@@ -283,7 +283,7 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param formula A formula describing the manditory aesthetics and possibly other
+#' @param .formula A formula describing the manditory aesthetics and possibly other
 #' aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
@@ -379,7 +379,7 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param formula ignored.
+#' @param .formula ignored.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.

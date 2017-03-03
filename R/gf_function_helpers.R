@@ -45,32 +45,8 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   res
 }
 
-# This doen't appear to be used anywhere.
-
-gf_generic <- function(object = NULL, formula = NULL, data = NULL,
-                       extras = list(), geom = "point", aes_form = y ~ x,
-                       ... ) {
-  data_name <- deparse(substitute(data))
-  if (inherits(object, c("gg", "ggplot"))) {
-    # things are already set up
-    add <- TRUE
-  } else if (inherits(object, "formula")) {
-    formula <- object
-    object <- NULL
-    add <- FALSE
-  }
-
-  gg_string <- gf_master(formula = formula, data = data, add = add,
-                         geom = geom, gg_object = object,
-                         extras = extras, aes_form = aes_form,
-                         data_name = data_name)
-  gg_string
-}
-
 gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
-  # this is a copy of the body of gf_generic() with some of the
-  # arguments Curried.
-  function(object = NULL, formula = NULL,
+  function(object = NULL, .formula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
            ..., show.help = FALSE) {
@@ -93,7 +69,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     object_name <- deparse(substitute(object))
 
     if (inherits(object, "formula")) {
-      formula <- object
+      .formula <- object
       object <- NULL
     }
 
@@ -108,7 +84,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     if (!inherits(object, c("gg", "ggplot"))) {
       add <- FALSE  # can't add if we don't have a plot to add to
     }
-    gg_string <- gf_master(formula = formula, data = data,
+    gg_string <- gf_master(formula = .formula, data = data,
                            geom = geom, gg_object = object,
                            add = add, extras = extras,
                            aes_form = aes_form,
@@ -116,7 +92,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
 
     if (dot_eval) {
-      gg_string <- gf_master(formula = formula, data = data,
+      gg_string <- gf_master(formula = .formula, data = data,
                            geom = geom, gg_object = object,
                            add = TRUE, extras = extras,
                            aes_form = aes_form,
