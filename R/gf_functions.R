@@ -6,6 +6,24 @@
 #' The functions generate a \code{ggplot} command string which can be displayed by
 #' setting \code{verbose = TRUE} as an argument.
 #'
+#' Formulas must specify the \code{y} and \code{x} aesthetics in the form \code{y ~ x}.
+#' Additional terms of the form \code{attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}.
+#' Attributes can also be set by including optional arguments of the form
+#' \code{attribute = value}.
+#'
+#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
+#' \code{link{facet_wrap}()} or \code{\link{facet_grid}()}.
+#' This provides an alternative to
+#' \code{\link{gf_facet_wrap}()} and
+#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+#' of \pkg{lattice}.
+#'
+#'
+#'
 #' @seealso  \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()},
 #' and the other functions documented with these functions.
 #'
@@ -17,7 +35,7 @@
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
 #' @param formula A formula describing the x and y variables and other aesthetics in
-#' a form like \code{y ~ x + color:red + shape:sex + alpha:0.5}
+#' a form like \code{y ~ x + color:"red" + shape:sex + alpha:0.5}.  See details.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
@@ -30,6 +48,7 @@
 #' any default values of arguments to the geom.
 #'
 #' @examples
+#' gf_point(show.help = TRUE)
 #' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
 #' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) %>%
 #'   gf_abline(~ color:"red" + slope:-0.10 + intercept:35)
@@ -39,19 +58,18 @@
 #'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
 #'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
 #'   gf_vline(color = "brown", xintercept = c(200, 300))
-#' # use %>% for gf_* but + when returning to native ggplot functions
-#' gf_line(mpg ~ hp + group:cyl, data = mtcars) %>%
-#'   gf_point(mpg ~ hp + group:cyl) +
-#'   facet_grid(~ am)
+#' # faceting -- two ways
+#' gf_point(mpg ~ hp, data = mtcars) %>%
+#'   gf_facet_wrap(~ am)
+#' gf_point(mpg ~ hp + group:cyl | am, data = mtcars)
+#' gf_point(mpg ~ hp + group:cyl | ~ am, data = mtcars)
+#' gf_point(mpg ~ hp + group:cyl | am ~ ., data = mtcars)
+#'
 #' gf_text(Sepal.Length ~ Sepal.Width + label:Species + color:Species , data = iris)
 #'
 #' # Chaining in the data
 #' mtcars %>% gf_point(mpg ~ wt)
 #'
-#' @rdname gf_functions
-#' @export
-gf_frame <- gf_factory(type = "blank")
-
 #' @rdname gf_functions
 #' @export
 gf_point <- gf_factory(type = "point")
@@ -135,6 +153,13 @@ gf_tile <- gf_factory(type = "tile")
 #' @rdname gf_functions
 #' @export
 gf_col <- gf_factory(type = "col")
+
+#' @rdname gf_functions
+#' @export
+gf_frame <- gf_factory(type = "blank")
+
+
+
 #' Univariate gf_ plotting functions
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
@@ -145,6 +170,22 @@ gf_col <- gf_factory(type = "col")
 #' using the pipe operator from \pkg{magrittr} to create multi-layer plots.
 #' The functions generate a \code{ggplot2} command string which can be
 #' displayed by setting \code{verbose = TRUE} as an argument.
+#'
+#' Formulas must specify the \code{x} aesthetic in the form \code{~x}.
+#' Additional terms of the form \code{attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}.
+#' Attributes can also be set by including optional arguments of the form
+#' \code{attribute = value}.
+#'
+#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
+#' \code{link{facet_wrap}()} or \code{\link{facet_grid}()}.
+#' This provides an alternative to
+#' \code{\link{gf_facet_wrap}()} and
+#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+#' of \pkg{lattice}.
 #'
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()}, and the other functions documented with these functions.
 #'
@@ -168,14 +209,33 @@ gf_col <- gf_factory(type = "col")
 #'
 #
 #' @examples
-#' gf_histogram(~ Sepal.Length + fill:Species, data = iris)
+#' gf_dens(show.help = TRUE)
+#' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 #' gf_density(~ Sepal.Length + color:Species, data = iris)
 #' gf_dens(~ Sepal.Length + color:Species, data = iris)
 #' gf_freqpoly(~ Sepal.Length + color:Species, data = iris)
 #' gf_dotplot(~ Sepal.Length + fill:Species, data = iris)
-#' gf_counts(~ Species, data = iris)
+#' gf_counts(~ Species + fill:Species, data = iris)
 #' # Chaining in the data
 #' iris %>% gf_dens(~ Sepal.Length + color:Species)
+
+#' @rdname gf_functions1
+#' @export
+gf_histogram <- gf_factory(type = "histogram", aes_form = ~x)
+
+#' @rdname gf_functions1
+#' @export
+gf_density <- gf_factory(type = "density", aes_form = ~ x)
+
+# modified version of density plot without line along bottom and sides
+#' @rdname gf_functions1
+#' @export
+gf_dens <- gf_factory(type = "line", extras = list(stat = "density"),
+                      aes_form = ~ x)
+
+#' @rdname gf_functions1
+#' @export
+gf_dotplot <- gf_factory(type = "dotplot", aes_form = ~x)
 
 # Separate functions for a count-type bar chart and a value-based bar chart.
 #' @rdname gf_functions1
@@ -195,24 +255,6 @@ gf_freqpoly <- gf_factory(type = "freqpoly", aes_form = ~ x)
 # #' @export
 # gf_ash <- gf_factory(type = "ash", aes_form = ~ x)
 
-#' @rdname gf_functions1
-#' @export
-gf_density <- gf_factory(type = "density", aes_form = ~ x)
-
-#' @rdname gf_functions1
-#' @export
-gf_histogram <- gf_factory(type = "histogram", aes_form = ~x)
-
-#' @rdname gf_functions1
-#' @export
-gf_dotplot <- gf_factory(type = "dotplot", aes_form = ~x)
-
-# modified version of density plot without line along bottom and sides
-#' @rdname gf_functions1
-#' @export
-gf_dens <- gf_factory(type = "line", extras = list(stat = "density"),
-                      aes_form = ~ x)
-
 #'
 #' @rdname gf_functions1
 #' @export
@@ -228,6 +270,25 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' using the pipe operator from \pkg{magrittr} to create multi-layer plots.
 #' The functions generate a \code{ggplot2} command string which can be
 #' displayed by setting \code{verbose = TRUE} as an argument.
+#'
+#' Formulas must specify the required aesthetics of the underlying
+#' \pkg{ggplot2} function.  Use, for example,  \code{gf_ribbon(show.help = TRUE)}
+#' to see the formula specification required (along with any other default values
+#' passed to the geom).
+#' Additional terms of the form \code{attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}.
+#' Attributes can also be set by including optional arguments of the form
+#' \code{attribute = value}.
+#'
+#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
+#' \code{link{facet_wrap}()} or \code{\link{facet_grid}()}.
+#' This provides an alternative to
+#' \code{\link{gf_facet_wrap}()} and
+#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+#' of \pkg{lattice}.
 #'
 #' @seealso \code{\link{gf_histogram}()}, \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_refine}()},
 #' and the other functions documented with these functions.
@@ -249,6 +310,7 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' any default values of arguments to the geom.
 #'
 #' @examples
+#' gf_ribbon(show.help = TRUE)
 #' if (require(weatherData) & require(dplyr)) {
 #' Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
 #' bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
@@ -264,15 +326,18 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #'
 #' gf_ribbon(lo + hi ~ date + fill:city, data = Temps, alpha = 0.4) %>%
 #'    gf_theme(theme = theme_minimal)
-#' gf_linerange(lo + hi + color:mid ~ date, data = Temps) %>%
-#'   gf_facet_grid(city ~ .) %>%
+#' gf_linerange(lo + hi + color:mid ~ date | city ~ ., data = Temps) %>%
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
-#' gf_ribbon(lo + hi ~ date, data = Temps) %>%
-#'   gf_facet_grid(city ~ .)
+#' gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
 #' # Chaining in the data
 #' Temps %>% gf_ribbon(lo + hi ~ date, alpha = 0.4) %>%
 #'   gf_facet_grid(city ~ .)
 #' }
+
+#' @rdname gf_functions3
+#' @export
+gf_ribbon <- gf_factory(type = "ribbon", aes_form = ymin + ymax ~ x,
+                        extras = list(alpha = 0.3))
 
 #' @rdname gf_functions3
 #' @export
@@ -281,11 +346,6 @@ gf_curve <- gf_factory(type = "curve", aes_form = y + yend ~ x + xend)
 #' @rdname gf_functions3
 #' @export
 gf_segment <- gf_factory(type = "segment", aes_form = y + yend ~ x + xend)
-
-#' @rdname gf_functions3
-#' @export
-gf_ribbon <- gf_factory(type = "ribbon", aes_form = ymin + ymax ~ x,
-                        extras = list(alpha = 0.3))
 
 #' @rdname gf_functions3
 #' @export
@@ -311,7 +371,6 @@ gf_errorbarh <- gf_factory(type = "errorbarh", aes_form = y ~ x + xmin + xmax)
 #' @rdname gf_functions3
 #' @export
 gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
-
 
 
 #' gf_ functions with no formula part
@@ -350,7 +409,6 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
-#'
 #' @examples
 #' mtcars.model <- lm(mpg ~ wt, data = mtcars)
 #' gf_point(mpg ~ wt, data = mtcars) %>%
@@ -360,14 +418,6 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' # Chaining in the data
 #' mtcars %>% gf_point(mpg ~ wt, data = mtcars) %>%
 #'   gf_coefline(model = mtcars.model, alpha = 0.6, col = "red")
-#'
-#' @rdname gf_functions0
-#' @export
-gf_hline <- gf_factory(type = "hline", aes_form = NULL)
-
-#' @rdname gf_functions0
-#' @export
-gf_vline <- gf_factory(type = "vline", aes_form = NULL)
 
 #' @rdname gf_functions0
 #' @export
@@ -383,4 +433,13 @@ gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL
   gf_abline(object = object, formula = formula,
             intercept = coef[1], slope = coef[2], ...)
 }
+
+#'
+#' @rdname gf_functions0
+#' @export
+gf_hline <- gf_factory(type = "hline", aes_form = NULL)
+
+#' @rdname gf_functions0
+#' @export
+gf_vline <- gf_factory(type = "vline", aes_form = NULL)
 
