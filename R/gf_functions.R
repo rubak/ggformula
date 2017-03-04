@@ -22,6 +22,11 @@
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
 #'
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{formula}.  This
+#' will typically do the right thing when formulas are created on the fly, but might not
+#' be the right thing if formulas created in one environment are used to create plots
+#' in another.
+#'
 #' @seealso  \code{\link{gf_histogram}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()},
 #' and the other functions documented with these functions.
 #'
@@ -29,8 +34,11 @@
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param .formula A formula describing the x and y variables and other aesthetics in
-#' a form like \code{y ~ x + color:"red" + shape:sex + alpha:0.5}.  See details.
+#' @param gformula A formula describing the x and y variables and other aesthetics in
+#' a form like \code{y ~ x + color:"red" + shape:sex + alpha:0.5}.
+#' The environment of \code{gformula} determines
+#' where the \pkg{ggplot2} code is evaluated.
+#' See details.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
@@ -181,14 +189,21 @@ gf_frame <- gf_factory(type = "blank")
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
 #'
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{formula}.  This
+#' will typically do the right thing when formulas are created on the fly, but might not
+#' be the right thing if formulas created in one environment are used to create plots
+#' in another.
+#'
 #' @seealso \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_pointrange}()}, \code{\link{gf_refine}()}, and the other functions documented with these functions.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param .formula A formula describing the x variable and other aesthetics in
-#' a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}
+#' @param gformula A formula describing the x variable and other aesthetics in
+#' a form like \code{ ~ x + color:red + fill:gray50 + alpha:0.5}.
+#' The environment of \code{gformula} determines
+#' where the \pkg{ggplot2} code is evaluated. See details.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
@@ -276,6 +291,11 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
 #'
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{formula}.  This
+#' will typically do the right thing when formulas are created on the fly, but might not
+#' be the right thing if formulas created in one environment are used to create plots
+#' in another.
+#'
 #' @seealso \code{\link{gf_histogram}()}, \code{\link{gf_point}()}, \code{\link{gf_abline}()}, \code{\link{gf_refine}()},
 #' and the other functions documented with these functions.
 #'
@@ -283,8 +303,10 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param .formula A formula describing the manditory aesthetics and possibly other
-#' aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}
+#' @param gformula A formula describing the manditory aesthetics and possibly other
+#' aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}.
+#' The environment of \code{gformula} determines
+#' where the \pkg{ggplot2} code is evaluated. See details.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
@@ -379,7 +401,9 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #' @param data A data frame with the variables to be plotted
-#' @param .formula ignored.
+#' @param gformula mostly ignored,
+#' but the environment of this object determines
+#' where the \pkg{ggplot2} code is evaluated.
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #' can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.

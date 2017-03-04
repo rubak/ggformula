@@ -12,39 +12,39 @@
 \alias{gf_rect}
 \title{Multivariate gf_ plotting functions}
 \usage{
-gf_ribbon(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_ribbon(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_curve(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_curve(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_segment(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_segment(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_linerange(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_linerange(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_pointrange(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_pointrange(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_crossbar(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_crossbar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_errorbar(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_errorbar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_errorbarh(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_errorbarh(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_rect(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_rect(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 }
@@ -53,8 +53,10 @@ gf_rect(object = NULL, .formula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{.formula}{A formula describing the manditory aesthetics and possibly other
-aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}}
+\item{gformula}{A formula describing the manditory aesthetics and possibly other
+aesthetics in a form like \code{ y + ymin + ymax ~ x + color:red + fill:gray50 + alpha:0.5}.
+The environment of \code{gformula} determines
+where the \pkg{ggplot2} code is evaluated. See details.}
 
 \item{data}{A data frame with the variables to be plotted}
 
@@ -101,6 +103,11 @@ This provides an alternative to
 \code{\link{gf_facet_wrap}()} and
 \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 of \pkg{lattice}.
+
+Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{formula}.  This
+will typically do the right thing when formulas are created on the fly, but might not
+be the right thing if formulas created in one environment are used to create plots
+in another.
 }
 \examples{
 gf_ribbon(show.help = TRUE)

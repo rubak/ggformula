@@ -7,18 +7,18 @@
 \alias{gf_vline}
 \title{gf_ functions with no formula part}
 \usage{
-gf_abline(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_abline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
 gf_coefline(object = NULL, formula = NULL, coef = NULL, model = NULL,
   ...)
 
-gf_hline(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_hline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 
-gf_vline(object = NULL, .formula = NULL, data = NULL, geom = type,
+gf_vline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   show.help = FALSE)
 }
@@ -27,7 +27,9 @@ gf_vline(object = NULL, .formula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{.formula}{ignored.}
+\item{gformula}{mostly ignored,
+but the environment of this object determines
+where the \pkg{ggplot2} code is evaluated.}
 
 \item{data}{A data frame with the variables to be plotted}
 

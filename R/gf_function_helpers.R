@@ -3,6 +3,8 @@ utils::globalVariables("role")
 #' @importFrom utils head tail
 #' @importFrom tibble data_frame
 #' @importFrom stringr str_split str_match
+#' @importFrom stats as.formula
+#' @importFrom utils modifyList
 #' @import ggplot2
 
 # The actual graphing functions are created dynamically.
@@ -46,7 +48,7 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
 }
 
 gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
-  function(object = NULL, .formula = NULL,
+  function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
            ..., show.help = FALSE) {
@@ -69,7 +71,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     object_name <- deparse(substitute(object))
 
     if (inherits(object, "formula")) {
-      .formula <- object
+      gformula <- object
       object <- NULL
     }
 
@@ -84,7 +86,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     if (!inherits(object, c("gg", "ggplot"))) {
       add <- FALSE  # can't add if we don't have a plot to add to
     }
-    gg_string <- gf_master(formula = .formula, data = data,
+    gg_string <- gf_master(formula = gformula, data = data,
                            geom = geom, gg_object = object,
                            add = add, extras = extras,
                            aes_form = aes_form,
@@ -92,14 +94,14 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
 
     if (dot_eval) {
-      gg_string <- gf_master(formula = .formula, data = data,
+      gg_string <- gf_master(formula = gformula, data = data,
                            geom = geom, gg_object = object,
                            add = TRUE, extras = extras,
                            aes_form = aes_form,
                            data_name = NULL)
       P <- ggplot(data) + eval(parse(text = gg_string))
     } else {
-      P <- eval(parse(text = gg_string))
+      P <- eval(parse(text = gg_string), environment(gformula))
     }
     if (add)  #  don't need this part: && inherits(object, c("gg", "ggplot")))
       return(object + P)
