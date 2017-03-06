@@ -211,7 +211,7 @@ gf_frame <- gf_factory(type = "blank")
 #' @param ... Other arguments such as \code{position="dodge"}.
 #' @param show.help If \code{TRUE}, display some minimal help.  In particular,
 #' the help will show (a) which geom from \pkg{ggplot2} is used,
-#' (b) how aesthetics are assigned based on \code{formula}, and (c)
+#' (b) how aesthetics are assigned based on \code{gformula}, and (c)
 #' any default values of arguments to the geom.
 #'
 #' @examples
@@ -291,7 +291,7 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
 #'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{formula}.  This
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.  This
 #' will typically do the right thing when formulas are created on the fly, but might not
 #' be the right thing if formulas created in one environment are used to create plots
 #' in another.
