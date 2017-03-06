@@ -14,39 +14,39 @@
 \usage{
 gf_ribbon(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_curve(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_segment(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_linerange(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_pointrange(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_crossbar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_errorbar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_errorbarh(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_rect(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -104,7 +104,7 @@ This provides an alternative to
 \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 of \pkg{lattice}.
 
-Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{formula}.  This
+Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.  This
 will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.

@@ -27,91 +27,91 @@
 \usage{
 gf_point(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_jitter(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_line(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_path(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_spline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_rug(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_quantile(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_density_2d(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_density2d(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_contour(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_hex(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_boxplot(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_text(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_label(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_area(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_violin(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_spoke(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_step(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_tile(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_col(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_frame(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

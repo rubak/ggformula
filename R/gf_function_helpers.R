@@ -51,7 +51,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
   function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
-           ..., show.help = FALSE) {
+           ..., position = NULL, show.help = FALSE) {
     if (show.help) {
       fun <- match.call()[1]
       message(fun, " uses a formula with shape ", format(aes_form), ".")
@@ -65,7 +65,11 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
       )
       return(invisible(NULL))
     }
+
     dots <- list(...)
+    if (!is.null(position)) {
+      dots[["position"]] <- substitute(position)
+    }
     if (length(dots) > 0) extras <- modifyList(extras, dots)
     data_name <- deparse(substitute(data))
     object_name <- deparse(substitute(object))

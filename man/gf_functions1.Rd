@@ -13,35 +13,35 @@
 \usage{
 gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_density(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_dens(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_dotplot(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_counts(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_bar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_freqpoly(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 
 gf_qq(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  show.help = FALSE)
+  position = NULL, show.help = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -66,7 +66,7 @@ can be added to an existing frame.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.  In particular,
 the help will show (a) which geom from \pkg{ggplot2} is used,
-(b) how aesthetics are assigned based on \code{formula}, and (c)
+(b) how aesthetics are assigned based on \code{gformula}, and (c)
 any default values of arguments to the geom.}
 }
 \description{
