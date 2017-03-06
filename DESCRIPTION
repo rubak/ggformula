@@ -1,10 +1,12 @@
 Package: ggformula
 Title: Formula Interface to the Grammar of Graphics
-Description: Provides a formula interface to ggplot2 graphics.
+Description: Provides a formula interface to 'ggplot2' graphics.
 Type: Package
 Version: 0.3.9006
-Author: Daniel Kaplan <kaplan@macalester.edu>, Randall Pruim <rpruim@calvin.edu>
-Maintainer: Randall Pruim <rpruim@calvin.edu>
+Authors@R: c(
+    person("Kaplan", "Daniel", , "kaplan@macalester.edu", c("aut")),
+    person("Pruim", "Randall", , "rpruim@calvin.edu", c("aut","cre"))
+    )
 License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
