@@ -98,7 +98,7 @@ gf_spline <- gf_factory(type = "spline")
 
 #' @rdname gf_functions
 #' @export
-gf_rug <- gf_factory(type = "rug")
+gf_raster <- gf_factory(type = "raster")
 
 #' @rdname gf_functions
 #' @export
@@ -111,10 +111,6 @@ gf_density_2d <- gf_factory(type = "density_2d")
 #' @rdname gf_functions
 #' @export
 gf_density2d <- gf_factory(type = "density2d")
-
-#' @rdname gf_functions
-#' @export
-gf_contour <- gf_factory(type = "contour")
 
 #' @rdname gf_functions
 #' @export
@@ -261,6 +257,10 @@ gf_freqpoly <- gf_factory(type = "freqpoly", aes_form = ~ x)
 #' @export
 gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 
+#' @rdname gf_functions1
+#' @export
+gf_rug <- gf_factory(type = "rug", aes_form(~x))
+
 #' Multivariate gf_ plotting functions
 #'
 #' These functions provide a formula interface to \code{ggplot2} and
@@ -341,6 +341,14 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 #' Temps %>% gf_ribbon(lo + hi ~ date, alpha = 0.4) %>%
 #'   gf_facet_grid(city ~ .)
 #' }
+
+#' @rdname gf_functions3
+#' @export
+gf_raster2 <- gf_factory(type = "raster", aes_form = fill ~ x + y)
+
+#' @rdname gf_functions3
+#' @export
+gf_contour <- gf_factory(type = "contour", aes_form = z ~ x + y)
 
 #' @rdname gf_functions3
 #' @export

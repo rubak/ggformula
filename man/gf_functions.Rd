@@ -7,11 +7,10 @@
 \alias{gf_path}
 \alias{gf_smooth}
 \alias{gf_spline}
-\alias{gf_rug}
+\alias{gf_raster}
 \alias{gf_quantile}
 \alias{gf_density_2d}
 \alias{gf_density2d}
-\alias{gf_contour}
 \alias{gf_hex}
 \alias{gf_boxplot}
 \alias{gf_text}
@@ -49,7 +48,7 @@ gf_spline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = FALSE)
 
-gf_rug(object = NULL, gformula = NULL, data = NULL, geom = type,
+gf_raster(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = FALSE)
 
@@ -62,10 +61,6 @@ gf_density_2d(object = NULL, gformula = NULL, data = NULL, geom = type,
   position = NULL, show.help = FALSE)
 
 gf_density2d(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
-
-gf_contour(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = FALSE)
 

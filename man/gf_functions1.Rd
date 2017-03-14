@@ -9,6 +9,7 @@
 \alias{gf_bar}
 \alias{gf_freqpoly}
 \alias{gf_qq}
+\alias{gf_rug}
 \title{Univariate gf_ plotting functions}
 \usage{
 gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = type,
@@ -40,6 +41,10 @@ gf_freqpoly(object = NULL, gformula = NULL, data = NULL, geom = type,
   position = NULL, show.help = FALSE)
 
 gf_qq(object = NULL, gformula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  position = NULL, show.help = FALSE)
+
+gf_rug(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = FALSE)
 }
