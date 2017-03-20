@@ -1,7 +1,7 @@
 ---
 title: "Formula Interface for ggplot2"
 author: "Daniel Kaplan and Randall Pruim"
-date: "March 2, 2017"
+date: "March 20, 2017"
 output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
@@ -36,11 +36,18 @@ components.
 Experts, of course, will want to use the underlying `ggplot2` package directly
 in order to maximize expressiveness and minimize the "bureaucracy" induced by
 intervening layers of software. The `ggformula` graphics are suited
-for beginners -- or for those familiar with `lattice` graphics -- 
-because they reduce the number of elements used in notation and rely on
-a formula interface that is used extensively in R to describe models (e.g.,
-when using `lm()`).  Those familiar with the `mosaic` package will also have 
-used formulas to create numerical summaries.
+for 
+
+  * beginners, who don't require the full range of `ggplot2` capabilities, but
+  want to get started quickly,
+  
+  * those familiar with `lattice` graphics, but wanting to be
+  able to easily create multilayered plots,
+  
+  * those who prefer a formula interface, perhaps because it is 
+  familiar from use with function like `lm()` or from use of 
+  the `mosaic` package for numerical summaries.
+  
 
 ## The basic formula template
 
@@ -131,9 +138,9 @@ or some more general expression that can be computed using the variables in `dat
 (although often is is better to create a new variable in the data and to
 use that variable instead of an on-the-fly calculation within the plot).
 When using the `:` separator, mapping will be used if `value` is the name of 
-a variable in `data` and setting will be used otehrwise.  The other two forms 
-can be used when this auto-detection method doesn't yield the desired results
-to make things explicit.
+a variable in `data`, otherwise setting will be used.  The other two forms 
+can be used to make things explicit
+when this auto-detection method doesn't yield the desired results
 
 
 The following plot, for instance, 
@@ -176,7 +183,7 @@ gf_point(mpg ~ hp + color:cylinders + size:carb + alpha:0.75,
 ## "One-variable" plots
 
 For some plots, we only have to specify the x-position because the y-position is cacluated
-from the x-values.  Histogram, densityplots, and frequency polygons are examples.
+from the x-values.  Histograms, densityplots, and frequency polygons are examples.
 To illustrate, we'll use density plots, but the same ideas apply to 
 `gf_histogram()`, and `gf_freqpolygon()` as well. 
 *Note that in the one-variable density graphics, the variable whose density is to be calculated goes to the right of the tilde, in the position reserved for the x-axis variable.*
@@ -195,8 +202,10 @@ attributes of individual glyphs but control some other aspect of the plot.  In t
 case, `adjust` can be used to increase or decrease the amount of smothing.
 
 ```{r}
-gf_dens( ~ net + color:sex + alpha:0.7, data = Runners, adjust = 0.25)  # less smoothing
-gf_dens( ~ net + color:sex + alpha:0.7, data = Runners, adjust = 4)     # more smoothing
+# less smoothing
+gf_dens( ~ net + color:sex + alpha:0.7, data = Runners, adjust = 0.25)  
+# more smoothing
+gf_dens( ~ net + color:sex + alpha:0.7, data = Runners, adjust = 4)     
 ```
 
 ## Position
@@ -230,7 +239,7 @@ overlapping at one point, a much smaller value of alpha, say `alpha:0.01`.
 We've already seen this above.
 
 Using `gf_jitter()` in place of `gf_point()` will move the plotted points to
-reduce overlap.  You can use both of these techniques, e.g.
+reduce overlap.  Jitter and transparency can be used together as well.
 
 ```{r}
 gf_point(age ~ sex + alpha:0.05, data = Runners)
@@ -256,9 +265,9 @@ This plot may surprise you.
 gf_boxplot(net ~ year, data = Runners)
 ```
 
-This plot is placing a single box an whisker plot at the mean value of `year`.
+This plot is placing a single box and whisker plot at the mean value of `year`.
 The warning message suggests that we need to tell R how to form the groups
-when using a quantitive variable for `x`.  
+when using a quantitive variable for `x`.
 It suggests using the `group` aesthetic, and sometimes, this is 
 just what we want.
 
@@ -372,7 +381,7 @@ in the chain.
 The following plot illustrates how histograms and frequency polygons are related.
 
 ```{r}
-gf_histogram( ~ age, data = Runners, alpha = 0.2, fill = "navy") %>%
+gf_histogram( ~ age, data = Runners, alpha = 0.3, fill = "navy") %>%
   gf_freqpoly( ~ age)
 ```
 
@@ -380,7 +389,7 @@ A 2-d density plot can be augmented with a scatterplot.
 
 ```{r}
 gf_density_2d(net ~ age, data = Runners) %>%
-  gf_point(net ~ age + alpha:0.02) 
+  gf_point(net ~ age + alpha:0.01) 
 ```
 
 
@@ -402,6 +411,8 @@ One use of facets is to create side-by-side plots of different data sources.
 First we merge the data into a single data frame with a variable to indicate 
 the original data source.  Then we use facets to separate
 the data into the various sources for the display.
+The redundant use of the `y` and `color` attributes for 
+temperature makes it easier to compare across facets.
 
 ```{r}
 require(weatherData)
