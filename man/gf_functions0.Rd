@@ -5,6 +5,7 @@
 \alias{gf_coefline}
 \alias{gf_hline}
 \alias{gf_vline}
+\alias{gf_function}
 \title{gf_ functions with no formula part}
 \usage{
 gf_abline(object = NULL, gformula = NULL, data = NULL, geom = type,
@@ -21,6 +22,8 @@ gf_hline(object = NULL, gformula = NULL, data = NULL, geom = type,
 gf_vline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = FALSE)
+
+gf_function(object, fun, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

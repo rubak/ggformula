@@ -22,6 +22,7 @@
 \alias{gf_tile}
 \alias{gf_col}
 \alias{gf_frame}
+\alias{gf_histogram2}
 \title{Bivariate gf_ plotting functions}
 \usage{
 gf_point(object = NULL, gformula = NULL, data = NULL, geom = type,
@@ -105,6 +106,10 @@ gf_col(object = NULL, gformula = NULL, data = NULL, geom = type,
   position = NULL, show.help = FALSE)
 
 gf_frame(object = NULL, gformula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  position = NULL, show.help = FALSE)
+
+gf_histogram2(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = FALSE)
 }

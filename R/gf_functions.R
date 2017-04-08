@@ -156,6 +156,10 @@ gf_col <- gf_factory(type = "col")
 #' @export
 gf_frame <- gf_factory(type = "blank")
 
+#' @rdname gf_functions
+#' @export
+gf_histogram2 <- gf_factory(type = "histogram", aes_form = y ~ x)
+
 
 
 #' Univariate gf_ plotting functions
@@ -460,3 +464,8 @@ gf_hline <- gf_factory(type = "hline", aes_form = NULL)
 #' @export
 gf_vline <- gf_factory(type = "vline", aes_form = NULL)
 
+#' @rdname gf_functions0
+#' @export
+gf_function <- function(object, fun, ...) {
+  object + stat_function(fun = fun, ...)
+}
