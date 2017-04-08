@@ -263,7 +263,7 @@ gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
 
 #' @rdname gf_functions1
 #' @export
-gf_rug <- gf_factory(type = "rug", aes_form(~x))
+gf_rug <- gf_factory(type = "rug", aes_form = ~ x)
 
 #' Multivariate gf_ plotting functions
 #'
