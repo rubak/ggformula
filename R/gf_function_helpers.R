@@ -67,10 +67,25 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
     }
 
     dots <- list(...)
+    aesthetics <- list()
+
+    if (length(dots) > 0) {
+      for (i in length(dots):1L) {
+        if (inherits(dots[[i]], "formula") && length(dots[[i]]) == 2L) {
+          aesthetics[[names(dots)[i]]] <- dots[[i]][[2]]
+          dots[[i]] <- NULL
+        }
+      }
+    }
+
     if (!is.null(position)) {
       dots[["position"]] <- substitute(position)
     }
-    if (length(dots) > 0) extras <- modifyList(extras, dots)
+
+    if (length(dots) > 0) {
+      extras <- modifyList(extras, dots)
+    }
+
     data_name <- deparse(substitute(data))
     object_name <- deparse(substitute(object))
 
@@ -94,15 +109,17 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
                            geom = geom, gg_object = object,
                            add = add, extras = extras,
                            aes_form = aes_form,
-                           data_name = data_name)
+                           data_name = data_name,
+                           aesthetics = aesthetics)
     if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
 
     if (dot_eval) {
       gg_string <- gf_master(formula = gformula, data = data,
-                           geom = geom, gg_object = object,
-                           add = TRUE, extras = extras,
-                           aes_form = aes_form,
-                           data_name = NULL)
+                             geom = geom, gg_object = object,
+                             add = TRUE, extras = extras,
+                             aes_form = aes_form,
+                             data_name = NULL,
+                             aesthetics = aesthetics)
       P <- ggplot(data) + eval(parse(text = gg_string))
     } else {
       P <- eval(parse(text = gg_string), environment(gformula))
@@ -113,6 +130,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
       return(P)
   }
 }
+
 formula_split <- function(formula) {
   # split A | B into formula <- A; condition <- B
   fs <-
@@ -146,7 +164,8 @@ gf_master <- function(formula = NULL, data = NULL,
                       data_name = NULL,
                       geom = "geom_point", extras = list(),
                       gg_object = NULL,
-                      aes_form = y ~ x) {
+                      aes_form = y ~ x,
+                      aesthetics = list()) {
 
   data_string <-
     if (is.null(data)) ""
@@ -173,13 +192,20 @@ gf_master <- function(formula = NULL, data = NULL,
     }
 
   # arguments for the frame or, if add == TRUE, for the geom
-  main_arguments <-
-    formula_to_aesthetics(formula, var_names,
-                          prefix = data_string,
-                          aes_form = aes_form)
+  # main_arguments <-
+  #   formula_to_aesthetics(formula, var_names,
+  #                         prefix = data_string,
+  #                         aes_form = aes_form)
 
-  from_formula <- formula_to_df(formula, var_names, aes_form = aes_form)
-
+  from_formula <-
+    rbind(
+      formula_to_df(formula, var_names, aes_form = aes_form),
+      data.frame(
+        role = names(aesthetics),
+        expr = sapply(aesthetics, deparse),
+        map  = rep(TRUE, length(aesthetics))
+      )
+    )
 
   main_arguments <-
     df_to_aesthetics(

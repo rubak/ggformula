@@ -250,8 +250,7 @@ gf_counts <- gf_factory(type = "bar",
                         extras = list(stat = "count"), aes_form = ~ x)
 #' @rdname gf_functions1
 #' @export
-gf_bar <- gf_factory(type = "bar",
-                     extras = list(stat = "identity"), aes_form = ~ x)
+gf_bar <- gf_factory(type = "bar", aes_form = ~ x)
 
 #' @rdname gf_functions1
 #' @export
@@ -259,7 +258,7 @@ gf_freqpoly <- gf_factory(type = "freqpoly", aes_form = ~ x)
 
 #' @rdname gf_functions1
 #' @export
-gf_qq <- gf_factory(type = "qq", aes_form = ~ x)
+gf_qq <- gf_factory(type = "qq", aes_form = ~ sample)
 
 #' @rdname gf_functions1
 #' @export
@@ -469,3 +468,12 @@ gf_vline <- gf_factory(type = "vline", aes_form = NULL)
 gf_function <- function(object, fun, ...) {
   object + stat_function(fun = fun, ...)
 }
+
+#' @rdname gf_functions0
+#' @export
+gf_fun <- function(object, formula, ...) {
+  fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
+  object + stat_function(fun = fun, ...)
+}
+
+

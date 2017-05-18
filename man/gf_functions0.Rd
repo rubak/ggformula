@@ -6,6 +6,7 @@
 \alias{gf_hline}
 \alias{gf_vline}
 \alias{gf_function}
+\alias{gf_fun}
 \title{gf_ functions with no formula part}
 \usage{
 gf_abline(object = NULL, gformula = NULL, data = NULL, geom = type,
@@ -24,6 +25,8 @@ gf_vline(object = NULL, gformula = NULL, data = NULL, geom = type,
   position = NULL, show.help = FALSE)
 
 gf_function(object, fun, ...)
+
+gf_fun(object, formula, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
