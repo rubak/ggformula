@@ -51,7 +51,7 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
   function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
-           ..., position = NULL, show.help = FALSE) {
+           ..., position = NULL, show.help = is.null(object) && is.null(gformula)) {
     if (show.help) {
       fun <- match.call()[1]
       message(fun, " uses a formula with shape ", format(aes_form), ".")

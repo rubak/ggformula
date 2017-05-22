@@ -16,47 +16,47 @@
 \usage{
 gf_raster2(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_contour(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_ribbon(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_curve(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_segment(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_linerange(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_pointrange(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_crossbar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_errorbar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_errorbarh(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_rect(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

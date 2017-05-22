@@ -11,18 +11,18 @@
 \usage{
 gf_abline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_coefline(object = NULL, formula = NULL, coef = NULL, model = NULL,
   ...)
 
 gf_hline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_vline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_function(object, fun, ...)
 

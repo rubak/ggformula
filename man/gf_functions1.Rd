@@ -14,39 +14,39 @@
 \usage{
 gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_density(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_dens(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_dotplot(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_counts(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_bar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_freqpoly(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_qq(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_rug(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = FALSE)
+  position = NULL, show.help = is.null(object) && is.null(gformula))
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
