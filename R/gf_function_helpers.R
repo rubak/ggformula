@@ -54,7 +54,11 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
            ..., position = NULL, show.help = is.null(object) && is.null(gformula)) {
     if (show.help) {
       fun <- match.call()[1]
-      message(fun, " uses a formula with shape ", format(aes_form), ".")
+      if (is.null(aes_form)) {
+        message(fun, " does not require a formula.")
+      } else {
+        message(fun, " uses a formula with shape ", format(aes_form), ".")
+      }
       message("See ?geom_", geom, " for additional information.  ",
               if(length(extras) > 0)
                 paste0( "[",
