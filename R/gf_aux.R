@@ -32,7 +32,7 @@ gf_lims <- function(object, ...) {
 
 #' @rdname gf_aux
 #' @export
-gf_theme <- function(object, ..., theme = theme_minimal) {
+gf_theme <- function(object, ...) {
   object + do.call(theme, list(...))
 }
 

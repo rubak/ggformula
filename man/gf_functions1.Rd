@@ -5,7 +5,6 @@
 \alias{gf_density}
 \alias{gf_dens}
 \alias{gf_dotplot}
-\alias{gf_counts}
 \alias{gf_bar}
 \alias{gf_freqpoly}
 \alias{gf_qq}
@@ -25,10 +24,6 @@ gf_dens(object = NULL, gformula = NULL, data = NULL, geom = type,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_dotplot(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = is.null(object) && is.null(gformula))
-
-gf_counts(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 
@@ -113,7 +108,6 @@ gf_density(~ Sepal.Length + color:Species, data = iris)
 gf_dens(~ Sepal.Length + color:Species, data = iris)
 gf_freqpoly(~ Sepal.Length + color:Species, data = iris)
 gf_dotplot(~ Sepal.Length + fill:Species, data = iris)
-gf_counts(~ Species + fill:Species, data = iris)
 # Chaining in the data
 iris \%>\% gf_dens(~ Sepal.Length + color:Species)
 }

@@ -20,6 +20,7 @@
 \alias{gf_spoke}
 \alias{gf_step}
 \alias{gf_tile}
+\alias{gf_count}
 \alias{gf_col}
 \alias{gf_frame}
 \alias{gf_histogram2}
@@ -98,6 +99,10 @@ gf_step(object = NULL, gformula = NULL, data = NULL, geom = type,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 
 gf_tile(object = NULL, gformula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  position = NULL, show.help = is.null(object) && is.null(gformula))
+
+gf_count(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 

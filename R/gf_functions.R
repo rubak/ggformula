@@ -150,6 +150,10 @@ gf_tile <- gf_factory(type = "tile")
 
 #' @rdname gf_functions
 #' @export
+gf_count <- gf_factory(type = "count")
+
+#' @rdname gf_functions
+#' @export
 gf_col <- gf_factory(type = "col")
 
 #' @rdname gf_functions
@@ -221,7 +225,6 @@ gf_histogram2 <- gf_factory(type = "histogram", aes_form = y ~ x)
 #' gf_dens(~ Sepal.Length + color:Species, data = iris)
 #' gf_freqpoly(~ Sepal.Length + color:Species, data = iris)
 #' gf_dotplot(~ Sepal.Length + fill:Species, data = iris)
-#' gf_counts(~ Species + fill:Species, data = iris)
 #' # Chaining in the data
 #' iris %>% gf_dens(~ Sepal.Length + color:Species)
 
@@ -243,11 +246,6 @@ gf_dens <- gf_factory(type = "line", extras = list(stat = "density"),
 #' @export
 gf_dotplot <- gf_factory(type = "dotplot", aes_form = ~x)
 
-# Separate functions for a count-type bar chart and a value-based bar chart.
-#' @rdname gf_functions1
-#' @export
-gf_counts <- gf_factory(type = "bar",
-                        extras = list(stat = "count"), aes_form = ~ x)
 #' @rdname gf_functions1
 #' @export
 gf_bar <- gf_factory(type = "bar", aes_form = ~ x)

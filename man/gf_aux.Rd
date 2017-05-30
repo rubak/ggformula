@@ -13,7 +13,7 @@ gf_labs(object, ...)
 
 gf_lims(object, ...)
 
-gf_theme(object, ..., theme = theme_minimal)
+gf_theme(object, ...)
 
 gf_facet_wrap(object, ...)
 
