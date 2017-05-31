@@ -29,8 +29,12 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
 
 # add quotes to character elements of list x and returns a vector of character
 .quotify <- function(x) {
-  as.character(
-    lapply(x, function(e) if(is.character(e)) paste0('"', e, '"') else e)
+  if(is.character(x)) paste0('"', x, '"') else format(x)
+}
+
+.default_value <- function(x) {
+  sapply(x,
+         function(x) ifelse (is.symbol(x), "", paste0(" = ", .quotify(x)))
   )
 }
 
@@ -47,7 +51,12 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   res
 }
 
-gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
+gf_factory <- function(
+  type,
+  aes_form = y ~ x,
+  extras = alist(),
+  note = NULL
+) {
   function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
@@ -59,14 +68,16 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
       } else {
         message(fun, " uses a formula with shape ", format(aes_form), ".")
       }
-      message("See ?geom_", geom, " for additional information.  ",
-              if(length(extras) > 0)
-                paste0( "[",
-                        paste(names(extras), sapply(extras, .quotify),
-                              sep = " = ", collapse = ", "),
-                        "]")
-              else ""
-      )
+      if(length(extras) > 0) {
+        message("Additional attributes include: ",
+                strwrap(
+                  paste(names(extras), .default_value(extras), collapse = ", ", sep = ""),
+                  prefix = "\n    "
+                  )
+        )
+      }
+      if (!is.null(note)) message(note)
+      message("For more information, try ?geom_", type)
       return(invisible(NULL))
     }
 
@@ -84,6 +95,10 @@ gf_factory <- function(type, extras = list(), aes_form = y ~ x) {
 
     if (!is.null(position)) {
       dots[["position"]] <- substitute(position)
+    }
+
+    if (length(extras) > 0) {
+      extras <- extras[sapply(extras, function(x) !is.symbol(x))]
     }
 
     if (length(dots) > 0) {

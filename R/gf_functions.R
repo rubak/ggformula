@@ -74,95 +74,220 @@
 #'
 #' @rdname gf_functions
 #' @export
-gf_point <- gf_factory(type = "point")
+gf_point <-
+  gf_factory(
+    type = "point",
+    extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_jitter <- gf_factory(type = "jitter")
+gf_jitter <-
+  gf_factory(
+    type = "jitter",
+    extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = ,
+                   width =, height = )
+    )
 
 #' @rdname gf_functions
 #' @export
-gf_line <- gf_factory(type = "line")
+gf_line <-
+  gf_factory(
+    type = "line",
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ,
+                   lineend = , linejoin = , linemitre = , arrow = )
+    )
 
 #' @rdname gf_functions
 #' @export
-gf_path <- gf_factory(type = "path")
+gf_path <-
+  gf_factory(
+    type = "path",
+    extras = alist(alpha = , color = , group = , linetype = , size = ,
+                   lineend = "butt", linejoin = "round", linemitre = 1, arrow = NULL)
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_smooth <- gf_factory(type = "smooth")
+gf_smooth <-
+  gf_factory(
+    type = "smooth",
+    extras = alist(method = "auto", formula = y ~ x, se = TRUE, method.args = ,
+                   n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
+    )
 
 #' @rdname gf_functions
 #' @export
-gf_spline <- gf_factory(type = "spline")
+gf_spline <-
+  gf_factory(
+    type = "spline",
+    extras = alist(alpha = , color = , group = , linetype = , size = ,
+                   weight = , df = , spar = , tol = )
+    )
 
 #' @rdname gf_functions
 #' @export
-gf_raster <- gf_factory(type = "raster")
+gf_raster <-
+  gf_factory(
+    type = "raster",
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ,
+                   hjust = 0.5, vjust = 0.5, interpolate = FALSE)
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_quantile <- gf_factory(type = "quantile")
+gf_quantile <-
+  gf_factory(
+    type = "quantile",
+    extras = alist(alpha = , color = , group = , linetype = , size = , weight =,
+                   lineend = "butt", linejoin = "round", linemitre = 1, quantiles = ,
+                   formula = , method = ,  method.args =  )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_density_2d <- gf_factory(type = "density_2d")
+gf_density_2d <-
+  gf_factory(
+    type = "density_2d",
+    extras = alist(alpha = , color = , group = , linetype = , size = ,
+                   contour = TRUE, n = 100 , h = NULL , lineend = "butt", linejoin = "round",
+                   linemitre = 1 )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_density2d <- gf_factory(type = "density2d")
+gf_density2d <-
+  gf_factory(
+    type = "density2d",
+    extras = alist(alpha = , color = , group = , linetype = , size = ,
+                   contour = TRUE, n = 100 , h = NULL , lineend = "butt", linejoin = "round",
+                   linemitre = 1 )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_hex <- gf_factory(type = "hex")
+gf_hex <-
+  gf_factory(
+    type = "hex",
+    extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = , size = )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_boxplot <- gf_factory(type = "boxplot")
+gf_boxplot <-
+  gf_factory(
+    type = "boxplot",
+    extras = alist(
+      alpha = , color = , fill = , group = , linetype = , shape = , size = ,
+      weight =, coef = ,
+      outlier.color = NULL, outlier.fill = NULL,
+      outlier.shape = 19, outlier.size = 1.5, outlier.stroke = 0.5,
+      outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE)
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_text <- gf_factory(type = "text")
+gf_text <-
+  gf_factory(
+    type = "text",
+    extras = alist(
+      label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
+      lineheight = , size = , vjust = , parse = FALSE, nudge_x = 0, nudge_y = 0,
+      check_overlap = FALSE
+      )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_label <- gf_factory(type = "label")
+gf_label <- gf_factory(
+  type = "label",
+    extras = alist(
+      label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
+      lineheight = , size = , vjust = ,
+      parse = , nudge_x = , nudge_y = ,
+      lparse = FALSE, nudge_x = 0, nudge_y = 0,
+      label.padding = unit(0.25, "lines"), label.r = unit(0.15, "lines"),
+      label.size = 0.25, check_overlap = FALSE)
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_area <- gf_factory(type = "area")
+gf_area <-
+  gf_factory(
+    type = "area",
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    )
 
 #' @rdname gf_functions
 #' @export
-gf_violin <- gf_factory(type = "violin")
+gf_violin <-
+  gf_factory(
+    type = "violin",
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight,
+      draw_quatiles = NULL, trim = TRUE, scale = "area", bw = , adjust = , kernel = )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_spoke <- gf_factory(type = "spoke")
+gf_spoke <-
+  gf_factory(
+    type = "spoke",
+    extras = alist(
+      angle = , radius = ,
+      alpha = , color = , group = , linetype = , size = ),
+    note = "Note: angle and radius are required."
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_step <- gf_factory(type = "step")
+gf_step <-
+  gf_factory(
+    type = "step",
+    extras = alist(alpha = , color = , group = , linetype = , size = ,
+                   direction = "hv" )
+    )
 
 #' @rdname gf_functions
 #' @export
-gf_tile <- gf_factory(type = "tile")
+gf_tile <-
+  gf_factory(
+    type = "tile",
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_count <- gf_factory(type = "count")
+gf_count <-
+  gf_factory(
+    type = "count",
+    extras = alist(
+      alpha = , color = , fill = , group = , shape = , size = , stroke =
+    )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_col <- gf_factory(type = "col")
+gf_col <-
+  gf_factory(
+    type = "col",
+    extras = alist(
+      alpha = , color = , fill = , group = , linetype = , size =
+    )
+  )
 
 #' @rdname gf_functions
 #' @export
-gf_frame <- gf_factory(type = "blank")
+gf_frame <-
+  gf_factory(type = "blank")
 
 #' @rdname gf_functions
 #' @export
-gf_histogram2 <- gf_factory(type = "histogram", aes_form = y ~ x)
+gf_histogram2 <-
+  gf_factory(
+    type = "histogram",
+    aes_form = y ~ x,
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    )
 
 
 
@@ -230,37 +355,80 @@ gf_histogram2 <- gf_factory(type = "histogram", aes_form = y ~ x)
 
 #' @rdname gf_functions1
 #' @export
-gf_histogram <- gf_factory(type = "histogram", aes_form = ~x)
+gf_histogram <-
+  gf_factory(
+    type = "histogram", aes_form = ~x,
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+  )
 
 #' @rdname gf_functions1
 #' @export
-gf_density <- gf_factory(type = "density", aes_form = ~ x)
+gf_density <-
+  gf_factory(
+    type = "density", aes_form = ~ x,
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight = )
+  )
 
 # modified version of density plot without line along bottom and sides
 #' @rdname gf_functions1
 #' @export
-gf_dens <- gf_factory(type = "line", extras = list(stat = "density"),
-                      aes_form = ~ x)
+gf_dens <-
+  gf_factory(
+    type = "line",
+    aes_form = ~ x,
+    extras = alist(stat = "density", alpha = , color = , fill = , group = , linetype = , size = , weight = )
+  )
 
 #' @rdname gf_functions1
 #' @export
-gf_dotplot <- gf_factory(type = "dotplot", aes_form = ~x)
+gf_dotplot <-
+  gf_factory(
+    type = "dotplot",
+    aes_form = ~x,
+    extras = alist(
+      alpha = , color = , fill =, group = ,
+      binwidth = NULL, binaxis = "x", method = "dotdensity",
+      binpositions = "bygroup", stackdir = "up", stackratio = 1,
+      dotsize = 1, stackgroups = FALSE, origin = NULL, right = TRUE,
+      width = 0.9, drop = FALSE)
+  )
 
 #' @rdname gf_functions1
 #' @export
-gf_bar <- gf_factory(type = "bar", aes_form = ~ x)
+gf_bar <-
+  gf_factory(
+    type = "bar", aes_form = ~ x,
+    extras = alist(
+      alpha = , color = , fill = , group = , linetype = , size = ,
+      width = NULL, binwidth = NULL )
+  )
 
 #' @rdname gf_functions1
 #' @export
-gf_freqpoly <- gf_factory(type = "freqpoly", aes_form = ~ x)
+gf_freqpoly <-
+  gf_factory(
+    type = "freqpoly", aes_form = ~ x,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size =,
+      binwidth =, bins = , center = , boundary = ,
+    )
+  )
 
 #' @rdname gf_functions1
 #' @export
-gf_qq <- gf_factory(type = "qq", aes_form = ~ sample)
+gf_qq <-
+  gf_factory(
+    type = "qq", aes_form = ~ sample,
+    extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
+  )
 
 #' @rdname gf_functions1
 #' @export
-gf_rug <- gf_factory(type = "rug", aes_form = ~ x)
+gf_rug <-
+  gf_factory(
+    type = "rug", aes_form = ~ x,
+    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
+    )
 
 #' Multivariate gf_ plotting functions
 #'
@@ -345,49 +513,102 @@ gf_rug <- gf_factory(type = "rug", aes_form = ~ x)
 
 #' @rdname gf_functions3
 #' @export
-gf_raster2 <- gf_factory(type = "raster", aes_form = fill ~ x + y)
+gf_raster2 <-
+  gf_factory(type = "raster", aes_form = fill ~ x + y)
 
 #' @rdname gf_functions3
 #' @export
-gf_contour <- gf_factory(type = "contour", aes_form = z ~ x + y)
+gf_contour <-
+  gf_factory(type = "contour", aes_form = z ~ x + y)
 
 #' @rdname gf_functions3
 #' @export
-gf_ribbon <- gf_factory(type = "ribbon", aes_form = ymin + ymax ~ x,
-                        extras = list(alpha = 0.3))
+gf_ribbon <-
+  gf_factory(
+    type = "ribbon", aes_form = ymin + ymax ~ x,
+    extras = list(alpha = 0.3))
 
 #' @rdname gf_functions3
 #' @export
-gf_curve <- gf_factory(type = "curve", aes_form = y + yend ~ x + xend)
+gf_curve <-
+  gf_factory(
+    type = "curve", aes_form = y + yend ~ x + xend,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size = ,
+      curvature = 0.5, angle = 90, ncp = 5, arrow = NULL, lineend = "butt")
+  )
 
 #' @rdname gf_functions3
 #' @export
-gf_segment <- gf_factory(type = "segment", aes_form = y + yend ~ x + xend)
+gf_segment <-
+  gf_factory(
+    type = "segment", aes_form = y + yend ~ x + xend,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size = ,
+      arrow = NULL, lineend = "butt"
+      )
+  )
 
 #' @rdname gf_functions3
 #' @export
-gf_linerange <- gf_factory(type = "linerange", aes_form = ymin + ymax ~ x)
+gf_linerange <-
+  gf_factory(
+    type = "linerange", aes_form = ymin + ymax ~ x,
+    extras = alist( alpha = , color = , group = , linetype = , size = )
+  )
 
 #' @rdname gf_functions3
 #' @export
-gf_pointrange <- gf_factory(type = "pointrange", aes_form = y + ymin + ymax ~ x,
-                            extras = list(fatten = 2))
+gf_pointrange <-
+  gf_factory(
+    type = "pointrange",
+    aes_form = y + ymin + ymax ~ x,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size = ,
+      fatten = 2 )
+  )
 
 #' @rdname gf_functions3
 #' @export
-gf_crossbar <- gf_factory(type = "crossbar", aes_form = y + ymin + ymax ~ x)
+gf_crossbar <-
+  gf_factory(
+    type = "crossbar",
+    aes_form = y + ymin + ymax ~ x,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size = , fatten = 2.5
+    )
+  )
 
 #' @rdname gf_functions3
 #' @export
-gf_errorbar <- gf_factory(type = "errorbar", aes_form = ymin + ymax ~ x)
+gf_errorbar <-
+  gf_factory(
+    type = "errorbar",
+    aes_form = ymin + ymax ~ x,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size =
+      )
+    )
 
 #' @rdname gf_functions3
 #' @export
-gf_errorbarh <- gf_factory(type = "errorbarh", aes_form = y ~ x + xmin + xmax)
+gf_errorbarh <-
+  gf_factory(
+    type = "errorbarh",
+    aes_form = y ~ x + xmin + xmax,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size =
+      )
+    )
 
 #' @rdname gf_functions3
 #' @export
-gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
+gf_rect <-
+  gf_factory(
+    type = "rect",
+    aes_form = ymin + ymax ~ xmin + xmax,
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+  )
 
 
 #' gf_ functions with no formula part
@@ -440,7 +661,11 @@ gf_rect <- gf_factory(type = "rect", aes_form = ymin + ymax ~ xmin + xmax)
 
 #' @rdname gf_functions0
 #' @export
-gf_abline <- gf_factory(type = "abline", aes_form = NULL)
+gf_abline <-
+  gf_factory(
+    type = "abline", aes_form = NULL,
+    extras = alist( slope =, intercept = )
+  )
 
 #' @rdname gf_functions0
 #' @export
@@ -455,11 +680,19 @@ gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL
 
 #' @rdname gf_functions0
 #' @export
-gf_hline <- gf_factory(type = "hline", aes_form = NULL)
+gf_hline <-
+  gf_factory(
+    type = "hline", aes_form = NULL,
+    extras = alist(yintercept = )
+  )
 
 #' @rdname gf_functions0
 #' @export
-gf_vline <- gf_factory(type = "vline", aes_form = NULL)
+gf_vline <-
+  gf_factory(
+    type = "vline", aes_form = NULL,
+    extras = alist(xintercept = )
+    )
 
 #' @rdname gf_functions0
 #' @export
