@@ -14,8 +14,6 @@
 #' @param object a gg object
 #' @param ... additional arguments passed through to the similarly named function in
 #' \pkg{ggplot2}.
-#' @param theme a ggplot2 theme function like \code{\link{theme_minimal}}.
-#' ggplot2
 #' @return a modified gg object
 #'
 #' @rdname gf_aux
@@ -30,10 +28,23 @@ gf_lims <- function(object, ...) {
   object + ggplot2::lims(...)
 }
 
-#' @rdname gf_aux
+#' Themes for ggformula
+#'
+#' Themes for ggformula
+#'
+#' @rdname gf_theme
+#' @param object a gg object
+#' @param theme a ggplot2 theme function like \code{\link{theme_minimal}}.
+#' @param ... If \code{theme} is missing, then these additional arguments are theme elements
+#'   of the sort handled by \code{\link[ggplot2]{theme}()}.
+#' @return a modified gg object
 #' @export
-gf_theme <- function(object, ...) {
-  object + do.call(theme, list(...))
+gf_theme <- function(object, theme, ...) {
+  if (missing(theme)) {
+    object + do.call("theme", list(...))
+  } else {
+    object + theme
+  }
 }
 
 #' @rdname gf_aux
