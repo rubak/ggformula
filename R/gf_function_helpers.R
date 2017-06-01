@@ -51,6 +51,39 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   res
 }
 
+
+
+#' These functions provide a formula interface to \code{ggplot2} and
+#' various geoms. For plots with just one layer, the formula interface
+#' is more compact and is consistent with modeling and mosaic notation.
+#' The functions generate a \code{ggplot} command string which can be displayed by
+#' setting \code{verbose = TRUE} as an argument.
+#'
+#' Formulas must specify the \code{y} and \code{x} aesthetics in the form \code{y ~ x}.
+#' Additional terms of the form \code{attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}.
+#' Attributes can also be set by including optional arguments of the form
+#' \code{attribute = value}.
+#'
+#' @param gformula A formula describing the x and y variables and other aesthetics in
+#' a form like \code{y ~ x + color:"red" + shape:sex + alpha:0.5}.
+#' The environment of \code{gformula} determines
+#' where the \pkg{ggplot2} code is evaluated.
+#' See details.
+#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
+#' can be added to an existing frame.
+#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
+#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param ... Other arguments such as \code{position="dodge"}.
+#' @param show.help If \code{TRUE}, display some minimal help.  In particular,
+#' the help will show (a) which geom from \pkg{ggplot2} is used,
+#' (b) how aesthetics are assigned based on \code{formula}, and (c)
+#' any default values of arguments to the geom.
+#'
+
 gf_factory <- function(
   type,
   aes_form = y ~ x,
@@ -104,6 +137,8 @@ gf_factory <- function(
     if (length(dots) > 0) {
       extras <- modifyList(extras, dots)
     }
+
+    extras <- lapply(extras, .quotify)
 
     data_name <- deparse(substitute(data))
     object_name <- deparse(substitute(object))

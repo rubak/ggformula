@@ -3,7 +3,6 @@
 \name{gf_labs}
 \alias{gf_labs}
 \alias{gf_lims}
-\alias{gf_theme}
 \alias{gf_facet_wrap}
 \alias{gf_facet_grid}
 \alias{gf_refine}
@@ -12,8 +11,6 @@
 gf_labs(object, ...)
 
 gf_lims(object, ...)
-
-gf_theme(object, ...)
 
 gf_facet_wrap(object, ...)
 
@@ -26,9 +23,6 @@ gf_refine(object, ...)
 
 \item{...}{additional arguments passed through to the similarly named function in
 \pkg{ggplot2}.}
-
-\item{theme}{a ggplot2 theme function like \code{\link{theme_minimal}}.
-ggplot2}
 }
 \value{
 a modified gg object
