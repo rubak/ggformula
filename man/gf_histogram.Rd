@@ -64,14 +64,10 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
+x <- rnorm(1000)
+gf_histogram(  ~ x, bins = 30)
+gf_histogram2( ..density.. ~ x, bins = 30)
 gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
-gf_dens(show.help = TRUE)
-gf_density(~ Sepal.Length + color:Species, data = iris)
-gf_dens(~ Sepal.Length + color:Species, data = iris)
-gf_freqpoly(~ Sepal.Length + color:Species, data = iris)
-gf_dotplot(~ Sepal.Length + fill:Species, data = iris)
-# Chaining in the data
-iris \%>\% gf_dens(~ Sepal.Length + color:Species)
 }
 \seealso{
 \code{\link{geom_histogram}()}, \code{\link{gf_histogram2}()}

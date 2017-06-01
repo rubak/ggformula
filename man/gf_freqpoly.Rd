@@ -63,6 +63,13 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) \%>\%
+  gf_freqpoly(~ Sepal.Length, data = iris, color = ~Species, bins = 20)
+gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris, bins = 20)
+gf_dens(~ Sepal.Length, data = iris, color = "navy") \%>\%
+gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
+}
 \seealso{
 \code{\link{geom_freqpoly}()}
 }

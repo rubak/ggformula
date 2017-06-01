@@ -60,6 +60,14 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) \%>\%
+  gf_abline(color="red", slope = -0.10, intercept = 35)
+gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) \%>\%
+  gf_abline(color = "red", slope = -0.10, intercept = 33:36) \%>\%
+  gf_hline(color = "navy", yintercept = c(20, 25)) \%>\%
+  gf_vline(color = "brown", xintercept = c(200, 300))
+}
 \seealso{
 \code{\link{geom_abline}()}
 }

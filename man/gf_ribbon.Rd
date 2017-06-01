@@ -64,7 +64,7 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-gf_ribbon(show.help = TRUE)
+gf_ribbon()
 if (require(weatherData) & require(dplyr)) {
 Temps <- NewYork2013 \%>\% mutate(city = "NYC") \%>\%
 bind_rows(Mumbai2013 \%>\% mutate(city = "Mumbai")) \%>\%
@@ -78,9 +78,9 @@ bind_rows(London2013 \%>\% mutate(city = "London")) \%>\%
     mid = (hi + lo)/2
   )
 
-gf_ribbon(lo + hi ~ date + fill:city, data = Temps, alpha = 0.4) \%>\%
+gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) \%>\%
    gf_theme(theme = theme_minimal)
-gf_linerange(lo + hi + color:mid ~ date | city ~ ., data = Temps) \%>\%
+gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) \%>\%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
 # Chaining in the data

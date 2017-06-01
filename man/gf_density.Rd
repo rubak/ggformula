@@ -63,6 +63,14 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+gf_dens()
+gf_density(~ Sepal.Length,  color = ~Species, data = iris)
+gf_dens(~ Sepal.Length, color = ~Species, data = iris)
+gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
+# Chaining in the data
+iris \%>\% gf_dens(~ Sepal.Length, color = ~Species)
+}
 \seealso{
 \code{\link{geom_density}()}
 }

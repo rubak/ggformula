@@ -63,6 +63,14 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+gf_histogram(~eruptions, data = faithful) \%>\%
+gf_rug(~eruptions, data = faithful, color = "red", sides = "bl") \%>\%
+gf_rug(~eruptions, data = faithful, color = "navy", sides = "tr")
+gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
+gf_rug(~Sepal.Width, data = iris, color = "navy", sides = "bl") \%>\%
+gf_rug(~Sepal.Length, data = iris, color = "navy", sides = "l")
+}
 \seealso{
 \code{\link{geom_rug}()}
 }

@@ -61,6 +61,11 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+x <- rnorm(1000)
+gf_histogram(  ~ x, bins = 30)
+gf_histogram2( ..density.. ~ x, bins = 30)
+}
 \seealso{
 \code{\link{geom_histogram}()}
 }

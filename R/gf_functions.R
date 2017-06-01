@@ -48,16 +48,8 @@
 #' @seealso \code{\link{geom_point}()}
 #' @export
 #' @examples
-#' gf_point(show.help = TRUE)
+#' gf_point()
 #' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
-#' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) %>%
-#'   gf_abline(~ color:"red" + slope:-0.10 + intercept:35)
-#' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) %>%
-#'   gf_abline(color = "red", slope = -0.10, intercept = 35)
-#' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) %>%
-#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
-#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
-#'   gf_vline(color = "brown", xintercept = c(200, 300))
 #' # faceting -- two ways
 #' gf_point(mpg ~ hp, data = mtcars) %>%
 #'   gf_facet_wrap(~ am)
@@ -1316,6 +1308,10 @@ gf_frame <-
 #'
 #' @seealso \code{\link{geom_histogram}()}
 #' @export
+#' @examples
+#' x <- rnorm(1000)
+#' gf_histogram(  ~ x, bins = 30)
+#' gf_histogram2( ..density.. ~ x, bins = 30)
 gf_histogram2 <-
   gf_factory(
     type = "histogram",
@@ -1377,14 +1373,10 @@ gf_histogram2 <-
 #' @seealso \code{\link{geom_histogram}()}, \code{\link{gf_histogram2}()}
 #' @export
 #' @examples
+#' x <- rnorm(1000)
+#' gf_histogram(  ~ x, bins = 30)
+#' gf_histogram2( ..density.. ~ x, bins = 30)
 #' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
-#' gf_dens(show.help = TRUE)
-#' gf_density(~ Sepal.Length + color:Species, data = iris)
-#' gf_dens(~ Sepal.Length + color:Species, data = iris)
-#' gf_freqpoly(~ Sepal.Length + color:Species, data = iris)
-#' gf_dotplot(~ Sepal.Length + fill:Species, data = iris)
-#' # Chaining in the data
-#' iris %>% gf_dens(~ Sepal.Length + color:Species)
 gf_histogram <-
   gf_factory(
     type = "histogram", aes_form = ~x,
@@ -1440,6 +1432,13 @@ gf_histogram <-
 #'
 #' @seealso \code{\link{geom_density}()}
 #' @export
+#' @examples
+#' gf_dens()
+#' gf_density(~ Sepal.Length,  color = ~Species, data = iris)
+#' gf_dens(~ Sepal.Length, color = ~Species, data = iris)
+#' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
+#' # Chaining in the data
+#' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_density <-
   gf_factory(
     type = "density", aes_form = ~ x,
@@ -1496,6 +1495,13 @@ gf_density <-
 #'
 #' @seealso \code{\link{geom_line}()}
 #' @export
+#' @examples
+#' gf_dens()
+#' gf_density(~ Sepal.Length,  color = ~Species, data = iris)
+#' gf_dens(~ Sepal.Length, color = ~Species, data = iris)
+#' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
+#' # Chaining in the data
+#' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_dens <-
   gf_factory(
     type = "line",
@@ -1553,6 +1559,8 @@ gf_dens <-
 #'
 #' @seealso \code{\link{geom_dotplot}()}
 #' @export
+#' @examples
+#' gf_dotplot(~ Sepal.Length, fill = ~Species, data = iris)
 gf_dotplot <-
   gf_factory(
     type = "dotplot",
@@ -1671,6 +1679,12 @@ gf_bar <-
 #'
 #' @seealso \code{\link{geom_freqpoly}()}
 #' @export
+#' @examples
+#' gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
+#'   gf_freqpoly(~ Sepal.Length, data = iris, color = ~Species, bins = 20)
+#' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris, bins = 20)
+#' gf_dens(~ Sepal.Length, data = iris, color = "navy") %>%
+#' gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
 gf_freqpoly <-
   gf_factory(
     type = "freqpoly", aes_form = ~ x,
@@ -1729,6 +1743,10 @@ gf_freqpoly <-
 #'
 #' @seealso \code{\link{geom_qq}()}
 #' @export
+#' @examples
+#' gf_qq(~rnorm(100))
+#' gf_qq(~Sepal.Length | Species, data = iris)
+#' gf_qq(~Sepal.Length, color = ~Species, data = iris)
 gf_qq <-
   gf_factory(
     type = "qq", aes_form = ~ sample,
@@ -1784,9 +1802,195 @@ gf_qq <-
 #'
 #' @seealso \code{\link{geom_rug}()}
 #' @export
+#' @examples
+#' gf_histogram(~eruptions, data = faithful) %>%
+#' gf_rug(~eruptions, data = faithful, color = "red", sides = "bl") %>%
+#' gf_rug(~eruptions, data = faithful, color = "navy", sides = "tr")
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_rug(~Sepal.Width, data = iris, color = "navy", sides = "bl") %>%
+#' gf_rug(~Sepal.Length, data = iris, color = "navy", sides = "l")
 gf_rug <-
   gf_factory(
     type = "rug", aes_form = ~ x,
+    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
+    )
+
+#' Formula interface to geom_rug()
+#'
+#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
+#' functions.
+#' For plots with just one layer, the formula interface
+#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
+#' The functions generate a \code{ggplot} command string which can be displayed by
+#' setting \code{verbose = TRUE} as an argument.
+#'
+#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
+#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
+#' attributes can be set can be set using arguments of the form \code{attribute = value} or
+#' mapped using arguments of the form \code{attribute = ~ expression}.
+#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
+#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
+#' This provides an alternative to
+#' \code{\link{gf_facet_wrap}()} and
+#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+#' of \pkg{lattice}.
+#'
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
+#' This will typically do the right thing when formulas are created on the fly, but might not
+#' be the right thing if formulas created in one environment are used to create plots
+#' in another.
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
+#'
+#' @param gformula A formula with shape y ~ x.
+#'   Faceting can be acheived by including \code{|} in the formula.
+#' @param data A data frame with the variables to be plotted.
+#' @param ... Additional arguments.  Typically these are
+#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
+#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
+#'   Available attributes include
+#'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
+#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
+#'   can be added to an existing frame.
+#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
+#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param show.help If \code{TRUE}, display some minimal help.
+#'
+#' @seealso \code{\link{geom_rug}()}
+#' @export
+#' @examples
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#'   gf_rug2(Sepal.Length ~ Sepal.Width, data = iris)
+
+
+gf_rug2 <-
+  gf_factory(
+    type = "rug", aes_form = y ~ x,
+    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
+    )
+#' Formula interface to geom_rug()
+#'
+#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
+#' functions.
+#' For plots with just one layer, the formula interface
+#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
+#' The functions generate a \code{ggplot} command string which can be displayed by
+#' setting \code{verbose = TRUE} as an argument.
+#'
+#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
+#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
+#' attributes can be set can be set using arguments of the form \code{attribute = value} or
+#' mapped using arguments of the form \code{attribute = ~ expression}.
+#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
+#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
+#' This provides an alternative to
+#' \code{\link{gf_facet_wrap}()} and
+#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+#' of \pkg{lattice}.
+#'
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
+#' This will typically do the right thing when formulas are created on the fly, but might not
+#' be the right thing if formulas created in one environment are used to create plots
+#' in another.
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
+#'
+#' @param gformula A formula with shape ~y.
+#'   Faceting can be acheived by including \code{|} in the formula.
+#' @param data A data frame with the variables to be plotted.
+#' @param ... Additional arguments.  Typically these are
+#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
+#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
+#'   Available attributes include
+#'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
+#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
+#'   can be added to an existing frame.
+#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
+#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param show.help If \code{TRUE}, display some minimal help.
+#'
+#' @seealso \code{\link{geom_rug}()}
+#' @export
+#' @examples
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#'   gf_rugy( ~Sepal.Length, data = iris)
+
+gf_rugy <-
+  gf_factory(
+    type = "rug", aes_form = ~ y,
+    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
+    )
+
+' Formula interface to geom_rug()
+#'
+#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
+#' functions.
+#' For plots with just one layer, the formula interface
+#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
+#' The functions generate a \code{ggplot} command string which can be displayed by
+#' setting \code{verbose = TRUE} as an argument.
+#'
+#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
+#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
+#' to \code{value}.
+#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
+#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
+#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
+#' attributes can be set can be set using arguments of the form \code{attribute = value} or
+#' mapped using arguments of the form \code{attribute = ~ expression}.
+#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
+#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
+#' This provides an alternative to
+#' \code{\link{gf_facet_wrap}()} and
+#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+#' of \pkg{lattice}.
+#'
+#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
+#' This will typically do the right thing when formulas are created on the fly, but might not
+#' be the right thing if formulas created in one environment are used to create plots
+#' in another.
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
+#'
+
+#' @param data A data frame with the variables to be plotted.
+#' @param ... Additional arguments.  Typically these are
+#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
+#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
+#'   Available attributes include
+#'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
+#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
+#'   can be added to an existing frame.
+#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
+#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param show.help If \code{TRUE}, display some minimal help.
+#'
+#' @seealso \code{\link{geom_rug}()}
+#' @export
+#' @examples
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#'   gf_rug0( y = ~Sepal.Length, x = ~Sepal.Width, data = iris)
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#'   gf_rug0( y = ~Sepal.Length, color = "navy", data = iris) %>%
+#'   gf_rug0( x = ~Sepal.Width, color = "red", data = iris)
+
+gf_rug0 <-
+  gf_factory(
+    type = "rug", aes_form = NULL,
     extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
     )
 
@@ -1946,7 +2150,7 @@ gf_contour <-
 #' @seealso \code{\link{geom_ribbon}()}
 #' @export
 #' @examples
-#' gf_ribbon(show.help = TRUE)
+#' gf_ribbon()
 #' if (require(weatherData) & require(dplyr)) {
 #' Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
 #' bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
@@ -1960,9 +2164,9 @@ gf_contour <-
 #'     mid = (hi + lo)/2
 #'   )
 #'
-#' gf_ribbon(lo + hi ~ date + fill:city, data = Temps, alpha = 0.4) %>%
+#' gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) %>%
 #'    gf_theme(theme = theme_minimal)
-#' gf_linerange(lo + hi + color:mid ~ date | city ~ ., data = Temps) %>%
+#' gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) %>%
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 #' gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
 #' # Chaining in the data
@@ -2139,6 +2343,30 @@ gf_segment <-
 #'
 #' @seealso \code{\link{geom_linerange}()}
 #' @export
+#' @examples
+#' gf_linerange()
+#' if (require(weatherData) & require(dplyr)) {
+#' Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
+#' bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
+#' bind_rows(London2013 %>% mutate(city = "London")) %>%
+#'   mutate(date = lubridate::date(Time),
+#'          month = lubridate::month(Time)) %>%
+#'   group_by(city, date) %>%
+#'   summarise(
+#'     hi = max(Temperature, na.rm = TRUE),
+#'     lo = min(Temperature, na.rm = TRUE),
+#'     mid = (hi + lo)/2
+#'   )
+#'
+#' gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) %>%
+#'    gf_theme(theme = theme_minimal)
+#' gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) %>%
+#'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
+#' gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
+#' # Chaining in the data
+#' Temps %>% gf_ribbon(lo + hi ~ date, alpha = 0.4) %>%
+#'   gf_facet_grid(city ~ .)
+#' }
 gf_linerange <-
   gf_factory(
     type = "linerange", aes_form = ymin + ymax ~ x,
@@ -2482,6 +2710,13 @@ gf_rect <-
 #'
 #' @seealso \code{\link{geom_abline}()}
 #' @export
+#' @examples
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#'   gf_abline(color="red", slope = -0.10, intercept = 35)
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
+#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
+#'   gf_vline(color = "brown", xintercept = c(200, 300))
 gf_abline <-
   gf_factory(
     type = "abline", aes_form = NULL,
@@ -2536,6 +2771,11 @@ gf_abline <-
 #'
 #' @seealso \code{\link{geom_hline}()}
 #' @export
+#' @examples
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
+#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
+#'   gf_vline(color = "brown", xintercept = c(200, 300))
 gf_hline <-
   gf_factory(
     type = "hline", aes_form = NULL,
@@ -2590,6 +2830,11 @@ gf_hline <-
 #'
 #' @seealso \code{\link{geom_vline}()}
 #' @export
+#' @examples
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
+#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
+#'   gf_vline(color = "brown", xintercept = c(200, 300))
 gf_vline <-
   gf_factory(
     type = "vline", aes_form = NULL,
@@ -2598,12 +2843,18 @@ gf_vline <-
 
 #' @rdname gf_functions0
 #' @export
+#' @examples
+#' gf_frame((c(-1, 1)) ~ (c(0, 10))) %>%
+#' gf_function(cos)
 gf_function <- function(object, fun, ...) {
   object + stat_function(fun = fun, ...)
 }
 
 #' @rdname gf_functions0
 #' @export
+#' @examples
+#' gf_frame((c(-1, 1)) ~ (c(0, 10))) %>%
+#' gf_fun(cos(x) ~ x)
 gf_fun <- function(object, formula, ...) {
   fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
   object + stat_function(fun = fun, ...)

@@ -56,6 +56,10 @@ The functions generate a \code{ggplot2} command string which can be
 displayed by setting \code{verbose = TRUE} as an argument.
 }
 \examples{
+gf_frame((c(-1, 1)) ~ (c(0, 10))) \%>\%
+gf_function(cos)
+gf_frame((c(-1, 1)) ~ (c(0, 10))) \%>\%
+gf_fun(cos(x) ~ x)
 mtcars.model <- lm(mpg ~ wt, data = mtcars)
 gf_point(mpg ~ wt, data = mtcars) \%>\%
   gf_coefline(model = mtcars.model, alpha = 0.6) \%>\%

@@ -64,16 +64,8 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-gf_point(show.help = TRUE)
+gf_point()
 gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
-gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) \%>\%
-  gf_abline(~ color:"red" + slope:-0.10 + intercept:35)
-gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) \%>\%
-  gf_abline(color = "red", slope = -0.10, intercept = 35)
-gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars) \%>\%
-  gf_abline(color = "red", slope = -0.10, intercept = 33:36) \%>\%
-  gf_hline(color = "navy", yintercept = c(20, 25)) \%>\%
-  gf_vline(color = "brown", xintercept = c(200, 300))
 # faceting -- two ways
 gf_point(mpg ~ hp, data = mtcars) \%>\%
   gf_facet_wrap(~ am)
