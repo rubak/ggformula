@@ -1265,7 +1265,7 @@ gf_col <-
 #' @seealso \code{\link{geom_blank}()}
 #' @export
 gf_frame <-
-  gf_factory(type = "blank")
+  gf_factory(type = "blank", function_name = "gf_frame")
 
 ' Formula interface to geom_histogram()
 #'
@@ -1320,7 +1320,8 @@ gf_histogram2 <-
   gf_factory(
     type = "histogram",
     aes_form = y ~ x,
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
+    function_name = "gf_histogram2"
     )
 
 
@@ -1499,7 +1500,8 @@ gf_dens <-
   gf_factory(
     type = "line",
     aes_form = ~ x,
-    extras = alist(stat = "density", alpha = , color = , fill = , group = , linetype = , size = , weight = )
+    extras = alist(stat = "density", alpha = , color = , fill = , group = , linetype = , size = , weight = ),
+    function_name = "gf_dens"
   )
 
 #' Formula interface to geom_dotplot()
@@ -1839,7 +1841,8 @@ gf_rug <-
 
 #' @export
 gf_raster2 <-
-  gf_factory(type = "raster", aes_form = fill ~ x + y)
+  gf_factory(type = "raster", aes_form = fill ~ x + y,
+             function_name = "gf_raster2")
 
 #' Formula interface to geom_contour()
 #'

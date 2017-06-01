@@ -88,7 +88,8 @@ gf_factory <- function(
   type,
   aes_form = y ~ x,
   extras = alist(),
-  note = NULL
+  note = NULL,
+  function_name = paste0("gf_", type)
 ) {
   function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
@@ -110,7 +111,7 @@ gf_factory <- function(
         )
       }
       if (!is.null(note)) message(note)
-      message("For more information, try ?geom_", type)
+      message("For more information, try ?", function_name)
       return(invisible(NULL))
     }
 

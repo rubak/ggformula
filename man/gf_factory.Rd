@@ -8,7 +8,8 @@ is more compact and is consistent with modeling and mosaic notation.
 The functions generate a \code{ggplot} command string which can be displayed by
 setting \code{verbose = TRUE} as an argument.}
 \usage{
-gf_factory(type, aes_form = y ~ x, extras = alist(), note = NULL)
+gf_factory(type, aes_form = y ~ x, extras = alist(), note = NULL,
+  function_name = paste0("gf_", type))
 }
 \arguments{
 \item{gformula}{A formula describing the x and y variables and other aesthetics in
