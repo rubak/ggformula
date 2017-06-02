@@ -13,7 +13,7 @@ gf_rug(object = NULL, gformula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape ~x.
+\item{gformula}{A formula with shape \code{~x} or \code{y ~ x}.
 Faceting can be acheived by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
@@ -68,8 +68,10 @@ gf_histogram(~eruptions, data = faithful) \%>\%
 gf_rug(~eruptions, data = faithful, color = "red", sides = "bl") \%>\%
 gf_rug(~eruptions, data = faithful, color = "navy", sides = "tr")
 gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
-gf_rug(~Sepal.Width, data = iris, color = "navy", sides = "bl") \%>\%
-gf_rug(~Sepal.Length, data = iris, color = "navy", sides = "l")
+gf_rug(Sepal.Length ~ Sepal.Width)
+gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
+gf_rug( x = ~ Sepal.Width, data = iris, color = "navy") \%>\%
+gf_rug( y = ~ Sepal.Length, data = iris, color = "red")
 }
 \seealso{
 \code{\link{geom_rug}()}

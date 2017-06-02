@@ -13,7 +13,8 @@ gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape ~x.
+\item{gformula}{A formula with shape \code{~x} or \code{y ~ x}.
+\code{y} may be \code{..density..} or \code{..count..} or \code{..ndensity..} or \code{..ncount..}.
 Faceting can be acheived by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
@@ -66,9 +67,9 @@ in another.
 \examples{
 x <- rnorm(1000)
 gf_histogram(  ~ x, bins = 30)
-gf_histogram2( ..density.. ~ x, bins = 30)
+gf_histogram( ..density.. ~ x, bins = 30)
 gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 }
 \seealso{
-\code{\link{geom_histogram}()}, \code{\link{gf_histogram2}()}
+\code{\link{geom_histogram}()}
 }

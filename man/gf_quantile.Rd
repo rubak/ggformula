@@ -13,7 +13,7 @@ gf_quantile(object = NULL, gformula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape y ~ x.
+\item{gformula}{A formula with shape \code{y ~ x}.
 Faceting can be acheived by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
@@ -62,6 +62,16 @@ Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.
+}
+\examples{
+# Justification controls where the cells are anchored
+D <- expand.grid(x = 0:5, y = 0:5)
+D$z <- runif(nrow(D))
+# centered squares
+gf_raster(z ~ x + y, data = D)
+gf_raster(y ~ x, fill = ~ z, data = D)
+# zero padding
+gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
 }
 \seealso{
 \code{\link{geom_quantile}()}

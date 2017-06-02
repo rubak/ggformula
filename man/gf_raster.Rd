@@ -13,7 +13,7 @@ gf_raster(object = NULL, gformula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape y ~ x.
+\item{gformula}{A formula with shape \code{y ~ x}.
 Faceting can be acheived by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
