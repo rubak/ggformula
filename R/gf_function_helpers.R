@@ -95,12 +95,13 @@ gf_factory <- function(
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
            ..., position = NULL, show.help = is.null(object) && is.null(gformula)) {
+    if (!is.list(aes_form)) aes_form <- list(aes_form)
     if (show.help) {
       fun <- match.call()[1]
-      if (is.null(aes_form)) {
+      if (any(sapply(aes_form, is.null))) {
         message(fun, " does not require a formula.")
       } else {
-        message(fun, " uses a formula with shape ", format(aes_form), ".")
+        message(fun, " uses a formula with shape ", paste(sapply(aes_form, format), collapse = " or "), ".")
       }
       if(length(extras) > 0) {
         message("Additional attributes include: ",
@@ -117,6 +118,19 @@ gf_factory <- function(
 
     dots <- list(...)
     aesthetics <- list()
+    data_name <- deparse(substitute(data))
+    object_name <- deparse(substitute(object))
+
+    if (inherits(object, "formula")) {
+      gformula <- object
+      object <- NULL
+    }
+
+    fmatches <-  formula_match(gformula, aes_form = aes_form)
+    if (! any(fmatches)) {
+      stop("Invalid formula type for ", function_name, ".", call. = FALSE)
+    }
+    aes_form <- aes_form[[which.max(fmatches)]]
 
     if (length(dots) > 0) {
       for (i in length(dots):1L) {
@@ -141,13 +155,6 @@ gf_factory <- function(
 
     extras <- lapply(extras, .quotify)
 
-    data_name <- deparse(substitute(data))
-    object_name <- deparse(substitute(object))
-
-    if (inherits(object, "formula")) {
-      gformula <- object
-      object <- NULL
-    }
 
     dot_eval <- FALSE
     if (inherits(object, "data.frame")) {
@@ -280,6 +287,19 @@ gf_master <- function(formula = NULL, data = NULL,
   } else {
     paste0(gg_string, " + ", facet_type, "(", deparse(condition), ")")
   }
+}
+
+shape <- function(x) {
+  if (length(x) < 2) return(0)
+  c(length(x) - 1, unlist(sapply(x[-1], shape)))
+}
+
+formula_match <- function(formula, aes_form = y ~ x) {
+  if (!is.list(aes_form)) {
+    aes_form <- list(aes_form)
+  }
+  shapes <- lapply(aes_form, shape)
+  sapply(shapes, function(s) identical(s, shape(formula)))
 }
 
 formula_to_df <- function(formula = NULL, data_names = character(0),
