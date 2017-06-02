@@ -30,7 +30,7 @@
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -101,7 +101,7 @@ gf_point <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -158,7 +158,7 @@ gf_jitter <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -214,7 +214,7 @@ gf_line <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -270,7 +270,7 @@ gf_path <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -326,7 +326,7 @@ gf_smooth <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -382,7 +382,7 @@ gf_spline <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -402,6 +402,7 @@ gf_spline <-
 gf_raster <-
   gf_factory(
     type = "raster",
+    aes_form = list(y ~ x, fill ~ x + y),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ,
                    hjust = 0.5, vjust = 0.5, interpolate = FALSE)
   )
@@ -438,7 +439,7 @@ gf_raster <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -455,6 +456,16 @@ gf_raster <-
 #'
 #' @seealso \code{\link{geom_quantile}()}
 #' @export
+#' @examples
+#' # Justification controls where the cells are anchored
+#' D <- expand.grid(x = 0:5, y = 0:5)
+#' D$z <- runif(nrow(D))
+#' # centered squares
+#' gf_raster(z ~ x + y, data = D)
+#' gf_raster(y ~ x, fill = ~ z, data = D)
+#' # zero padding
+#' gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
+
 gf_quantile <-
   gf_factory(
     type = "quantile",
@@ -495,7 +506,7 @@ gf_quantile <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -552,7 +563,7 @@ gf_density_2d <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -609,7 +620,7 @@ gf_density2d <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -664,7 +675,7 @@ gf_hex <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -724,7 +735,7 @@ gf_boxplot <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -783,7 +794,7 @@ gf_text <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -844,7 +855,7 @@ gf_label <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -899,7 +910,7 @@ gf_area <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -955,7 +966,7 @@ gf_violin <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1014,7 +1025,7 @@ gf_spoke <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1070,7 +1081,7 @@ gf_step <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1125,7 +1136,7 @@ gf_tile <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1182,7 +1193,7 @@ gf_count <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1239,7 +1250,7 @@ gf_col <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x.
+#' @param gformula A formula with shape \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1258,69 +1269,6 @@ gf_col <-
 #' @export
 gf_frame <-
   gf_factory(type = "blank", function_name = "gf_frame")
-
-' Formula interface to geom_histogram()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
-#'
-#' @param gformula A formula with shape y ~ x.
-#'   Faceting can be acheived by including \code{|} in the formula.
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#'
-#' @seealso \code{\link{geom_histogram}()}
-#' @export
-#' @examples
-#' x <- rnorm(1000)
-#' gf_histogram(  ~ x, bins = 30)
-#' gf_histogram2( ..density.. ~ x, bins = 30)
-gf_histogram2 <-
-  gf_factory(
-    type = "histogram",
-    aes_form = y ~ x,
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
-    function_name = "gf_histogram2"
-    )
-
-
 
 
 #' Formula interface to geom_histogram()
@@ -1355,7 +1303,8 @@ gf_histogram2 <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x} or \code{y ~ x}.
+#'   \code{y} may be \code{..density..} or \code{..count..} or \code{..ndensity..} or \code{..ncount..}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1370,17 +1319,18 @@ gf_histogram2 <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #'
-#' @seealso \code{\link{geom_histogram}()}, \code{\link{gf_histogram2}()}
+#' @seealso \code{\link{geom_histogram}()}
 #' @export
 #' @examples
 #' x <- rnorm(1000)
 #' gf_histogram(  ~ x, bins = 30)
-#' gf_histogram2( ..density.. ~ x, bins = 30)
+#' gf_histogram( ..density.. ~ x, bins = 30)
 #' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 gf_histogram <-
   gf_factory(
-    type = "histogram", aes_form = ~x,
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+    type = "histogram", aes_form = list(~x, y ~ x),
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
+    note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
   )
 
 #' Formula interface to geom_density()
@@ -1415,7 +1365,7 @@ gf_histogram <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1478,7 +1428,7 @@ gf_density <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1542,7 +1492,7 @@ gf_dens <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1605,7 +1555,7 @@ gf_dotplot <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1662,7 +1612,7 @@ gf_bar <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1726,7 +1676,7 @@ gf_freqpoly <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~sample.
+#' @param gformula A formula with shape \code{~sample}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1785,7 +1735,7 @@ gf_qq <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ~x.
+#' @param gformula A formula with shape \code{~x} or \code{y ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -1807,246 +1757,17 @@ gf_qq <-
 #' gf_rug(~eruptions, data = faithful, color = "red", sides = "bl") %>%
 #' gf_rug(~eruptions, data = faithful, color = "navy", sides = "tr")
 #' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#' gf_rug(~Sepal.Width, data = iris, color = "navy", sides = "bl") %>%
-#' gf_rug(~Sepal.Length, data = iris, color = "navy", sides = "l")
+#' gf_rug(Sepal.Length ~ Sepal.Width)
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_rug( x = ~ Sepal.Width, data = iris, color = "navy") %>%
+#' gf_rug( y = ~ Sepal.Length, data = iris, color = "red")
 gf_rug <-
   gf_factory(
-    type = "rug", aes_form = ~ x,
+    type = "rug", aes_form = list(~ x, y ~ x, NULL),
     extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
     )
 
-#' Formula interface to geom_rug()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
-#'
-#' @param gformula A formula with shape y ~ x.
-#'   Faceting can be acheived by including \code{|} in the formula.
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#'
-#' @seealso \code{\link{geom_rug}()}
-#' @export
-#' @examples
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rug2(Sepal.Length ~ Sepal.Width, data = iris)
 
-
-gf_rug2 <-
-  gf_factory(
-    type = "rug", aes_form = y ~ x,
-    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
-    )
-#' Formula interface to geom_rug()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
-#'
-#' @param gformula A formula with shape ~y.
-#'   Faceting can be acheived by including \code{|} in the formula.
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#'
-#' @seealso \code{\link{geom_rug}()}
-#' @export
-#' @examples
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rugy( ~Sepal.Length, data = iris)
-
-gf_rugy <-
-  gf_factory(
-    type = "rug", aes_form = ~ y,
-    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
-    )
-
-' Formula interface to geom_rug()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
-#'
-
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#'
-#' @seealso \code{\link{geom_rug}()}
-#' @export
-#' @examples
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rug0( y = ~Sepal.Length, x = ~Sepal.Width, data = iris)
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#'   gf_rug0( y = ~Sepal.Length, color = "navy", data = iris) %>%
-#'   gf_rug0( x = ~Sepal.Width, color = "red", data = iris)
-
-gf_rug0 <-
-  gf_factory(
-    type = "rug", aes_form = NULL,
-    extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
-    )
-
-#' Formula interface to geom_raster()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
-#'
-#' @param gformula A formula with shape fill ~ x + y.
-#'   Faceting can be acheived by including \code{|} in the formula.
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#'
-#' @seealso \code{\link{geom_raster}()}
-
-#' @export
-gf_raster2 <-
-  gf_factory(type = "raster", aes_form = fill ~ x + y,
-             function_name = "gf_raster2")
 
 #' Formula interface to geom_contour()
 #'
@@ -2080,7 +1801,7 @@ gf_raster2 <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape z ~ x + y.
+#' @param gformula A formula with shape \code{z ~ x + y}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2132,7 +1853,7 @@ gf_contour <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ymin + ymax ~ x.
+#' @param gformula A formula with shape \code{ymin + ymax ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2211,7 +1932,7 @@ gf_ribbon <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y + yend ~ x + xend.
+#' @param gformula A formula with shape \code{y + yend ~ x + xend}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2268,7 +1989,7 @@ gf_curve <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y + yend ~ x + xend.
+#' @param gformula A formula with shape \code{y + yend ~ x + xend}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2326,7 +2047,7 @@ gf_segment <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ymin + ymax ~ x.
+#' @param gformula A formula with shape \code{ymin + ymax ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2405,7 +2126,7 @@ gf_linerange <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y + ymin + ymax ~ x.
+#' @param gformula A formula with shape \code{y + ymin + ymax ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2463,7 +2184,7 @@ gf_pointrange <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y + ymin + ymax ~ x.
+#' @param gformula A formula with shape \code{y + ymin + ymax ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2521,7 +2242,7 @@ gf_crossbar <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ymin + ymax ~ x.
+#' @param gformula A formula with shape \code{ymin + ymax ~ x}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2579,7 +2300,7 @@ gf_errorbar <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape y ~ x + xmin + xmax.
+#' @param gformula A formula with shape \code{y ~ x + xmin + xmax}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
@@ -2637,7 +2358,7 @@ gf_errorbarh <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-#' @param gformula A formula with shape ymin + ymax ~ xmin + xmax.
+#' @param gformula A formula with shape \code{ymin + ymax ~ xmin + xmax}.
 #'   Faceting can be acheived by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
