@@ -63,6 +63,16 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+# Justification controls where the cells are anchored
+D <- expand.grid(x = 0:5, y = 0:5)
+D$z <- runif(nrow(D))
+# centered squares
+gf_raster(z ~ x + y, data = D)
+gf_raster(y ~ x, fill = ~ z, data = D)
+# zero padding
+gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
+}
 \seealso{
 \code{\link{geom_raster}()}
 }

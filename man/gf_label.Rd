@@ -63,6 +63,17 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(dplyr)) {
+  iris_means <-
+    iris \%>\%
+    group_by(Species) \%>\%
+    summarise(Sepal.Length = mean(Sepal.Length), Sepal.Width = mean(Sepal.Width))
+  gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) \%>\%
+  gf_label(Sepal.Length ~ Sepal.Width, data = iris_means,
+    label = ~Species, color = ~Species, size = 2, alpha = 0.7)
+}
+}
 \seealso{
 \code{\link{geom_label}()}
 }

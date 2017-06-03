@@ -64,14 +64,8 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-# Justification controls where the cells are anchored
-D <- expand.grid(x = 0:5, y = 0:5)
-D$z <- runif(nrow(D))
-# centered squares
-gf_raster(z ~ x + y, data = D)
-gf_raster(y ~ x, fill = ~ z, data = D)
-# zero padding
-gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
+gf_point((1/hwy) ~ displ, data = mpg) \%>\%
+  gf_quantile((1/hwy) ~ displ)
 }
 \seealso{
 \code{\link{geom_quantile}()}

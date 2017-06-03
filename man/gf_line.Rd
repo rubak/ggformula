@@ -63,6 +63,14 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
+if (require(mosaicData)) {
+  gf_point(births ~ date, color = ~wday, data = Births78)
+  # lines make the exceptions stand out more prominently
+  gf_line(births ~ date, color = ~wday, data = Births78)
+  }
+}
 \seealso{
 \code{\link{geom_line}()}
 }

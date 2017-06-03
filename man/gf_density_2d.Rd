@@ -63,6 +63,12 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(mosaicData)) {
+  gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) \%>\%
+  gf_density_2d(i1 ~ age, data = HELPrct)
+}
+}
 \seealso{
 \code{\link{geom_density_2d}()}
 }

@@ -63,6 +63,16 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(mosaicData) {
+  # without jitter
+  gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
+  # jitter only horizontally
+  gf_jitter(age ~ sex, alpha = 0.25, data = HELPrct, width = 0.2, height = 0)
+  # alternative way to get jitter
+  gf_point(age ~ sex, alpha = 0.25, data = HELPrct, position = position_jitter(width = 0.2, height = 0))
+}
+}
 \seealso{
 \code{\link{geom_jitter}()}
 }

@@ -73,8 +73,6 @@ gf_point(mpg ~ hp + group:cyl | am, data = mtcars)
 gf_point(mpg ~ hp + group:cyl | ~ am, data = mtcars)
 gf_point(mpg ~ hp + group:cyl | am ~ ., data = mtcars)
 
-gf_text(Sepal.Length ~ Sepal.Width + label:Species + color:Species , data = iris)
-
 # Chaining in the data
 mtcars \%>\% gf_point(mpg ~ wt)
 

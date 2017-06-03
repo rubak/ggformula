@@ -63,6 +63,13 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(dplyr)) {
+  data.frame(t = seq(1, 10 * pi, length.out = 400)) \%>\%
+  mutate( x = t * cos(t), y = t * sin(t)) \%>\%
+  gf_path(y ~ x, color = ~t)
+  }
+}
 \seealso{
 \code{\link{geom_path}()}
 }

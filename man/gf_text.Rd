@@ -63,6 +63,11 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+gf_text(Sepal.Length ~ Sepal.Width, data = iris,
+  label = ~Species, color = ~Species, size = 2, angle = 30)
+
+}
 \seealso{
 \code{\link{geom_text}()}
 }

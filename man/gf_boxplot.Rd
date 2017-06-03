@@ -63,6 +63,17 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(mosaicData)) {
+  gf_boxplot(age ~ substance, data = HELPrct)
+  gf_boxplot(age ~ substance, data = HELPrct, varwidth = TRUE)
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex)
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, outlier.color = "gray50")
+  # longer whiskers
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, coef = 2)
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
+}
+}
 \seealso{
 \code{\link{geom_boxplot}()}
 }

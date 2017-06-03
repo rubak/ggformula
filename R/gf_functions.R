@@ -57,8 +57,6 @@
 #' gf_point(mpg ~ hp + group:cyl | ~ am, data = mtcars)
 #' gf_point(mpg ~ hp + group:cyl | am ~ ., data = mtcars)
 #'
-#' gf_text(Sepal.Length ~ Sepal.Width + label:Species + color:Species , data = iris)
-#'
 #' # Chaining in the data
 #' mtcars %>% gf_point(mpg ~ wt)
 #'
@@ -117,13 +115,21 @@ gf_point <-
 #' @param show.help If \code{TRUE}, display some minimal help.
 #'
 #' @seealso \code{\link{geom_jitter}()}
-
 #' @export
+#' @examples
+#' if (require(mosaicData) {
+#'   # without jitter
+#'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
+#'   # jitter only horizontally
+#'   gf_jitter(age ~ sex, alpha = 0.25, data = HELPrct, width = 0.2, height = 0)
+#'   # alternative way to get jitter
+#'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct, position = position_jitter(width = 0.2, height = 0))
+#' }
 gf_jitter <-
   gf_factory(
     type = "jitter",
     extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = ,
-                   width =, height = )
+                   width = , height = )
     )
 
 #' Formula interface to gplot2
@@ -175,6 +181,13 @@ gf_jitter <-
 #'
 #' @seealso \code{\link{geom_line}()}
 #' @export
+#' @examples
+#' gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
+#' if (require(mosaicData)) {
+#'   gf_point(births ~ date, color = ~wday, data = Births78)
+#'   # lines make the exceptions stand out more prominently
+#'   gf_line(births ~ date, color = ~wday, data = Births78)
+#'   }
 gf_line <-
   gf_factory(
     type = "line",
@@ -231,6 +244,13 @@ gf_line <-
 #'
 #' @seealso \code{\link{geom_path}()}
 #' @export
+#' @examples
+#' if (require(dplyr)) {
+#'   data.frame(t = seq(1, 10 * pi, length.out = 400)) %>%
+#'   mutate( x = t * cos(t), y = t * sin(t)) %>%
+#'   gf_path(y ~ x, color = ~t)
+#'   }
+
 gf_path <-
   gf_factory(
     type = "path",
@@ -287,6 +307,10 @@ gf_path <-
 #'
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_smooth(births ~ date, color = ~wday, data = Births78)
+#' }
 gf_smooth <-
   gf_factory(
     type = "smooth",
@@ -342,7 +366,14 @@ gf_smooth <-
 #' @param show.help If \code{TRUE}, display some minimal help.
 #'
 #' @seealso \code{\link{geom_spline}()}
+#' @importFrom mosaic geom_spline
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_spline(births ~ date, color = ~wday, data = Births78)
+#'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
+#'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
+#' }
 gf_spline <-
   gf_factory(
     type = "spline",
@@ -399,6 +430,16 @@ gf_spline <-
 #'
 #' @seealso \code{\link{geom_raster}()}
 #' @export
+#' @examples
+#' # Justification controls where the cells are anchored
+#' D <- expand.grid(x = 0:5, y = 0:5)
+#' D$z <- runif(nrow(D))
+#' # centered squares
+#' gf_raster(z ~ x + y, data = D)
+#' gf_raster(y ~ x, fill = ~ z, data = D)
+#' # zero padding
+#' gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
+
 gf_raster <-
   gf_factory(
     type = "raster",
@@ -457,14 +498,8 @@ gf_raster <-
 #' @seealso \code{\link{geom_quantile}()}
 #' @export
 #' @examples
-#' # Justification controls where the cells are anchored
-#' D <- expand.grid(x = 0:5, y = 0:5)
-#' D$z <- runif(nrow(D))
-#' # centered squares
-#' gf_raster(z ~ x + y, data = D)
-#' gf_raster(y ~ x, fill = ~ z, data = D)
-#' # zero padding
-#' gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
+#' gf_point((1/hwy) ~ displ, data = mpg) %>%
+#'   gf_quantile((1/hwy) ~ displ)
 
 gf_quantile <-
   gf_factory(
@@ -523,6 +558,12 @@ gf_quantile <-
 #'
 #' @seealso \code{\link{geom_density_2d}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) %>%
+#'   gf_density_2d(i1 ~ age, data = HELPrct)
+#' }
+
 gf_density_2d <-
   gf_factory(
     type = "density_2d",
@@ -580,6 +621,12 @@ gf_density_2d <-
 #'
 #' @seealso \code{\link{geom_density2d}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) %>%
+#'   gf_density2d(i1 ~ age, data = HELPrct)
+#' }
+
 gf_density2d <-
   gf_factory(
     type = "density2d",
@@ -637,6 +684,11 @@ gf_density2d <-
 #'
 #' @seealso \code{\link{geom_hex}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_hex(i1 ~ age, data = HELPrct, bins = 15) %>%
+#'   gf_density2d(i1 ~ age, data = HELPrct, color = "red", alpha = 0.5)
+#' }
 gf_hex <-
   gf_factory(
     type = "hex",
@@ -692,6 +744,16 @@ gf_hex <-
 #'
 #' @seealso \code{\link{geom_boxplot}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_boxplot(age ~ substance, data = HELPrct)
+#'   gf_boxplot(age ~ substance, data = HELPrct, varwidth = TRUE)
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex)
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, outlier.color = "gray50")
+#'   # longer whiskers
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, coef = 2)
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
+#' }
 gf_boxplot <-
   gf_factory(
     type = "boxplot",
@@ -752,6 +814,10 @@ gf_boxplot <-
 #'
 #' @seealso \code{\link{geom_text}()}
 #' @export
+#' @examples
+#' gf_text(Sepal.Length ~ Sepal.Width, data = iris,
+#'   label = ~Species, color = ~Species, size = 2, angle = 30)
+#'
 gf_text <-
   gf_factory(
     type = "text",
@@ -811,6 +877,17 @@ gf_text <-
 #'
 #' @seealso \code{\link{geom_label}()}
 #' @export
+#' @examples
+#' if (require(dplyr)) {
+#'   iris_means <-
+#'     iris %>%
+#'     group_by(Species) %>%
+#'     summarise(Sepal.Length = mean(Sepal.Length), Sepal.Width = mean(Sepal.Width))
+#'   gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) %>%
+#'   gf_label(Sepal.Length ~ Sepal.Width, data = iris_means,
+#'     label = ~Species, color = ~Species, size = 2, alpha = 0.7)
+#' }
+
 gf_label <-
   gf_factory(
     type = "label",

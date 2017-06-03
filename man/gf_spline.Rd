@@ -63,6 +63,13 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(mosaicData)) {
+  gf_spline(births ~ date, color = ~wday, data = Births78)
+  gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
+  gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
+}
+}
 \seealso{
 \code{\link{geom_spline}()}
 }

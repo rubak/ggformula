@@ -63,6 +63,12 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+if (require(mosaicData)) {
+  gf_hex(i1 ~ age, data = HELPrct, bins = 15) \%>\%
+  gf_density2d(i1 ~ age, data = HELPrct, color = "red", alpha = 0.5)
+}
+}
 \seealso{
 \code{\link{geom_hex}()}
 }
