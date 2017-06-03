@@ -63,6 +63,15 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+# Best used in conjunction with scale_size_area which ensures that
+# counts of zero would be given size 0. Doesn't make much difference
+# here because the smallest count is already close to 0.
+
+gf_count(hwy ~ cty, data = mpg, alpha = 0.5) \%>\%
+  gf_refine(scale_size_area())
+
+}
 \seealso{
 \code{\link{geom_count}()}
 }

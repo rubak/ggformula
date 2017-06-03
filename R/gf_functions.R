@@ -949,6 +949,40 @@ gf_label <-
 #'
 #' @seealso \code{\link{geom_area}()}
 #' @export
+#' @examples
+#' if (require(weatherData) && require(dplyr)) {
+#'   Temps <- NewYork2013 %>%
+#'     mutate(date = lubridate::date(Time),
+#'          month = lubridate::month(Time)) %>%
+#'     filter(month <= 4) %>%
+#'     group_by(date) %>%
+#'     summarise(
+#'       hi = max(Temperature, na.rm = TRUE),
+#'       lo = min(Temperature, na.rm = TRUE)
+#'     )
+#'   gf_linerange(lo + hi  ~ date, color = ~hi, data = Temps)
+#'   gf_ribbon(lo + hi ~ date, data = Temps, color = "navy", alpha = 0.3)
+#'   gf_area(hi ~ date, data = Temps, color = "navy", alpha = 0.3)
+#'
+#'   Temps2 <- NewYork2013 %>% mutate(city = "NYC") %>%
+#'     bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
+#'     bind_rows(London2013 %>% mutate(city = "London")) %>%
+#'     mutate(date = lubridate::date(Time),
+#'            month = lubridate::month(Time)) %>%
+#'     group_by(city, date) %>%
+#'     summarise(
+#'       hi = max(Temperature, na.rm = TRUE),
+#'       lo = min(Temperature, na.rm = TRUE),
+#'       mid = (hi + lo)/2
+#'     )
+#'   gf_ribbon(lo + hi ~ date, data = Temps2, alpha = 0.3) %>%
+#'     gf_facet_grid(city ~ .)
+#'
+#'   gf_linerange(lo + hi ~ date, color = ~ mid, data = Temps2) %>%
+#'     gf_facet_grid(city ~ .) %>%
+#'     gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
+#' }
+#'
 gf_area <-
   gf_factory(
     type = "area",
@@ -1004,6 +1038,12 @@ gf_area <-
 #'
 #' @seealso \code{\link{geom_violin}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_violin(age ~ substance, data = HELPrct)
+#'   gf_violin(age ~ substance, data = HELPrct, fill = ~sex)
+#' }
+#'
 gf_violin <-
   gf_factory(
     type = "violin",
@@ -1060,6 +1100,17 @@ gf_violin <-
 #' @section Note \code{angle} and \code{radius} must be set or mapped.
 #' @seealso \code{\link{geom_spoke}()}
 #' @export
+#' @examples
+#' D <- expand.grid(x = 1:10, y=1:10)
+#' D$angle <- runif(100, 0, 2*pi)
+#' D$speed <- runif(100, 0, sqrt(0.1 * D$x))
+#'
+#' gf_point(y ~ x, data = D) %>%
+#'   gf_spoke(y ~ x, angle = ~angle, radius = 0.5)
+#'
+#' gf_point(y ~ x, data = D) %>%
+#'   gf_spoke(y ~ x, angle = ~angle, radius = ~speed)
+
 gf_spoke <-
   gf_factory(
     type = "spoke",
@@ -1119,11 +1170,15 @@ gf_spoke <-
 #'
 #' @seealso \code{\link{geom_step}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_step( births ~ date, data = Births78, color = ~wday)
+#' }
+
 gf_step <-
   gf_factory(
     type = "step",
-    extras = alist(alpha = , color = , group = , linetype = , size = ,
-                   direction = "hv" )
+    extras = alist(alpha = , color = , group = , linetype = , size = , direction = "hv" )
     )
 
 #' Formula interface to geom_tile()
@@ -1175,9 +1230,16 @@ gf_step <-
 #'
 #' @seealso \code{\link{geom_tile}()}
 #' @export
+#' @examples
+#' D <- expand.grid(x = 0:5, y = 0:5)
+#' D$z <- runif(nrow(D))
+#' gf_tile(y ~ x, fill = ~ z, data = D)
+#' gf_tile(z ~ x + y, data = D)
+
 gf_tile <-
   gf_factory(
     type = "tile",
+    aes_form = list(y ~ x, fill ~ x + y),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
   )
 
@@ -1230,6 +1292,14 @@ gf_tile <-
 #'
 #' @seealso \code{\link{geom_count}()}
 #' @export
+#' @examples
+#' # Best used in conjunction with scale_size_area which ensures that
+#' # counts of zero would be given size 0. Doesn't make much difference
+#' # here because the smallest count is already close to 0.
+#'
+#' gf_count(hwy ~ cty, data = mpg, alpha = 0.5) %>%
+#'   gf_refine(scale_size_area())
+#'
 gf_count <-
   gf_factory(
     type = "count",
@@ -2165,6 +2235,7 @@ gf_segment <-
 #' Temps %>% gf_ribbon(lo + hi ~ date, alpha = 0.4) %>%
 #'   gf_facet_grid(city ~ .)
 #' }
+#'
 gf_linerange <-
   gf_factory(
     type = "linerange", aes_form = ymin + ymax ~ x,

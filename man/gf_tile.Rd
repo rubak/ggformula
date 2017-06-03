@@ -63,6 +63,12 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\examples{
+D <- expand.grid(x = 0:5, y = 0:5)
+D$z <- runif(nrow(D))
+gf_tile(y ~ x, fill = ~ z, data = D)
+gf_tile(z ~ x + y, data = D)
+}
 \seealso{
 \code{\link{geom_tile}()}
 }

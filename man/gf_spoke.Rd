@@ -67,6 +67,17 @@ in another.
 NA
 }
 
+\examples{
+D <- expand.grid(x = 1:10, y=1:10)
+D$angle <- runif(100, 0, 2*pi)
+D$speed <- runif(100, 0, sqrt(0.1 * D$x))
+
+gf_point(y ~ x, data = D) \%>\%
+  gf_spoke(y ~ x, angle = ~angle, radius = 0.5)
+
+gf_point(y ~ x, data = D) \%>\%
+  gf_spoke(y ~ x, angle = ~angle, radius = ~speed)
+}
 \seealso{
 \code{\link{geom_spoke}()}
 }

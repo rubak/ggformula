@@ -87,6 +87,7 @@ gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
 Temps \%>\% gf_ribbon(lo + hi ~ date, alpha = 0.4) \%>\%
   gf_facet_grid(city ~ .)
 }
+
 }
 \seealso{
 \code{\link{geom_linerange}()}
