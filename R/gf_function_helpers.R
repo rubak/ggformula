@@ -289,17 +289,53 @@ gf_master <- function(formula = NULL, data = NULL,
   }
 }
 
-shape <- function(x) {
+formula_shape <- function(x) {
   if (length(x) < 2) return(0)
-  c(length(x) - 1, unlist(sapply(x[-1], shape)))
+  arity <- length(x) - 1
+  if (as.character(x[[1]]) %in% c("(")){
+    return(0)
+  }
+  if (as.character(x[[1]]) %in% c(":", "(")){
+    return(-1)
+  }
+
+  # if (as.character(x[[1]]) %in% c("|")){
+  #   return(formula_shape(x[[2]]))
+  # }
+
+  if (arity == 1L) {
+    right_shape <- formula_shape(x[[2]])
+    arity <- arity - (right_shape[1] < 0)
+    if (arity == 0) return(arity)
+    return( right_shape )
+  }
+  if (arity == 2L) {
+    right_shape <- formula_shape(x[[3]])
+    left_shape <- formula_shape(x[[2]])
+    if (left_shape[1] < 0 && right_shape < 0) { return(0) }
+    if (left_shape[1] < 0) {
+      if (right_shape[1] == 1L) return(right_shape[-1])
+      return(right_shape)
+    }
+    if (right_shape[1] < 0) {
+      if (left_shape[1] == 1L) return(left_shape[-1])
+      return(left_shape)
+    }
+    return( c(2, left_shape, right_shape) )
+  }
+  stop("problems here.")
+
+  c(length(x) - 1, unlist(sapply(x[-1], formula_shape)))
+  # list(length(x) - 1, lapply(x[-1], formula_shape))
 }
 
 formula_match <- function(formula, aes_form = y ~ x) {
   if (!is.list(aes_form)) {
     aes_form <- list(aes_form)
   }
-  shapes <- lapply(aes_form, shape)
-  sapply(shapes, function(s) identical(s, shape(formula)))
+  user_shape <- formula_shape(formula_split(formula)$formula)
+  shapes <- lapply(aes_form, formula_shape)
+  sapply(shapes, function(s) identical(s, user_shape))
 }
 
 formula_to_df <- function(formula = NULL, data_names = character(0),
@@ -387,7 +423,7 @@ formula_to_aesthetics <- function(formula,
 pairs_in_formula <- function(formula) {
   fc <- as.character(formula)
   parts <- unlist(strsplit(fc, "+", fixed = TRUE))
-  # trim leading blanks
+  # trim leading and trailing blanks
   parts <- gsub("^\\s+|\\s+$", "", parts)
   # identify the pairs
   pairs <- parts[grep(":+", parts)]
@@ -405,7 +441,6 @@ pairs_in_formula <- function(formula) {
     if ("y" %in% names(res))
       warning("duplicate specification of y aesthetic")
     else res["y"] <- xy[1]
-
 
     if ("x" %in% names(res))
       warning("duplicate specification of x aesthetic")
