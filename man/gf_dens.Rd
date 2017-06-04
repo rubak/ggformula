@@ -32,6 +32,8 @@ can be added to an existing frame.}
 Available attributes include
 \code{stat}, \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{weight}}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
 \description{

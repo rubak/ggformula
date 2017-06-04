@@ -2,7 +2,7 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_line}
 \alias{gf_line}
-\title{Formula interface to gplot2}
+\title{Formula interface to geom_line()}
 \usage{
 gf_line(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
@@ -31,6 +31,8 @@ can be added to an existing frame.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{arrow}}
+
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
@@ -64,8 +66,8 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
 if (require(mosaicData)) {
+  gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
   gf_point(births ~ date, color = ~wday, data = Births78)
   # lines make the exceptions stand out more prominently
   gf_line(births ~ date, color = ~wday, data = Births78)

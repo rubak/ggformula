@@ -1,4 +1,4 @@
-#' Formula interface to gplot2
+#' Formula interface to geom_point()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -44,6 +44,7 @@
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_point}()}
 #' @export
@@ -67,7 +68,7 @@ gf_point <-
     extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = )
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_jitter()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -113,17 +114,19 @@ gf_point <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_jitter}()}
 #' @export
 #' @examples
-#' if (require(mosaicData) {
+#' if (require(mosaicData)) {
 #'   # without jitter
 #'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
 #'   # jitter only horizontally
 #'   gf_jitter(age ~ sex, alpha = 0.25, data = HELPrct, width = 0.2, height = 0)
 #'   # alternative way to get jitter
-#'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct, position = position_jitter(width = 0.2, height = 0))
+#'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct,
+#'     position = position_jitter(width = 0.2, height = 0))
 #' }
 gf_jitter <-
   gf_factory(
@@ -132,7 +135,7 @@ gf_jitter <-
                    width = , height = )
     )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_line()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -178,12 +181,13 @@ gf_jitter <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_line}()}
 #' @export
 #' @examples
-#' gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
 #' if (require(mosaicData)) {
+#'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
 #'   gf_point(births ~ date, color = ~wday, data = Births78)
 #'   # lines make the exceptions stand out more prominently
 #'   gf_line(births ~ date, color = ~wday, data = Births78)
@@ -195,7 +199,7 @@ gf_line <-
                    lineend = , linejoin = , linemitre = , arrow = )
     )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_path()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -241,6 +245,7 @@ gf_line <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_path}()}
 #' @export
@@ -258,7 +263,7 @@ gf_path <-
                    lineend = "butt", linejoin = "round", linemitre = 1, arrow = NULL)
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_smooth()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -304,6 +309,7 @@ gf_path <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
@@ -318,7 +324,7 @@ gf_smooth <-
                    n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
     )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_spline()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -364,12 +370,13 @@ gf_smooth <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_spline}()}
 #' @importFrom mosaic geom_spline
 #' @export
 #' @examples
-#' if (require(mosaicData)) {
+#' if (require(mosaic)) {
 #'   gf_spline(births ~ date, color = ~wday, data = Births78)
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
@@ -381,7 +388,7 @@ gf_spline <-
                    weight = , df = , spar = , tol = )
     )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_raster()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -427,6 +434,7 @@ gf_spline <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_raster}()}
 #' @export
@@ -448,7 +456,7 @@ gf_raster <-
                    hjust = 0.5, vjust = 0.5, interpolate = FALSE)
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_quantile()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -494,6 +502,7 @@ gf_raster <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_quantile}()}
 #' @export
@@ -509,7 +518,7 @@ gf_quantile <-
                    formula = , method = ,  method.args =  )
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_density_2d()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -555,6 +564,7 @@ gf_quantile <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_density_2d}()}
 #' @export
@@ -572,7 +582,7 @@ gf_density_2d <-
                    linemitre = 1 )
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_density2d()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -618,6 +628,7 @@ gf_density_2d <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_density2d}()}
 #' @export
@@ -635,7 +646,7 @@ gf_density2d <-
                    linemitre = 1 )
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_hex()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -681,6 +692,7 @@ gf_density2d <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_hex}()}
 #' @export
@@ -695,7 +707,7 @@ gf_hex <-
     extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = , size = )
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_boxplot()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -741,6 +753,7 @@ gf_hex <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_boxplot}()}
 #' @export
@@ -765,7 +778,7 @@ gf_boxplot <-
       outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE)
   )
 
-#' Formula interface to gplot2
+#' Formula interface to geom_text()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
@@ -811,6 +824,7 @@ gf_boxplot <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_text}()}
 #' @export
@@ -874,6 +888,7 @@ gf_text <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_label}()}
 #' @export
@@ -946,6 +961,7 @@ gf_label <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_area}()}
 #' @export
@@ -1035,6 +1051,7 @@ gf_area <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_violin}()}
 #' @export
@@ -1097,6 +1114,7 @@ gf_violin <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @section Note \code{angle} and \code{radius} must be set or mapped.
 #' @seealso \code{\link{geom_spoke}()}
 #' @export
@@ -1167,6 +1185,7 @@ gf_spoke <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_step}()}
 #' @export
@@ -1227,6 +1246,7 @@ gf_step <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_tile}()}
 #' @export
@@ -1289,6 +1309,7 @@ gf_tile <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_count}()}
 #' @export
@@ -1354,9 +1375,17 @@ gf_count <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_col}()}
 #' @export
+#' @examples
+#' D <- data.frame(
+#'   group = LETTERS[1:3],
+#'   count = c(20, 25, 18)
+#' )
+#' gf_col(count ~ group, data = D)
+
 gf_col <-
   gf_factory(
     type = "col",
@@ -1364,7 +1393,6 @@ gf_col <-
       alpha = , color = , fill = , group = , linetype = , size =
     )
   )
-
 #' Formula interface to geom_blank()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
@@ -1411,12 +1439,18 @@ gf_col <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_blank}()}
 #' @export
+#' @examples
+#'
+#'
+#' gf_point((c(0,1)) ~ (c(0,5)))
+#' gf_frame((c(0,1)) ~ (c(0,5)))
+
 gf_frame <-
   gf_factory(type = "blank", function_name = "gf_frame")
-
 
 #' Formula interface to geom_histogram()
 #'
@@ -1465,6 +1499,7 @@ gf_frame <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_histogram}()}
 #' @export
@@ -1473,6 +1508,7 @@ gf_frame <-
 #' gf_histogram(  ~ x, bins = 30)
 #' gf_histogram( ..density.. ~ x, bins = 30)
 #' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
+
 gf_histogram <-
   gf_factory(
     type = "histogram", aes_form = list(~x, y ~ x),
@@ -1526,6 +1562,7 @@ gf_histogram <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_density}()}
 #' @export
@@ -1589,6 +1626,7 @@ gf_density <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_line}()}
 #' @export
@@ -1653,11 +1691,13 @@ gf_dens <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_dotplot}()}
 #' @export
 #' @examples
 #' gf_dotplot(~ Sepal.Length, fill = ~Species, data = iris)
+
 gf_dotplot <-
   gf_factory(
     type = "dotplot",
@@ -1716,9 +1756,17 @@ gf_dotplot <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_bar}()}
 #' @export
+#' @examples
+#' if (require(mosaicData)) {
+#'   gf_bar( ~ substance, data = HELPrct)
+#'   gf_bar( ~ substance, data = HELPrct, fill = ~sex)
+#'   gf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+#' }
+
 gf_bar <-
   gf_factory(
     type = "bar", aes_form = ~ x,
@@ -1773,6 +1821,7 @@ gf_bar <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_freqpoly}()}
 #' @export
@@ -1782,6 +1831,7 @@ gf_bar <-
 #' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris, bins = 20)
 #' gf_dens(~ Sepal.Length, data = iris, color = "navy") %>%
 #' gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
+
 gf_freqpoly <-
   gf_factory(
     type = "freqpoly", aes_form = ~ x,
@@ -1837,6 +1887,7 @@ gf_freqpoly <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_qq}()}
 #' @export
@@ -1896,6 +1947,7 @@ gf_qq <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_rug}()}
 #' @export
@@ -1962,9 +2014,14 @@ gf_rug <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_contour}()}
 #' @export
+#' @examples
+#' gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy") %>%
+#'   gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
+
 gf_contour <-
   gf_factory(type = "contour", aes_form = z ~ x + y)
 
@@ -2014,6 +2071,7 @@ gf_contour <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_ribbon}()}
 #' @export
@@ -2033,7 +2091,7 @@ gf_contour <-
 #'   )
 #'
 #' gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) %>%
-#'    gf_theme(theme = theme_minimal)
+#'    gf_theme(theme = theme_minimal())
 #' gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) %>%
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 #' gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
@@ -2093,9 +2151,16 @@ gf_ribbon <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_curve}()}
 #' @export
+#' @examples
+#' D <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
+#' gf_point(mpg ~ wt, data = mtcars) %>%
+#'   gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") %>%
+#'   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
+
 gf_curve <-
   gf_factory(
     type = "curve", aes_form = y + yend ~ x + xend,
@@ -2150,9 +2215,16 @@ gf_curve <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_segment}()}
 #' @export
+#' @examples
+#' D <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
+#' gf_point(mpg ~ wt, data = mtcars) %>%
+#'   gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") %>%
+#'   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
+
 gf_segment <-
   gf_factory(
     type = "segment", aes_form = y + yend ~ x + xend,
@@ -2208,6 +2280,7 @@ gf_segment <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_linerange}()}
 #' @export
@@ -2227,7 +2300,7 @@ gf_segment <-
 #'   )
 #'
 #' gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) %>%
-#'    gf_theme(theme = theme_minimal)
+#'    gf_theme(theme = theme_minimal())
 #' gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) %>%
 #'   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 #' gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
@@ -2288,9 +2361,34 @@ gf_linerange <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_pointrange}()}
 #' @export
+#' @examples
+#' if (require(mosaicData) && require(dplyr)) {
+#' HELP2 <- HELPrct %>%
+#'   group_by(substance, sex) %>%
+#'   summarise(
+#'     mean.age = mean(age),
+#'     median.age = median(age),
+#'     max.age = max(age),
+#'     min.age = min(age),
+#'     sd.age = sd(age),
+#'     lo = mean.age - sd.age,
+#'     hi = mean.age + sd.age
+#'     )
+#'
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_pointrange( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#' }
+
 gf_pointrange <-
   gf_factory(
     type = "pointrange",
@@ -2346,9 +2444,39 @@ gf_pointrange <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_crossbar}()}
 #' @export
+#' @examples
+#' if (require(mosaicData) && require(dplyr)) {
+#' HELP2 <- HELPrct %>%
+#'   group_by(substance, sex) %>%
+#'   summarise(
+#'     mean.age = mean(age),
+#'     median.age = median(age),
+#'     max.age = max(age),
+#'     min.age = min(age),
+#'     sd.age = sd(age),
+#'     lo = mean.age - sd.age,
+#'     hi = mean.age + sd.age
+#'     )
+#'
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_pointrange( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_boxplot( age ~ substance,  data = HELPrct, color = "red") %>%
+#'     gf_crossbar( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#' }
+
 gf_crossbar <-
   gf_factory(
     type = "crossbar",
@@ -2404,9 +2532,38 @@ gf_crossbar <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_errorbar}()}
 #' @export
+#' @examples
+#' if (require(mosaicData) && require(dplyr)) {
+#' HELP2 <- HELPrct %>%
+#'   group_by(substance, sex) %>%
+#'   summarise(
+#'     mean.age = mean(age),
+#'     median.age = median(age),
+#'     max.age = max(age),
+#'     min.age = min(age),
+#'     sd.age = sd(age),
+#'     lo = mean.age - sd.age,
+#'     hi = mean.age + sd.age
+#'     )
+#'
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_pointrange( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_boxplot( age ~ substance,  data = HELPrct, color = "red") %>%
+#'     gf_crossbar( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#' }
 gf_errorbar <-
   gf_factory(
     type = "errorbar",
@@ -2462,9 +2619,33 @@ gf_errorbar <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_errorbarh}()}
 #' @export
+#' @examples
+#' if (require(mosaicData) && require(dplyr)) {
+#' HELP2 <- HELPrct %>%
+#'   group_by(substance, sex) %>%
+#'   summarise(
+#'     mean.age = mean(age),
+#'     median.age = median(age),
+#'     max.age = max(age),
+#'     min.age = min(age),
+#'     sd.age = sd(age),
+#'     lo = mean.age - sd.age,
+#'     hi = mean.age + sd.age
+#'     )
+#'
+#'   gf_jitter(substance ~ age, data = HELPrct,
+#'       alpha = 0.5, height = 0.2, width = 0, color = "skyblue") %>%
+#'     gf_errorbarh( substance ~ mean.age + lo + hi,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#' }
 gf_errorbarh <-
   gf_factory(
     type = "errorbarh",
@@ -2520,9 +2701,13 @@ gf_errorbarh <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_rect}()}
 #' @export
+#' @examples
+#' gf_rect( 1 + 2 ~ 3 + 4, alpha = 0.3, color = "red")
+#'
 gf_rect <-
   gf_factory(
     type = "rect",
@@ -2563,7 +2748,7 @@ gf_rect <-
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
 #'
-
+#' @param gformula Must be \code{NULL}.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2576,6 +2761,7 @@ gf_rect <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_abline}()}
 #' @export
@@ -2620,11 +2806,11 @@ gf_abline <-
 #' This will typically do the right thing when formulas are created on the fly, but might not
 #' be the right thing if formulas created in one environment are used to create plots
 #' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
 #'
-
+#' @param object When chaining, this holds an object produced in the earlier portions
+#'   of the chain.  Most users can safely ignore this argument.
+#'   See details and examples.
+#' @param gformula Must be \code{NULL}.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2637,6 +2823,7 @@ gf_abline <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_hline}()}
 #' @export
@@ -2680,10 +2867,10 @@ gf_hline <-
 #' be the right thing if formulas created in one environment are used to create plots
 #' in another.
 #' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
+#'   of the chain.  Most users can safely ignore this argument.
+#'   See details and examples.
 #'
-
+#' @param gformula Must be \code{NULL}.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2696,7 +2883,7 @@ gf_hline <-
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#'
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @seealso \code{\link{geom_vline}()}
 #' @export
 #' @examples
@@ -2713,8 +2900,13 @@ gf_vline <-
 #' @rdname gf_functions0
 #' @export
 #' @examples
-#' gf_frame((c(-1, 1)) ~ (c(0, 10))) %>%
-#' gf_function(cos)
+#' if (require(mosaicData)) {
+#'   gf_histogram(..density.. ~ age, data = HELPrct, binwidth = 3, alpha = 0.6) %>%
+#'     gf_function(fun = dnorm,
+#'       args = list(mean = mean(HELPrct$age), sd = sd(HELPrct$age)),
+#'       color = "red")
+#' }
+
 gf_function <- function(object, fun, ...) {
   object + stat_function(fun = fun, ...)
 }
@@ -2722,13 +2914,19 @@ gf_function <- function(object, fun, ...) {
 #' @rdname gf_functions0
 #' @export
 #' @examples
-#' gf_frame((c(-1, 1)) ~ (c(0, 10))) %>%
-#' gf_fun(cos(x) ~ x)
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_fun(5 + 3 * cos(10 * x) ~ x)
+#' # Utility bill is quadratic in month?
+#' if (require(mosaic)) {
+#'   f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
+#'   gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) %>%
+#'     gf_fun(f(m) ~ m, color = "red")
+#'   }
+
 gf_fun <- function(object, formula, ...) {
   fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
   object + stat_function(fun = fun, ...)
 }
-
 
 #' gf_ functions with no formula part
 #'
@@ -2764,10 +2962,13 @@ gf_fun <- function(object, formula, ...) {
 #' This is equivalent to \code{coef = coef(model)}.
 #' @param ... Other arguments such as \code{position="dodge"}.
 #' @param show.help If \code{TRUE}, display some minimal help.  In particular,
+#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' the help will show (a) which geom from \pkg{ggplot2} is used,
 #' (b) how aesthetics are assigned based on \code{formula}, and (c)
 #' any default values of arguments to the geom.
 #'
+#' @rdname gf_functions0
+#' @export
 #' @examples
 #' mtcars.model <- lm(mpg ~ wt, data = mtcars)
 #' gf_point(mpg ~ wt, data = mtcars) %>%
@@ -2778,10 +2979,6 @@ gf_fun <- function(object, formula, ...) {
 #' mtcars %>% gf_point(mpg ~ wt, data = mtcars) %>%
 #'   gf_coefline(model = mtcars.model, alpha = 0.6, col = "red")
 
-
-
-#' @rdname gf_functions0
-#' @export
 gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL, ...) {
   if (is.null(coef) + is.null(model) != 1) stop("must specify exactly one of coef or model")
   if (is.null(coef)) coef <- coef(model)

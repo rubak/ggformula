@@ -40,7 +40,9 @@ can be added to an existing frame.}
 
 \item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
 
-\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,
+\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,}
+
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.
 the help will show (a) which geom from \pkg{ggplot2} is used,
 (b) how aesthetics are assigned based on \code{formula}, and (c)
 any default values of arguments to the geom.}
@@ -56,10 +58,20 @@ The functions generate a \code{ggplot2} command string which can be
 displayed by setting \code{verbose = TRUE} as an argument.
 }
 \examples{
-gf_frame((c(-1, 1)) ~ (c(0, 10))) \%>\%
-gf_function(cos)
-gf_frame((c(-1, 1)) ~ (c(0, 10))) \%>\%
-gf_fun(cos(x) ~ x)
+if (require(mosaicData)) {
+  gf_histogram(..density.. ~ age, data = HELPrct, binwidth = 3, alpha = 0.6) \%>\%
+    gf_function(fun = dnorm,
+      args = list(mean = mean(HELPrct$age), sd = sd(HELPrct$age)),
+      color = "red")
+}
+gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
+gf_fun(5 + 3 * cos(10 * x) ~ x)
+# Utility bill is quadratic in month?
+if (require(mosaic)) {
+  f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
+  gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) \%>\%
+    gf_fun(f(m) ~ m, color = "red")
+  }
 mtcars.model <- lm(mpg ~ wt, data = mtcars)
 gf_point(mpg ~ wt, data = mtcars) \%>\%
   gf_coefline(model = mtcars.model, alpha = 0.6) \%>\%

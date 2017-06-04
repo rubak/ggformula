@@ -13,6 +13,8 @@ gf_hline(object = NULL, gformula = NULL, data = NULL, geom = type,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
+\item{gformula}{Must be \code{NULL}.}
+
 \item{data}{A data frame with the variables to be plotted.}
 
 \item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
@@ -28,6 +30,8 @@ can be added to an existing frame.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{yintercept}}
+
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_jitter}
 \alias{gf_jitter}
-\title{Formula interface to gplot2}
+\title{Formula interface to geom_jitter()}
 \usage{
 gf_jitter(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
@@ -31,6 +31,8 @@ can be added to an existing frame.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}, \code{width}, \code{height}}
+
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
@@ -64,13 +66,14 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-if (require(mosaicData) {
+if (require(mosaicData)) {
   # without jitter
   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
   # jitter only horizontally
   gf_jitter(age ~ sex, alpha = 0.25, data = HELPrct, width = 0.2, height = 0)
   # alternative way to get jitter
-  gf_point(age ~ sex, alpha = 0.25, data = HELPrct, position = position_jitter(width = 0.2, height = 0))
+  gf_point(age ~ sex, alpha = 0.25, data = HELPrct,
+    position = position_jitter(width = 0.2, height = 0))
 }
 }
 \seealso{

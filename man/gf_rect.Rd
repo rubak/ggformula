@@ -32,6 +32,8 @@ can be added to an existing frame.}
 Available attributes include
 \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
 \description{
@@ -62,6 +64,10 @@ Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.
+}
+\examples{
+gf_rect( 1 + 2 ~ 3 + 4, alpha = 0.3, color = "red")
+
 }
 \seealso{
 \code{\link{geom_rect}()}

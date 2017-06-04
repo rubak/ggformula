@@ -32,6 +32,8 @@ can be added to an existing frame.}
 Available attributes include
 \code{}}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
 \description{
@@ -62,6 +64,10 @@ Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.
+}
+\examples{
+gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy") \%>\%
+  gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
 }
 \seealso{
 \code{\link{geom_contour}()}

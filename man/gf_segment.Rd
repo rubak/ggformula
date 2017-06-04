@@ -32,6 +32,8 @@ can be added to an existing frame.}
 Available attributes include
 \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{arrow}, \code{lineend}}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
 \description{
@@ -62,6 +64,12 @@ Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.
+}
+\examples{
+D <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
+gf_point(mpg ~ wt, data = mtcars) \%>\%
+  gf_curve(y1 + y2 ~ x1 + x2, data = D, color = "navy") \%>\%
+  gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 }
 \seealso{
 \code{\link{geom_segment}()}

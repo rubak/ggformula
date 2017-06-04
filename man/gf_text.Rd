@@ -2,7 +2,7 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_text}
 \alias{gf_text}
-\title{Formula interface to gplot2}
+\title{Formula interface to geom_text()}
 \usage{
 gf_text(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
@@ -31,6 +31,8 @@ can be added to an existing frame.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{label}, \code{alpha}, \code{angle}, \code{color}, \code{family}, \code{fontface}, \code{group}, \code{hjust}, \code{lineheight}, \code{size}, \code{vjust}, \code{parse}, \code{nudge_x}, \code{nudge_y}, \code{check_overlap}}
+
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }

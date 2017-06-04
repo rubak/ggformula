@@ -32,6 +32,8 @@ can be added to an existing frame.}
 Available attributes include
 \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
 \description{
@@ -79,7 +81,7 @@ bind_rows(London2013 \%>\% mutate(city = "London")) \%>\%
   )
 
 gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) \%>\%
-   gf_theme(theme = theme_minimal)
+   gf_theme(theme = theme_minimal())
 gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) \%>\%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)

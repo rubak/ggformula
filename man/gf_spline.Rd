@@ -2,7 +2,7 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_spline}
 \alias{gf_spline}
-\title{Formula interface to gplot2}
+\title{Formula interface to geom_spline()}
 \usage{
 gf_spline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
@@ -31,6 +31,8 @@ can be added to an existing frame.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{weight}, \code{df}, \code{spar}, \code{tol}}
+
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
@@ -64,7 +66,7 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-if (require(mosaicData)) {
+if (require(mosaic)) {
   gf_spline(births ~ date, color = ~wday, data = Births78)
   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
