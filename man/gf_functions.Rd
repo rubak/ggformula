@@ -2,9 +2,12 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_function}
 \alias{gf_function}
+\alias{gf_fun}
 \title{Layers displaying graphs of functions}
 \usage{
 gf_function(object, fun, ...)
+
+gf_fun(object, formula, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -14,6 +17,8 @@ See details and examples.}
 \item{fun}{A function.}
 
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{formula}{A formula describing a function.  See examples.}
 }
 \description{
 \code{gf_function()} and \code{gf_fun()} provide two different interfaces for creating a layer
@@ -26,4 +31,12 @@ if (require(mosaicData)) {
       args = list(mean = mean(HELPrct$age), sd = sd(HELPrct$age)),
       color = "red")
 }
+gf_point(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
+gf_fun(5 + 3 * cos(10 * x) ~ x)
+# Utility bill is quadratic in month?
+if (require(mosaic)) {
+  f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
+  gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) \%>\%
+    gf_fun(f(m) ~ m, color = "red")
+  }
 }
