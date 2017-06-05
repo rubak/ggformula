@@ -18,7 +18,11 @@ gf_coefline(object = NULL, formula = NULL, coef = NULL, model = NULL,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
+\item{fun}{A function.}
+
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{formula}{A formula describing a function.  See examples.}
 
 \item{coef}{A numeric vector of length at least 2, treated as intercept and slope.
 Additional components, if any, are ignored (with a warning).}
@@ -26,36 +30,20 @@ Additional components, if any, are ignored (with a warning).}
 \item{model}{An object with a method for \code{coef()} that returns a
 numeric vector, the first two elements of which are intercept and slope.
 This is equivalent to \code{coef = coef(model)}.}
-
-\item{data}{A data frame with the variables to be plotted}
-
-\item{gformula}{mostly ignored,
-but the environment of this object determines
-where the \pkg{ggplot2} code is evaluated.}
-
-\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
-can be added to an existing frame.}
-
-\item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
-
-\item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
-
-\item{show.help}{If \code{TRUE}, display some minimal help.  In particular,}
-
-\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.
-the help will show (a) which geom from \pkg{ggplot2} is used,
-(b) how aesthetics are assigned based on \code{formula}, and (c)
-any default values of arguments to the geom.}
+}
+\value{
+a gg object
 }
 \description{
-These functions provide a formula interface to \code{ggplot2} and
-various geoms. The formula interface is similar to the one used
-for \pkg{lattice} plots, but more expressive, and consistent with
-its use in modeling functions like \code{\link{lm}()}.  These functions
-can be used to create a complete plot, or they can be chained together
-using the pipe operator from \pkg{magrittr} to create multi-layer plots.
-The functions generate a \code{ggplot2} command string which can be
-displayed by setting \code{verbose = TRUE} as an argument.
+\code{ggformula} functions provide a formula interface to \code{ggplot2} and
+various geoms. But a few functions o not use a formula and use other types of
+inputs instead.  These are documented here.
+}
+\details{
+\code{gf_function()} and \code{gf_fun()} provide to different interfaces for creating a layer
+that contains the graph of a function.
+\code{gf_coefline()} creates a layer contaiing a line.  The line can be described by
+specifying its slope and intercept or by providing a model from which these can be extracted.
 }
 \examples{
 if (require(mosaicData)) {
@@ -80,10 +68,4 @@ gf_point(mpg ~ wt, data = mtcars) \%>\%
 # Chaining in the data
 mtcars \%>\% gf_point(mpg ~ wt, data = mtcars) \%>\%
   gf_coefline(model = mtcars.model, alpha = 0.6, col = "red")
-}
-\seealso{
-\code{\link{gf_histogram}()},
-\code{\link{gf_point}()},
-\code{\link{gf_pointrange}()},
-\code{\link{gf_refine}()}, and the other functions documented with these functions.
 }

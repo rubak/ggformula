@@ -36,6 +36,13 @@ Available attributes include
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
+\value{
+a gg object
+Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
+This will typically do the right thing when formulas are created on the fly, but might not
+be the right thing if formulas created in one environment are used to create plots
+in another.
+}
 \description{
 \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 functions.
@@ -59,11 +66,6 @@ This provides an alternative to
 \code{\link{gf_facet_wrap}()} and
 \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 of \pkg{lattice}.
-
-Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-This will typically do the right thing when formulas are created on the fly, but might not
-be the right thing if formulas created in one environment are used to create plots
-in another.
 }
 \examples{
 if (require(mosaicData)) {

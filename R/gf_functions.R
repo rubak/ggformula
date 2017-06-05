@@ -45,7 +45,7 @@
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_point}()}
 #' @export
 #' @examples
@@ -115,7 +115,7 @@ gf_point <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_jitter}()}
 #' @export
 #' @examples
@@ -182,7 +182,7 @@ gf_jitter <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_line}()}
 #' @export
 #' @examples
@@ -246,7 +246,7 @@ gf_line <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_path}()}
 #' @export
 #' @examples
@@ -310,7 +310,7 @@ gf_path <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
 #' @examples
@@ -371,7 +371,7 @@ gf_smooth <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_spline}()}
 #' @importFrom mosaic geom_spline
 #' @export
@@ -435,7 +435,7 @@ gf_spline <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_raster}()}
 #' @export
 #' @examples
@@ -503,7 +503,7 @@ gf_raster <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_quantile}()}
 #' @export
 #' @examples
@@ -565,7 +565,7 @@ gf_quantile <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_density_2d}()}
 #' @export
 #' @examples
@@ -629,7 +629,7 @@ gf_density_2d <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_density2d}()}
 #' @export
 #' @examples
@@ -693,7 +693,7 @@ gf_density2d <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_hex}()}
 #' @export
 #' @examples
@@ -730,7 +730,7 @@ gf_hex <-
 #' \code{\link{gf_facet_wrap}()} and
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
-#'
+#' @return a gg object
 #' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
 #' This will typically do the right thing when formulas are created on the fly, but might not
 #' be the right thing if formulas created in one environment are used to create plots
@@ -825,7 +825,7 @@ gf_boxplot <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_text}()}
 #' @export
 #' @examples
@@ -889,7 +889,7 @@ gf_text <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_label}()}
 #' @export
 #' @examples
@@ -962,7 +962,7 @@ gf_label <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_area}()}
 #' @export
 #' @examples
@@ -1052,7 +1052,7 @@ gf_area <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_violin}()}
 #' @export
 #' @examples
@@ -1116,6 +1116,7 @@ gf_violin <-
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @section Note \code{angle} and \code{radius} must be set or mapped.
+#' @return a gg object
 #' @seealso \code{\link{geom_spoke}()}
 #' @export
 #' @examples
@@ -1186,7 +1187,7 @@ gf_spoke <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_step}()}
 #' @export
 #' @examples
@@ -1247,7 +1248,7 @@ gf_step <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_tile}()}
 #' @export
 #' @examples
@@ -1310,7 +1311,7 @@ gf_tile <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_count}()}
 #' @export
 #' @examples
@@ -1376,7 +1377,7 @@ gf_count <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_col}()}
 #' @export
 #' @examples
@@ -1440,7 +1441,7 @@ gf_col <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_blank}()}
 #' @export
 #' @examples
@@ -1500,7 +1501,7 @@ gf_frame <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_histogram}()}
 #' @export
 #' @examples
@@ -1563,7 +1564,7 @@ gf_histogram <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_density}()}
 #' @export
 #' @examples
@@ -1627,7 +1628,7 @@ gf_density <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_line}()}
 #' @export
 #' @examples
@@ -1692,7 +1693,7 @@ gf_dens <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_dotplot}()}
 #' @export
 #' @examples
@@ -1757,7 +1758,7 @@ gf_dotplot <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_bar}()}
 #' @export
 #' @examples
@@ -1822,7 +1823,7 @@ gf_bar <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_freqpoly}()}
 #' @export
 #' @examples
@@ -1888,7 +1889,7 @@ gf_freqpoly <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_qq}()}
 #' @export
 #' @examples
@@ -1948,7 +1949,7 @@ gf_qq <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_rug}()}
 #' @export
 #' @examples
@@ -2015,7 +2016,7 @@ gf_rug <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_contour}()}
 #' @export
 #' @examples
@@ -2072,7 +2073,7 @@ gf_contour <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_ribbon}()}
 #' @export
 #' @examples
@@ -2152,7 +2153,7 @@ gf_ribbon <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_curve}()}
 #' @export
 #' @examples
@@ -2216,7 +2217,7 @@ gf_curve <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_segment}()}
 #' @export
 #' @examples
@@ -2281,7 +2282,7 @@ gf_segment <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_linerange}()}
 #' @export
 #' @examples
@@ -2362,7 +2363,7 @@ gf_linerange <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_pointrange}()}
 #' @export
 #' @examples
@@ -2445,7 +2446,7 @@ gf_pointrange <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_crossbar}()}
 #' @export
 #' @examples
@@ -2533,7 +2534,7 @@ gf_crossbar <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
+#' @return a gg object
 #' @seealso \code{\link{geom_errorbar}()}
 #' @export
 #' @examples
@@ -2898,6 +2899,7 @@ gf_vline <-
     )
 
 #' @rdname gf_functions0
+#' @param fun A function.
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
@@ -2912,6 +2914,7 @@ gf_function <- function(object, fun, ...) {
 }
 
 #' @rdname gf_functions0
+#' @param formula A formula describing a function.  See examples.
 #' @export
 #' @examples
 #' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
@@ -2930,42 +2933,25 @@ gf_fun <- function(object, formula, ...) {
 
 #' gf_ functions with no formula part
 #'
-#' These functions provide a formula interface to \code{ggplot2} and
-#' various geoms. The formula interface is similar to the one used
-#' for \pkg{lattice} plots, but more expressive, and consistent with
-#' its use in modeling functions like \code{\link{lm}()}.  These functions
-#' can be used to create a complete plot, or they can be chained together
-#' using the pipe operator from \pkg{magrittr} to create multi-layer plots.
-#' The functions generate a \code{ggplot2} command string which can be
-#' displayed by setting \code{verbose = TRUE} as an argument.
+#' \code{ggformula} functions provide a formula interface to \code{ggplot2} and
+#' various geoms. But a few functions o not use a formula and use other types of
+#' inputs instead.  These are documented here.
 #'
-#' @seealso \code{\link{gf_histogram}()},
-#' \code{\link{gf_point}()},
-#' \code{\link{gf_pointrange}()},
-#' \code{\link{gf_refine}()}, and the other functions documented with these functions.
+#' \code{gf_function()} and \code{gf_fun()} provide to different interfaces for creating a layer
+#' that contains the graph of a function.
+#' \code{gf_coefline()} creates a layer contaiing a line.  The line can be described by
+#' specifying its slope and intercept or by providing a model from which these can be extracted.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
-#' @param data A data frame with the variables to be plotted
-#' @param gformula mostly ignored,
-#' but the environment of this object determines
-#' where the \pkg{ggplot2} code is evaluated.
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#' can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param coef A numeric vector of length at least 2, treated as intercept and slope.
 #' Additional components, if any, are ignored (with a warning).
 #' @param model An object with a method for \code{coef()} that returns a
 #' numeric vector, the first two elements of which are intercept and slope.
 #' This is equivalent to \code{coef = coef(model)}.
 #' @param ... Other arguments such as \code{position="dodge"}.
-#' @param show.help If \code{TRUE}, display some minimal help.  In particular,
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#' the help will show (a) which geom from \pkg{ggplot2} is used,
-#' (b) how aesthetics are assigned based on \code{formula}, and (c)
-#' any default values of arguments to the geom.
+#' @return a gg object
 #'
 #' @rdname gf_functions0
 #' @export

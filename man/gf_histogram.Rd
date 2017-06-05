@@ -37,6 +37,9 @@ Available attributes include
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 }
+\value{
+a gg object
+}
 \description{
 \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 functions.
