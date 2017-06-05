@@ -8,8 +8,8 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 library(learnr)
-library(checkr)
-library(statPREP)
+# library(checkr)
+# library(statPREP)
 library(tibble)
 library(ggformula)
 library(mosaic)
