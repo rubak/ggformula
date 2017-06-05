@@ -1065,7 +1065,7 @@ gf_violin <-
   gf_factory(
     type = "violin",
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight,
-      draw_quatiles = NULL, trim = TRUE, scale = "area", bw = , adjust = , kernel = )
+      draw_quantiles = NULL, trim = TRUE, scale = "area", bw = , adjust = , kernel = )
   )
 
 #' Formula interface to geom_spoke()
