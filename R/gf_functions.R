@@ -2717,34 +2717,13 @@ gf_rect <-
   )
 
 
-#' Formula interface to geom_abline()
+#' Reference lines -- horizontal, vertical, and diagonal.
 #'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
+#' These fuctions create layers that display lines described i various ways.  Unlike most
+#' of the plotting functions in \code{ggformula}, these functions do not take a formala
+#' as input for describing positional attributes of the plot.
 #'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
 #'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
@@ -2763,8 +2742,15 @@ gf_rect <-
 #' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
-#' @seealso \code{\link{geom_abline}()}
+#' @param coef A numeric vector of length at least 2, treated as intercept and slope.
+#' Additional components, if any, are ignored (with a warning).
+#' @param model An object with a method for \code{coef()} that returns a
+#' numeric vector, the first two elements of which are intercept and slope.
+#' This is equivalent to \code{coef = coef(model)}.
+#' @rdname gf_lines
+#' @seealso \code{\link{geom_abline}()},
+#'   \code{\link{geom_vline}()},
+#'   \code{\link{geom_hline}()}
 #' @export
 #' @examples
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
@@ -2779,127 +2765,47 @@ gf_abline <-
     extras = alist( slope =, intercept = )
   )
 
-#' Formula interface to geom_hline()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#'
-#' @param object When chaining, this holds an object produced in the earlier portions
-#'   of the chain.  Most users can safely ignore this argument.
-#'   See details and examples.
-#' @param gformula Must be \code{NULL}.
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{yintercept}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#'
-#' @seealso \code{\link{geom_hline}()}
+
+#' @rdname gf_lines
 #' @export
-#' @examples
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
-#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
-#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
-#'   gf_vline(color = "brown", xintercept = c(200, 300))
 gf_hline <-
   gf_factory(
     type = "hline", aes_form = NULL,
     extras = alist(yintercept = )
   )
 
-#' Formula interface to geom_vline()
-#'
-#' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
-#' functions.
-#' For plots with just one layer, the formula interface
-#' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
-#'
-#' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-#' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
-#' to \code{value}.
-#' Additional terms of the form \code{+ attribute:value} will map \code{attribute}
-#' to \code{value} if \code{value} is the name of a variable in \code{data}, else
-#' \code{attribute} will be set to the constant \code{value}. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form \code{attribute = value} or
-#' mapped using arguments of the form \code{attribute = ~ expression}.
-#' In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-#' \code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-#' This provides an alternative to
-#' \code{\link{gf_facet_wrap}()} and
-#' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
-#' of \pkg{lattice}.
-#'
-#' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
-#' This will typically do the right thing when formulas are created on the fly, but might not
-#' be the right thing if formulas created in one environment are used to create plots
-#' in another.
-#' @param object When chaining, this holds an object produced in the earlier portions
-#'   of the chain.  Most users can safely ignore this argument.
-#'   See details and examples.
-#'
-#' @param gformula Must be \code{NULL}.
-#' @param data A data frame with the variables to be plotted.
-#' @param ... Additional arguments.  Typically these are
-#'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-#'   Available attributes include
-#'   \code{xintercept}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
-#' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#' @seealso \code{\link{geom_vline}()}
+#' @rdname gf_lines
 #' @export
-#' @examples
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
-#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
-#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
-#'   gf_vline(color = "brown", xintercept = c(200, 300))
 gf_vline <-
   gf_factory(
     type = "vline", aes_form = NULL,
     extras = alist(xintercept = )
     )
 
-#' @rdname gf_functions0
+#' @rdname gf_lines
+#' @export
+
+
+gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL, ...) {
+  if (is.null(coef) + is.null(model) != 1) stop("must specify exactly one of coef or model")
+  if (is.null(coef)) coef <- coef(model)
+  if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
+  if (length(coef) < 2) stop("coef must be of length at least 2.")
+  gf_abline(object = object, formula = formula,
+            intercept = coef[1], slope = coef[2], ...)
+}
+
+#' Layers displaying graphs of functions
+#'
+#' \code{gf_function()} and \code{gf_fun()} provide two different interfaces for creating a layer
+#' that contains the graph of a function.
+#'
+#' @param object When chaining, this holds an object produced in the earlier portions
+#' of the chain.  Most users can safely ignore this argument.
+#' See details and examples.
+#' @param ... Other arguments such as \code{position="dodge"}.
 #' @param fun A function.
+#' @rdname gf_functions
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
@@ -2908,6 +2814,7 @@ gf_vline <-
 #'       args = list(mean = mean(HELPrct$age), sd = sd(HELPrct$age)),
 #'       color = "red")
 #' }
+
 
 gf_function <- function(object, fun, ...) {
   object + stat_function(fun = fun, ...)
@@ -2931,46 +2838,5 @@ gf_fun <- function(object, formula, ...) {
   object + stat_function(fun = fun, ...)
 }
 
-#' gf_ functions with no formula part
-#'
-#' \code{ggformula} functions provide a formula interface to \code{ggplot2} and
-#' various geoms. But a few functions o not use a formula and use other types of
-#' inputs instead.  These are documented here.
-#'
-#' \code{gf_function()} and \code{gf_fun()} provide to different interfaces for creating a layer
-#' that contains the graph of a function.
-#' \code{gf_coefline()} creates a layer contaiing a line.  The line can be described by
-#' specifying its slope and intercept or by providing a model from which these can be extracted.
-#'
-#' @param object When chaining, this holds an object produced in the earlier portions
-#' of the chain.  Most users can safely ignore this argument.
-#' See details and examples.
-#' @param coef A numeric vector of length at least 2, treated as intercept and slope.
-#' Additional components, if any, are ignored (with a warning).
-#' @param model An object with a method for \code{coef()} that returns a
-#' numeric vector, the first two elements of which are intercept and slope.
-#' This is equivalent to \code{coef = coef(model)}.
-#' @param ... Other arguments such as \code{position="dodge"}.
-#' @return a gg object
-#'
-#' @rdname gf_functions0
-#' @export
-#' @examples
-#' mtcars.model <- lm(mpg ~ wt, data = mtcars)
-#' gf_point(mpg ~ wt, data = mtcars) %>%
-#'   gf_coefline(model = mtcars.model, alpha = 0.6) %>%
-#'   gf_hline(yintercept = 20, color = "red", alpha = 0.4) %>%
-#'   gf_vline(xintercept = 3, color = "navy", alpha = 0.4)
-#' # Chaining in the data
-#' mtcars %>% gf_point(mpg ~ wt, data = mtcars) %>%
-#'   gf_coefline(model = mtcars.model, alpha = 0.6, col = "red")
 
-gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL, ...) {
-  if (is.null(coef) + is.null(model) != 1) stop("must specify exactly one of coef or model")
-  if (is.null(coef)) coef <- coef(model)
-  if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
-  if (length(coef) < 2) stop("coef must be of length at least 2.")
-  gf_abline(object = object, formula = formula,
-            intercept = coef[1], slope = coef[2], ...)
-}
 
