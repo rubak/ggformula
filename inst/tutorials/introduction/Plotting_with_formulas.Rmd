@@ -83,14 +83,14 @@ Here's the plot again.
 gf_point(births ~ date, data = Births1978)
 ```
 
-To make this plot, the answers to our questiosn are 
+To make this plot, the answers to our questions are 
 
   1. Make a scatter plot (i.e., a **plot** consisting of **points**)
   
   2. The data used for the plot:
       a. The variable to be plotted along the $y$ axis.
       b. The variable to be plotted along the $x$ axis.
-      c. The data set that contain the variables.
+      c. The data set that contains the variables.
       
 We just need to learn how to tell R these answers.     
 
@@ -309,7 +309,7 @@ gf_point(births ~ date, data = __________)
 ```
 
 (Note: This creates three separate plots.  We will learn how to combine them
-into a singgle plot shortly.)
+into a single plot shortly.)
 
 ## Changing things up -- different types of plots
 
@@ -350,6 +350,9 @@ For example,
   * `spar = 0.5` (or any number between 0 and 1) controls the amount of smoothing in `gf_spline()`.
   * `se = FALSE` (note capitalization) turns off the "error band" in `gf_smooth()`.
   * `color = "red"` or `fill = "navy"` (note quotes) can be used to change the colors of things.  (`fill` is typically used for regions that are "filled in" and `color` for dots and lines.)
+  * `alpha = 0.5` (or any number between 0 and 1) will set the opacity (0 is completely
+  transparnt and 1 is completely opaque).
+
 
 #### Exercises
 
@@ -375,6 +378,20 @@ gf_point(births ~ date, data = Births1978,
          alpha = 0.5, color = "purple")
 ```
 
+ 
+#### What attributes are available?
+
+You can learn about the attributes available for a given layer using the 
+"quick help" for a layer function.  You can find out more by reading the help file
+produced with `?`.
+
+```{r, quick-help, exercise = TRUE}
+# "quick help" for gf_point()
+gf_point()
+```
+
+#### What are the color names?  
+  
 Curious to know all the available color names? Run this code.
 
 ```{r, colors, exercise = TRUE}
@@ -553,7 +570,7 @@ gf____( ~ _____, data = Births1978)
 Time to explore on your own.  Here are three data sets you can use.
 
   * `HELPrct` has data from a study of people addicted to alcohol, cocaine, or heroine
-  * `KidsFeet` has information about some kids's feet.
+  * `KidsFeet` has information about some kids' feet.
   * `NHANES` has lots of physiologic and other measurements from 10,000
   subjects in the National Health and Nutrition Evaluation Survey.
   
@@ -573,7 +590,7 @@ Make some plots to explore one or more of these data sets.
 
  * Experiment with different types of plots.
  * Use mapping and/or facets to reveal groups.
- * You can put more than one plot a code chunk, but we've provided two chunks
+ * You can put more than one plot in a code chunk, but we've provided two chunks
  in case you want to separate your work that way.  Use one chunk for experimenting
  and copy and paste your favorites to the other chunk if you like.
 
@@ -593,7 +610,7 @@ If you are fussy about your plots, you may be wondering how to have more control
 things like:
 
   * the colors, shapes, and sizes chosen when mapping attributes
-  * labeling, including titles an axis labels
+  * labeling, including titles and axis labels
   * fonts, colors, and sizes of text
   * color of plot elements like background, gridlines, facet labels, etc.
   
@@ -605,7 +622,7 @@ But we'll save that for a separate tutorial on customizing your plots.
 Not biological anatomy, rather plot anotomy.  In order to talk about
 plots, it is handy to have words for their various components.
 
- * **frame** -- the bounding rectagle in which the plot is constructed.  This 
+ * A **frame** is the bounding rectagle in which the plot is constructed.  This  
  is essentially what you may think of as the x- and y- axes, but the plot isn't actually
  required to have visible "axes".
  
@@ -613,7 +630,7 @@ plots, it is handy to have words for their various components.
  (examples: dots, lines, smiley faces, your favorite emoji, or whatever
  gets drawn).
  
- * Each glyph has a number of **attributes** or **properties**
+ * Each glyph has a number of **attributes** or **properties**.
  
     * These always include position (you have to put them somewhere).
     * Other attributes incude things like size, color, shape.
