@@ -2,7 +2,7 @@
 title: "Plotting with formulas"
 output: 
   learnr::tutorial:
-    progressive: true
+    progressive: TRUE
 runtime: shiny_prerendered
 ---
 
