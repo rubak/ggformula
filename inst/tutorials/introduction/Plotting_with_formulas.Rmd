@@ -1,8 +1,7 @@
 ---
 title: "Plotting with formulas"
 output: 
-  learnr::tutorial:
-    progressive: true
+  learnr::tutorial
 runtime: shiny_prerendered
 ---
 
@@ -164,7 +163,7 @@ goal( formula , data = mydata )
  * This determines the inputs to the function.
  * For a plot, we must identify the variables and the data frame that contains them.
  
-## Assmebling the pieces
+## Assembling the pieces
 
 #### Template
 
