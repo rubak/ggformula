@@ -10,7 +10,7 @@
 
 
 
-<meta name="progressive" content="false" />
+<meta name="progressive" content="true" />
 <meta name="allow-skip" content="false" />
 
 <title>Plotting with formulas</title>
@@ -65,35 +65,48 @@ th, td { padding: 5px; }
 </style>
 <div id="section-how-do-we-make-this-plot" class="section level2">
 <h2>How do we make this plot?</h2>
+<div id="section-us-births-in-1978" class="section level3">
+<h3>US Births in 1978</h3>
 <p>Here is an interesting plot showing the number of live births in the United States each day of 1978. We are going to use it to learn how to create plots using the <code>ggformula</code> package.</p>
 <p><img src="Plotting_with_formulas_files/figure-html/unnamed-chunk-1-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>To get R (or any software) to create this plot (or do anything else, really), there are two important questions you must be able to answer. Before going to the next page, see if you can figure out what they are.</p>
 </div>
-<div id="section-two-important-questions" class="section level2">
-<h2>Two important questions</h2>
+<div id="section-two-important-questions" class="section level3">
+<h3>Two important questions</h3>
+<p>To get R (or any software) to create this plot (or do anything else, really), there are two important questions you must be able to answer. Before continuing, see if you can figure out what they are.</p>
+</div>
+<div id="section-the-questions" class="section level3">
+<h3>The Questions</h3>
 <p>To get R (or any software) to create this plot, there are two important questions you must be able to answer:</p>
 <div id="section-what-do-you-want-the-computer-to-do" class="section level4">
 <h4>1. What do you want the computer to do?</h4>
 </div>
 <div id="section-what-must-the-computer-know-in-order-to-do-that" class="section level4">
 <h4>2. What must the computer know in order to do that?</h4>
-<p>Here’s the plot again.</p>
-<p><img src="Plotting_with_formulas_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="section-answers-to-the-questions" class="section level3">
+<h3>Answers to the questions</h3>
 <p>To make this plot, the answers to our questions are</p>
-<ol style="list-style-type: decimal">
-<li><p>Make a scatter plot (i.e., a <strong>plot</strong> consisting of <strong>points</strong>)</p></li>
-<li>The data used for the plot:
-<ol style="list-style-type: lower-alpha">
+<div id="section-what-do-you-want-the-computer-to-do-1" class="section level4">
+<h4>1. What do you want the computer to do?</h4>
+<p><strong>A.</strong> Make a scatter plot (i.e., a <strong>plot</strong> consisting of <strong>points</strong>)</p>
+</div>
+<div id="section-what-must-the-computer-know-in-order-to-do-that-1" class="section level4">
+<h4>2. What must the computer know in order to do that?</h4>
+<p><strong>A.</strong> The data used for the plot:</p>
+<ul>
 <li>The variable to be plotted along the <span class="math inline">\(y\)</span> axis.</li>
 <li>The variable to be plotted along the <span class="math inline">\(x\)</span> axis.</li>
 <li>The data set that contains the variables.</li>
-</ol></li>
-</ol>
+</ul>
 <p>We just need to learn how to tell R these answers.</p>
 </div>
 </div>
-<div id="section-the-formula-template" class="section level2">
-<h2>The Formula Template</h2>
+</div>
+<div id="section-plotting-with-formulas" class="section level2">
+<h2>Plotting with Formulas</h2>
+<div id="section-the-formula-template" class="section level3">
+<h3>The Formula Template</h3>
 <p>We will provide answers to our two questions by filling in the boxes of this important template:</p>
 <center>
 <h2>
@@ -103,8 +116,8 @@ th, td { padding: 5px; }
 <p> </p>
 <p>We just need to identify which portions of our answers go into which boxes.</p>
 </div>
-<div id="section-the-name-of-the-game" class="section level2">
-<h2>The Name of the Game</h2>
+<div id="section-the-name-of-the-game" class="section level3">
+<h3>The Name of the Game</h3>
 <p>It is useful to provide names for the boxes:</p>
 <center>
 <h2>
@@ -113,8 +126,8 @@ th, td { padding: 5px; }
 </center>
 <p> </p>
 <p>These names can help us remember which things go where. (The <code>...</code> indicates that there are some additional arguments we will add eventually.)</p>
-<div id="section-other-versions" class="section level3">
-<h3>Other versions</h3>
+<div id="section-other-versions" class="section level4">
+<h4>Other versions</h4>
 <p>Sometimes we will add or subtract a bit from our formula. Here are some other forms we will eventually see.</p>
 <pre class="r"><code># simpler version
 goal( ~ x, data = mydata )          
@@ -124,8 +137,8 @@ goal( y ~ x | z , data = mydata )
 goal( formula , data = mydata )     </code></pre>
 </div>
 </div>
-<div id="section-questions-and-the-formula-template" class="section level2">
-<h2>2 Questions and the Formula Template</h2>
+<div id="section-questions-and-the-formula-template" class="section level3">
+<h3>2 Questions and the Formula Template</h3>
  
 <center>
 <h2>
@@ -133,25 +146,26 @@ goal( formula , data = mydata )     </code></pre>
 </h2>
 </center>
 <p> </p>
-<div id="section-q.-what-do-you-want-r-to-do-a.-goal" class="section level3">
-<h3>Q. What do you want R to do? A. goal</h3>
+<div id="section-q.-what-do-you-want-r-to-do-a.-goal" class="section level4">
+<h4>Q. What do you want R to do? A. goal</h4>
 <ul>
 <li>This determines the function to use.</li>
 <li>For a plot, the function will describe what sorts of marks to draw (points, in our example).</li>
 </ul>
 </div>
-<div id="section-q.-what-must-r-know-to-do-that-a.-arguments" class="section level3">
-<h3>Q. What must R know to do that? A. arguments</h3>
+<div id="section-q.-what-must-r-know-to-do-that-a.-arguments" class="section level4">
+<h4>Q. What must R know to do that? A. arguments</h4>
 <ul>
 <li>This determines the inputs to the function.</li>
 <li>For a plot, we must identify the variables and the data frame that contains them.</li>
 </ul>
 </div>
 </div>
+</div>
 <div id="section-assmebling-the-pieces" class="section level2">
 <h2>Assmebling the pieces</h2>
-<div id="section-template" class="section level3">
-<h3>Template</h3>
+<div id="section-template" class="section level4">
+<h4>Template</h4>
  
 <center>
 <h2>
@@ -160,8 +174,8 @@ goal( formula , data = mydata )     </code></pre>
 </center>
 <p> </p>
 </div>
-<div id="section-pieces" class="section level3">
-<h3>Pieces</h3>
+<div id="section-pieces" class="section level4">
+<h4>Pieces</h4>
 <table align="center">
 <tr>
 <th>
@@ -219,6 +233,7 @@ name of data set
 </td>
 </tr>
 </table>
+</div>
 <div id="section-exercise" class="section level4">
 <h4>Exercise</h4>
 <p>Put each piece in its place in the template below and then run the code to create the plot.</p>
@@ -238,11 +253,10 @@ name of data set
 </div>
 </div>
 </div>
-</div>
 <div id="section-formulas" class="section level2">
 <h2>Formulas</h2>
 <p>The most distinctive feature of <code>ggformula</code> plots is the use of formulas to describe the positional information of a plot. Formulas in R always involve the tilde character, which is easy to overlook. It looks like this:</p>
-<p><img src="images/tilde.png" style="display: block; margin: auto;" /></p>
+<p><img src="images/tilde.png" width="400" style="display: block; margin: auto;" /></p>
 <p>The position of <img src="images/tilde-small.png" /> on the keyboard varies from brand to brand. On Apple keyboards, it’s here.</p>
 <p><img src="images/keyboard-tilde.png" width="40%" style="display: block; margin: auto;" /></p>
 <div id="section-exercise-1" class="section level4">
@@ -262,9 +276,9 @@ USER_CODE %&gt;% t1 %&gt;% t2 </code></pre>
 </div>
 <div id="section-using-formulas-to-describe-plots" class="section level2">
 <h2>Using formulas to describe plots</h2>
-<p>Most <code>gf_</code> functions take a formala that describes the positional attributes of the plot. Using one of these functions with no arguments will show you the “shape” of the formula it requires.</p>
-<div id="section-exercise-2" class="section level4">
-<h4>Exercise</h4>
+<p>Most <code>gf_</code> functions take a formula that describes the positional attributes of the plot. Using one of these functions with no arguments will show you the “shape” of the formula it requires.</p>
+<div id="section-exercise-2" class="section level3">
+<h3>Exercise</h3>
 <p>Run this code to see the formula shape for <code>gf_point()</code>.</p>
 <div class="tutorial-exercise" data-label="gf-shape" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gf_point()</code></pre>
@@ -272,16 +286,16 @@ USER_CODE %&gt;% t1 %&gt;% t2 </code></pre>
 </div>
 <p>You should see that <code>gf_point()</code>’s formula has the shape <code>y ~ x</code>, so the <span class="math inline">\(y\)</span>-variable name goes before the tilde and the <span class="math inline">\(x\)</span>-variable name goes after. (Think: “y depends on x”. Also note that the <span class="math inline">\(y\)</span>-axis label appears farther left than the <span class="math inline">\(x\)</span>-axis label.)</p>
 </div>
-<div id="section-exercise-3" class="section level4">
-<h4>Exercise</h4>
+<div id="section-exercise-3" class="section level3">
+<h3>Exercise</h3>
 <p>Reverse the roles of the variables – changing <code>births ~ date</code> to <code>date ~ birth</code> – to see how the plot changes.</p>
 <div class="tutorial-exercise" data-label="gf_point-xy" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gf_point(births ~ date, data = Births1978)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":["function (label = NULL, user_code = NULL, solution_code = NULL, ","    check_code = NULL, envir_result = NULL, evaluate_result = NULL, ","    ..., debug = FALSE) ","{","    if (debug) {","        save_file_name <- sprintf(\"~/Downloads/CheckR/chunk-%s.rds\", ","            label)","        saveRDS(list(label = label, user_code = user_code, solution_code = solution_code, ","            check_code = check_code, envir = envir_result, evaluate_result = evaluate_result), ","            file = save_file_name)","    }","    if (is.null(envir_result)) {","        res <- pre_check_code(user_code, check_code)","        if (nchar(res) > 0) ","            return(list(message = res, correct = FALSE))","        else return(TRUE)","    }","    USER_CODE <- capture.code(user_code)","    SOLN_CODE <- if (is.null(solution_code)) ","        \"\"","    else try(capture.code(solution_code), silent = TRUE)","    if (inherits(SOLN_CODE, \"try-error\")) ","        stop(\"Problem author, there is an error in the solution code.\")","    test_envir <- new.env()","    assign(\"USER_CODE\", USER_CODE, envir = test_envir)","    assign(\"SOLN_CODE\", SOLN_CODE, envir = test_envir)","    commands <- parse(text = paste(check_code, collapse = \"\\n\"))","    final_result <- list(correct = TRUE, message = \"passed\", ","        user_code = user_code, type = \"success\", location = \"prepend\")","    for (k in 1:length(commands)) {","        R <- eval(commands[k], envir = test_envir)","        if (is.test_result(R) || is.capture(R)) {","            if (R$passed) ","                next","            else {","                final_result$message <- paste(\"Sorry, but\", R$message)","                final_result$correct = FALSE","                final_result$type = \"info\"","                break","            }","            stop(\"Shouldn't get here. Statement returned neither a test result or a capture.\")","        }","    }","    if (final_result$correct) {","        final_result$message <- get_success_message()","    }","    log_entry <- list(user = get_user_name(), date = format(as.POSIXlt(Sys.time()), ","        usetz = TRUE), label = label, message = final_result$message, ","        correct = final_result$correct, user_code = final_result$user_code)","    logger_fun <- options(\"checkr.logger\")[[1]]","    logger_fun(log_entry)","    final_result","}"]}</script>
 </div>
 </div>
-<div id="section-exercise-4" class="section level4">
-<h4>Exercise</h4>
+<div id="section-exercise-4" class="section level3">
+<h3>Exercise</h3>
 <p>Change <code>date</code> to <code>day_of_year</code> and see how the plot changes. (If you do this on a separate line, you will see both plots at once.)</p>
 <div class="tutorial-exercise" data-label="gf_point-day_of_year" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gf_point(births ~ date, data = Births1978)</code></pre>
@@ -379,9 +393,9 @@ gf_point()</code></pre>
 </div>
 </div>
 </div>
-<div id="section-overlaying-plots" class="section level2">
-<h2>Overlaying plots</h2>
-<p>We said that <code>gf_point()</code> creates a plot with points. This isn’t quite true. Technically, it creates a <strong>layer</strong> with points. A plot may have multiple layers. To create a multi-layered plot, simply append `%&gt;% at the end of the code for one layer and follow that with another layer.</p>
+<div id="section-overlaying-plots-with" class="section level2">
+<h2>Overlaying plots with %&gt;%</h2>
+<p>We said that <code>gf_point()</code> creates a plot with points. This isn’t quite true. Technically, it creates a <strong>layer</strong> with points. A plot may have multiple layers. To create a multi-layered plot, simply append <code>%&gt;%</code> at the end of the code for one layer and follow that with another layer.</p>
 <div id="section-exercise-7" class="section level4">
 <h4>Exercise</h4>
 <ol style="list-style-type: decimal">
@@ -422,27 +436,27 @@ gf_point(births ~ date, data = Births1988, color = &quot;skyblue&quot;)</code></
 <tr>
 <td>
 
-<div id="htmlwidget-f35c01155e318ddc4e2d" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-bca3526ba50889e84b79" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-f35c01155e318ddc4e2d">{"x":{"question":"Does it appear that the conjecture about weekends is generally correct?","answers":[{"option":"yes","correct":true,"message":null},{"option":"no","correct":false,"message":null}],"label":"color-mapping-quiz-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"Does it appear that the conjecture about weekends is generally correct?","a":[{"option":"yes","correct":true,"message":null},{"option":"no","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-bca3526ba50889e84b79">{"x":{"question":"Does it appear that the conjecture about weekends is generally correct?","answers":[{"option":"yes","correct":true,"message":null},{"option":"no","correct":false,"message":null}],"label":"color-mapping-quiz-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"Does it appear that the conjecture about weekends is generally correct?","a":[{"option":"yes","correct":true,"message":null},{"option":"no","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-59e26020f63d21167f80" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-437295f41efb08ac4614" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-59e26020f63d21167f80">{"x":{"question":"What happens if you omit the <code>~<\/code> before <code>~wday<\/code>?","answers":[{"option":"It works just the same.  The tilde isn&#39;t required.","correct":false,"message":null},{"option":"All the dots are the same color.","correct":false,"message":null},{"option":"There is an error message: &#39;wday&#39; not found.","correct":true,"message":null}],"label":"color-mapping-quiz-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"What happens if you omit the <code>~<\/code> before <code>~wday<\/code>?","a":[{"option":"It works just the same.  The tilde isn&#39;t required.","correct":false,"message":null},{"option":"All the dots are the same color.","correct":false,"message":null},{"option":"There is an error message: &#39;wday&#39; not found.","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-437295f41efb08ac4614">{"x":{"question":"What happens if you omit the <code>~<\/code> before <code>~wday<\/code>?","answers":[{"option":"It works just the same.  The tilde isn&#39;t required.","correct":false,"message":null},{"option":"All the dots are the same color.","correct":false,"message":null},{"option":"There is an error message: &#39;wday&#39; not found.","correct":true,"message":null}],"label":"color-mapping-quiz-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"What happens if you omit the <code>~<\/code> before <code>~wday<\/code>?","a":[{"option":"It works just the same.  The tilde isn&#39;t required.","correct":false,"message":null},{"option":"All the dots are the same color.","correct":false,"message":null},{"option":"There is an error message: &#39;wday&#39; not found.","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>

@@ -2,7 +2,7 @@
 title: "Plotting with formulas"
 output: 
   learnr::tutorial:
-    progressive: false
+    progressive: true
 runtime: shiny_prerendered
 ---
 
@@ -55,6 +55,7 @@ th, td { padding: 5px; }
 
 ## How do we make this plot?
 
+### US Births in 1978
 Here is an interesting plot showing the number of live births in the United
 States each day of 1978.  We are going to use it to learn how to create
 plots using the `ggformula` package.
@@ -63,11 +64,13 @@ plots using the `ggformula` package.
 gf_point(births ~ date, data = Births1978)
 ```
 
+### Two important questions
+
 To get R (or any software) to create this plot (or do anything else, really),
 there are two important questions you must be able to answer.  Before
-going to the next page, see if you can figure out what they are.
+continuing, see if you can figure out what they are.
 
-## Two important questions
+### The Questions
 
 To get R (or any software) to create this plot, there are two
 important questions you must be able to answer:
@@ -76,26 +79,29 @@ important questions you must be able to answer:
   
 #### 2. What must the computer know in order to do that?
 
+### Answers to the questions
 
-Here's the plot again.
-
-```{r, echo = FALSE}
-gf_point(births ~ date, data = Births1978)
-```
 
 To make this plot, the answers to our questions are 
 
-  1. Make a scatter plot (i.e., a **plot** consisting of **points**)
+#### 1. What do you want the computer to do?
+
+**A.** Make a scatter plot (i.e., a **plot** consisting of **points**)
   
-  2. The data used for the plot:
-      a. The variable to be plotted along the $y$ axis.
-      b. The variable to be plotted along the $x$ axis.
-      c. The data set that contains the variables.
+#### 2. What must the computer know in order to do that?
+
+**A.** The data used for the plot:
+
+  * The variable to be plotted along the $y$ axis.
+  * The variable to be plotted along the $x$ axis.
+  * The data set that contains the variables.
       
 We just need to learn how to tell R these answers.     
 
 
-## The Formula Template
+## Plotting with Formulas
+
+### The Formula Template
 
 We will provide answers to our two questions by filling in
 the boxes of this important template:
@@ -109,7 +115,7 @@ the boxes of this important template:
 
 We just need to identify which portions of our answers go into which boxes.
 
-## The Name of the Game
+### The Name of the Game
 
 It is useful to provide names for the boxes:
 
@@ -122,7 +128,7 @@ These names can help us remember which things go where.
 (The `...` indicates that there are some additional arguments we will add
 eventually.)
 
-### Other versions
+#### Other versions
 
 Sometimes we will add or subtract a bit from our formula.
 Here are some other forms we will eventually see.
@@ -136,7 +142,7 @@ goal( y ~ x | z , data = mydata )
 goal( formula , data = mydata )     
 ```
 
-## 2 Questions and the Formula Template
+### 2 Questions and the Formula Template
 
 
 &nbsp;
@@ -147,20 +153,20 @@ goal( formula , data = mydata )
 &nbsp;
 
 
-### Q. What do you want R to do?  A. goal
+#### Q. What do you want R to do?  A. goal
 
  * This determines the function to use.
  * For a plot, the function will describe what sorts of marks to draw (points, in our example).
 
 
-### Q. What must R know to do that?  A. arguments 
+#### Q. What must R know to do that?  A. arguments 
 
  * This determines the inputs to the function.
  * For a plot, we must identify the variables and the data frame that contains them.
  
 ## Assmebling the pieces
 
-### Template
+#### Template
 
 &nbsp;
 <center>
@@ -169,7 +175,7 @@ goal( formula , data = mydata )
  
 &nbsp;
 
-### Pieces
+#### Pieces
 
 <table align = "center" >
 <tr>
@@ -258,11 +264,11 @@ USER_CODE %>% t1 %>% t2
 
 ## Using formulas to describe plots
 
-Most `gf_` functions take a formala that describes the positional
+Most `gf_` functions take a formula that describes the positional
 attributes of the plot.  Using one of these functions with no arguments
 will show you the "shape" of the formula it requires.
 
-#### Exercise
+### Exercise
 Run this code to see the formula shape for `gf_point()`.
 
 ```{r, gf-shape, exercise = TRUE}
@@ -274,7 +280,7 @@ so the $y$-variable name goes before the tilde and the $x$-variable name goes
 after.  (Think:  "y depends on x".  Also note that the $y$-axis label appears
 farther left than the $x$-axis label.)
 
-#### Exercise
+### Exercise
 
 Reverse the roles of the variables -- changing `births ~ date` to 
 `date ~ birth` -- to see how the plot changes.
@@ -283,7 +289,7 @@ Reverse the roles of the variables -- changing `births ~ date` to
 gf_point(births ~ date, data = Births1978)
 ```
 
-#### Exercise
+### Exercise
 
 Change `date` to `day_of_year` and see how the plot changes.
 (If you do this on a separate line, you will see both plots at once.)
@@ -398,12 +404,12 @@ Curious to know all the available color names? Run this code.
 colors()
 ```
 
-## Overlaying plots
+## Overlaying plots with %>%
 
 We said that `gf_point()` creates a plot with points. 
 This isn't quite true. Technically, it creates a **layer** with points.
 A plot may have multiple layers.  To create a multi-layered plot, simply
-append `%>% at the end of the code for one layer and follow that with
+append `%>%` at the end of the code for one layer and follow that with
 another layer.
 
 #### Exercise
