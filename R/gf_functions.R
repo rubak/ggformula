@@ -950,9 +950,9 @@ gf_label <-
       label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
       lineheight = , size = , vjust = ,
       parse = , nudge_x = , nudge_y = ,
-      lparse = FALSE, nudge_x = 0, nudge_y = 0,
+      nudge_x = 0, nudge_y = 0,
       label.padding = unit(0.25, "lines"), label.r = unit(0.15, "lines"),
-      label.size = 0.25, check_overlap = FALSE)
+      label.size = 0.25)
   )
 
 #' Formula interface to geom_area()
