@@ -41,9 +41,9 @@ gf_lims <- function(object, ...) {
 #' @export
 gf_theme <- function(object, theme, ...) {
   if (missing(theme)) {
-    object + do.call("theme", list(...))
+    object + ggplot2::theme(...)
   } else {
-    object + theme
+    object + do.call("theme", list(...))
   }
 }
 
