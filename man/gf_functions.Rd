@@ -21,8 +21,8 @@ See details and examples.}
 \item{formula}{A formula describing a function.  See examples.}
 }
 \description{
-\code{gf_function()} and \code{gf_fun()} provide two different interfaces for creating a layer
-that contains the graph of a function.
+These functions provide two different
+interfaces for creating a layer that contains the graph of a function.
 }
 \examples{
 if (require(mosaicData)) {

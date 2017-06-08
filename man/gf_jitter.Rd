@@ -30,7 +30,8 @@ can be added to an existing frame.}
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
-\code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}, \code{width}, \code{height}}
+\code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group},
+\code{stroke}, \code{width}, \code{height}}
 
 \item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
 

@@ -1,7 +1,7 @@
 #' Formula interface to ggplot2
 #'
 #' The functions in \pkg{ggformula} provide a formula interface to \code{ggplot2} layer
-#' functions and a system for working with pipes (\code{%>%}) to create multi-layer
+#' functions and a system for working with pipes to create multi-layer
 #' plots and to refine plots.
 #' For plots with just one layer, the formula interface
 #' is more compact than native \pkg{ggplot2} code and is consistent with modeling
@@ -38,6 +38,7 @@
 #' gf_point()
 
 NA
+
 #' Formula interface to geom_point()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
@@ -148,7 +149,8 @@ gf_point <-
 #'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
-#'   \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}, \code{width}, \code{height}
+#'   \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group},
+#'   \code{stroke}, \code{width}, \code{height}
 #' @param add If \code{TRUE} then construct just the layer with no frame.  The result
 #'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
@@ -2826,19 +2828,18 @@ gf_vline <-
 #' @export
 
 
-gf_coefline <- function(object = NULL, formula = NULL, coef = NULL, model = NULL, ...) {
+gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
   if (is.null(coef) + is.null(model) != 1) stop("must specify exactly one of coef or model")
   if (is.null(coef)) coef <- coef(model)
   if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
   if (length(coef) < 2) stop("coef must be of length at least 2.")
-  gf_abline(object = object, formula = formula,
-            intercept = coef[1], slope = coef[2], ...)
+  gf_abline(object = object, intercept = coef[1], slope = coef[2], ...)
 }
 
 #' Layers displaying graphs of functions
 #'
-#' \code{gf_function()} and \code{gf_fun()} provide two different interfaces for creating a layer
-#' that contains the graph of a function.
+#' These functions provide two different
+#' interfaces for creating a layer that contains the graph of a function.
 #'
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.

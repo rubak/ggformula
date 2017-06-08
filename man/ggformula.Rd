@@ -3,6 +3,17 @@
 \name{ggformula}
 \alias{ggformula}
 \title{Formula interface to ggplot2}
+\description{
+The functions in \pkg{ggformula} provide a formula interface to \code{ggplot2} layer
+functions and a system for working with pipes to create multi-layer
+plots and to refine plots.
+For plots with just one layer, the formula interface
+is more compact than native \pkg{ggplot2} code and is consistent with modeling
+functions like \code{\link{lm}()} that use a formula interface and with the
+numerical summary functions in the \pkg{mosaic} package.
+The functions generate a \code{ggplot} command string which can be displayed by
+setting \code{verbose = TRUE} as an argument.
+}
 \details{
 Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 Setting and mapping of additional attributes can be done within the formula or
