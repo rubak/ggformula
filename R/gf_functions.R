@@ -367,7 +367,8 @@ gf_smooth <-
     )
 
 #' @rdname gf_smooth
-#'
+#' @export
+
 gf_lm <-
   gf_factory(
     type = "smooth",
