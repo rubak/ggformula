@@ -469,7 +469,9 @@ the elements and how to change them.
 ```{r, gf_theme_elements, exercise = TRUE}
 gf_ribbon(lo + hi ~ date | city ~ ., data = Temps, 
           fill = ~ city, alpha = 0.5) %>%
+  gf_labs(title = "Temperatures in Three Cities") %>%
   gf_theme(text = element_text(color = "red"), 
+           plot.title = element_text(hjust = 0.5),
            axis.text = element_text(color = "goldenrod", face = "italic"))
 ```
 
