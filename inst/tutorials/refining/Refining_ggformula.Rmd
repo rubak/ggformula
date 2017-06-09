@@ -25,7 +25,7 @@ data(Galton, package = "mosaicData")
 knitr::opts_chunk$set(
   echo = FALSE,
   fig.align = "center",
-  fig.width = 6, fig.height = 2.5)
+  fig.width = 6, fig.height = 3.0)
 
 require(weatherData)
 Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
@@ -156,7 +156,7 @@ Edit some of the labels of this plot as you see fit.  Notice that labels can be
 turned off by setting them to "".  (We'll learn how to improve the color scheme
 shortly.)
 
-```{r, labs-demo, exercise = TRUE}
+```{r, labs-demo, exercise = TRUE, fig.height = 3.5}
 gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %>%
   gf_labs(
@@ -181,7 +181,7 @@ Arbitrary text can be placed on a plot using `gf_text()` or `gf_label()`.
   3. Now change things so that the text or labels (your choice) are red.
   
 
-```{r, labels, exercise = TRUE, fig.height = 4.5}
+```{r, labels, exercise = TRUE, fig.height = 4.0}
 # summary data used to create annotation
 LabData <- Temps %>% group_by(city) %>%
   summarise(date = date[which.max(hi)],
@@ -248,7 +248,7 @@ warmer temperatures have warmer colors.
 in this case five colors selected using the `rainbow()` function.
 
 
-```{r, scales, exercise = TRUE, fig.height = 4.5}
+```{r, scales, exercise = TRUE, fig.height = 4.0}
 gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %>%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
@@ -260,7 +260,7 @@ You can also use `scale_color_gradient_n` with colors you enter manually.
 Add a few colors between navy and red to make something more like the rainbow
 colors above.
 
-```{r, scales2, exercise = TRUE, fig.height = 4.5}
+```{r, scales2, exercise = TRUE, fig.height = 4.0}
 gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %>%
   gf_refine(scale_colour_gradientn(colors = c("navy", "red")))
@@ -278,7 +278,7 @@ in the example with three of your own choosing.
 (Use `colors()` to list the possible color names.)
 
 
-```{r, scales3, exercise = TRUE, fig.height = 4.5}
+```{r, scales3, exercise = TRUE, fig.height = 4.0}
 gf_ribbon(lo + hi ~ date | city ~ ., data = Temps, 
           fill = ~ city, alpha = 0.6)  %>%
   gf_refine(scale_fill_manual(values = c("red", "blue", "orange")))
@@ -316,7 +316,7 @@ colors within one of the categorical palettes from ColorBrewer.
 Experiment with different colors by choosing different values for 
 `type` and `palette`.
 
-```{r, brewer, exercise = TRUE, fig.height = 4.5}
+```{r, brewer, exercise = TRUE, fig.height = 4.0}
 gf_ribbon(lo + hi ~ date | city ~ ., data = Temps, fill = ~ city, alpha = 0.5) %>%
   gf_refine(scale_fill_brewer(type = "qual", palette = 2))
 
@@ -449,13 +449,20 @@ The theme can be set for an individual plot using `gf_theme()`.
 
 #### Exercise
 
+  1. Run the code below.
+  
+  2. Choose a different theme in place of `theme_fivethirtyeight()`
+  
+  3. Themes have optional arguments.  Try 
+  `theme_fivethrityeight(base_size = 8)`.
+  Experiment with different sizes and themes.
+
 ```{r, gf_theme, exercise = TRUE}
 gf_ribbon(lo + hi ~ date | city ~ ., data = Temps, 
           fill = ~ city, alpha = 0.5) %>%
   gf_labs(title = "Themes can change overall look of a plot") %>%
   gf_theme(theme = theme_fivethirtyeight())
 ```
-
 
 ### Adjusting theme elements
 

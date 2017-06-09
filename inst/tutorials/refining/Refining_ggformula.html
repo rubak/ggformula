@@ -101,7 +101,7 @@ is essentially what you may think of as the x- and y- axes, but the plot isn’t
 <p>Edit the code below to reveal the shape for some of the following: <code>gf_linerange()</code>, <code>gf_errorbar()</code>, <code>gf_errorbarh()</code>, <code>gf_ribbon()</code>, <code>gf_crossbar()</code>.</p>
 <div class="tutorial-exercise" data-label="multiple-variable-quickhelp" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gf_pointrange()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 <div id="section-exercise-1" class="section level4">
@@ -110,7 +110,7 @@ is essentially what you may think of as the x- and y- axes, but the plot isn’t
 <div class="tutorial-exercise" data-label="ribbon-to-linerange" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>head(Temps, 3)
 gf_ribbon(hi + lo ~ date | city ~ ., data = Temps)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -132,7 +132,7 @@ gf_ribbon(hi + lo ~ date | city ~ ., data = Temps)</code></pre>
     x = &quot;&quot;,  # hide labeling
     y = &quot;Temperature (degrees F)&quot;
   )</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -164,7 +164,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
     x = &quot;&quot;,  # hide labeling
     y = &quot;Temperature (degrees F)&quot;
   )</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -196,7 +196,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
 <pre class="text"><code>gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %&gt;%
   gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div id="section-exercise-4" class="section level4">
 <h4>Exercise</h4>
@@ -205,7 +205,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
 <pre class="text"><code>gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %&gt;%
   gf_refine(scale_colour_gradientn(colors = c(&quot;navy&quot;, &quot;red&quot;)))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -219,7 +219,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
 <pre class="text"><code>gf_ribbon(lo + hi ~ date | city ~ ., data = Temps, 
           fill = ~ city, alpha = 0.6)  %&gt;%
   gf_refine(scale_fill_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;orange&quot;)))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -242,7 +242,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
 
 gf_linerange(lo + hi ~ date | city ~ ., data = Temps, color = ~ mid)  %&gt;%
   gf_refine(scale_color_distiller(type = &quot;div&quot;, palette = 3))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":4,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -262,7 +262,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps, color = ~ mid)  %&gt;%
 <div class="tutorial-exercise" data-label="flip-violin" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gf_violin(hi ~ city, data = Temps) %&gt;%
   gf_refine()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -305,7 +305,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps, color = ~ mid)  %&gt;%
 <pre class="text"><code>ShortDads &lt;- Galton %&gt;% filter(father &lt;= 68)
 gf_point(height ~ father, data = ShortDads) %&gt;%
   gf_smooth(height ~ father, method = &quot;lm&quot;) </code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 <div id="section-gf_lims" class="section level3">
@@ -314,7 +314,7 @@ gf_point(height ~ father, data = ShortDads) %&gt;%
 <pre class="text"><code>gf_point(height ~ father, data = Galton) %&gt;%
   gf_smooth(height ~ father, method = &quot;lm&quot;) %&gt;%
   gf_lims(x = c(NA, 68))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 <div id="section-using-scales-to-limit-the-view" class="section level3">
@@ -323,7 +323,7 @@ gf_point(height ~ father, data = ShortDads) %&gt;%
 <pre class="text"><code>gf_point(height ~ father, data = Galton) %&gt;%
   gf_smooth(height ~ father, method = &quot;lm&quot;) %&gt;%
   gf_refine(scale_x_continuous(limits = c(NA, 68)))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -337,12 +337,17 @@ gf_point(height ~ father, data = ShortDads) %&gt;%
 <p>The theme can be set for an individual plot using <code>gf_theme()</code>.</p>
 <div id="section-exercise-9" class="section level4">
 <h4>Exercise</h4>
+<ol style="list-style-type: decimal">
+<li><p>Run the code below.</p></li>
+<li><p>Choose a different theme in place of <code>theme_fivethirtyeight()</code></p></li>
+<li><p>Themes have optional arguments. Try <code>theme_fivethrityeight(base_size = 8)</code>. Experiment with different sizes and themes.</p></li>
+</ol>
 <div class="tutorial-exercise" data-label="gf_theme" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>gf_ribbon(lo + hi ~ date | city ~ ., data = Temps, 
           fill = ~ city, alpha = 0.5) %&gt;%
   gf_labs(title = &quot;Themes can change overall look of a plot&quot;) %&gt;%
   gf_theme(theme = theme_fivethirtyeight())</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
 </div>
@@ -359,11 +364,11 @@ gf_point(height ~ father, data = ShortDads) %&gt;%
   gf_theme(text = element_text(color = &quot;red&quot;), 
            plot.title = element_text(hjust = 0.5),
            axis.text = element_text(color = &quot;goldenrod&quot;, face = &quot;italic&quot;))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise" data-label="q_theme" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>?theme</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":3,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
@@ -385,7 +390,7 @@ data(Galton, package = "mosaicData")
 knitr::opts_chunk$set(
   echo = FALSE,
   fig.align = "center",
-  fig.width = 6, fig.height = 2.5)
+  fig.width = 6, fig.height = 3.0)
 
 require(weatherData)
 Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
