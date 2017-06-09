@@ -43,7 +43,11 @@ gf_theme <- function(object, theme, ...) {
   if (missing(theme)) {
     object + ggplot2::theme(...)
   } else {
-    object + do.call("theme", list(...))
+    if (is.function(theme)) {
+      object + do.call(theme, list(...))
+    } else {
+      object + theme
+    }
   }
 }
 
