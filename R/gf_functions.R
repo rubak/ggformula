@@ -366,6 +366,17 @@ gf_smooth <-
                    n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
     )
 
+#' @rdname gf_smooth
+#'
+gf_smooth <-
+  gf_factory(
+    type = "smooth",
+    extras = alist(method = "lm", formula = y ~ x, se = TRUE, method.args = ,
+                   n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
+    )
+
+
+
 #' Formula interface to geom_spline()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
