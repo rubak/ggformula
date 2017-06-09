@@ -2,9 +2,14 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_bar}
 \alias{gf_bar}
+\alias{gf_counts}
 \title{Formula interface to geom_bar()}
 \usage{
 gf_bar(object = NULL, gformula = NULL, data = NULL, geom = type,
+  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
+  position = NULL, show.help = is.null(object) && is.null(gformula))
+
+gf_counts(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 }
@@ -73,6 +78,8 @@ if (require(mosaicData)) {
   gf_bar( ~ substance, data = HELPrct)
   gf_bar( ~ substance, data = HELPrct, fill = ~sex)
   gf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  # gf_counts() is another name for gf_bar()
+  gf_counts( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
 }
 }
 \seealso{

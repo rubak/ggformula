@@ -1808,6 +1808,8 @@ gf_dotplot <-
 #'   gf_bar( ~ substance, data = HELPrct)
 #'   gf_bar( ~ substance, data = HELPrct, fill = ~sex)
 #'   gf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+#'   # gf_counts() is another name for gf_bar()
+#'   gf_counts( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
 #' }
 
 gf_bar <-
@@ -1816,6 +1818,18 @@ gf_bar <-
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL, binwidth = NULL )
+  )
+
+#' @rdname gf_bar
+#' @export
+
+gf_counts <-
+  gf_factory(
+    type = "bar", aes_form = ~ x,
+    extras = alist(
+      alpha = , color = , fill = , group = , linetype = , size = ,
+      width = NULL, binwidth = NULL ),
+    function_name = "gf_counts"
   )
 
 #' Formula interface to geom_freqpoly()
