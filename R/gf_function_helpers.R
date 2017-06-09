@@ -137,13 +137,15 @@ gf_factory <- function(
     if (!inherits(object, c("gg", "ggplot"))) {
       add <- FALSE  # can't add if we don't have a plot to add to
     }
+
     gg_string <- gf_master(formula = gformula, data = data,
                            geom = geom, gg_object = object,
                            add = add, extras = extras,
                            aes_form = aes_form,
                            data_name = data_name,
                            aesthetics = aesthetics)
-    if (verbose) cat(gsub("geom", "\n  geom", gg_string, fixed = TRUE), "\n")
+
+    if (verbose) cat(gsub("geom", "\n  geom", gg_string$text, fixed = TRUE), "\n")
 
     if (dot_eval) {
       gg_string <- gf_master(formula = gformula, data = data,
@@ -152,9 +154,16 @@ gf_factory <- function(
                              aes_form = aes_form,
                              data_name = NULL,
                              aesthetics = aesthetics)
-      P <- ggplot(data) + eval(parse(text = gg_string))
+      # if (verbose) cat(gsub("geom", "\n  geom", gg_string$text, fixed = TRUE), "\n")
+    }
+
+    if (dot_eval) {
+      P <- ggplot(data) + eval(parse(text = gg_string$main))
+      if (length(gg_string$facet) > 0) {
+        P <- P + eval(parse(text = gg_string$facet))
+      }
     } else {
-      P <- eval(parse(text = gg_string), environment(gformula))
+      P <- eval(parse(text = gg_string$text), environment(gformula))
     }
     if (add)  #  don't need this part: && inherits(object, c("gg", "ggplot")))
       return(object + P)
@@ -201,7 +210,9 @@ gf_master <- function(formula = NULL, data = NULL,
 
   data_string <-
     if (is.null(data)) ""
-  else paste("data =", data_name)
+  else {
+    if (is.null(data_name)) "" else paste("data =", data_name)
+  }
 
   # if ( (! add) && is.null(data) )
   #   warning("No data supplied.  Was that intentional?")
@@ -252,11 +263,17 @@ gf_master <- function(formula = NULL, data = NULL,
   if (! add) gg_string <-   # need ggplot() call, too
     paste0("ggplot(", data_string, ") + ", gg_string)
 
-  if (is.null(condition)) {
-    gg_string
-  } else {
-    paste0(gg_string, " + ", facet_type, "(", deparse(condition), ")")
-  }
+  res <-
+  list(
+    main = gg_string,
+    facet =
+      if (is.null(condition)) ""  else
+        paste0(facet_type, "(", deparse(condition), ")")
+    )
+  res$text <-
+    if (is.null(condition)) gg_string  else
+      paste0(gg_string, " + ", res$facet)
+  res
 }
 
 formula_shape <- function(x) {
