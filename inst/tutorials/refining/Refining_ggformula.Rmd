@@ -64,7 +64,7 @@ th, td { padding: 5px; }
 
 
 
-## Refining ggformula plots.
+## Refining ggformula plots
 
 If you are fussy about your plots, you may be wondering how to have more control over 
 things like:
@@ -83,7 +83,7 @@ This tutorial will introduce you to refining plots in `ggformula`.
 Not biological anatomy, rather plot anotomy.  In order to talk about
 plots, it is handy to have words for their various components.
 
- * A **frame** is the bounding rectagle in which the plot is constructed.  This  
+ * A **frame** is the bounding rectangle in which the plot is constructed.  This  
  is essentially what you may think of as the x- and y- axes, but the plot isn't actually
  required to have visible "axes".
  
@@ -113,9 +113,9 @@ plots, it is handy to have words for their various components.
 ## Glyphs that use more than two positions
 
 In addition to functions like `gf_histogram()` that require only a single position
-variable an `gf_point()` that require two, there are several `gf_` functions that
-require more than two variables.  How these positions are communicated via
-slots in the formula is described by the "shape" listed in the quick help for 
+variable and like `gf_point()` that require two, 
+there are several `gf_` functions that require more than two position variables. 
+How these positions are communicated via slots in the formula is described by the "shape" listed in the quick help for 
 these functions.  
 
 
@@ -160,7 +160,7 @@ shortly.)
 gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %>%
   gf_labs(
-    title = "Temparatures in three cities",
+    title = "Temperatures in three cities",
     subtitle = "2013 data",
     caption = "Data source: weatherData R package",
     x = "",  # hide labeling
@@ -186,14 +186,14 @@ Arbitrary text can be placed on a plot using `gf_text()` or `gf_label()`.
 LabData <- Temps %>% group_by(city) %>%
   summarise(date = date[which.max(hi)],
             hi = max (hi), 
-            description = paste("Highest Hi:", hi, "on", date))
+            description = paste("Highest Hi:", hi, "on", format(date)))
 
 gf_linerange(lo + hi ~ date | city ~ ., data = Temps, 
              color = ~ mid) %>%
   gf_text((hi + 6) ~ date, data = LabData, 
           label = ~ description, size = 3) %>% 
   gf_labs(
-    title = "Temparatures in three cities",
+    title = "Temperatures in three cities",
     subtitle = "2013 data",
     caption = "Data source: weatherData R package",
     x = "",  # hide labeling
@@ -205,7 +205,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
 ## gf_refine()
 
 `gf_refine()` converts plot elements from native `ggplot2` into a form
-that makes the chainable with `ggformula`.  Those familiar with `ggplot2`
+that makes them chainable with `ggformula`.  Those familiar with `ggplot2`
 can replace
 ```{r, refine1, eval = FALSE, echo = TRUE}
 p + foo(...)
@@ -215,17 +215,17 @@ p + foo(...)
 p %>% gf_refine(foo(...))
 ```
 
-In the remainder of this tutorial, we illustrate some of the most common uses
-of `gf_refine()`.
+For those not already familiar with `ggplot2`, in the remainder of this tutorial, 
+we illustrate some of the most common uses of `gf_refine()`.
 
-## Controling Scales
+## Controlling Scales
 
 ### How scales work
 
 When we include `color = ~ mid` to out plot code, each value of the variable 
 `mid` is assigned a color.  It is the job of the color scale to determine which 
 values get mapped to which colors.  (A guide can be used so that humans can 
-map back from colors to values when interpretting the plot.)
+map back from colors to values when interpreting the plot.)
 If we don't like the default color choices, we can tell R to use a different scale.
 
 The situation is similar for other attributes (shape, size, fill, etc.), each of
@@ -242,7 +242,7 @@ We can fix this by selecting a scale for color.  This is done by
 passing the desired scale as an argument to `gf_refine()`, a general
 purpose function for refining our plots.   
 
-In the example below, we choose a rainbow of colors (and reverse the order) to
+In the example below, we choose a rainbow of colors (and reverse the order) so
 warmer temperatures have warmer colors.
 `scale_color_gradientn()` creates a scale by interpolating between several colors --
 in this case five colors selected using the `rainbow()` function.
@@ -332,7 +332,7 @@ Other scales work similarly.
 
 ### coord_flip()
 
-As the name suggests, `coord_flip()` reverses the roles of the x- and y-axis.  This is most useful for glyphs that `ggplot2` only provides in a "vertical" version,
+As the name suggests, `coord_flip()` reverses the roles of the x- and y-axes.  This is most useful for glyphs that `ggplot2` only provides in a "vertical" version,
 such as boxplots and violin plots.
 
 #### Exercise
@@ -340,7 +340,7 @@ such as boxplots and violin plots.
 Make horizontal violin plots by inserting `coord_flip()` into `gf_refine()`.
 Change the plot to boxplots if you prefer those.
 
-```{r, flip-violin, example = TRUE}
+```{r, flip-violin, exercise = TRUE}
 gf_violin(hi ~ city, data = Temps) %>%
   gf_refine()
 ```
@@ -375,7 +375,7 @@ gf_point(hi ~ lo | city, data = Temps, alpha = 0.5) %>%
 ```
 
 
-## Controling the view
+## Controlling the view
 
 Often it is useful to limit or expand the view of the data presented in a plot.
 There are three ways this can be done.
@@ -387,7 +387,7 @@ There are three ways this can be done.
   
   3. Use scales for x and y to set the limits.
   
-In this section we will use a different data set.  `Galton` contains data
+In this section we will use a different data set.  `Galton` contains
 data collected by Galton recording the heights of parents and sons.
 
 ```{r, Galton}
