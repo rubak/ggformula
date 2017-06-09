@@ -2,14 +2,14 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_smooth}
 \alias{gf_smooth}
-\alias{gf_smooth}
+\alias{gf_lm}
 \title{Formula interface to geom_smooth()}
 \usage{
 gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 
-gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = type,
+gf_lm(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
   position = NULL, show.help = is.null(object) && is.null(gformula))
 }

@@ -368,7 +368,7 @@ gf_smooth <-
 
 #' @rdname gf_smooth
 #'
-gf_smooth <-
+gf_lm <-
   gf_factory(
     type = "smooth",
     extras = alist(method = "lm", formula = y ~ x, se = TRUE, method.args = ,
