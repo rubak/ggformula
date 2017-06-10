@@ -11,6 +11,7 @@ library(learnr)
 library(tibble)
 library(ggformula)
 library(mosaic)
+library(mosaicData)
 library(NHANES)
 library(ggthemes)
 library(lubridate)
@@ -27,7 +28,7 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.width = 6, fig.height = 3.0)
 
-require(weatherData)
+library(weatherData)
 Temps <- NewYork2013 %>% mutate(city = "NYC") %>%
   bind_rows(Mumbai2013 %>% mutate(city = "Mumbai")) %>%
   bind_rows(London2013 %>% mutate(city = "London")) %>%
