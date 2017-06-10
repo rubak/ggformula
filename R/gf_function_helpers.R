@@ -64,7 +64,14 @@ gf_factory <- function(
   function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
-           ..., position = NULL, show.help = is.null(object) && is.null(gformula)) {
+           ..., position = NULL,
+           show.help = NULL) {
+
+    dots <- list(...)
+    if (is.null(show.help)) {
+      show.help <- is.null(object) && is.null(gformula) && length(dots) == 0L
+    }
+
     if (!is.list(aes_form)) aes_form <- list(aes_form)
     if (show.help) {
       fun <- match.call()[1]
@@ -86,7 +93,6 @@ gf_factory <- function(
       return(invisible(NULL))
     }
 
-    dots <- list(...)
     aesthetics <- list()
     data_name <- deparse(substitute(data))
     object_name <- deparse(substitute(object))

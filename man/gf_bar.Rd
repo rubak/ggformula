@@ -7,11 +7,11 @@
 \usage{
 gf_bar(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = is.null(object) && is.null(gformula))
+  position = NULL, show.help = NULL)
 
 gf_counts(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = is.null(object) && is.null(gformula))
+  position = NULL, show.help = NULL)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

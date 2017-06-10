@@ -9,15 +9,15 @@
 \usage{
 gf_abline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = is.null(object) && is.null(gformula))
+  position = NULL, show.help = NULL)
 
 gf_hline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = is.null(object) && is.null(gformula))
+  position = NULL, show.help = NULL)
 
 gf_vline(object = NULL, gformula = NULL, data = NULL, geom = type,
   verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = is.null(object) && is.null(gformula))
+  position = NULL, show.help = NULL)
 
 gf_coefline(object = NULL, coef = NULL, model = NULL, ...)
 }
