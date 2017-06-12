@@ -4,7 +4,8 @@
 \alias{df_stats}
 \title{Calculate basic statistics on a quantitative variable}
 \usage{
-df_stats(formula, data, ..., drop = TRUE, fargs = list())
+df_stats(formula, data, ..., drop = TRUE, fargs = list(),
+  long_names = TRUE, nice_names = FALSE)
 }
 \arguments{
 \item{formula}{A formula indicating which variables are to be used. See details.}
@@ -21,6 +22,14 @@ variables that do not occur in \code{data} should be dropped from the
 result.}
 
 \item{fargs}{Arguments passed to the functions in \code{...}.}
+
+\item{long_names}{A logical indciting whether the default names should include the name
+of the variable being summarized as well as the summarizing function name in the default
+case when names are not derived from the names of the returned object or
+an argument name.}
+
+\item{nice_names}{A logical indicating whether \code{\link{make.names}()} should be
+used to force names of the returned data frame to by syntactically valid.}
 }
 \value{
 A data frame.
@@ -56,7 +65,6 @@ See the examples.
 df_stats( ~ hp, data = mtcars)
 df_stats( ~ hp, data = mtcars, mean, median)
 df_stats( hp ~ cyl, data = mtcars, mean, median, range)
-df_stats( hp ~ ntiles(mpg, 4, format = "interval"), data = mtcars, median, mean, sd)
 # magrittr style piping is also supported
 mtcars \%>\% df_stats(hp ~ cyl)
 gf_violin(hp ~ cyl, data = mtcars, group = ~ cyl) \%>\%

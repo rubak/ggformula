@@ -15,6 +15,12 @@
 #'   variables that do not occur in \code{data} should be dropped from the
 #'   result.
 #' @param fargs Arguments passed to the functions in \code{...}.
+#' @param long_names A logical indciting whether the default names should include the name
+#'   of the variable being summarized as well as the summarizing function name in the default
+#'   case when names are not derived from the names of the returned object or
+#'   an argument name.
+#' @param nice_names A logical indicating whether \code{\link{make.names}()} should be
+#'   used to force names of the returned data frame to by syntactically valid.
 #'
 #' @details
 #' Use a one-sided formula to compute summary statistics for the left hand side
@@ -42,21 +48,23 @@
 #' df_stats( ~ hp, data = mtcars)
 #' df_stats( ~ hp, data = mtcars, mean, median)
 #' df_stats( hp ~ cyl, data = mtcars, mean, median, range)
-#' df_stats( hp ~ ntiles(mpg, 4, format = "interval"), data = mtcars, median, mean, sd)
 #' # magrittr style piping is also supported
 #' mtcars %>% df_stats(hp ~ cyl)
 #' gf_violin(hp ~ cyl, data = mtcars, group = ~ cyl) %>%
 #'   gf_point(mean_hp ~ cyl, data = df_stats(hp ~ cyl, data = mtcars, mean))
 #'
 #' @export
-#' @importFrom rlang eval_tidy exprs
+#' @importFrom rlang eval_tidy exprs expr
+#' @importFrom mosaic favstats
+#' @importFrom stats model.frame aggregate
 #'
-df_stats <- function(formula, data, ..., drop = TRUE, fargs = list()) {
+df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names = TRUE,
+                     nice_names = FALSE) {
   # dots <- lazyeval::lazy_dots(...)
   dots <- rlang::exprs(...)
 
   if (length(dots) < 1) {
-    dots <- list(expr(favstats))
+    dots <- list(rlang::expr(mosaic::favstats))
     names(dots) <- ""
   }
 
@@ -69,13 +77,10 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list()) {
   if ( ! inherits(formula, "formula")) stop("first arg must be a formula")
   if ( ! inherits(data, "data.frame")) stop("second arg must be a data.frame")
   MF <- model.frame(formula, data)
-  var_names <- sprintf("`%s`", names(MF)) # backquote to deal with odd names like log(x)
-
 
   res <-
     lapply(dots, function(f)
       aggregate(MF[, 1], by = MF[, -1, drop = FALSE],
-                # FUN = function(x) do.call(rlang::eval_tidy(f)$expr, c(list(x), fargs)),
                 FUN = function(x) do.call(rlang::eval_tidy(f), c(list(x), fargs)),
                 drop = drop
       )
@@ -89,12 +94,9 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list()) {
   res_names <- lapply(res, colnames)
   arg_names <- names(res)
   fun_names <- sapply(dots, function(x) deparse(x))
-  fun_names <- paste0(fun_names, "_", deparse(formula[[2]]))
-
-  # fun_names <- ifelse(nchar(res_names) < 1, arg_names, res_names)
-  # fun_names <- rep(fun_names, dims)
-  # fun_names <- paste0(fun_names, sub("1", "", as.character(unlist( sapply(dims, seq) ))))
-
+  if (long_names) {
+    fun_names <- paste0(fun_names, "_", deparse(formula[[2]]))
+  }
   final_names <-
     lapply(
       1:length(res),
@@ -112,16 +114,10 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list()) {
         return(paste0(fun_names[i], 1:dims[i]))
       }
     )
-  #
-  #   print(list(
-  #     res = res_names,
-  #     arg = arg_names,
-  #     fun = fun_names,
-  #     final = final_names)
-  #   )
 
   res <- do.call(cbind, c(list(groups), res))
   names(res) <- c(names(res)[1:d], unlist(final_names))
+  if (nice_names) names(res) <- base::make.names(names(res), unique = TRUE)
   return(res)
 }
 
