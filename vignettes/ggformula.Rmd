@@ -1,7 +1,7 @@
 ---
 title: "Formula Interface for ggplot2"
 author: "Daniel Kaplan and Randall Pruim"
-date: "March 20, 2017"
+date: "June 17, 2017"
 output:  rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
@@ -338,7 +338,7 @@ gf_line(births ~ date, color = ~wday, data = Births78)
 
 
 
-## Plots with more than 2 required attributes
+## Plots with more than 2 positional attributes
 
 Some layers require more than two attributes.  Typically this happens when the glyphs
 of a layer are complex objects that could have been made using multiple layers, but 
@@ -370,6 +370,85 @@ gf_linerange(lo + hi  ~ date, color = ~hi, data = Temps)
 gf_ribbon(lo + hi ~ date, data = Temps, color = "navy", alpha = 0.3)
 ```
 
+## Positions and Stats
+
+### Positions
+
+`position_dodge()`, 
+`position_jitter()`, and
+`position_jitterdodge()` can be used to adjust the positions at which 
+glyphs are placed.  Jittering adds some random noise and can be useful when
+many observations have the same value.  Dodging moves groups of glyphs a fixed
+difference to make it easier to distingish the groups.
+
+```{r}
+gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
+         position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.4))
+```
+
+### Stats
+
+A **stat** is a transformation that is applied to the data before 
+a plot is generated.  Several of the plots we have seen have made use 
+of stats.
+
+ * `gf_histogram()` uses `stat_bin()` to bin the data and count the 
+ number of observations in each bin.  It is equivalent to
+ 
+```{r}
+gf_bar( ~ age, data = HELPrct, stat = "bin")
+```
+  * `gf_boxplot()` uses `stat_boxplot()` to compute the five-number summary on which
+  the boxplot is based.
+  
+  * `gf_violin()`, `gf_density()`, and `gf_density2d()` use stats to compute a 
+  sequence of points along an estimated density.  It is these points, and the not
+  the raw data that are used to create the plot.
+ 
+Mostly, the stats selected by default are just the ones you need. But sometimes
+it is useful to select a different stat.  The `stat_summary()` and 
+`stat_summary_bin()` stats are particularly useful in this respect.
+These stats use a function to aggegrate over unique values of `x` or over 
+bins of `x` values and save the user needing to do that data transformation
+manually. 
+
+The default function applied in each group is `mean_se()`, which computes 
+the mean (and the mean plus and minus one standard error)
+This makes it simple to create an "interaction plot".
+
+```{r}
+gf_jitter(length ~ sex, color = ~domhand, data = KidsFeet,
+          width = 0.1, height = 0) %>%
+  gf_line(length ~ sex, color = ~domhand, data = KidsFeet,
+          group = ~domhand, stat="summary")
+```
+
+The other two values computed by `mean_se()` are availble as
+`..ymin..` and `..ymax..`.
+
+```{r}
+gf_jitter(length ~ sex, color = ~domhand, data = KidsFeet,
+          width = 0.1, height = 0, alpha = 0.3) %>%
+  gf_pointrange(length + ..ymin.. + ..ymax.. ~ sex, 
+                color = ~domhand, data = KidsFeet, 
+                group = ~domhand, stat="summary")
+```
+
+Custom functions can be used by defining `fun.y`, `fun.ymin`, and `fun.ymax`,
+or a single function `fun.data` that returns a data frame with variables 
+named `y`, `ymin`, and `ymax`.
+
+
+```{r}
+gf_point(length ~ sex, color = ~domhand, data = KidsFeet,
+          width = 0.1, height = 0, alpha = 0.5,
+          position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.3)) %>%
+  gf_pointrange(length + ..ymin.. + ..ymax.. ~ sex, 
+                color = ~domhand, data = KidsFeet, 
+                group = ~domhand, stat="summary",
+                fun.y = median, fun.ymin = min, fun.ymax = max,
+                position = position_dodge(width = 0.6))
+```
 
 ## Chaining to create complex plots
 
