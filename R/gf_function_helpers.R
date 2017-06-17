@@ -5,6 +5,7 @@ utils::globalVariables("role")
 #' @importFrom stringr str_split str_match
 #' @importFrom stats as.formula
 #' @importFrom utils modifyList
+#' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
 #' @import ggplot2
 
 # The actual graphing functions are created dynamically.
@@ -29,12 +30,16 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
 
 # add quotes to character elements of list x and returns a vector of character
 .quotify <- function(x) {
-  if(is.character(x)) paste0('"', x, '"') else format(x)
+  if(is_null(x)) return(x)
+  x <- if (rlang::is_character(x)) paste0('"', x, '"') else x
+  x <- if (is.name(x)) as.character(x) else x
+  x <- if (rlang::is_character(x)) x else format(x)
+  x
 }
 
 .default_value <- function(x) {
   sapply(x,
-         function(x) ifelse (is.symbol(x), "", paste0(" = ", .quotify(x)))
+         function(x) ifelse (is.symbol(x), "", paste0(" = ", lapply(x, .quotify)))
   )
 }
 
@@ -43,11 +48,10 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   res <- if (length(extras) == 0 ) {
     S
   } else {
-    more <- paste0(names(extras), " = ", .quotify(extras), collapse = ", ")
+    more <- paste0(names(extras), " = ", extras, collapse = ", ")
     S <- gsub("\\)$", "", S)
     paste0(S, ifelse(empty, "", ", "), more, ")")
   }
-
   res
 }
 
@@ -64,12 +68,13 @@ gf_factory <- function(
   function(object = NULL, gformula = NULL,
            data = NULL, geom = type, verbose = FALSE,
            add = inherits(object, c("gg", "ggplot")),
-           ..., position = NULL,
+           ..., position = NULL, # stat = NULL,
            show.help = NULL) {
 
-    dots <- list(...)
+    qdots <- rlang::quos(...)
+    # dots <- list(...)
     if (is.null(show.help)) {
-      show.help <- is.null(object) && is.null(gformula) && length(dots) == 0L
+      show.help <- is.null(object) && is.null(gformula) && length(qdots) == 0L
     }
 
     if (!is.list(aes_form)) aes_form <- list(aes_form)
@@ -108,29 +113,36 @@ gf_factory <- function(
     }
     aes_form <- aes_form[[which.max(fmatches)]]
 
-    if (length(dots) > 0) {
-      for (i in length(dots):1L) {
-        if (inherits(dots[[i]], "formula") && length(dots[[i]]) == 2L) {
-          aesthetics[[names(dots)[i]]] <- dots[[i]][[2]]
-          dots[[i]] <- NULL
+    if (length(qdots) > 0) {
+      # proceed backwards through list so that removing items doesn't mess up indexing
+      for (i in length(qdots):1L) {
+        if (is_formula(f_rhs(qdots[[i]])) && length(f_rhs(qdots[[i]])) == 2L) {
+          aesthetics[[names(qdots)[i]]] <- f_rhs(qdots[[i]])[[2]]
+          qdots[[i]] <- NULL
         }
       }
     }
 
+    qposition <- rlang::enquo(position)
     if (!is.null(position)) {
-      dots[["position"]] <- substitute(position)
+      qdots[["position"]] <- qposition
     }
+
+    # qstat <- rlang::enquo(stat)
+    # if (!is.null(stat)) {
+    #   qdots[["stat"]] <- qstat
+    # }
+
 
     if (length(extras) > 0) {
       extras <- extras[sapply(extras, function(x) !is.symbol(x))]
     }
 
-    if (length(dots) > 0) {
-      extras <- modifyList(extras, dots)
+    if (length(qdots) > 0) {
+      extras <- modifyList(extras, lapply(qdots, rlang::f_rhs))
     }
 
     extras <- lapply(extras, .quotify)
-
 
     dot_eval <- FALSE
     if (inherits(object, "data.frame")) {
