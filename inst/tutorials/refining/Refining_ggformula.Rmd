@@ -3,6 +3,7 @@ title: "Refining ggformula plots"
 output: 
   learnr::tutorial:
     progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 ---
 
@@ -110,6 +111,8 @@ plots, it is handy to have words for their various components.
  * **coordinates** are something like scales for positional attributes and 
  define the coordinate system for the frame.
  
+ * **statistics** (stats) transform data before the plot is generated.  A common example
+ is the use of `stat_bin()` to bin raw data before generating a histogram.
 
 ## Glyphs that use more than two positions
 
@@ -257,7 +260,7 @@ gf_linerange(lo + hi ~ date | city ~ ., data = Temps,
 
 #### Exercise
 
-You can also use `scale_color_gradient_n` with colors you enter manually.
+You can also use `scale_color_gradientn()` with colors you enter manually.
 Add a few colors between navy and red to make something more like the rainbow
 colors above.
 
@@ -486,4 +489,68 @@ gf_ribbon(lo + hi ~ date | city ~ ., data = Temps,
 ```{r, q_theme, exercise = TRUE}
 ?theme
 ```
+
+## Stats
+
+Most often, users will have little need to adust the stat used to make layer of a plot since the 
+default stat is usually what you need.  For example, the default stat for `gf_histogram()` is 
+`stat_bin()`, which bins the data before plotting the rectangular bars.  So the following are 
+equivalent.
+
+```{r, histogram-stat, exercise = TRUE}
+gf_histogram( ~ hi | city, data = Temps)
+gf_bar( ~ hi | city, data = Temps, stat = "bin")
+```
+
+This also explains why the message reported when you create a historam without
+setting `binwidth` is coming from `stat_bin`.  Notice that the stat can be
+specified by a quoted string that names the part after `stat_` or it can be
+specified by providing the function (potentially with optional arguments
+included).
+
+Other non-identity stats that get used with particular functions include
+
+ * `stat_density()` gets used with `gf_density()` and `gf_dens()`
+ * `stat_density2d()` gets used with `gf_density2d()`
+ * `stat_count()` gets used with `gf_bar()` (`gf_col()` uses `stat_identity()`)
+ 
+ Occasionally it is useful to use a non-default stat.  In particular, `stat_summary()` and
+ `stat_summary_bin()` can be used to avoid common data transformation situations where
+ a function is used to aggegrate over unique values of `x` or over bins of `x` values.
+ 
+ 
+```{r, summary1, exercise = TRUE}
+# Plot highest high temperature each month
+gf_point(hi ~ (month(date, label = TRUE)), color = ~ city, data = Temps, 
+         stat = "summary", fun.y = max) %>%
+  gf_labs(x = "month", title = "Highest temperature each month in three cities") 
+```
+
+These stats are designed to work with `gf_linerange()` and `gf_pointrange()`, so three 
+summary functions can be specified.  `fun.ymin` and `fun.ymax` return results that 
+are available in `..ymin..` and `..ymax`.  
+
+```{r, summary3, exercise = TRUE}
+# Plot min, median, and max high temperature each month
+gf_pointrange(hi + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ city, data = Temps, 
+              position = position_dodge(width = 0.2),
+              stat = "summary", 
+              fun.y = median, fun.ymin = min, fun.ymax = max) %>%
+  gf_labs(x = "month", 
+          title = "Median, min, and max high temperature each month in three cities",
+          caption = "jitter used to avoid overplotting") 
+```
+ 
+The default summary function is `mean_se` which
+computes the mean, and the mean one standard errors added and subtracted.
+
+```{r, mean_se, exercise = TRUE}
+gf_pointrange(hi + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ city, 
+              data = Temps, stat = "summary", position = position_dodge(width = 0.3)) %>%
+  gf_labs(x = "month", caption = "mean +/- one SE")
+```
+
+
+
+
 
