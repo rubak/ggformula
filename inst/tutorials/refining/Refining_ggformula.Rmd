@@ -94,7 +94,6 @@ plots, it is handy to have words for their various components.
  gets drawn).
  
  * Each glyph has a number of **attributes** or **properties**.
- 
     * These always include position (you have to put them somewhere).
     * Other attributes incude things like size, color, shape.
     * Not all glyphs have the same attributes (points have shape, but
@@ -435,7 +434,7 @@ gf_point(height ~ father, data = Galton) %>%
 ### Using predefined themes
 
 A number of predefined themes exist that control the appearance of non-data
-elements of plots.  In this tutorial we set the default theme using 
+elements of plots.  In this tutorial, we set the default theme using 
 
 ```{r, theme_bw, echo = TRUE}
 theme_set(theme_bw())
