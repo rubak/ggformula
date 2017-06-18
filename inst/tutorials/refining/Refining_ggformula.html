@@ -81,7 +81,7 @@ th, td { padding: 5px; }
 <li><p>A <strong>frame</strong> is the bounding rectangle in which the plot is constructed. This<br />
 is essentially what you may think of as the x- and y- axes, but the plot isn’t actually required to have visible “axes”.</p></li>
 <li><p><strong>glyphs</strong> or <strong>marks</strong> are the particular symbols placed on the plot (examples: dots, lines, smiley faces, your favorite emoji, or whatever gets drawn).</p></li>
-<li><p>Each glyph has a number of <strong>attributes</strong> or <strong>properties</strong>.</p>
+<li>Each glyph has a number of <strong>attributes</strong> or <strong>properties</strong>.
 <ul>
 <li>These always include position (you have to put them somewhere).</li>
 <li>Other attributes incude things like size, color, shape.</li>
@@ -332,7 +332,7 @@ gf_point(height ~ father, data = ShortDads) %&gt;%
 <h2>Themes</h2>
 <div id="section-using-predefined-themes" class="section level3">
 <h3>Using predefined themes</h3>
-<p>A number of predefined themes exist that control the appearance of non-data elements of plots. In this tutorial we set the default theme using</p>
+<p>A number of predefined themes exist that control the appearance of non-data elements of plots. In this tutorial, we set the default theme using</p>
 <pre class="r"><code>theme_set(theme_bw())</code></pre>
 <p>Other themes include <code>theme_minimal()</code>, <code>theme_classic()</code>, <code>theme_gray()</code>, <code>theme_light()</code>, <code>theme_map()</code>, and <code>theme_quickmap()</code>. The <code>ggthemes</code> package includes some additional themes, including <code>theme_economist()</code>, <code>theme_economist_white()</code>, <code>theme_excel()</code>, <code>theme_fivethirtyeight()</code>, <code>theme_stata()</code>, <code>theme_tufte()</code>, and <code>theme_wsj()</code>. Many of these themes mimic the look of other software packages or of popular publications.</p>
 <p>The theme can be set for an individual plot using <code>gf_theme()</code>.</p>
