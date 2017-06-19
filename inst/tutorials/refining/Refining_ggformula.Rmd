@@ -371,7 +371,7 @@ gf_point(hi ~ lo | city, data = Temps, alpha = 0.5) %>%
 The example below isn't very useful, but demonstrates two of the 
 transformations that are available.  Find out more with `?coord_trans()`.
 
-```{r, coord_trans, example = TRUE}
+```{r, coord_trans, exercise = TRUE}
 gf_point(hi ~ lo | city, data = Temps, alpha = 0.5) %>%
   gf_abline(slope = 1, intercept = 0) %>%
   gf_refine(coord_trans(x = "log", y = "sqrt"))
