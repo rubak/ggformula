@@ -377,6 +377,15 @@ gf_point(hi ~ lo | city, data = Temps, alpha = 0.5) %>%
   gf_refine(coord_trans(x = "log", y = "sqrt"))
 ```
 
+Built-in transformations include
+`asn_trans()`, `atanh_trans()`, `boxcox_trans()`, `date_trans()`,
+`exp_trans()`, `hms_trans()`, `identity_trans()`, `log10_trans()`,
+`log1p_trans()`, `log2_trans()`, `log_trans()`, `logit_trans()`,
+`probability_trans()`, `probit_trans()`, `reciprocal_trans()`,
+`reverse_trans()`, `sqrt_trans()`, and `time_trans()`.
+New transformations can be created using `trans_new()` in the 
+`scales` package.
+
 
 ## Controlling the view
 
