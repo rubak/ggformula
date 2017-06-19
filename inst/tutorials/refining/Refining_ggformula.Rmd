@@ -560,5 +560,29 @@ gf_pointrange(hi + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ 
 
 
 
+We can create our own functions for use with `stat_summary`. The funcition is easiest 
+to use if we write the function to take a vector `x` as input and to produce
+a data frame with columns `y`, `ymin`, and `ymax`. Here is an example that creates a 
+"3-number summary" that can be used to present the median and first and third 
+quartiles.
+
+```{r, three-number, exercise = TRUE}
+median_quantiles <- function(x, central = 0.5, ...){
+  data.frame(
+    y = median(x, ...),
+    ymin = quantile(x, 0.5 - central/2, ...),
+    ymax = quantile(x, 0.5 + central/2, ...)
+  )
+}
+
+gf_pointrange(hi + ..ymin.. + ..ymax.. ~ (month(date, label = TRUE)), color = ~ city, 
+              data = Temps, stat = "summary", fun.data = median_quantiles,
+              fun.args = list(central = 0.6),
+              position = position_dodge(width = 0.3)) %>%
+  gf_labs(x = "month", 
+          title = "High temperatures by month in three cities",
+          caption = "median and central 60% of data"
+          )
+```
 
 
