@@ -9,9 +9,10 @@
 
 ## R CMD check results
 
-There were was 1 NOTE, no ERRORs or WARNINGs.
+R CMD check results
 
-The note was about incoming feasibility, correctly identifying this as a "New Submission." 
+0 errors | 0 warnings | 0 notes
+
 
 ## Downstream dependencies
 
