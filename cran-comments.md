@@ -1,9 +1,9 @@
 ## Test environments
 
 * local 
-  * R version 3.3.3 Patched (2017-03-15 r72368)
-  * x86_64, darwin13.4.0                       
-  * RStudio (1.1.278)     
+  * version  R version 3.4.0 (2017-04-21)
+  * system   x86_64, darwin15.6.0        
+  * ui       RStudio (1.1.278)     
   
 * win-builder via devtools::build_win()
 
