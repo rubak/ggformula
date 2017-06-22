@@ -13,7 +13,7 @@ Installations from CRAN are done in the usual way. The development version of
 the package is here on GitHub. To install it, use the following commands in your
 R system.
 
-```
+```r
 # Install devtools if necessary
 install.packages("devtools")
 
