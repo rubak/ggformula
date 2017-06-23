@@ -5,13 +5,15 @@
 \alias{gf_counts}
 \title{Formula interface to geom_bar()}
 \usage{
-gf_bar(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = NULL)
+gf_bar(object = NULL, gformula = NULL, data = NULL, geom = "bar",
+  stat = "identity", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
 
-gf_counts(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = NULL)
+gf_counts(object = NULL, gformula = NULL, data = NULL, geom = "bar",
+  stat = "identity", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -25,10 +27,11 @@ Faceting can be acheived by including \code{|} in the formula.}
 
 \item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
 
-\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
-can be added to an existing frame.}
+\item{show.help}{If \code{TRUE}, display some minimal help.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -37,9 +40,8 @@ can be added to an existing frame.}
 Available attributes include
 \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{width}, \code{binwidth}}
 
-\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
-
-\item{show.help}{If \code{TRUE}, display some minimal help.}
+\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
+can be added to an existing frame.}
 }
 \value{
 a gg object

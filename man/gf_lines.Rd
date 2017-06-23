@@ -7,17 +7,20 @@
 \alias{gf_coefline}
 \title{Reference lines -- horizontal, vertical, and diagonal.}
 \usage{
-gf_abline(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = NULL)
+gf_abline(object = NULL, gformula = NULL, data = NULL, geom = "abline",
+  stat = "identity", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
 
-gf_hline(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = NULL)
+gf_hline(object = NULL, gformula = NULL, data = NULL, geom = "hline",
+  stat = "identity", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
 
-gf_vline(object = NULL, gformula = NULL, data = NULL, geom = type,
-  verbose = FALSE, add = inherits(object, c("gg", "ggplot")), ...,
-  position = NULL, show.help = NULL)
+gf_vline(object = NULL, gformula = NULL, data = NULL, geom = "vline",
+  stat = "identity", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
 
 gf_coefline(object = NULL, coef = NULL, model = NULL, ...)
 }
@@ -32,10 +35,11 @@ See details and examples.}
 
 \item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
 
+\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+
 \item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
 
-\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
-can be added to an existing frame.}
+\item{show.help}{If \code{TRUE}, display some minimal help.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -44,16 +48,15 @@ can be added to an existing frame.}
 Available attributes include
 \code{slope}, \code{intercept}}
 
-\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
-
-\item{show.help}{If \code{TRUE}, display some minimal help.}
-
 \item{coef}{A numeric vector of length at least 2, treated as intercept and slope.
 Additional components, if any, are ignored (with a warning).}
 
 \item{model}{An object with a method for \code{coef()} that returns a
 numeric vector, the first two elements of which are intercept and slope.
 This is equivalent to \code{coef = coef(model)}.}
+
+\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
+can be added to an existing frame.}
 }
 \description{
 These fuctions create layers that display lines described i various ways.  Unlike most

@@ -104,8 +104,8 @@ NA
 #'
 
 gf_point <-
-  gf_factory(
-    type = "point",
+  layer_factory(
+    geom = "point",
     extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = )
   )
 
@@ -171,8 +171,8 @@ gf_point <-
 #'     position = position_jitter(width = 0.2, height = 0))
 #' }
 gf_jitter <-
-  gf_factory(
-    type = "jitter",
+  layer_factory(
+    geom = "jitter",
     extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = ,
                    width = , height = )
     )
@@ -235,8 +235,8 @@ gf_jitter <-
 #'   gf_line(births ~ date, color = ~wday, data = Births78)
 #'   }
 gf_line <-
-  gf_factory(
-    type = "line",
+  layer_factory(
+    geom = "line",
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ,
                    lineend = , linejoin = , linemitre = , arrow = )
     )
@@ -299,8 +299,8 @@ gf_line <-
 #'   }
 
 gf_path <-
-  gf_factory(
-    type = "path",
+  layer_factory(
+    geom = "path",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    lineend = "butt", linejoin = "round", linemitre = 1, arrow = NULL)
   )
@@ -360,8 +360,8 @@ gf_path <-
 #'   gf_smooth(births ~ date, color = ~wday, data = Births78)
 #' }
 gf_smooth <-
-  gf_factory(
-    type = "smooth",
+  layer_factory(
+    geom = "smooth",
     extras = alist(method = "auto", formula = y ~ x, se = TRUE, method.args = ,
                    n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
     )
@@ -370,8 +370,8 @@ gf_smooth <-
 #' @export
 
 gf_lm <-
-  gf_factory(
-    type = "smooth",
+  layer_factory(
+    geom = "smooth",
     extras = alist(method = "lm", formula = y ~ x, se = TRUE, method.args = ,
                    n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
     )
@@ -436,8 +436,8 @@ gf_lm <-
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
 #' }
 gf_spline <-
-  gf_factory(
-    type = "spline",
+  layer_factory(
+    geom = "spline",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    weight = , df = , spar = , tol = )
     )
@@ -503,8 +503,8 @@ gf_spline <-
 #' gf_raster(z ~ x + y, data = D, hjust = 0, vjust = 0)
 
 gf_raster <-
-  gf_factory(
-    type = "raster",
+  layer_factory(
+    geom = "raster",
     aes_form = list(y ~ x, fill ~ x + y),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ,
                    hjust = 0.5, vjust = 0.5, interpolate = FALSE)
@@ -565,8 +565,8 @@ gf_raster <-
 #'   gf_quantile((1/hwy) ~ displ)
 
 gf_quantile <-
-  gf_factory(
-    type = "quantile",
+  layer_factory(
+    geom = "quantile",
     extras = alist(alpha = , color = , group = , linetype = , size = , weight =,
                    lineend = "butt", linejoin = "round", linemitre = 1, quantiles = ,
                    formula = , method = ,  method.args =  )
@@ -629,8 +629,8 @@ gf_quantile <-
 #' }
 
 gf_density_2d <-
-  gf_factory(
-    type = "density_2d",
+  layer_factory(
+    geom = "density_2d",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    contour = TRUE, n = 100 , h = NULL , lineend = "butt", linejoin = "round",
                    linemitre = 1 )
@@ -693,8 +693,8 @@ gf_density_2d <-
 #' }
 
 gf_density2d <-
-  gf_factory(
-    type = "density2d",
+  layer_factory(
+    geom = "density2d",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    contour = TRUE, n = 100 , h = NULL , lineend = "butt", linejoin = "round",
                    linemitre = 1 )
@@ -756,8 +756,8 @@ gf_density2d <-
 #'   gf_density2d(i1 ~ age, data = HELPrct, color = "red", alpha = 0.5)
 #' }
 gf_hex <-
-  gf_factory(
-    type = "hex",
+  layer_factory(
+    geom = "hex",
     extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = , size = )
   )
 
@@ -822,8 +822,8 @@ gf_hex <-
 #'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
 #' }
 gf_boxplot <-
-  gf_factory(
-    type = "boxplot",
+  layer_factory(
+    geom = "boxplot",
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , shape = , size = ,
       weight =, coef = ,
@@ -887,8 +887,8 @@ gf_boxplot <-
 #'   label = ~Species, color = ~Species, size = 2, angle = 30)
 #'
 gf_text <-
-  gf_factory(
-    type = "text",
+  layer_factory(
+    geom = "text",
     extras = alist(
       label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
       lineheight = , size = , vjust = , parse = FALSE, nudge_x = 0, nudge_y = 0,
@@ -958,8 +958,8 @@ gf_text <-
 #' }
 
 gf_label <-
-  gf_factory(
-    type = "label",
+  layer_factory(
+    geom = "label",
     extras = alist(
       label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
       lineheight = , size = , vjust = ,
@@ -1054,8 +1054,8 @@ gf_label <-
 #' }
 #'
 gf_area <-
-  gf_factory(
-    type = "area",
+  layer_factory(
+    geom = "area",
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
     )
 
@@ -1116,8 +1116,8 @@ gf_area <-
 #' }
 #'
 gf_violin <-
-  gf_factory(
-    type = "violin",
+  layer_factory(
+    geom = "violin",
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight,
       draw_quantiles = NULL, trim = TRUE, scale = "area", bw = , adjust = , kernel = )
   )
@@ -1185,8 +1185,8 @@ gf_violin <-
 #'   gf_spoke(y ~ x, angle = ~angle, radius = ~speed)
 
 gf_spoke <-
-  gf_factory(
-    type = "spoke",
+  layer_factory(
+    geom = "spoke",
     extras = alist(
       angle = , radius = ,
       alpha = , color = , group = , linetype = , size = ),
@@ -1250,8 +1250,8 @@ gf_spoke <-
 #' }
 
 gf_step <-
-  gf_factory(
-    type = "step",
+  layer_factory(
+    geom = "step",
     extras = alist(alpha = , color = , group = , linetype = , size = , direction = "hv" )
     )
 
@@ -1312,8 +1312,8 @@ gf_step <-
 #' gf_tile(z ~ x + y, data = D)
 
 gf_tile <-
-  gf_factory(
-    type = "tile",
+  layer_factory(
+    geom = "tile",
     aes_form = list(y ~ x, fill ~ x + y),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
   )
@@ -1377,8 +1377,8 @@ gf_tile <-
 #'   gf_refine(scale_size_area())
 #'
 gf_count <-
-  gf_factory(
-    type = "count",
+  layer_factory(
+    geom = "count",
     extras = alist(
       alpha = , color = , fill = , group = , shape = , size = , stroke =
     )
@@ -1442,8 +1442,8 @@ gf_count <-
 #' gf_col(count ~ group, data = D)
 
 gf_col <-
-  gf_factory(
-    type = "col",
+  layer_factory(
+    geom = "col",
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size =
     )
@@ -1505,7 +1505,7 @@ gf_col <-
 #' gf_frame((c(0,1)) ~ (c(0,5)))
 
 gf_frame <-
-  gf_factory(type = "blank", function_name = "gf_frame")
+  layer_factory(geom = "blank")
 
 #' Formula interface to geom_histogram()
 #'
@@ -1565,8 +1565,8 @@ gf_frame <-
 #' gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 
 gf_histogram <-
-  gf_factory(
-    type = "histogram", aes_form = list(~x, y ~ x),
+  layer_factory(
+    geom = "histogram", aes_form = list(~x, y ~ x),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
   )
@@ -1629,8 +1629,8 @@ gf_histogram <-
 #' # Chaining in the data
 #' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_density <-
-  gf_factory(
-    type = "density", aes_form = ~ x,
+  layer_factory(
+    geom = "density", aes_form = ~ x,
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight = )
   )
 
@@ -1693,11 +1693,11 @@ gf_density <-
 #' # Chaining in the data
 #' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_dens <-
-  gf_factory(
-    type = "line",
+  layer_factory(
+    geom = "line",
     aes_form = ~ x,
-    extras = alist(stat = "density", alpha = , color = , fill = , group = , linetype = , size = , weight = ),
-    function_name = "gf_dens"
+    extras = alist(stat = "density", alpha = , color = , fill = ,
+                   group = , linetype = , size = , weight = )
   )
 
 #' Formula interface to geom_dotplot()
@@ -1754,8 +1754,8 @@ gf_dens <-
 #' gf_dotplot(~ Sepal.Length, fill = ~Species, data = iris)
 
 gf_dotplot <-
-  gf_factory(
-    type = "dotplot",
+  layer_factory(
+    geom = "dotplot",
     aes_form = ~x,
     extras = alist(
       alpha = , color = , fill =, group = ,
@@ -1825,8 +1825,8 @@ gf_dotplot <-
 #' }
 
 gf_bar <-
-  gf_factory(
-    type = "bar", aes_form = ~ x,
+  layer_factory(
+    geom = "bar", aes_form = ~ x,
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL, binwidth = NULL )
@@ -1836,12 +1836,11 @@ gf_bar <-
 #' @export
 
 gf_counts <-
-  gf_factory(
-    type = "bar", aes_form = ~ x,
+  layer_factory(
+    geom = "bar", aes_form = ~ x,
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
-      width = NULL, binwidth = NULL ),
-    function_name = "gf_counts"
+      width = NULL, binwidth = NULL)
   )
 
 #' Formula interface to geom_freqpoly()
@@ -1902,8 +1901,8 @@ gf_counts <-
 #' gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
 
 gf_freqpoly <-
-  gf_factory(
-    type = "freqpoly", aes_form = ~ x,
+  layer_factory(
+    geom = "freqpoly", aes_form = ~ x,
     extras = alist(
       alpha = , color = , group = , linetype = , size =,
       binwidth =, bins = , center = , boundary = ,
@@ -1965,10 +1964,19 @@ gf_freqpoly <-
 #' gf_qq(~Sepal.Length | Species, data = iris)
 #' gf_qq(~Sepal.Length, color = ~Species, data = iris)
 gf_qq <-
-  gf_factory(
-    type = "qq", aes_form = ~ sample,
+  layer_factory(
+    geom = "qq", aes_form = ~ sample,
     extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
   )
+
+#' @export
+gf_qqstep <-
+  layer_factory(
+    geom = "step", stat = "qq", position = "identity",
+    aes_form = ~ sample,
+    extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
+  )
+
 
 #' Formula interface to geom_rug()
 #'
@@ -2030,8 +2038,8 @@ gf_qq <-
 #' gf_rug( x = ~ Sepal.Width, data = iris, color = "navy") %>%
 #' gf_rug( y = ~ Sepal.Length, data = iris, color = "red")
 gf_rug <-
-  gf_factory(
-    type = "rug", aes_form = list(~ x, y ~ x, NULL),
+  layer_factory(
+    geom = "rug", aes_form = list(~ x, y ~ x, NULL),
     extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
     )
 
@@ -2092,7 +2100,7 @@ gf_rug <-
 #'   gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
 
 gf_contour <-
-  gf_factory(type = "contour", aes_form = z ~ x + y)
+  layer_factory(geom = "contour", aes_form = z ~ x + y)
 
 #' Formula interface to geom_ribbon()
 #'
@@ -2170,8 +2178,8 @@ gf_contour <-
 #' }
 
 gf_ribbon <-
-  gf_factory(
-    type = "ribbon", aes_form = ymin + ymax ~ x,
+  layer_factory(
+    geom = "ribbon", aes_form = ymin + ymax ~ x,
     extras = list(alpha = 0.3))
 
 #' Formula interface to geom_curve()
@@ -2231,8 +2239,8 @@ gf_ribbon <-
 #'   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 
 gf_curve <-
-  gf_factory(
-    type = "curve", aes_form = y + yend ~ x + xend,
+  layer_factory(
+    geom = "curve", aes_form = y + yend ~ x + xend,
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
       curvature = 0.5, angle = 90, ncp = 5, arrow = NULL, lineend = "butt")
@@ -2295,8 +2303,8 @@ gf_curve <-
 #'   gf_segment(y1 + y2 ~ x1 + x2, data = D, color = "red")
 
 gf_segment <-
-  gf_factory(
-    type = "segment", aes_form = y + yend ~ x + xend,
+  layer_factory(
+    geom = "segment", aes_form = y + yend ~ x + xend,
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
       arrow = NULL, lineend = "butt"
@@ -2379,8 +2387,8 @@ gf_segment <-
 #' }
 #'
 gf_linerange <-
-  gf_factory(
-    type = "linerange", aes_form = ymin + ymax ~ x,
+  layer_factory(
+    geom = "linerange", aes_form = ymin + ymax ~ x,
     extras = alist( alpha = , color = , group = , linetype = , size = )
   )
 
@@ -2459,8 +2467,8 @@ gf_linerange <-
 #' }
 
 gf_pointrange <-
-  gf_factory(
-    type = "pointrange",
+  layer_factory(
+    geom = "pointrange",
     aes_form = y + ymin + ymax ~ x,
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
@@ -2547,8 +2555,8 @@ gf_pointrange <-
 #' }
 
 gf_crossbar <-
-  gf_factory(
-    type = "crossbar",
+  layer_factory(
+    geom = "crossbar",
     aes_form = y + ymin + ymax ~ x,
     extras = alist(
       alpha = , color = , group = , linetype = , size = , fatten = 2.5
@@ -2634,8 +2642,8 @@ gf_crossbar <-
 #'     gf_facet_grid( ~ sex)
 #' }
 gf_errorbar <-
-  gf_factory(
-    type = "errorbar",
+  layer_factory(
+    geom = "errorbar",
     aes_form = ymin + ymax ~ x,
     extras = alist(
       alpha = , color = , group = , linetype = , size =
@@ -2716,8 +2724,8 @@ gf_errorbar <-
 #'     gf_facet_grid( ~ sex)
 #' }
 gf_errorbarh <-
-  gf_factory(
-    type = "errorbarh",
+  layer_factory(
+    geom = "errorbarh",
     aes_form = y ~ x + xmin + xmax,
     extras = alist(
       alpha = , color = , group = , linetype = , size =
@@ -2778,8 +2786,8 @@ gf_errorbarh <-
 #' gf_rect( 1 + 2 ~ 3 + 4, alpha = 0.3, color = "red")
 #'
 gf_rect <-
-  gf_factory(
-    type = "rect",
+  layer_factory(
+    geom = "rect",
     aes_form = ymin + ymax ~ xmin + xmax,
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
   )
@@ -2828,8 +2836,8 @@ gf_rect <-
 #'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
 #'   gf_vline(color = "brown", xintercept = c(200, 300))
 gf_abline <-
-  gf_factory(
-    type = "abline", aes_form = NULL,
+  layer_factory(
+    geom = "abline", aes_form = NULL,
     extras = alist( slope =, intercept = )
   )
 
@@ -2837,16 +2845,16 @@ gf_abline <-
 #' @rdname gf_lines
 #' @export
 gf_hline <-
-  gf_factory(
-    type = "hline", aes_form = NULL,
+  layer_factory(
+    geom = "hline", aes_form = NULL,
     extras = alist(yintercept = )
   )
 
 #' @rdname gf_lines
 #' @export
 gf_vline <-
-  gf_factory(
-    type = "vline", aes_form = NULL,
+  layer_factory(
+    geom = "vline", aes_form = NULL,
     extras = alist(xintercept = )
     )
 
