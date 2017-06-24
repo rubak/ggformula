@@ -1,3 +1,5 @@
+# ggformula 0.4.0.9000
+
 # ggformula 0.4.0
 
 Version 0.4.0 constitutes a stable beta release.  Changes to the API are still possible, but more 
