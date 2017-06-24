@@ -2914,7 +2914,20 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
 
 
 gf_function <- function(object, fun, ...) {
-  object + stat_function(fun = fun, ...)
+  if (rlang::is_function(object)) {
+    fun <- object
+    object <- ggplot() + geom_blank()
+  }
+  qdots <- quos(...)
+  afq <- aes_from_qdots(qdots)
+  object +
+    do.call(
+      ggplot2::layer,
+      list(geom = "path", stat = "function", position = "identity",
+           mapping = afq$mapping,
+           params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
+      )
+    )
 }
 
 #' @rdname gf_functions
@@ -2931,9 +2944,23 @@ gf_function <- function(object, fun, ...) {
 #'   }
 
 gf_fun <- function(object, formula, ...) {
+  if (rlang::is_formula(object)) {
+    formula <- object
+    object <- ggplot() + geom_blank()
+  }
+  qdots <- quos(...)
   fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
-  object + stat_function(fun = fun, ...)
+  afq <- aes_from_qdots(qdots)
+  object +
+    do.call(
+      ggplot2::layer,
+        list(geom = "path", stat = "function", position = "identity",
+             mapping = afq$mapping,
+             params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
+      )
+    )
 }
+
 
 
 

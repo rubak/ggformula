@@ -64,8 +64,25 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
 #   }
 
 
+aes_from_qdots <- function(qdots, mapping = aes()) {
+  if (length(qdots) > 0) {
+    # proceed backwards through list so that removing items doesn't mess up indexing
+    for (i in length(qdots):1L) {
+      if (rlang::is_formula(f_rhs(qdots[[i]])) && length(rlang::f_rhs(qdots[[i]])) == 2L) {
+        mapping[[names(qdots)[i]]] <- f_rhs(qdots[[i]])[[2]]
+        qdots[[i]] <- NULL
+      }
+    }
+  }
+  list(
+    mapping = do.call(aes, mapping),
+    qdots = qdots
+  )
+}
+
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
+
 
 layer_factory <- function(
   geom = "point",
@@ -185,7 +202,7 @@ layer_factory <- function(
         check.aes = TRUE, check.param = FALSE,
         show.legend = show.legend
       )
-
+    # print(layer_args[c("mapping", "params")])
     new_layer <- do.call(ggplot2::layer, layer_args)
     # message(
     #   do.call(call, c(list("layer"), layer_args))
@@ -420,7 +437,6 @@ df_to_aesthetics <- function(formula_df, data_names = NULL, prefix = "") {
               with(subset(formula_df, ! formula_df$map),
                    paste(role, expr, sep = " = ", collapse = ", ")),
               "")
-  print(S)
   S
 }
 
