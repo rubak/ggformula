@@ -1,5 +1,11 @@
-# ggformula 0.4.0.9000
+# ggformula 0.5.0
 
+The internals of `ggformula` have been largely redesigned to allow implementation of 
+some new features.  The new version relies much less on string parsing.
+
+  * `gf_dist()` can plot distributions
+  * `gf_dhistogram()` plots density histograms by default
+  
 # ggformula 0.4.0
 
 Version 0.4.0 constitutes a stable beta release.  Changes to the API are still possible, but more 
