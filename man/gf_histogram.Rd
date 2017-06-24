@@ -2,12 +2,18 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_histogram}
 \alias{gf_histogram}
+\alias{gf_dhistogram}
 \title{Formula interface to geom_histogram()}
 \usage{
-gf_histogram(object = NULL, gformula = NULL, data = NULL,
-  geom = "histogram", stat = "identity", position = "identity",
-  verbose = FALSE, show.legend = NA, show.help = NULL,
-  aesthetics = structure(list(), class = "uneval"), ...)
+gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = "bar",
+  stat = "bin", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
+
+gf_dhistogram(object = NULL, gformula = NULL, data = NULL, geom = "bar",
+  stat = "bin", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(y =
+  ..density..), .Names = "y", class = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

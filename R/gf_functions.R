@@ -824,6 +824,7 @@ gf_hex <-
 gf_boxplot <-
   layer_factory(
     geom = "boxplot",
+    stat = "boxplot",
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , shape = , size = ,
       weight =, coef = ,
@@ -1566,9 +1567,19 @@ gf_frame <-
 
 gf_histogram <-
   layer_factory(
-    geom = "histogram", aes_form = list(~x, y ~ x),
+    geom = "bar", stat = "bin", aes_form = list(~x, y ~ x),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
+  )
+
+#' @rdname gf_histogram
+#' @export
+gf_dhistogram <-
+  layer_factory(
+    geom = "bar", stat = "bin", aes_form = list(~x, y ~ x),
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
+    note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount..",
+    aesthetics = aes(y = ..density..)
   )
 
 #' Formula interface to geom_density()
@@ -1630,8 +1641,9 @@ gf_histogram <-
 #' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_density <-
   layer_factory(
-    geom = "density", aes_form = ~ x,
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight = )
+    geom = "area", stat = "density", aes_form = ~ x,
+    extras = alist(alpha = 0.5, color = , fill = NA, group = , linetype = , size = , weight = ),
+    aesthetics = aes(y = ..density..)
   )
 
 # modified version of density plot without line along bottom and sides
@@ -1694,10 +1706,11 @@ gf_density <-
 #' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_dens <-
   layer_factory(
-    geom = "line",
+    geom = "line", stat = "density",
     aes_form = ~ x,
-    extras = alist(stat = "density", alpha = , color = , fill = ,
-                   group = , linetype = , size = , weight = )
+    extras = alist(alpha = 0.5 , color = ,
+                   group = , linetype = , size = , weight = ),
+    aesthetics = aes(y = ..density..)
   )
 
 #' Formula interface to geom_dotplot()
@@ -1911,6 +1924,11 @@ gf_freqpoly <-
 
 #' Formula interface to geom_qq()
 #'
+#' \code{gf_qq()} an \code{gf_qqstep()} both create quantile-quantile plots. They
+#' differ in how they display the qq-plot.
+#' \code{gf_qq()} uses points and \code{gf_qqstep()} plots a step function
+#' through these points.
+#'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
@@ -1962,14 +1980,18 @@ gf_freqpoly <-
 #' @examples
 #' gf_qq(~rnorm(100))
 #' gf_qq(~Sepal.Length | Species, data = iris)
-#' gf_qq(~Sepal.Length, color = ~Species, data = iris)
+#' gf_qq(~Sepal.Length, color = ~Species, data = iris) %>%
+#' gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
 gf_qq <-
   layer_factory(
-    geom = "qq", aes_form = ~ sample,
+    geom = "point", stat = "qq",
+    aes_form = ~ sample,
     extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
   )
 
 #' @export
+#' @rdname gf_qq
+
 gf_qqstep <-
   layer_factory(
     geom = "step", stat = "qq", position = "identity",

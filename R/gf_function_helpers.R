@@ -19,6 +19,10 @@ utils::globalVariables("role")
 formula_slots <- function(x, stop_binops = c(":", "::")) {
   if (length(x) == 2L && deparse(x[[1]]) == "~") {
     formula_slots(x[[2]])
+  } else if (length(x) == 3L && deparse(x[[1]]) == "~") {
+    list(formula_slots(x[[2]]), formula_slots(x[[3]]))
+  } else if (length(x) > 1 && is.name(x[[1]]) && !deparse(x[[1]]) %in% c("+", "|")) {
+    list(x)
   } else if (length(x) == 3L && deparse(x[[1]]) %in% stop_binops) {
     list(x)
   } else if (length(x) <= 2L) {
@@ -37,168 +41,28 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   x
 }
 
+
 .default_value <- function(x) {
   sapply(x,
          function(x) ifelse (is.symbol(x), "", paste0(" = ", lapply(x, .quotify)))
   )
 }
 
-# .add_arg_list_to_function_string <- function(S, extras) {
-#   print(S)
-#   empty <- grepl("\\(\\s?\\)$", S)
-#   res <- if (length(extras) == 0 ) {
-#     S
-#   } else {
-#     more <- paste0(names(extras), " = ", extras, collapse = ", ")
-#     S <- gsub("\\)$", "", S)
-#     paste0(S, ifelse(empty, "", ", "), more, ")")
-#   }
-#   print(res)
-#   res
-# }
 
-# # produces a gf_ function wrapping a particular geom.
-# # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
-#
-# gf_factory <- function(
-#   type,
-#   aes_form = y ~ x,
-#   extras = alist(),
-#   note = NULL,
-#   function_name = paste0("gf_", type),
-#   layer = FALSE,
-#   position = "identity",
-#   stat = "identity",
-#   geom = type
-# ) {
-#   function(object = NULL, gformula = NULL,
-#            data = NULL, geom = type, verbose = FALSE,
-#            add = inherits(object, c("gg", "ggplot")),
-#            ..., position = NULL, # stat = NULL,
-#            show.help = NULL) {
-#
-#     qdots <- rlang::quos(...)
-#     # dots <- list(...)
-#     if (is.null(show.help)) {
-#       show.help <- is.null(object) && is.null(gformula) && length(qdots) == 0L
-#     }
-#
-#     if (!is.list(aes_form)) aes_form <- list(aes_form)
-#     if (show.help) {
-#       fun <- match.call()[1]
-#       if (any(sapply(aes_form, is.null))) {
-#         message(fun, " does not require a formula.")
-#       } else {
-#         message(fun, " uses a formula with shape ", paste(sapply(aes_form, format), collapse = " or "), ".")
-#       }
-#       if(length(extras) > 0) {
-#         message("Additional attributes include: ",
-#                 strwrap(
-#                   paste(names(extras), .default_value(extras), collapse = ", ", sep = ""),
-#                   prefix = "\n    "
-#                   )
-#         )
-#       }
-#       if (!is.null(note)) message(note)
-#       message("For more information, try ?", function_name)
-#       return(invisible(NULL))
-#     }
-#
-#     aesthetics <- list()
-#     data_name <- deparse(substitute(data))
-#     object_name <- deparse(substitute(object))
-#
-#     if (inherits(object, "formula")) {
-#       gformula <- object
-#       object <- NULL
-#     }
-#
-#     fmatches <-  formula_match(gformula, aes_form = aes_form)
-#     if (! any(fmatches)) {
-#       stop("Invalid formula type for ", function_name, ".", call. = FALSE)
-#     }
-#     aes_form <- aes_form[[which.max(fmatches)]]
-#
-#     if (length(qdots) > 0) {
-#       # proceed backwards through list so that removing items doesn't mess up indexing
-#       for (i in length(qdots):1L) {
-#         if (is_formula(f_rhs(qdots[[i]])) && length(f_rhs(qdots[[i]])) == 2L) {
-#           aesthetics[[names(qdots)[i]]] <- f_rhs(qdots[[i]])[[2]]
-#           qdots[[i]] <- NULL
-#         }
-#       }
-#     }
-#
-#     qposition <- rlang::enquo(position)
-#     if (!is.null(position)) {
-#       qdots[["position"]] <- qposition
-#     }
-#
-#     # qstat <- rlang::enquo(stat)
-#     # if (!is.null(stat)) {
-#     #   qdots[["stat"]] <- qstat
-#     # }
-#
-#
-#     if (length(extras) > 0) {
-#       extras <- extras[sapply(extras, function(x) !is.symbol(x))]
-#     }
-#
-#     if (length(qdots) > 0) {
-#       extras <- modifyList(extras, lapply(qdots, rlang::f_rhs))
-#     }
-#
-#     extras <- lapply(extras, .quotify)
-#
-#     dot_eval <- FALSE
-#     if (inherits(object, "data.frame")) {
-#       data <- object
-#       data_name <- object_name
-#       object <- NULL
-#       dot_eval <- TRUE
-#     }
-#
-#     if (!inherits(object, c("gg", "ggplot"))) {
-#       add <- FALSE  # can't add if we don't have a plot to add to
-#     }
-#
-#     gg_string <- gf_master(formula = gformula, data = data,
-#                            geom = geom, stat = stat, position = position,
-#                            layer = layer,
-#                            gg_object = object,
-#                            add = add, extras = extras,
-#                            aes_form = aes_form,
-#                            data_name = data_name,
-#                            aesthetics = aesthetics)
-#
-#     if (verbose) cat(gsub("geom", "\n  geom", gg_string$text, fixed = TRUE), "\n")
-#
-#     if (dot_eval) {
-#       gg_string <- gf_master(formula = gformula, data = data,
-#                              geom = geom, stat = stat, position = position,
-#                              gg_object = object,
-#                              add = TRUE, extras = extras,
-#                              aes_form = aes_form,
-#                              data_name = NULL,
-#                              aesthetics = aesthetics,
-#                              layer = layer)
-#       # if (verbose) cat(gsub("geom", "\n  geom", gg_string$text, fixed = TRUE), "\n")
-#     }
-#
-#     if (dot_eval) {
-#       P <- ggplot(data) + eval(parse(text = gg_string$main))
-#       if (length(gg_string$facet) > 0) {
-#         P <- P + eval(parse(text = gg_string$facet))
-#       }
-#     } else {
-#       P <- eval(parse(text = gg_string$text), environment(gformula))
-#     }
-#     if (add)  #  don't need this part: && inherits(object, c("gg", "ggplot")))
-#       return(object + P)
-#     else
-#       return(P)
+# layer <-
+#   function(
+#     geom = NULL, stat = NULL, data = NULL, mapping = NULL,
+#     position = NULL, params = list(), inherit.aes = TRUE,
+#     check.aes = TRUE, check.param = TRUE, subset = NULL,
+#     show.legend = NA, ...)
+#   {
+#     ggplot2::layer(
+#       geom = geom, stat = stat, data = data, mapping = mapping,
+#       position = position, params = params, inherit.aes = inherit.aes,
+#       check.aes = check.aes, check.param = check.param, subset = subset,
+#       show.legend = show.legend)
 #   }
-# }
+
 
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
@@ -209,7 +73,8 @@ layer_factory <- function(
   stat = "identity",
   aes_form = y ~ x,
   extras = alist(),
-  note = NULL
+  note = NULL,
+  aesthetics = aes()
 ) {
   res <-
   function() {
@@ -287,21 +152,21 @@ layer_factory <- function(
       extras <- modifyList(extras, lapply(qdots, rlang::f_rhs))
     }
 
-    extras <- lapply(extras, .quotify)
+    # don't need this anymore since we aren't creating a string to evaluate.
+    # extras <- lapply(extras, .quotify)
 
-    dot_eval <- FALSE
-    if (inherits(object, "data.frame")) {
-      data <- object
-      data_name <- object_name
-      object <- NULL
-      dot_eval <- TRUE
-    }
+    # dot_eval <- FALSE
+    # if (inherits(object, "data.frame")) {
+    #   data <- object
+    #   data_name <- object_name
+    #   object <- NULL
+    #   dot_eval <- TRUE
+    # }
 
     # if (!inherits(object, c("gg", "ggplot"))) {
     #   add <- FALSE  # can't add if we don't have a plot to add to
     # }
     add <- inherits(object, c("gg", "ggplot"))
-
 
     ingredients <-
       gf_ingredients(
@@ -310,27 +175,21 @@ layer_factory <- function(
         extras = extras,
         aes_form = aes_form,
         aesthetics = aesthetics)
-
-    print(ingredients[["setting"]])
-    new_layer <-
-      do.call(
-        "layer",
-        c(
-          list(
-            geom = geom,
-            stat = stat,
-            data = data,
-            mapping = ingredients[["mapping"]],
-            position = position,
-            params = ingredients[["setting"]],
-            # inherit.aes = ,
-            # check.aes = ,
-            # check.param = ,
-            show.legend = show.legend),
-          extras
-        )
+    layer_args <-
+      list(
+        geom = geom, stat = stat,
+        data = data, mapping = ingredients[["mapping"]],
+        position = position,
+        params = ingredients[["setting"]],
+        # inherit.aes = ,
+        check.aes = TRUE, check.param = FALSE,
+        show.legend = show.legend
       )
 
+    new_layer <- do.call(ggplot2::layer, layer_args)
+    # message(
+    #   do.call(call, c(list("layer"), layer_args))
+    # )
     if (is.null(ingredients[["facet"]])) {
       if (add)
         return(object + new_layer)
@@ -351,7 +210,7 @@ layer_factory <- function(
         verbose = FALSE,
         show.legend = NA,
         show.help = NULL,
-        aesthetics = aes()
+        aesthetics = aesthetics
       ),
       alist(... = )
     )
@@ -423,17 +282,11 @@ gf_ingredients <-
 
   set_list <- as.list(aes_df[["expr"]][!aes_df$map])
   names(set_list) <- aes_df[["role"]][!aes_df$map]
-
-  # add <- FALSE
-  # main_arguments <-
-  #   df_to_aesthetics(
-  #     from_formula, var_names,
-  #     prefix = if (add) data_string else "")
-  #
+  set_list <- modifyList(extras, set_list)
 
   res <-
     list(
-      mapping = modifyList(aesthetics, do.call(aes_string, mapped_list)),
+      mapping = modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list)),
       setting = set_list,
       facet =
         if (is.null(fs[["condition"]])){
@@ -445,97 +298,6 @@ gf_ingredients <-
   res
 }
 
-# gf_master <- function(formula = NULL, data = NULL,
-#                       add = FALSE,
-#                       data_name = NULL,
-#                       geom = "point",
-#                       stat = "identity",
-#                       position = "identity",
-#                       extras = list(),
-#                       gg_object = NULL,
-#                       aes_form = y ~ x,
-#                       layer = FALSE,
-#                       aesthetics = list()) {
-#
-#   data_string <-
-#     if (is.null(data)) ""
-#   else {
-#     if (is.null(data_name)) "" else paste("data =", data_name)
-#   }
-#
-#   # if ( (! add) && is.null(data) )
-#   #   warning("No data supplied.  Was that intentional?")
-#
-#   # split A | B into formula <- A; condition <- B
-#   fs <- formula_split(formula)
-#   formula <- fs[["formula"]]
-#   condition <- fs[["condition"]]
-#   facet_type <- fs[["facet_type"]]
-#
-#   var_names <-
-#     if (is.null(data)) {
-#       if (is.null(gg_object)) {
-#         character(0)
-#       } else {
-#         names(gg_object$data)
-#       }
-#     } else {
-#       names(data)
-#     }
-#
-#   # arguments for the frame or, if add == TRUE, for the geom
-#   # main_arguments <-
-#   #   formula_to_aesthetics(formula, var_names,
-#   #                         prefix = data_string,
-#   #                         aes_form = aes_form)
-#
-#   from_formula <-
-#     rbind(
-#       formula_to_df(formula, var_names, aes_form = aes_form),
-#       data.frame(
-#         role = names(aesthetics),
-#         expr = sapply(aesthetics, deparse),
-#         map  = rep(TRUE, length(aesthetics))
-#       )
-#     )
-#
-#   main_arguments <-
-#     df_to_aesthetics(
-#       from_formula, var_names,
-#       prefix = if (add) data_string else "")
-#
-#   gg_string <-
-#     if (layer) {
-#       .add_arg_list_to_function_string(
-#         paste0("layer(",
-#                  "geom = ",     geom,
-#                ", stat = ",     stat,
-#                ", position = ", position,
-#                ", ",  main_arguments,
-#                ")"
-#                ),
-#         extras)
-#     } else {
-#       .add_arg_list_to_function_string(
-#         paste0("geom_", geom, "(", main_arguments, ")"),
-#         extras)
-#     }
-#
-#   if (! add) gg_string <-   # need ggplot() call, too
-#     paste0("ggplot(", data_string, ") + ", gg_string)
-#
-#   res <-
-#   list(
-#     main = gg_string,
-#     facet =
-#       if (is.null(condition)) ""  else
-#         paste0(facet_type, "(", deparse(condition), ")")
-#     )
-#   res$text <-
-#     if (is.null(condition)) gg_string  else
-#       paste0(gg_string, " + ", res$facet)
-#   res
-# }
 
 formula_shape <- function(x) {
   if (length(x) < 2) return(0)
@@ -545,6 +307,10 @@ formula_shape <- function(x) {
   }
   if (as.character(x[[1]]) %in% c(":", "(")){
     return(-1)
+  }
+  # stop if we hit a name that isn't +
+  if (is.name(x[[1]]) && ! as.character(x[[1]]) %in% c("+", "~")) {
+    return(0)
   }
 
   # if (as.character(x[[1]]) %in% c("|")){
@@ -595,7 +361,7 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
   parts <- formula_slots(formula) %>% rapply(deparse, how = "replace") %>% unlist()
   aes_names <- formula_slots(aes_form) %>% rapply(deparse, how = "replace") %>% unlist()
 
-  # trim leading blanks
+  # trim leading/trailing blanks
   parts <- gsub("^\\s+|\\s+$", "", parts)
 
   # split into pairs/nonpairs

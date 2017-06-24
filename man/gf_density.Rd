@@ -4,10 +4,10 @@
 \alias{gf_density}
 \title{Formula interface to geom_density()}
 \usage{
-gf_density(object = NULL, gformula = NULL, data = NULL,
-  geom = "density", stat = "identity", position = "identity",
-  verbose = FALSE, show.legend = NA, show.help = NULL,
-  aesthetics = structure(list(), class = "uneval"), ...)
+gf_density(object = NULL, gformula = NULL, data = NULL, geom = "area",
+  stat = "density", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(y =
+  ..density..), .Names = "y", class = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

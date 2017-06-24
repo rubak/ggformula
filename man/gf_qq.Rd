@@ -2,12 +2,16 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_qq}
 \alias{gf_qq}
+\alias{gf_qqstep}
 \title{Formula interface to geom_qq()}
 \usage{
-gf_qq(object = NULL, gformula = NULL, data = NULL, geom = "qq",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+gf_qq(object = NULL, gformula = NULL, data = NULL, geom = "point",
+  stat = "qq", position = "identity", verbose = FALSE, show.legend = NA,
+  show.help = NULL, aesthetics = structure(list(), class = "uneval"), ...)
+
+gf_qqstep(object = NULL, gformula = NULL, data = NULL, geom = "step",
+  stat = "qq", position = "identity", verbose = FALSE, show.legend = NA,
+  show.help = NULL, aesthetics = structure(list(), class = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -41,14 +45,19 @@ can be added to an existing frame.}
 a gg object
 }
 \description{
+\code{gf_qq()} an \code{gf_qqstep()} both create quantile-quantile plots. They
+differ in how they display the qq-plot.
+\code{gf_qq()} uses points and \code{gf_qqstep()} plots a step function
+through these points.
+}
+\details{
 \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
 functions.
 For plots with just one layer, the formula interface
 is more compact and is consistent with modeling and \pkg{mosaic} notation.
 The functions generate a \code{ggplot} command string which can be displayed by
 setting \code{verbose = TRUE} as an argument.
-}
-\details{
+
 Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
 to \code{value}.
@@ -72,7 +81,8 @@ in another.
 \examples{
 gf_qq(~rnorm(100))
 gf_qq(~Sepal.Length | Species, data = iris)
-gf_qq(~Sepal.Length, color = ~Species, data = iris)
+gf_qq(~Sepal.Length, color = ~Species, data = iris) \%>\%
+gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
 }
 \seealso{
 \code{\link{geom_qq}()}

@@ -5,7 +5,7 @@
 \title{Formula interface to geom_boxplot()}
 \usage{
 gf_boxplot(object = NULL, gformula = NULL, data = NULL,
-  geom = "boxplot", stat = "identity", position = "identity",
+  geom = "boxplot", stat = "boxplot", position = "identity",
   verbose = FALSE, show.legend = NA, show.help = NULL,
   aesthetics = structure(list(), class = "uneval"), ...)
 }

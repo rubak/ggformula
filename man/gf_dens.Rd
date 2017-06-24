@@ -5,9 +5,9 @@
 \title{Formula interface to geom_line() and stat_density()}
 \usage{
 gf_dens(object = NULL, gformula = NULL, data = NULL, geom = "line",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  stat = "density", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(y =
+  ..density..), .Names = "y", class = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
