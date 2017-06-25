@@ -172,9 +172,9 @@ gf_point <-
 #' }
 gf_jitter <-
   layer_factory(
-    geom = "jitter",
-    extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = ,
-                   width = , height = )
+    geom = "point",
+    position = "jitter",
+    extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = )
     )
 
 #' Formula interface to geom_line()
@@ -358,10 +358,13 @@ gf_path <-
 #' @examples
 #' if (require(mosaicData)) {
 #'   gf_smooth(births ~ date, color = ~wday, data = Births78)
+#'   gf_smooth(births ~ date, color = ~wday, data = Births78, show.legend = FALSE, se = FALSE)
+#'   gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = TRUE, alpha = 0.2)
 #' }
 gf_smooth <-
   layer_factory(
     geom = "smooth",
+    stat = "smooth",
     extras = alist(method = "auto", formula = y ~ x, se = TRUE, method.args = ,
                    n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
     )
@@ -372,8 +375,9 @@ gf_smooth <-
 gf_lm <-
   layer_factory(
     geom = "smooth",
+    stat = "smooth",
     extras = alist(method = "lm", formula = y ~ x, se = TRUE, method.args = ,
-                   n = 80 , span = 0.75 , fullrange = FALSE, level = 0.95)
+                   n = 80 , fullrange = FALSE, level = 0.95)
     )
 
 
@@ -438,6 +442,7 @@ gf_lm <-
 gf_spline <-
   layer_factory(
     geom = "spline",
+    stat = "spline",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    weight = , df = , spar = , tol = )
     )
@@ -567,6 +572,7 @@ gf_raster <-
 gf_quantile <-
   layer_factory(
     geom = "quantile",
+    stat = "quantile",
     extras = alist(alpha = , color = , group = , linetype = , size = , weight =,
                    lineend = "butt", linejoin = "round", linemitre = 1, quantiles = ,
                    formula = , method = ,  method.args =  )
@@ -631,6 +637,7 @@ gf_quantile <-
 gf_density_2d <-
   layer_factory(
     geom = "density_2d",
+    stat = "density_2d",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    contour = TRUE, n = 100 , h = NULL , lineend = "butt", linejoin = "round",
                    linemitre = 1 )
@@ -695,6 +702,7 @@ gf_density_2d <-
 gf_density2d <-
   layer_factory(
     geom = "density2d",
+    stat = "density2d",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    contour = TRUE, n = 100 , h = NULL , lineend = "butt", linejoin = "round",
                    linemitre = 1 )
@@ -758,6 +766,7 @@ gf_density2d <-
 gf_hex <-
   layer_factory(
     geom = "hex",
+    stat = "binhex",
     extras = alist(bins = , binwidth = , alpha = , color = , fill = , group = , size = )
   )
 
@@ -1119,8 +1128,11 @@ gf_area <-
 gf_violin <-
   layer_factory(
     geom = "violin",
+    stat = "ydensity",
+    position = "dodge",
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight,
-      draw_quantiles = NULL, trim = TRUE, scale = "area", bw = , adjust = , kernel = )
+      draw_quantiles = NULL, trim = TRUE, scale = "area", bw = , adjust = 1,
+      kernel = "gaussian")
   )
 
 #' Formula interface to geom_spoke()
@@ -1379,7 +1391,8 @@ gf_tile <-
 #'
 gf_count <-
   layer_factory(
-    geom = "count",
+    geom = "point",
+    stat = "sum",
     extras = alist(
       alpha = , color = , fill = , group = , shape = , size = , stroke =
     )
@@ -1445,6 +1458,7 @@ gf_count <-
 gf_col <-
   layer_factory(
     geom = "col",
+    position = "stack",
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size =
     )
@@ -1567,7 +1581,8 @@ gf_frame <-
 
 gf_histogram <-
   layer_factory(
-    geom = "bar", stat = "bin", aes_form = list(~x, y ~ x),
+    geom = "bar", stat = "bin", position = "stack",
+    aes_form = list(~x, y ~ x),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
   )
@@ -1576,7 +1591,8 @@ gf_histogram <-
 #' @export
 gf_dhistogram <-
   layer_factory(
-    geom = "bar", stat = "bin", aes_form = list(~x, y ~ x),
+    geom = "bar", stat = "bin", position = "stack",
+    aes_form = list(~x, y ~ x),
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount..",
     aesthetics = aes(y = ..density..)
@@ -1641,8 +1657,11 @@ gf_dhistogram <-
 #' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_density <-
   layer_factory(
-    geom = "area", stat = "density", aes_form = ~ x,
-    extras = alist(alpha = 0.5, color = , fill = NA, group = , linetype = , size = , weight = ),
+    geom = "area", stat = "density",
+    aes_form = ~ x,
+    extras = alist(alpha = 0.5, color = , fill = NA, group = ,
+                   linetype = , size = , weight = ,
+                   kernel = "guassian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
 
@@ -1709,7 +1728,8 @@ gf_dens <-
     geom = "line", stat = "density",
     aes_form = ~ x,
     extras = alist(alpha = 0.5 , color = ,
-                   group = , linetype = , size = , weight = ),
+                   group = , linetype = , size = , weight = ,
+                   kernel = "guassian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
 
@@ -1768,7 +1788,7 @@ gf_dens <-
 
 gf_dotplot <-
   layer_factory(
-    geom = "dotplot",
+    geom = "dotplot", stat = "bindot",
     aes_form = ~x,
     extras = alist(
       alpha = , color = , fill =, group = ,
@@ -1839,7 +1859,8 @@ gf_dotplot <-
 
 gf_bar <-
   layer_factory(
-    geom = "bar", aes_form = ~ x,
+    geom = "bar", stat = "count", position = "stack",
+    aes_form = ~ x,
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL, binwidth = NULL )
@@ -1850,7 +1871,8 @@ gf_bar <-
 
 gf_counts <-
   layer_factory(
-    geom = "bar", aes_form = ~ x,
+    geom = "bar", stat = "count", position = "stack",
+    aes_form = ~ x,
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL, binwidth = NULL)
@@ -1915,7 +1937,8 @@ gf_counts <-
 
 gf_freqpoly <-
   layer_factory(
-    geom = "freqpoly", aes_form = ~ x,
+    geom = "path", stat = "bin",
+    aes_form = ~ x,
     extras = alist(
       alpha = , color = , group = , linetype = , size =,
       binwidth =, bins = , center = , boundary = ,
@@ -2061,7 +2084,8 @@ gf_qqstep <-
 #' gf_rug( y = ~ Sepal.Length, data = iris, color = "red")
 gf_rug <-
   layer_factory(
-    geom = "rug", aes_form = list(~ x, y ~ x, NULL),
+    geom = "rug",
+    aes_form = list(~ x, y ~ x, NULL),
     extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
     )
 
@@ -2122,7 +2146,9 @@ gf_rug <-
 #'   gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
 
 gf_contour <-
-  layer_factory(geom = "contour", aes_form = z ~ x + y)
+  layer_factory(
+    geom = "contour", stat = "countour",
+    aes_form = z ~ x + y)
 
 #' Formula interface to geom_ribbon()
 #'
@@ -2326,7 +2352,8 @@ gf_curve <-
 
 gf_segment <-
   layer_factory(
-    geom = "segment", aes_form = y + yend ~ x + xend,
+    geom = "segment",
+    aes_form = y + yend ~ x + xend,
     extras = alist(
       alpha = , color = , group = , linetype = , size = ,
       arrow = NULL, lineend = "butt"
@@ -2410,7 +2437,8 @@ gf_segment <-
 #'
 gf_linerange <-
   layer_factory(
-    geom = "linerange", aes_form = ymin + ymax ~ x,
+    geom = "linerange",
+    aes_form = ymin + ymax ~ x,
     extras = alist( alpha = , color = , group = , linetype = , size = )
   )
 
