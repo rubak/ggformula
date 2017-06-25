@@ -121,11 +121,11 @@ layer_factory <- function(
 ) {
   res <- function() {
 
-    qdots <- rlang::quos(...)
+    # qdots <- rlang::quos(...)
     dots <- list(...)
 
     if (is.null(show.help)) {
-      show.help <- is.null(object) && is.null(gformula) && length(qdots) == 0L
+      show.help <- is.null(object) && is.null(gformula) && length(dots) == 0L
     }
 
     # make sure we have a list of formulas here
@@ -152,6 +152,11 @@ layer_factory <- function(
       object <- NULL
     }
 
+    if (inherits(object, "data.frame")) {
+      data <- object
+      object <- NULL
+    }
+
     # find matching formula shape
 
     fmatches <- formula_match(gformula, aes_form = aes_form)
@@ -160,48 +165,24 @@ layer_factory <- function(
     }
     aes_form <- aes_form[[which.max(fmatches)]]
 
-    if (length(qdots) > 0) {
+    if (length(dots) > 0) {
       # proceed backwards through list so that removing items doesn't mess up indexing
-      for (i in length(qdots):1L) {
-        if (is_formula(f_rhs(qdots[[i]])) && length(f_rhs(qdots[[i]])) == 2L) {
-          aesthetics[[names(qdots)[i]]] <- f_rhs(qdots[[i]])[[2]]
-          qdots[[i]] <- NULL
+      for (i in length(dots):1L) {
+        if (is_formula(dots[[i]]) && length(dots[[i]]) == 2L) {
+          aesthetics[[names(dots)[i]]] <- dots[[i]][[2]]
+          dots[[i]] <- NULL
         }
       }
     }
-
-    # qposition <- rlang::enquo(position)
-    # if (!is.null(position)) {
-    #   qdots[["position"]] <- qposition
-    # }
-
-    # qstat <- rlang::enquo(stat)
-    # if (!is.null(stat)) {
-    #   qdots[["stat"]] <- qstat
-    # }
 
     if (length(extras) > 0) {
       extras <- extras[sapply(extras, function(x) !is.symbol(x))]
     }
 
-    if (length(qdots) > 0) {
-      extras <- modifyList(extras, lapply(qdots, rlang::f_rhs))
+    if (length(dots) > 0) {
+      extras <- modifyList(extras, dots) # lapply(qdots, rlang::f_rhs))
     }
 
-    # don't need this anymore since we aren't creating a string to evaluate.
-    # extras <- lapply(extras, .quotify)
-
-    # dot_eval <- FALSE
-    # if (inherits(object, "data.frame")) {
-    #   data <- object
-    #   data_name <- object_name
-    #   object <- NULL
-    #   dot_eval <- TRUE
-    # }
-
-    # if (!inherits(object, c("gg", "ggplot"))) {
-    #   add <- FALSE  # can't add if we don't have a plot to add to
-    # }
     add <- inherits(object, c("gg", "ggplot"))
 
     ingredients <-
