@@ -29,3 +29,19 @@ the plot.}
 \description{
 Create a layer displaying a probability distribution.
 }
+\examples{
+gf_histogram( ..density.. ~ rnorm(100), bins = 20) \%>\%
+  gf_dist("norm", color = "red")
+
+gf_dist(dist = "norm", color = "red")
+
+gf_dist("norm", color = "red")
+gf_dist("norm", color = "red", kind = "cdf")
+gf_dist("norm", fill = "red", kind = "histogram")
+gf_dist("norm", color = "red", kind = "qqstep", resolution = 25) \%>\%
+gf_dist("norm", color = "black", kind = "qq", resolution = 25)
+# This doesn't work well because size has two meanings
+gf_dist("binom", size = 20, prob = 0.25)
+# This is better
+gf_dist("binom", params = list(size = 20, prob = 0.25), size = 2)
+}
