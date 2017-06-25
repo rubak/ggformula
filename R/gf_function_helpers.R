@@ -80,9 +80,35 @@ aes_from_qdots <- function(qdots, mapping = aes()) {
   )
 }
 
+emit_help <- function(function_name, aes_form, extras = list(), note = NULL,
+                      geom, stat = "identity", position = "identity"){
+  if (any(sapply(aes_form, is.null))) {
+    message(function_name, " does not require a formula.")
+  } else {
+    message(function_name, " uses \n    * a formula with shape ",
+            paste(sapply(aes_form, format), collapse = " or "), ".")
+  }
+  if (is.character(geom))     message("    * geom: ", geom)
+  if (is.character(stat))     message("    * stat: ", stat)
+  if (is.character(position)) message("    * position: ", position)
+
+  if(length(extras) > 0) {
+    message("    * attributes: ",
+            strwrap(width = options("width")[[1]] - 20,
+              paste(names(extras), .default_value(extras),
+                    collapse = ", ", sep = ""),
+              initial = "",
+              prefix = "\n                  "
+            )
+    )
+  }
+  if (!is.null(note)) message("Note: ", note)
+  message("\nFor more information, try ?", function_name)
+  return(invisible(NULL))
+}
+
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
-
 
 layer_factory <- function(
   geom = "point",
@@ -93,10 +119,10 @@ layer_factory <- function(
   note = NULL,
   aesthetics = aes()
 ) {
-  res <-
-  function() {
+  res <- function() {
 
     qdots <- rlang::quos(...)
+    dots <- list(...)
 
     if (is.null(show.help)) {
       show.help <- is.null(object) && is.null(gformula) && length(qdots) == 0L
@@ -106,23 +132,16 @@ layer_factory <- function(
     if (!is.list(aes_form)) aes_form <- list(aes_form)
 
     if (show.help) {
-      fun <- match.call()[1]
-      if (any(sapply(aes_form, is.null))) {
-        message(fun, " does not require a formula.")
-      } else {
-        message(fun, " uses a formula with shape ", paste(sapply(aes_form, format), collapse = " or "), ".")
-      }
-      if(length(extras) > 0) {
-        message("Additional attributes include: ",
-                strwrap(
-                  paste(names(extras), .default_value(extras), collapse = ", ", sep = ""),
-                  prefix = "\n    "
-                )
-        )
-      }
-      if (!is.null(note)) message(note)
-      message("For more information, try ?", function_name)
+      emit_help(function_name = as.character(match.call()[1]),
+                aes_form, extras, note,
+                geom = geom, stat = stat, position = position)
       return(invisible(NULL))
+    }
+
+    if (is.character(position)) {
+      position_fun <- paste0("position_", position)
+      pdots <- dots[intersect(names(dots), names(formals(position_fun)))]
+      position <- do.call(position_fun, pdots)
     }
 
     # data_name <- deparse(substitute(data))
@@ -197,7 +216,7 @@ layer_factory <- function(
         geom = geom, stat = stat,
         data = data, mapping = ingredients[["mapping"]],
         position = position,
-        params = ingredients[["setting"]],
+        params = modifyList(ingredients[["setting"]], extras),
         # inherit.aes = ,
         check.aes = TRUE, check.param = FALSE,
         show.legend = show.legend
