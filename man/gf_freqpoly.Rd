@@ -4,10 +4,10 @@
 \alias{gf_freqpoly}
 \title{Formula interface to geom_freqpoly()}
 \usage{
-gf_freqpoly(object = NULL, gformula = NULL, data = NULL,
-  geom = "freqpoly", stat = "identity", position = "identity",
-  verbose = FALSE, show.legend = NA, show.help = NULL,
-  aesthetics = structure(list(), class = "uneval"), ...)
+gf_freqpoly(object = NULL, gformula = NULL, data = NULL, geom = "path",
+  stat = "bin", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
+  = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

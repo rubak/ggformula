@@ -4,8 +4,8 @@
 \alias{gf_jitter}
 \title{Formula interface to geom_jitter()}
 \usage{
-gf_jitter(object = NULL, gformula = NULL, data = NULL, geom = "jitter",
-  stat = "identity", position = "identity", verbose = FALSE,
+gf_jitter(object = NULL, gformula = NULL, data = NULL, geom = "point",
+  stat = "identity", position = "jitter", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }

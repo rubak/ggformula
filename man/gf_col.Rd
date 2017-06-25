@@ -5,7 +5,7 @@
 \title{Formula interface to geom_col()}
 \usage{
 gf_col(object = NULL, gformula = NULL, data = NULL, geom = "col",
-  stat = "identity", position = "identity", verbose = FALSE,
+  stat = "identity", position = "stack", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }

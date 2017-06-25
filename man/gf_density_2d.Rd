@@ -5,7 +5,7 @@
 \title{Formula interface to geom_density_2d()}
 \usage{
 gf_density_2d(object = NULL, gformula = NULL, data = NULL,
-  geom = "density_2d", stat = "identity", position = "identity",
+  geom = "density_2d", stat = "density_2d", position = "identity",
   verbose = FALSE, show.legend = NA, show.help = NULL,
   aesthetics = structure(list(), class = "uneval"), ...)
 }

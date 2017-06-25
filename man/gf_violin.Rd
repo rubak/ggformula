@@ -5,7 +5,7 @@
 \title{Formula interface to geom_violin()}
 \usage{
 gf_violin(object = NULL, gformula = NULL, data = NULL, geom = "violin",
-  stat = "identity", position = "identity", verbose = FALSE,
+  stat = "ydensity", position = "dodge", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }

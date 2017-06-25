@@ -6,14 +6,12 @@
 \title{Formula interface to geom_bar()}
 \usage{
 gf_bar(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  stat = "count", position = "stack", verbose = FALSE, show.legend = NA,
+  show.help = NULL, aesthetics = structure(list(), class = "uneval"), ...)
 
 gf_counts(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  stat = "count", position = "stack", verbose = FALSE, show.legend = NA,
+  show.help = NULL, aesthetics = structure(list(), class = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

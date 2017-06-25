@@ -5,7 +5,7 @@
 \title{Formula interface to geom_hex()}
 \usage{
 gf_hex(object = NULL, gformula = NULL, data = NULL, geom = "hex",
-  stat = "identity", position = "identity", verbose = FALSE,
+  stat = "binhex", position = "identity", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }

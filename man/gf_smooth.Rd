@@ -6,12 +6,12 @@
 \title{Formula interface to geom_smooth()}
 \usage{
 gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
-  stat = "identity", position = "identity", verbose = FALSE,
+  stat = "smooth", position = "identity", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 
 gf_lm(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
-  stat = "identity", position = "identity", verbose = FALSE,
+  stat = "smooth", position = "identity", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }
@@ -78,6 +78,8 @@ in another.
 \examples{
 if (require(mosaicData)) {
   gf_smooth(births ~ date, color = ~wday, data = Births78)
+  gf_smooth(births ~ date, color = ~wday, data = Births78, show.legend = FALSE, se = FALSE)
+  gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = TRUE, alpha = 0.2)
 }
 }
 \seealso{

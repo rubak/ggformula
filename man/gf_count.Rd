@@ -4,8 +4,8 @@
 \alias{gf_count}
 \title{Formula interface to geom_count()}
 \usage{
-gf_count(object = NULL, gformula = NULL, data = NULL, geom = "count",
-  stat = "identity", position = "identity", verbose = FALSE,
+gf_count(object = NULL, gformula = NULL, data = NULL, geom = "point",
+  stat = "sum", position = "identity", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }

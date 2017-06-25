@@ -5,7 +5,7 @@
 \title{Formula interface to geom_dotplot()}
 \usage{
 gf_dotplot(object = NULL, gformula = NULL, data = NULL,
-  geom = "dotplot", stat = "identity", position = "identity",
+  geom = "dotplot", stat = "bindot", position = "identity",
   verbose = FALSE, show.legend = NA, show.help = NULL,
   aesthetics = structure(list(), class = "uneval"), ...)
 }

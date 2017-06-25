@@ -5,7 +5,7 @@
 \title{Formula interface to geom_contour()}
 \usage{
 gf_contour(object = NULL, gformula = NULL, data = NULL,
-  geom = "contour", stat = "identity", position = "identity",
+  geom = "contour", stat = "countour", position = "identity",
   verbose = FALSE, show.legend = NA, show.help = NULL,
   aesthetics = structure(list(), class = "uneval"), ...)
 }

@@ -5,7 +5,7 @@
 \title{Formula interface to geom_spline()}
 \usage{
 gf_spline(object = NULL, gformula = NULL, data = NULL, geom = "spline",
-  stat = "identity", position = "identity", verbose = FALSE,
+  stat = "spline", position = "identity", verbose = FALSE,
   show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
   = "uneval"), ...)
 }

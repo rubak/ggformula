@@ -6,14 +6,13 @@
 \title{Formula interface to geom_histogram()}
 \usage{
 gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "bin", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  stat = "bin", position = "stack", verbose = FALSE, show.legend = NA,
+  show.help = NULL, aesthetics = structure(list(), class = "uneval"), ...)
 
 gf_dhistogram(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "bin", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(y =
-  ..density..), .Names = "y", class = "uneval"), ...)
+  stat = "bin", position = "stack", verbose = FALSE, show.legend = NA,
+  show.help = NULL, aesthetics = structure(list(y = ..density..), .Names =
+  "y", class = "uneval"), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

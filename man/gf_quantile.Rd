@@ -5,7 +5,7 @@
 \title{Formula interface to geom_quantile()}
 \usage{
 gf_quantile(object = NULL, gformula = NULL, data = NULL,
-  geom = "quantile", stat = "identity", position = "identity",
+  geom = "quantile", stat = "quantile", position = "identity",
   verbose = FALSE, show.legend = NA, show.help = NULL,
   aesthetics = structure(list(), class = "uneval"), ...)
 }
