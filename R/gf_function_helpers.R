@@ -48,22 +48,6 @@ formula_slots <- function(x, stop_binops = c(":", "::")) {
   )
 }
 
-
-# layer <-
-#   function(
-#     geom = NULL, stat = NULL, data = NULL, mapping = NULL,
-#     position = NULL, params = list(), inherit.aes = TRUE,
-#     check.aes = TRUE, check.param = TRUE, subset = NULL,
-#     show.legend = NA, ...)
-#   {
-#     ggplot2::layer(
-#       geom = geom, stat = stat, data = data, mapping = mapping,
-#       position = position, params = params, inherit.aes = inherit.aes,
-#       check.aes = check.aes, check.param = check.param, subset = subset,
-#       show.legend = show.legend)
-#   }
-
-
 aes_from_qdots <- function(qdots, mapping = aes()) {
   if (length(qdots) > 0) {
     # proceed backwards through list so that removing items doesn't mess up indexing
@@ -83,14 +67,14 @@ aes_from_qdots <- function(qdots, mapping = aes()) {
 emit_help <- function(function_name, aes_form, extras = list(), note = NULL,
                       geom, stat = "identity", position = "identity"){
   if (any(sapply(aes_form, is.null))) {
-    message(function_name, " does not require a formula.")
+    message(function_name, "() does not require a formula.")
   } else {
-    message(function_name, " uses \n    * a formula with shape ",
+    message(function_name, "() uses \n    * a formula with shape ",
             paste(sapply(aes_form, format), collapse = " or "), ".")
   }
-  if (is.character(geom))     message("    * geom: ", geom)
-  if (is.character(stat))     message("    * stat: ", stat)
-  if (is.character(position)) message("    * position: ", position)
+  if (is.character(geom))                               message("    * geom: ", geom)
+  if (is.character(stat)     && stat != "identity")     message("    * stat: ", stat)
+  if (is.character(position) && position != "identity") message("    * position: ", position)
 
   if(length(extras) > 0) {
     message("    * attributes: ",
@@ -119,10 +103,11 @@ layer_factory <- function(
   note = NULL,
   aesthetics = aes()
 ) {
-  res <- function() {
+  # the formals of this will be modified below
+  res <- function(show.legend , function_name, ...) {
 
-    # qdots <- rlang::quos(...)
     dots <- list(...)
+    function_name <- as.character(match.call()[1])
 
     if (is.null(show.help)) {
       show.help <- is.null(object) && is.null(gformula) && length(dots) == 0L
@@ -132,7 +117,7 @@ layer_factory <- function(
     if (!is.list(aes_form)) aes_form <- list(aes_form)
 
     if (show.help) {
-      emit_help(function_name = as.character(match.call()[1]),
+      emit_help(function_name = function_name,
                 aes_form, extras, note,
                 geom = geom, stat = stat, position = position)
       return(invisible(NULL))
@@ -226,11 +211,11 @@ layer_factory <- function(
         geom = geom, stat = stat, position = position,
         verbose = FALSE,
         show.legend = NA,
-        show.help = NULL,
-        aesthetics = aesthetics
+        show.help = NULL
       ),
       alist(... = )
     )
+  # environment(res) <- as.environment(list(aesthetics = aesthetics))
   res
 }
 
