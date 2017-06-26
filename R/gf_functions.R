@@ -76,16 +76,26 @@ NA
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
-#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
+#'   (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression},
+#'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}, or
+#'   (d) arguments for the geom, stat, or position function.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_point}()}
 #' @export
@@ -151,16 +161,23 @@ gf_point <-
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group},
 #'   \code{stroke}, \code{width}, \code{height}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_jitter}()}
 #' @export
 #' @examples
+#' gf_jitter()
 #' if (require(mosaicData)) {
 #'   # without jitter
 #'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
@@ -168,7 +185,7 @@ gf_point <-
 #'   gf_jitter(age ~ sex, alpha = 0.25, data = HELPrct, width = 0.2, height = 0)
 #'   # alternative way to get jitter
 #'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct,
-#'     position = position_jitter(width = 0.2, height = 0))
+#'     position = "jitter", width = 0.2, height = 0)
 #' }
 gf_jitter <-
   layer_factory(
@@ -218,12 +235,15 @@ gf_jitter <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{arrow}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_line}()}
 #' @export
@@ -282,12 +302,15 @@ gf_line <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{arrow}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_path}()}
 #' @export
@@ -346,12 +369,15 @@ gf_path <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{method}, \code{formula}, \code{se}, \code{method.args}, \code{n}, \code{span}, \code{fullrange}, \code{level}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
@@ -423,12 +449,15 @@ gf_lm <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{weight}, \code{df}, \code{spar}, \code{tol}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_spline}()}
 #' @importFrom mosaic geom_spline
@@ -488,12 +517,15 @@ gf_spline <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{hjust}, \code{vjust}, \code{interpolate}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_raster}()}
 #' @export
@@ -556,12 +588,15 @@ gf_raster <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{weight}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{quantiles}, \code{formula}, \code{method}, \code{method.args}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_quantile}()}
 #' @export
@@ -619,12 +654,15 @@ gf_quantile <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{contour}, \code{n}, \code{h}, \code{lineend}, \code{linejoin}, \code{linemitre}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_density_2d}()}
 #' @export
@@ -684,12 +722,15 @@ gf_density_2d <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{contour}, \code{n}, \code{h}, \code{lineend}, \code{linejoin}, \code{linemitre}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_density2d}()}
 #' @export
@@ -749,12 +790,15 @@ gf_density2d <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{bins}, \code{binwidth}, \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_hex}()}
 #' @export
@@ -811,12 +855,15 @@ gf_hex <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{shape}, \code{size}, \code{weight}, \code{coef}, \code{outlier.color}, \code{outlier.fill}, \code{outlier.shape}, \code{outlier.size}, \code{outlier.stroke}, \code{outlier.alpha}, \code{notch}, \code{notchwidth}, \code{varwidth}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_boxplot}()}
 #' @export
@@ -883,12 +930,15 @@ gf_boxplot <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{label}, \code{alpha}, \code{angle}, \code{color}, \code{family}, \code{fontface}, \code{group}, \code{hjust}, \code{lineheight}, \code{size}, \code{vjust}, \code{parse}, \code{nudge_x}, \code{nudge_y}, \code{check_overlap}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_text}()}
 #' @export
@@ -947,12 +997,15 @@ gf_text <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{label}, \code{alpha}, \code{angle}, \code{color}, \code{family}, \code{fontface}, \code{group}, \code{hjust}, \code{lineheight}, \code{size}, \code{vjust}, \code{parse}, \code{nudge_x}, \code{nudge_y}, \code{lparse}, \code{nudge_x}, \code{nudge_y}, \code{label.padding}, \code{label.r}, \code{label.size}, \code{check_overlap}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_label}()}
 #' @export
@@ -1020,12 +1073,15 @@ gf_label <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_area}()}
 #' @export
@@ -1110,12 +1166,15 @@ gf_area <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{}, \code{draw_quatiles}, \code{trim}, \code{scale}, \code{bw}, \code{adjust}, \code{kernel}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_violin}()}
 #' @export
@@ -1176,12 +1235,15 @@ gf_violin <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{angle}, \code{radius}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @section Note \code{angle} and \code{radius} must be set or mapped.
 #' @return a gg object
 #' @seealso \code{\link{geom_spoke}()}
@@ -1248,12 +1310,15 @@ gf_spoke <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{direction}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_step}()}
 #' @export
@@ -1309,12 +1374,15 @@ gf_step <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_tile}()}
 #' @export
@@ -1372,12 +1440,15 @@ gf_tile <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{shape}, \code{size}, \code{stroke}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_count}()}
 #' @export
@@ -1439,12 +1510,15 @@ gf_count <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_col}()}
 #' @export
@@ -1504,12 +1578,15 @@ gf_col <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_blank}()}
 #' @export
@@ -1564,12 +1641,15 @@ gf_frame <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_histogram}()}
 #' @export
@@ -1639,12 +1719,15 @@ gf_dhistogram <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{weight}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_density}()}
 #' @export
@@ -1707,12 +1790,15 @@ gf_density <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{stat}, \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{weight}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_line}()}
 #' @export
@@ -1774,12 +1860,15 @@ gf_dens <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{binwidth}, \code{binaxis}, \code{method}, \code{binpositions}, \code{stackdir}, \code{stackratio}, \code{dotsize}, \code{stackgroups}, \code{origin}, \code{right}, \code{width}, \code{drop}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_dotplot}()}
 #' @export
@@ -1839,12 +1928,15 @@ gf_dotplot <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{width}, \code{binwidth}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_bar}()}
 #' @export
@@ -1919,12 +2011,15 @@ gf_counts <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{binwidth}, \code{bins}, \code{center}, \code{boundary}, \code{}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_freqpoly}()}
 #' @export
@@ -1991,12 +2086,15 @@ gf_freqpoly <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{group}, \code{x}, \code{y}, \code{distribution}, \code{dparams}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_qq}()}
 #' @export
@@ -2064,12 +2162,15 @@ gf_qqstep <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_rug}()}
 #' @export
@@ -2132,13 +2233,15 @@ gf_rug <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
-#' @return a gg object
 #' @seealso \code{\link{geom_contour}()}
 #' @export
 #' @examples
@@ -2191,12 +2294,15 @@ gf_contour <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_ribbon}()}
 #' @export
@@ -2271,12 +2377,15 @@ gf_ribbon <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{curvature}, \code{angle}, \code{ncp}, \code{arrow}, \code{lineend}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_curve}()}
 #' @export
@@ -2335,12 +2444,15 @@ gf_curve <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{arrow}, \code{lineend}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_segment}()}
 #' @export
@@ -2401,12 +2513,15 @@ gf_segment <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_linerange}()}
 #' @export
@@ -2483,12 +2598,15 @@ gf_linerange <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{fatten}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_pointrange}()}
 #' @export
@@ -2566,12 +2684,15 @@ gf_pointrange <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{fatten}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_crossbar}()}
 #' @export
@@ -2654,12 +2775,15 @@ gf_crossbar <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @return a gg object
 #' @seealso \code{\link{geom_errorbar}()}
 #' @export
@@ -2741,12 +2865,15 @@ gf_errorbar <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_errorbarh}()}
 #' @export
@@ -2823,12 +2950,15 @@ gf_errorbarh <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #'
 #' @seealso \code{\link{geom_rect}()}
 #' @export
@@ -2862,12 +2992,15 @@ gf_rect <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{slope}, \code{intercept}
-#' @param add If \code{TRUE} then construct just the layer with no frame.  The result
-#'   can be added to an existing frame.
 #' @param verbose If \code{TRUE} print the ggplot2 command in the console.
-#' @param geom A way to specify ggplot geoms that are not aliased to gf functions.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  \code{NA}, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
-#' @param position Position adjustment, either as a string, or the result of a call to a position adjustment function.
 #' @param coef A numeric vector of length at least 2, treated as intercept and slope.
 #' Additional components, if any, are ignored (with a warning).
 #' @param model An object with a method for \code{coef()} that returns a
@@ -2946,7 +3079,7 @@ gf_function <- function(object, fun, ...) {
     fun <- object
     object <- ggplot() + geom_blank()
   }
-  qdots <- quos(...)
+  qdots <- rlang::quos(...)
   afq <- aes_from_qdots(qdots)
   object +
     do.call(
@@ -2976,7 +3109,7 @@ gf_fun <- function(object, formula, ...) {
     formula <- object
     object <- ggplot() + geom_blank()
   }
-  qdots <- quos(...)
+  qdots <- rlang::quos(...)
   fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
   afq <- aes_from_qdots(qdots)
   object +

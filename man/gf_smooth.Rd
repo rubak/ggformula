@@ -7,13 +7,11 @@
 \usage{
 gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
   stat = "smooth", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  show.legend = NA, show.help = NULL, ...)
 
 gf_lm(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
   stat = "smooth", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  show.legend = NA, show.help = NULL, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -25,11 +23,18 @@ Faceting can be acheived by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
-\item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
+\item{geom}{A character string naming the geom used to make the layer.}
 
-\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+\item{stat}{A character string naming the stat used to make the layer.}
+
+\item{position}{Either a character string naming the position function used
+for the layer or a position object returned from a call to a position function.}
 
 \item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
+
+\item{show.legend}{A logical indicating whether this layer should be included in
+the legends.  \code{NA}, the default, includes layer in the legends if any
+of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -39,9 +44,6 @@ Faceting can be acheived by including \code{|} in the formula.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{method}, \code{formula}, \code{se}, \code{method.args}, \code{n}, \code{span}, \code{fullrange}, \code{level}}
-
-\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
-can be added to an existing frame.}
 }
 \value{
 a gg object

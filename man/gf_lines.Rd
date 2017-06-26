@@ -9,18 +9,15 @@
 \usage{
 gf_abline(object = NULL, gformula = NULL, data = NULL, geom = "abline",
   stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  show.legend = NA, show.help = NULL, ...)
 
 gf_hline(object = NULL, gformula = NULL, data = NULL, geom = "hline",
   stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  show.legend = NA, show.help = NULL, ...)
 
 gf_vline(object = NULL, gformula = NULL, data = NULL, geom = "vline",
   stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, aesthetics = structure(list(), class
-  = "uneval"), ...)
+  show.legend = NA, show.help = NULL, ...)
 
 gf_coefline(object = NULL, coef = NULL, model = NULL, ...)
 }
@@ -33,11 +30,18 @@ See details and examples.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
-\item{geom}{A way to specify ggplot geoms that are not aliased to gf functions.}
+\item{geom}{A character string naming the geom used to make the layer.}
 
-\item{position}{Position adjustment, either as a string, or the result of a call to a position adjustment function.}
+\item{stat}{A character string naming the stat used to make the layer.}
+
+\item{position}{Either a character string naming the position function used
+for the layer or a position object returned from a call to a position function.}
 
 \item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
+
+\item{show.legend}{A logical indicating whether this layer should be included in
+the legends.  \code{NA}, the default, includes layer in the legends if any
+of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -54,9 +58,6 @@ Additional components, if any, are ignored (with a warning).}
 \item{model}{An object with a method for \code{coef()} that returns a
 numeric vector, the first two elements of which are intercept and slope.
 This is equivalent to \code{coef = coef(model)}.}
-
-\item{add}{If \code{TRUE} then construct just the layer with no frame.  The result
-can be added to an existing frame.}
 }
 \description{
 These fuctions create layers that display lines described i various ways.  Unlike most
