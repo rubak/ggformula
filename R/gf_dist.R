@@ -2,6 +2,8 @@
 #'
 #' Create a layer displaying a probability distribution.
 #'
+#' @importFrom stats approxfun ppoints
+#' @importFrom mosaic unnamed named_among
 #' @param object a gg object.
 #' @param dist A character string providing the name of a distribution.  Any
 #'   distribution for which the functions with names formed by prepending
@@ -68,9 +70,9 @@ gf_dist <- function(
     for (item in names(formals()) ) {
       if (item %in% names(params)) params[[item]] <- NULL
     }
-    dparams <- c(unnamed(params) , named_among( params, names(formals(ddist))) )
-    pparams <- c(unnamed(params) , named_among( params, names(formals(pdist))) )
-    qparams <- c(unnamed(params) , named_among( params, names(formals(qdist))) )
+    dparams <- c(mosaic::unnamed(params), mosaic::named_among( params, names(formals(ddist))) )
+    pparams <- c(mosaic::unnamed(params), mosaic::named_among( params, names(formals(pdist))) )
+    qparams <- c(mosaic::unnamed(params), mosaic::named_among( params, names(formals(qdist))) )
   } else {
     dparams <- params
     pparams <- params
@@ -159,3 +161,4 @@ gf_dist <- function(
     )
   }
 }
+
