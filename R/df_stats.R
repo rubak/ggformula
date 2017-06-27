@@ -88,13 +88,14 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
   d <- ncol(MF) - 1
   groups <- res[[1]][, 1:d, drop = FALSE]
 
+  res_names <- lapply(res, function(x) colnames(as.matrix(x$x)))
+  arg_names <- names(res)
+
   # res has an odd format where res[[i]]$x is a list-based matrix
   # here we convert these to data frames of vectors
   res <- lapply(res, function(x) data.frame(lapply(data.frame(x$x), unlist)))
   ncols <- sapply(res, ncol)
 
-  res_names <- lapply(res, colnames)
-  arg_names <- names(res)
   fun_names <- sapply(dots, function(x) deparse(x))
   if (long_names) {
     fun_names <- paste0(fun_names, "_", deparse(formula[[2]]))
@@ -103,13 +104,17 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
     lapply(
       1:length(res),
       function(i) {
-        if (! is.null(res_names[[i]]) ) return (res_names[[i]])
+        # use argument names if provided
         if (arg_names[i] != "") {
           if (ncols[i] < 2) {
             return(arg_names[i])
           }
           return(paste0(arg_names[i], 1:ncols[i]))
         }
+        # else use result names, if they exist
+        if (! is.null(res_names[[i]]) ) return (res_names[[i]])
+
+        # else create names from function and variable
         if (ncols[i] < 2) {
           return(fun_names[i])
         }
