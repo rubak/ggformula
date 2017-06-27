@@ -35,7 +35,7 @@
 gf_dist <- function(
   object = geom_blank(),
   dist, ...,
-  xmin = NULL, xmax = NULL,
+#  xmin = NULL, xmax = NULL,
   kind = c("density", "cdf", "qq", "qqstep", "histogram"),
   resolution = 5000L, params = NULL )
 {
