@@ -42,5 +42,5 @@ gf_dist("norm", color = "black", kind = "qq", resolution = 25)
 # This doesn't work well because size has two meanings
 gf_dist("binom", size = 20, prob = 0.25)
 # This is better
-gf_dist("binom", params = list(size = 20, prob = 0.25), size = 2)
+gf_dist("binom", params = list(size = 20, prob = 0.25))
 }
