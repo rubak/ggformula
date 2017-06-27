@@ -95,8 +95,8 @@ Commonly used functions include
 - `gf_bar()` for more general bar-graph style graphics
 
 The function names generally match the corresponding function name from `ggplot2`,
-although `gf_counts()` is a simplified special case, and `gg_dens()` is an 
-alternative to `gg_density()` that displays the density plot slightly differently
+although `gf_counts()` is a simplified special case, and `gf_dens()` is an 
+alternative to `gf_density()` that displays the density plot slightly differently
 than the default in `ggplot2`.
 
 Each of the `gf_` functions can create the coordinate axes and fill it in one
@@ -114,7 +114,7 @@ We've told R to put `mpg` along the y-axis and `hp` along the x-asis, as is clea
 from the plot. 
 But each point also has other attributes, including color, shape, size, stroke, fill, 
 and alpha (transparency).  We didn't specify
-those in our example, so `gg_point()` uses some default values for those --
+those in our example, so `gf_point()` uses some default values for those --
 in this case smallish black filled-in circles.
 
 ### Specifying attributes
