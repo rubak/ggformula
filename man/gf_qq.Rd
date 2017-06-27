@@ -6,11 +6,11 @@
 \title{Formula interface to geom_qq()}
 \usage{
 gf_qq(object = NULL, gformula = NULL, data = NULL, geom = "point",
-  stat = "qq", position = "identity", verbose = FALSE, show.legend = NA,
+  stat = "qq", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, ...)
 
 gf_qqstep(object = NULL, gformula = NULL, data = NULL, geom = "step",
-  stat = "qq", position = "identity", verbose = FALSE, show.legend = NA,
+  stat = "qq", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, ...)
 }
 \arguments{
@@ -29,8 +29,6 @@ Faceting can be acheived by including \code{|} in the formula.}
 
 \item{position}{Either a character string naming the position function used
 for the layer or a position object returned from a call to a position function.}
-
-\item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
 
 \item{show.legend}{A logical indicating whether this layer should be included in
 the legends.  \code{NA}, the default, includes layer in the legends if any
@@ -61,8 +59,6 @@ through these points.
 functions.
 For plots with just one layer, the formula interface
 is more compact and is consistent with modeling and \pkg{mosaic} notation.
-The functions generate a \code{ggplot} command string which can be displayed by
-setting \code{verbose = TRUE} as an argument.
 
 Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 Additional formula terms of the form \code{+ attribute::value} map \code{attribute}

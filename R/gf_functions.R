@@ -7,8 +7,6 @@
 #' is more compact than native \pkg{ggplot2} code and is consistent with modeling
 #' functions like \code{\link{lm}()} that use a formula interface and with the
 #' numerical summary functions in the \pkg{mosaic} package.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Setting and mapping of additional attributes can be done within the formula or
@@ -45,8 +43,6 @@ NA
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -81,7 +77,6 @@ NA
 #'   (d) arguments for the geom, stat, or position function.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -120,8 +115,6 @@ gf_point <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -156,7 +149,6 @@ gf_point <-
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group},
 #'   \code{stroke}, \code{width}, \code{height}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -193,8 +185,6 @@ gf_jitter <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -228,7 +218,6 @@ gf_jitter <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{arrow}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -261,8 +250,6 @@ gf_line <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -296,7 +283,6 @@ gf_line <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{arrow}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -329,8 +315,6 @@ gf_path <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -364,7 +348,6 @@ gf_path <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{method}, \code{formula}, \code{se}, \code{method.args}, \code{n}, \code{span}, \code{fullrange}, \code{level}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -410,8 +393,6 @@ gf_lm <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -445,7 +426,6 @@ gf_lm <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{weight}, \code{df}, \code{spar}, \code{tol}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -479,8 +459,6 @@ gf_spline <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -514,7 +492,6 @@ gf_spline <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{hjust}, \code{vjust}, \code{interpolate}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -551,8 +528,6 @@ gf_raster <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -586,7 +561,6 @@ gf_raster <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{weight}, \code{lineend}, \code{linejoin}, \code{linemitre}, \code{quantiles}, \code{formula}, \code{method}, \code{method.args}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -618,8 +592,6 @@ gf_quantile <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -653,7 +625,6 @@ gf_quantile <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{contour}, \code{n}, \code{h}, \code{lineend}, \code{linejoin}, \code{linemitre}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -687,8 +658,6 @@ gf_density_2d <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -722,7 +691,6 @@ gf_density_2d <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{contour}, \code{n}, \code{h}, \code{lineend}, \code{linejoin}, \code{linemitre}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -756,8 +724,6 @@ gf_density2d <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -791,7 +757,6 @@ gf_density2d <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{bins}, \code{binwidth}, \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -822,8 +787,6 @@ gf_hex <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -858,7 +821,6 @@ gf_hex <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{shape}, \code{size}, \code{weight}, \code{coef}, \code{outlier.color}, \code{outlier.fill}, \code{outlier.shape}, \code{outlier.size}, \code{outlier.stroke}, \code{outlier.alpha}, \code{notch}, \code{notchwidth}, \code{varwidth}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -898,8 +860,6 @@ gf_boxplot <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -933,7 +893,6 @@ gf_boxplot <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{label}, \code{alpha}, \code{angle}, \code{color}, \code{family}, \code{fontface}, \code{group}, \code{hjust}, \code{lineheight}, \code{size}, \code{vjust}, \code{parse}, \code{nudge_x}, \code{nudge_y}, \code{check_overlap}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -966,8 +925,6 @@ gf_text <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1001,7 +958,6 @@ gf_text <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{label}, \code{alpha}, \code{angle}, \code{color}, \code{family}, \code{fontface}, \code{group}, \code{hjust}, \code{lineheight}, \code{size}, \code{vjust}, \code{parse}, \code{nudge_x}, \code{nudge_y}, \code{lparse}, \code{nudge_x}, \code{nudge_y}, \code{label.padding}, \code{label.r}, \code{label.size}, \code{check_overlap}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1043,8 +999,6 @@ gf_label <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1078,7 +1032,6 @@ gf_label <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1137,8 +1090,6 @@ gf_area <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1172,7 +1123,6 @@ gf_area <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{}, \code{draw_quatiles}, \code{trim}, \code{scale}, \code{bw}, \code{adjust}, \code{kernel}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1207,8 +1157,6 @@ gf_violin <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1242,7 +1190,6 @@ gf_violin <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{angle}, \code{radius}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1283,8 +1230,6 @@ gf_spoke <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1318,7 +1263,6 @@ gf_spoke <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{direction}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1348,8 +1292,6 @@ gf_step <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1383,7 +1325,6 @@ gf_step <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1415,8 +1356,6 @@ gf_tile <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1450,7 +1389,6 @@ gf_tile <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{shape}, \code{size}, \code{stroke}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1486,8 +1424,6 @@ gf_count <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1521,7 +1457,6 @@ gf_count <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1555,8 +1490,6 @@ gf_col <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1590,7 +1523,6 @@ gf_col <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1624,8 +1556,6 @@ gf_blank <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1660,7 +1590,6 @@ gf_blank <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1704,8 +1633,6 @@ gf_dhistogram <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1739,7 +1666,6 @@ gf_dhistogram <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{weight}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1776,8 +1702,6 @@ gf_density <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1811,7 +1735,6 @@ gf_density <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{stat}, \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{weight}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1847,8 +1770,6 @@ gf_dens <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1882,7 +1803,6 @@ gf_dens <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{binwidth}, \code{binaxis}, \code{method}, \code{binpositions}, \code{stackdir}, \code{stackratio}, \code{dotsize}, \code{stackgroups}, \code{origin}, \code{right}, \code{width}, \code{drop}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -1916,8 +1836,6 @@ gf_dotplot <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -1951,7 +1869,6 @@ gf_dotplot <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{width}, \code{binwidth}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2000,8 +1917,6 @@ gf_counts <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2035,7 +1950,6 @@ gf_counts <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{binwidth}, \code{bins}, \code{center}, \code{boundary}, \code{}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2076,8 +1990,6 @@ gf_freqpoly <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2111,7 +2023,6 @@ gf_freqpoly <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{group}, \code{x}, \code{y}, \code{distribution}, \code{dparams}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2153,8 +2064,6 @@ gf_qqstep <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2188,7 +2097,6 @@ gf_qqstep <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{sides}, \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2225,8 +2133,6 @@ gf_rug <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2260,7 +2166,6 @@ gf_rug <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2288,8 +2193,6 @@ gf_contour <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2323,7 +2226,6 @@ gf_contour <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2372,8 +2274,6 @@ gf_ribbon <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2407,7 +2307,6 @@ gf_ribbon <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{curvature}, \code{angle}, \code{ncp}, \code{arrow}, \code{lineend}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2440,8 +2339,6 @@ gf_curve <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2475,7 +2372,6 @@ gf_curve <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{arrow}, \code{lineend}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2510,8 +2406,6 @@ gf_segment <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2545,7 +2439,6 @@ gf_segment <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2596,8 +2489,6 @@ gf_linerange <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2631,7 +2522,6 @@ gf_linerange <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{fatten}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2683,8 +2573,6 @@ gf_pointrange <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2718,7 +2606,6 @@ gf_pointrange <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{fatten}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2775,8 +2662,6 @@ gf_crossbar <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2810,7 +2695,6 @@ gf_crossbar <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2866,8 +2750,6 @@ gf_errorbar <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2901,7 +2783,6 @@ gf_errorbar <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -2953,8 +2834,6 @@ gf_errorbarh <-
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
-#' The functions generate a \code{ggplot} command string which can be displayed by
-#' setting \code{verbose = TRUE} as an argument.
 #'
 #' Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
 #' Additional formula terms of the form \code{+ attribute::value} map \code{attribute}
@@ -2988,7 +2867,6 @@ gf_errorbarh <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -3032,7 +2910,6 @@ gf_rect <-
 #'   (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 #'   Available attributes include
 #'   \code{slope}, \code{intercept}
-#' @param verbose If \code{TRUE} print the ggplot2 command in the console.
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used

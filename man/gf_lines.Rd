@@ -8,16 +8,16 @@
 \title{Reference lines -- horizontal, vertical, and diagonal.}
 \usage{
 gf_abline(object = NULL, gformula = NULL, data = NA, geom = "abline",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, inherit = FALSE, ...)
+  stat = "identity", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = FALSE, ...)
 
 gf_hline(object = NULL, gformula = NULL, data = NA, geom = "hline",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, inherit = FALSE, ...)
+  stat = "identity", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = FALSE, ...)
 
 gf_vline(object = NULL, gformula = NULL, data = NA, geom = "vline",
-  stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, inherit = FALSE, ...)
+  stat = "identity", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = FALSE, ...)
 
 gf_coefline(object = NULL, coef = NULL, model = NULL, ...)
 }
@@ -36,8 +36,6 @@ See details and examples.}
 
 \item{position}{Either a character string naming the position function used
 for the layer or a position object returned from a call to a position function.}
-
-\item{verbose}{If \code{TRUE} print the ggplot2 command in the console.}
 
 \item{show.legend}{A logical indicating whether this layer should be included in
 the legends.  \code{NA}, the default, includes layer in the legends if any

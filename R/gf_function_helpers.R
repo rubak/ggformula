@@ -210,7 +210,6 @@ layer_factory <- function(
       list(
         object = NULL, gformula = NULL, data = data,
         geom = geom, stat = stat, position = position,
-        verbose = FALSE,
         show.legend = NA,
         show.help = NULL,
         inherit = inherit.aes
