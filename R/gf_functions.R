@@ -374,7 +374,6 @@ gf_path <-
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @param inherit A logical indicating whether default attributes are inherited.
-#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
@@ -2264,6 +2263,8 @@ gf_rug <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
+#' @return a gg object
 #' @seealso \code{\link{geom_contour}()}
 #' @export
 #' @examples
@@ -2903,6 +2904,8 @@ gf_errorbar <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
+#' @return a gg object
 #'
 #' @seealso \code{\link{geom_errorbarh}()}
 #' @export
@@ -2988,6 +2991,8 @@ gf_errorbarh <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
+#' @return a gg object
 #'
 #' @seealso \code{\link{geom_rect}()}
 #' @export
@@ -3035,6 +3040,8 @@ gf_rect <-
 #' @param model An object with a method for \code{coef()} that returns a
 #' numeric vector, the first two elements of which are intercept and slope.
 #' This is equivalent to \code{coef = coef(model)}.
+#' @param inherit A logical indicating whether default attributes are inherited.
+#' @return a gg object
 #' @rdname gf_lines
 #' @seealso \code{\link{geom_abline}()},
 #'   \code{\link{geom_vline}()},

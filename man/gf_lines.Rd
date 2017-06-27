@@ -45,6 +45,8 @@ of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
@@ -58,6 +60,9 @@ Additional components, if any, are ignored (with a warning).}
 \item{model}{An object with a method for \code{coef()} that returns a
 numeric vector, the first two elements of which are intercept and slope.
 This is equivalent to \code{coef = coef(model)}.}
+}
+\value{
+a gg object
 }
 \description{
 These fuctions create layers that display lines described i various ways.  Unlike most

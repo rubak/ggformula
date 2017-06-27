@@ -33,12 +33,17 @@ of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}}
+}
+\value{
+a gg object
 }
 \description{
 \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer

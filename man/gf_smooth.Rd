@@ -46,8 +46,6 @@ of the attributes of the layer are mapped.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{method}, \code{formula}, \code{se}, \code{method.args}, \code{n}, \code{span}, \code{fullrange}, \code{level}}
-
-\item{inherit}{A logical indicating whether default attributes are inherited.}
 }
 \value{
 a gg object
