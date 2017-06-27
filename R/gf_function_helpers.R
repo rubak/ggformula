@@ -101,7 +101,9 @@ layer_factory <- function(
   aes_form = y ~ x,
   extras = alist(),
   note = NULL,
-  aesthetics = aes()
+  aesthetics = aes(),
+  inherit.aes = TRUE,
+  data = NULL
 ) {
   # the formals of this will be modified below
   res <- function(show.legend , function_name, ...) {
@@ -128,9 +130,6 @@ layer_factory <- function(
       pdots <- dots[intersect(names(dots), names(formals(position_fun)))]
       position <- do.call(position_fun, pdots)
     }
-
-    # data_name <- deparse(substitute(data))
-    # object_name <- deparse(substitute(object))
 
     if (inherits(object, "formula")) {
       gformula <- object
@@ -177,17 +176,19 @@ layer_factory <- function(
         extras = extras,
         aes_form = aes_form,
         aesthetics = aesthetics)
+
     layer_args <-
       list(
         geom = geom, stat = stat,
-        data = data, mapping = ingredients[["mapping"]],
+        data = ingredients[["data"]],
+        mapping = ingredients[["mapping"]],
         position = position,
-        params = modifyList(ingredients[["setting"]], extras),
-        # inherit.aes = ,
+        params = ingredients[["params"]],
         check.aes = TRUE, check.param = FALSE,
-        show.legend = show.legend
+        show.legend = show.legend,
+        inherit.aes = inherit.aes
       )
-    # print(layer_args[c("mapping", "params")])
+    # print(layer_args[c("mapping", "setting", "params", "data")])
     new_layer <- do.call(ggplot2::layer, layer_args)
     # message(
     #   do.call(call, c(list("layer"), layer_args))
@@ -196,26 +197,27 @@ layer_factory <- function(
       if (add)
         return(object + new_layer)
       else
-        return(ggplot(data = data) + new_layer)
+        return(ggplot(data = ingredients$data) + new_layer)
     } else {
       if (add)
         return(object + new_layer + ingredients[["facet"]])
       else
-        return(ggplot(data = data) + new_layer + ingredients[["facet"]])
+        return(ggplot(data = ingredients$data) + new_layer + ingredients[["facet"]])
     }
   }
   formals(res) <-
     c(
       list(
-        object = NULL, gformula = NULL, data = NULL,
+        object = NULL, gformula = NULL, data = data,
         geom = geom, stat = stat, position = position,
         verbose = FALSE,
         show.legend = NA,
-        show.help = NULL
+        show.help = NULL,
+        inherit = inherit.aes
       ),
       alist(... = )
     )
-  # environment(res) <- as.environment(list(aesthetics = aesthetics))
+  # assign("inherit.aes", inherit.aes, environment(res))
   res
 }
 
@@ -274,7 +276,8 @@ gf_ingredients <-
       data.frame(
         role = names(aesthetics),
         expr = sapply(aesthetics, deparse),
-        map  = rep(TRUE, length(aesthetics))
+        map  = rep(TRUE, length(aesthetics)),
+        stringsAsFactors = FALSE
       )
     )
 
@@ -288,6 +291,7 @@ gf_ingredients <-
 
   res <-
     list(
+      data = data,
       mapping = modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list)),
       setting = set_list,
       facet =
@@ -295,8 +299,21 @@ gf_ingredients <-
           NULL
         } else {
           do.call(fs[["facet_type"]], list(facets = fs[["condition"]]))
-        }
+        },
+      params = modifyList(set_list, extras)
     )
+  if (identical(data, NA)) {
+    res$data <-
+      do.call(
+        data.frame,
+        c(res[["mapping"]], res[["setting"]], list(stringsAsFactors = FALSE)))
+    res$params[names(res$mapping)] <- NULL  # remove mapped attributes
+    aes_list <- as.list(intersect(names(res$data), names(res$mapping)))
+    names(aes_list) <- aes_list
+    res$mapping <- do.call(aes_string, aes_list)
+    res$setting <- as.list(res$data)[names(res$setting)]
+    res$params[names(res$setting)] <- res$setting
+  }
   res
 }
 
