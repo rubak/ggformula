@@ -89,12 +89,6 @@ NA
 #' @param show.legend A logical indicating whether this layer should be included in
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
-#' @param show.legend A logical indicating whether this layer should be included in
-#'   the legends.  \code{NA}, the default, includes layer in the legends if any
-#'   of the attributes of the layer are mapped.
-#' @param show.legend A logical indicating whether this layer should be included in
-#'   the legends.  \code{NA}, the default, includes layer in the legends if any
-#'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @return a gg object
 #' @seealso \code{\link{geom_point}()}
@@ -166,9 +160,6 @@ gf_point <-
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
 #'   for the layer or a position object returned from a call to a position function.
-#' @param show.legend A logical indicating whether this layer should be included in
-#'   the legends.  \code{NA}, the default, includes layer in the legends if any
-#'   of the attributes of the layer are mapped.
 #' @param show.legend A logical indicating whether this layer should be included in
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
@@ -470,7 +461,7 @@ gf_lm <-
 #' }
 gf_spline <-
   layer_factory(
-    geom = "spline",
+    geom = "line",
     stat = "spline",
     extras = alist(alpha = , color = , group = , linetype = , size = ,
                    weight = , df = , spar = , tol = )
@@ -2250,7 +2241,7 @@ gf_rug <-
 
 gf_contour <-
   layer_factory(
-    geom = "contour", stat = "countour",
+    geom = "contour", stat = "contour",
     aes_form = z ~ x + y)
 
 #' Formula interface to geom_ribbon()
@@ -3012,25 +3003,52 @@ gf_rect <-
 #'   \code{\link{geom_hline}()}
 #' @export
 #' @examples
+#' mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#'   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2)
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#'   gf_hline(slope = 0, yintercept = ~median, color = ~cyl, data = mtcars2)
+#'
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
 #'   gf_abline(color="red", slope = -0.10, intercept = 35)
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
-#'   gf_abline(color = "red", slope = -0.10, intercept = 33:36) %>%
-#'   gf_hline(color = "navy", yintercept = c(20, 25)) %>%
-#'   gf_vline(color = "brown", xintercept = c(200, 300))
+#'   gf_abline(color = "red", slope = ~slope, intercept = ~intercept,
+#'   data = data.frame(slope = -0.10, intercept = 33:35))
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#'   gf_abline(intercept = ~ c(10, 20, 30), slope = ~c(1, 0, -1)/100,
+#'     color = c("red", "green", "blue"))
+#'
+#' # We can set the color of the guidelines while mapping color in other
+#' # layers
+#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#'   gf_hline(color = "navy", yintercept = ~c(20, 25)) %>%
+#'   gf_vline(color = "brown", xintercept = ~c(200, 300))
+#'
+#' # If we want to map the color of the guidelines, it must work with the
+#' # scale of the other colors in the plot.
+#' gf_hline(color = ~"horizontal", yintercept = ~c(20, 25)) %>%
+#'   gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA) %>%
+#'   gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3)
+#' gf_hline(color = "orange", yintercept = 20, data = NA) %>%
+#'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) %>%
+#'   gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3)
+#'
 gf_abline <-
   layer_factory(
     geom = "abline", aes_form = NULL,
-    extras = alist( slope =, intercept = )
+    extras = alist( slope =, intercept = ),
+    inherit.aes = FALSE,
+    data = NA
   )
-
 
 #' @rdname gf_lines
 #' @export
 gf_hline <-
   layer_factory(
     geom = "hline", aes_form = NULL,
-    extras = alist(yintercept = )
+    extras = alist(yintercept = ),
+    inherit.aes = FALSE,
+    data = NA
   )
 
 #' @rdname gf_lines
@@ -3038,7 +3056,9 @@ gf_hline <-
 gf_vline <-
   layer_factory(
     geom = "vline", aes_form = NULL,
-    extras = alist(xintercept = )
+    extras = alist(xintercept = ),
+    inherit.aes = FALSE,
+    data = NA
     )
 
 #' @rdname gf_lines
@@ -3050,7 +3070,7 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
   if (is.null(coef)) coef <- coef(model)
   if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
   if (length(coef) < 2) stop("coef must be of length at least 2.")
-  gf_abline(object = object, intercept = coef[1], slope = coef[2], ...)
+  gf_abline(object = object, intercept = coef[1], slope = coef[2], ..., inherit.aes = FALSE)
 }
 
 #' Layers displaying graphs of functions
