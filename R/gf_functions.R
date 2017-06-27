@@ -1691,7 +1691,7 @@ gf_density <-
     aes_form = ~ x,
     extras = alist(alpha = 0.5, color = , fill = NA, group = ,
                    linetype = , size = , weight = ,
-                   kernel = "guassian", n = 512, trim = FALSE),
+                   kernel = "gaussian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
 
@@ -1760,7 +1760,7 @@ gf_dens <-
     aes_form = ~ x,
     extras = alist(alpha = 0.5 , color = ,
                    group = , linetype = , size = , weight = ,
-                   kernel = "guassian", n = 512, trim = FALSE),
+                   kernel = "gaussian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
 
