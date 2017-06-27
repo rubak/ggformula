@@ -90,6 +90,7 @@ NA
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_point}()}
 #' @export
@@ -164,6 +165,7 @@ gf_point <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_jitter}()}
 #' @export
@@ -235,6 +237,7 @@ gf_jitter <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_line}()}
 #' @export
@@ -302,6 +305,7 @@ gf_line <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_path}()}
 #' @export
@@ -369,6 +373,8 @@ gf_path <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
@@ -449,6 +455,7 @@ gf_lm <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_spline}()}
 #' @importFrom mosaic geom_spline
@@ -517,6 +524,7 @@ gf_spline <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_raster}()}
 #' @export
@@ -588,6 +596,7 @@ gf_raster <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_quantile}()}
 #' @export
@@ -654,6 +663,7 @@ gf_quantile <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_density_2d}()}
 #' @export
@@ -722,6 +732,7 @@ gf_density_2d <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_density2d}()}
 #' @export
@@ -790,6 +801,7 @@ gf_density2d <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_hex}()}
 #' @export
@@ -828,6 +840,7 @@ gf_hex <-
 #' \code{\link{gf_facet_wrap}()} and
 #' \code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
 #' This will typically do the right thing when formulas are created on the fly, but might not
@@ -930,6 +943,7 @@ gf_boxplot <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_text}()}
 #' @export
@@ -997,6 +1011,7 @@ gf_text <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_label}()}
 #' @export
@@ -1073,6 +1088,7 @@ gf_label <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_area}()}
 #' @export
@@ -1166,6 +1182,7 @@ gf_area <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_violin}()}
 #' @export
@@ -1236,6 +1253,7 @@ gf_violin <-
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
 #' @section Note \code{angle} and \code{radius} must be set or mapped.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_spoke}()}
 #' @export
@@ -1310,6 +1328,7 @@ gf_spoke <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_step}()}
 #' @export
@@ -1374,6 +1393,7 @@ gf_step <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_tile}()}
 #' @export
@@ -1440,6 +1460,7 @@ gf_tile <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_count}()}
 #' @export
@@ -1510,6 +1531,7 @@ gf_count <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_col}()}
 #' @export
@@ -1578,6 +1600,7 @@ gf_col <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_blank}()}
 #' @export
@@ -1641,6 +1664,7 @@ gf_frame <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_histogram}()}
 #' @export
@@ -1719,6 +1743,7 @@ gf_dhistogram <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_density}()}
 #' @export
@@ -1790,6 +1815,7 @@ gf_density <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_line}()}
 #' @export
@@ -1860,6 +1886,7 @@ gf_dens <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_dotplot}()}
 #' @export
@@ -1928,6 +1955,7 @@ gf_dotplot <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_bar}()}
 #' @export
@@ -2011,6 +2039,7 @@ gf_counts <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_freqpoly}()}
 #' @export
@@ -2086,6 +2115,7 @@ gf_freqpoly <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_qq}()}
 #' @export
@@ -2162,6 +2192,7 @@ gf_qqstep <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_rug}()}
 #' @export
@@ -2294,6 +2325,7 @@ gf_contour <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_ribbon}()}
 #' @export
@@ -2377,6 +2409,7 @@ gf_ribbon <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_curve}()}
 #' @export
@@ -2444,6 +2477,7 @@ gf_curve <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_segment}()}
 #' @export
@@ -2513,6 +2547,7 @@ gf_segment <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_linerange}()}
 #' @export
@@ -2598,6 +2633,7 @@ gf_linerange <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_pointrange}()}
 #' @export
@@ -2684,6 +2720,7 @@ gf_pointrange <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_crossbar}()}
 #' @export
@@ -2775,6 +2812,7 @@ gf_crossbar <-
 #'   the legends.  \code{NA}, the default, includes layer in the legends if any
 #'   of the attributes of the layer are mapped.
 #' @param show.help If \code{TRUE}, display some minimal help.
+#' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_errorbar}()}
 #' @export
