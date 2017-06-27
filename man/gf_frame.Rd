@@ -2,9 +2,14 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_frame}
 \alias{gf_frame}
+\alias{gf_blank}
 \title{Formula interface to geom_blank()}
 \usage{
 gf_frame(object = NULL, gformula = NULL, data = NULL, geom = "blank",
+  stat = "identity", position = "identity", verbose = FALSE,
+  show.legend = NA, show.help = NULL, inherit = TRUE, ...)
+
+gf_blank(object = NULL, gformula = NULL, data = NULL, geom = "blank",
   stat = "identity", position = "identity", verbose = FALSE,
   show.legend = NA, show.help = NULL, inherit = TRUE, ...)
 }
@@ -79,6 +84,7 @@ in another.
 
 gf_point((c(0,1)) ~ (c(0,5)))
 gf_frame((c(0,1)) ~ (c(0,5)))
+gf_blank((c(0,1)) ~ (c(0,5)))
 }
 \seealso{
 \code{\link{geom_blank}()}

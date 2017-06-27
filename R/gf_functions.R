@@ -1608,8 +1608,14 @@ gf_col <-
 #'
 #' gf_point((c(0,1)) ~ (c(0,5)))
 #' gf_frame((c(0,1)) ~ (c(0,5)))
+#' gf_blank((c(0,1)) ~ (c(0,5)))
 
 gf_frame <-
+  layer_factory(geom = "blank")
+
+#' @export
+#' @rdname gf_frame
+gf_blank <-
   layer_factory(geom = "blank")
 
 #' Formula interface to geom_histogram()
