@@ -7,11 +7,11 @@
 \usage{
 gf_bar(object = NULL, gformula = NULL, data = NULL, geom = "bar",
   stat = "count", position = "stack", verbose = FALSE, show.legend = NA,
-  show.help = NULL, ...)
+  show.help = NULL, inherit = TRUE, ...)
 
 gf_counts(object = NULL, gformula = NULL, data = NULL, geom = "bar",
   stat = "count", position = "stack", verbose = FALSE, show.legend = NA,
-  show.help = NULL, ...)
+  show.help = NULL, inherit = TRUE, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -37,6 +37,8 @@ the legends.  \code{NA}, the default, includes layer in the legends if any
 of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

@@ -5,8 +5,9 @@
 \title{Formula interface to geom_contour()}
 \usage{
 gf_contour(object = NULL, gformula = NULL, data = NULL,
-  geom = "contour", stat = "countour", position = "identity",
-  verbose = FALSE, show.legend = NA, show.help = NULL, ...)
+  geom = "contour", stat = "contour", position = "identity",
+  verbose = FALSE, show.legend = NA, show.help = NULL, inherit = TRUE,
+  ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

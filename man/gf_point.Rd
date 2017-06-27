@@ -6,7 +6,7 @@
 \usage{
 gf_point(object = NULL, gformula = NULL, data = NULL, geom = "point",
   stat = "identity", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, ...)
+  show.legend = NA, show.help = NULL, inherit = TRUE, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -33,6 +33,8 @@ of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression},
@@ -40,14 +42,6 @@ of the attributes of the layer are mapped.}
 (d) arguments for the geom, stat, or position function.
 Available attributes include
 \code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}}
-
-\item{show.legend}{A logical indicating whether this layer should be included in
-the legends.  \code{NA}, the default, includes layer in the legends if any
-of the attributes of the layer are mapped.}
-
-\item{show.legend}{A logical indicating whether this layer should be included in
-the legends.  \code{NA}, the default, includes layer in the legends if any
-of the attributes of the layer are mapped.}
 }
 \value{
 a gg object

@@ -6,7 +6,8 @@
 \usage{
 gf_errorbarh(object = NULL, gformula = NULL, data = NULL,
   geom = "errorbarh", stat = "identity", position = "identity",
-  verbose = FALSE, show.legend = NA, show.help = NULL, ...)
+  verbose = FALSE, show.legend = NA, show.help = NULL, inherit = TRUE,
+  ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

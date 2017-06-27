@@ -7,11 +7,11 @@
 \usage{
 gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
   stat = "smooth", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, ...)
+  show.legend = NA, show.help = NULL, inherit = TRUE, ...)
 
 gf_lm(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
   stat = "smooth", position = "identity", verbose = FALSE,
-  show.legend = NA, show.help = NULL, ...)
+  show.legend = NA, show.help = NULL, inherit = TRUE, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -38,12 +38,16 @@ of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.
 Available attributes include
 \code{method}, \code{formula}, \code{se}, \code{method.args}, \code{n}, \code{span}, \code{fullrange}, \code{level}}
+
+\item{inherit}{A logical indicating whether default attributes are inherited.}
 }
 \value{
 a gg object
