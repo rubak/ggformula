@@ -1689,13 +1689,14 @@ gf_density <-
   layer_factory(
     geom = "area", stat = "density",
     aes_form = ~ x,
-    extras = alist(alpha = 0.5, color = , fill = NA, group = ,
-                   linetype = , size = , weight = ,
+    extras = alist(alpha = 0.5 , color = , fill = ,
+                   group = , linetype = , size = , weight = ,
                    kernel = "gaussian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
 
 # modified version of density plot without line along bottom and sides
+
 #' Formula interface to geom_line() and stat_density()
 #'
 #' \pkg{ggformula} functions provide a formula interface to \code{ggplot2} layer
