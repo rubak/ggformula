@@ -16,13 +16,13 @@ Depends:
     ggplot2
 Imports:
     rlang,
-    mosaic,
     magrittr,
     tibble,
     stringr,
     glue
 RoxygenNote: 6.0.1
 Suggests:
+    mosaic,
     dplyr,
     testthat,
     mosaicData,
