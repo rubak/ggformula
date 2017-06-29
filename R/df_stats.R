@@ -8,8 +8,8 @@
 #' @param formula A formula indicating which variables are to be used. See details.
 #' @param data A data frame or list containing the variables.
 #' @param ... Functions used to compute the statistics.  If this is empty,
-#'   \code{\link[mosaic]{favstats}()} is used.  Functions used must accept a vector
-#'   of values and return either a (possibly named) single value,
+#'   a default set of summary statistics is used.  Functions used must accept
+#'   a vector of values and return either a (possibly named) single value,
 #'   a (possibly named) vector of values, or a data frame with one row.
 #' @param drop A logical indicating whether combinations of the grouping
 #'   variables that do not occur in \code{data} should be dropped from the
@@ -55,7 +55,6 @@
 #'
 #' @export
 #' @importFrom rlang eval_tidy exprs expr
-#' @importFrom mosaic favstats
 #' @importFrom stats model.frame aggregate
 #'
 df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names = TRUE,
@@ -64,7 +63,7 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
   dots <- rlang::exprs(...)
 
   if (length(dots) < 1) {
-    dots <- list(rlang::expr(mosaic::favstats))
+    dots <- list(rlang::expr(ggf_favstats))
     names(dots) <- ""
   }
 
@@ -126,5 +125,35 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
   names(res) <- c(names(res)[1:d], unlist(final_names))
   if (nice_names) names(res) <- base::make.names(names(res), unique = TRUE)
   return(res)
+}
+
+ggf_favstats <- function (x, ..., na.rm = TRUE, type = 7)
+{
+  if (!is.null(dim(x)) && min(dim(x)) != 1)
+    warning("Not respecting matrix dimensions.  Hope that's OK.")
+  # x <- as.vector(x)
+  if (! is.numeric(x)) {
+    warning("Auto-converting ", class(x), " to numeric.")
+    x <- as.numeric(x)
+    if (!is.numeric(x)) stop("Auto-conversion to numeric failed.")
+  }
+
+  qq <- if (na.rm)
+    stats::quantile(x, na.rm = na.rm, type = type)
+  else
+    rep(NA, 5)
+  val <- data.frame(
+    min=qq[1],
+    Q1 = qq[2],
+    median = qq[3],
+    Q3 = qq[4],
+    max = qq[5],
+    mean = base::mean(x, na.rm = na.rm),
+    sd = stats::sd(x, na.rm = na.rm),
+    n = base::sum(! is.na(x)),
+    missing = base::sum( is.na(x) )
+  )
+  rownames(val) <- ""
+  return(val)
 }
 
