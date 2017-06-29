@@ -23,7 +23,7 @@ geom_spline(mapping = NULL, data = NULL, stat = "spline",
   df.offset = 0, penalty = 1, control.spar = list(), tol = NULL, ...)
 }
 \arguments{
-\item{mapping}{An aesthetic mapping produced with \code{\link{aes}()} or 
+\item{mapping}{An aesthetic mapping produced with \code{\link{aes}()} or
 \code{\link{aes_string}()}.}
 
 \item{data}{A data frame.}
@@ -39,8 +39,8 @@ missing values are removed before plotting.}
 for this layer.  If \code{NA}, legends will be inclued for each aesthetic
 that is mapped.}
 
-\item{inherit.aes}{A logical indicating whether aesthetics should be 
-inherited.  When \code{FALSE}, the supplied \code{mapping} will be 
+\item{inherit.aes}{A logical indicating whether aesthetics should be
+inherited.  When \code{FALSE}, the supplied \code{mapping} will be
 the only aesthetics used.}
 
 \item{weight}{An optional vector of weights.
@@ -52,30 +52,30 @@ See \code{\link{smooth.spline}()} for details.}
 \item{spar}{A smoothing parameter, typically in (0,1].
 See \code{\link{smooth.spline}()} for details.}
 
-\item{cv}{A logical. 
+\item{cv}{A logical.
 See \code{\link{smooth.spline}()} for details.}
 
 \item{all.knots}{A logical.
 See \code{\link{smooth.spline}()} for details.}
 
 \item{nknots}{An integer or function giving the number of knots to use
-when \code{all.knots = FALSE}.  
+when \code{all.knots = FALSE}.
 See \code{\link{smooth.spline}()} for details.}
 
 \item{df.offset}{A numerical value used to increase the degrees of freedom
 when using GVC.
 See \code{\link{smooth.spline}()} for details.}
 
-\item{penalty}{the coefficient of the penalty for degrees of freedom in the 
-GVC cireterion.  
+\item{penalty}{the coefficient of the penalty for degrees of freedom in the
+GVC cireterion.
 See \code{\link{smooth.spline}()} for details.}
 
-\item{control.spar}{An optional list used to control root finding 
+\item{control.spar}{An optional list used to control root finding
 when the parameter \code{spar} is computed.
 See \code{\link{smooth.spline}()} for details.}
 
-\item{tol}{A tolerance for same-ness or uniqueness of the \code{x} values. 
-The values are binned into bins of size tol and values which fall into 
+\item{tol}{A tolerance for same-ness or uniqueness of the \code{x} values.
+The values are binned into bins of size tol and values which fall into
 the same bin are regarded as the same. Must be strictly positive (and finite).
 When \code{NULL}, \code{IQR(x) * 10e-6} is used.}
 
@@ -87,8 +87,10 @@ When \code{NULL}, \code{IQR(x) * 10e-6} is used.}
 Functions to allow spline smoothing with ggplot2
 }
 \examples{
-ggplot(Births) + geom_spline(aes(x = date, y=births, colour = wday))
-ggplot(Births) + geom_spline(aes(x = date, y=births, colour = wday), nknots = 10)
+if (require(mosaicData)) {
+  ggplot(Births) + geom_spline(aes(x = date, y=births, colour = wday))
+  ggplot(Births) + geom_spline(aes(x = date, y=births, colour = wday), nknots = 10)
+}
 
 }
 \keyword{datasets}

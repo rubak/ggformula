@@ -71,7 +71,7 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-if (require(mosaic)) {
+if (require(mosaicData)) {
   gf_spline(births ~ date, color = ~wday, data = Births78)
   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
