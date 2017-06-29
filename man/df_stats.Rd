@@ -13,8 +13,8 @@ df_stats(formula, data, ..., drop = TRUE, fargs = list(),
 \item{data}{A data frame or list containing the variables.}
 
 \item{...}{Functions used to compute the statistics.  If this is empty,
-\code{\link[mosaic]{favstats}()} is used.  Functions used must accept a vector
-of values and return either a (possibly named) single value,
+a default set of summary statistics is used.  Functions used must accept
+a vector of values and return either a (possibly named) single value,
 a (possibly named) vector of values, or a data frame with one row.}
 
 \item{drop}{A logical indicating whether combinations of the grouping
