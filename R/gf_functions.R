@@ -437,7 +437,6 @@ gf_lm <-
 #' @param inherit A logical indicating whether default attributes are inherited.
 #' @return a gg object
 #' @seealso \code{\link{geom_spline}()}
-#' @importFrom mosaic geom_spline
 #' @export
 #' @examples
 #' if (require(mosaic)) {
@@ -445,6 +444,7 @@ gf_lm <-
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
 #' }
+
 gf_spline <-
   layer_factory(
     geom = "line",
@@ -3054,6 +3054,9 @@ gf_function <- function(object, fun, ...) {
 #'   }
 
 gf_fun <- function(object, formula, ...) {
+  if (! requireNamespace(mosaic)) {
+    stop("The mosaic package is required to use gf_fun().", call. = FALSE)
+  }
   if (rlang::is_formula(object)) {
     formula <- object
     object <- ggplot() + geom_blank()
