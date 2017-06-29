@@ -3,7 +3,6 @@
 #' Create a layer displaying a probability distribution.
 #'
 #' @importFrom stats approxfun ppoints
-#' @importFrom mosaic unnamed named_among
 #' @param object a gg object.
 #' @param dist A character string providing the name of a distribution.  Any
 #'   distribution for which the functions with names formed by prepending
@@ -70,9 +69,9 @@ gf_dist <- function(
     for (item in names(formals()) ) {
       if (item %in% names(params)) params[[item]] <- NULL
     }
-    dparams <- c(mosaic::unnamed(params), mosaic::named_among( params, names(formals(ddist))) )
-    pparams <- c(mosaic::unnamed(params), mosaic::named_among( params, names(formals(pdist))) )
-    qparams <- c(mosaic::unnamed(params), mosaic::named_among( params, names(formals(qdist))) )
+    dparams <- c(unnamed(params), named_among( params, names(formals(ddist))) )
+    pparams <- c(unnamed(params), named_among( params, names(formals(pdist))) )
+    qparams <- c(unnamed(params), named_among( params, names(formals(qdist))) )
   } else {
     dparams <- params
     pparams <- params
@@ -161,4 +160,21 @@ gf_dist <- function(
     )
   }
 }
+
+# These are borrowed from mosaic
+# #' List extraction
+# #'
+# #' These functions create subsets of lists based on their names
+# #'
+# #'
+# #' @param l a list
+# #' @param n a vector of character strings (potential names)
+# #' @return a sublist of \code{l} determined by \code{names(l)}
+
+named <-function(l)  if (is.null(names(l))) list() else l [ names(l) != "" ]
+
+unnamed <-function(l)  if (is.null(names(l))) l else l [ names(l) == "" ]
+
+named_among <- function(l, n)  l [ intersect( names(l), n ) ]
+
 
