@@ -439,7 +439,7 @@ gf_lm <-
 #' @seealso \code{\link{geom_spline}()}
 #' @export
 #' @examples
-#' if (require(mosaic)) {
+#' if (require(mosaicData)) {
 #'   gf_spline(births ~ date, color = ~wday, data = Births78)
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
 #'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
@@ -3054,7 +3054,7 @@ gf_function <- function(object, fun, ...) {
 #'   }
 
 gf_fun <- function(object, formula, ...) {
-  if (! requireNamespace(mosaic)) {
+  if (! requireNamespace("mosaic")) {
     stop("The mosaic package is required to use gf_fun().", call. = FALSE)
   }
   if (rlang::is_formula(object)) {
@@ -3073,7 +3073,4 @@ gf_fun <- function(object, formula, ...) {
       )
     )
 }
-
-
-
 
