@@ -21,6 +21,7 @@
 #'   an argument name.
 #' @param nice_names A logical indicating whether \code{\link{make.names}()} should be
 #'   used to force names of the returned data frame to by syntactically valid.
+#' @importFrom stats quantile
 #'
 #' @details
 #' Use a one-sided formula to compute summary statistics for the left hand side
@@ -29,7 +30,7 @@
 #' for each combination of levels of the expressions ocurring on the right hand side.
 #' This is most useful when the left hand side is quantitative and each expression
 #' on the right hand side has relatively few unique values.  A function like
-#' \code{\link{ntiles}()} is often useful to create a few groups of roughly equal size
+#' \code{\link[mosaic]{ntiles}()} is often useful to create a few groups of roughly equal size
 #' determined by ranges of a quantitative variable.  See the examples.
 #'
 #' Note that unlike \code{dplyr::\link[dplyr]{summarise}()}, `df_stats()` ignores

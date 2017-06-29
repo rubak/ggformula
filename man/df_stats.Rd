@@ -47,7 +47,7 @@ Use a two-sided formula to compute summary statistics for the left hand expressi
 for each combination of levels of the expressions ocurring on the right hand side.
 This is most useful when the left hand side is quantitative and each expression
 on the right hand side has relatively few unique values.  A function like
-\code{\link{ntiles}()} is often useful to create a few groups of roughly equal size
+\code{\link[mosaic]{ntiles}()} is often useful to create a few groups of roughly equal size
 determined by ranges of a quantitative variable.  See the examples.
 
 Note that unlike \code{dplyr::\link[dplyr]{summarise}()}, `df_stats()` ignores
