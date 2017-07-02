@@ -186,7 +186,7 @@ layer_factory <- function(
         params = ingredients[["params"]],
         check.aes = TRUE, check.param = FALSE,
         show.legend = show.legend,
-        inherit.aes = inherit.aes
+        inherit.aes = inherit
       )
     # print(layer_args[c("mapping", "setting", "params", "data")])
     new_layer <- do.call(ggplot2::layer, layer_args)
