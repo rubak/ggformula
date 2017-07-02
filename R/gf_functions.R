@@ -846,6 +846,7 @@ gf_boxplot <-
   layer_factory(
     geom = "boxplot",
     stat = "boxplot",
+    position = "dodge",
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , shape = , size = ,
       weight =, coef = ,
