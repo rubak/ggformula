@@ -145,9 +145,14 @@ layer_factory <- function(
 
     fmatches <- formula_match(gformula, aes_form = aes_form)
     if (! any(fmatches)) {
-      stop("Invalid formula type for ", function_name, ".", call. = FALSE)
+      if (inherits(object, "gg") && inherit) {
+        aes_form = NULL
+      } else {
+        stop("Invalid formula type for ", function_name, ".", call. = FALSE)
+      }
+    } else {
+      aes_form <- aes_form[[which.max(fmatches)]]
     }
-    aes_form <- aes_form[[which.max(fmatches)]]
 
     if (length(dots) > 0) {
       # proceed backwards through list so that removing items doesn't mess up indexing
@@ -197,12 +202,13 @@ layer_factory <- function(
       if (add)
         return(object + new_layer)
       else
-        return(ggplot(data = ingredients$data) + new_layer)
+        return(ggplot(data = ingredients$data, mapping = ingredients[["mapping"]]) + new_layer)
     } else {
       if (add)
         return(object + new_layer + ingredients[["facet"]])
       else
-        return(ggplot(data = ingredients$data) + new_layer + ingredients[["facet"]])
+        return(ggplot(data = ingredients$data, mapping = ingredients[["mapping"]]) +
+                 new_layer + ingredients[["facet"]])
     }
   }
   formals(res) <-
