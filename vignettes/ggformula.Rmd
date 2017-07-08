@@ -150,10 +150,10 @@ The following plot, for instance,
  * We use `cyl` to determine the color and `carb` to  determine the size of each
  dot.  Color and size are **mapped** to `cyl` and `carb`. 
  A legend is provided to show us how the mapping is being done.
- (Later, we can use scales to control precisly how the mapping is done -- 
+ (Later, we can use scales to control precisely how the mapping is done -- 
  which colors and sizes are used to represent which values of `cyl` and `carb`.)  
  
- * We also **set** the transpaency to 50%.  The gives the same value of `alpha` to
+ * We also **set** the transparency to 50%.  The gives the same value of `alpha` to
  all glyphs in this layer.
  
 ```{r}
@@ -167,7 +167,7 @@ explicitly.
 gf_point(mpg ~ hp, color = ~cyl, size = ~carb, alpha = 0.50, data = mtcars) 
 ```
 
-### On-the-fly caclulations
+### On-the-fly calculations
 
 `ggformula` allows for on-the-fly calculations of attributes, although the default labeling 
 of the plot is often better if we create a new variable in our data frame.  In the 
@@ -184,7 +184,7 @@ gf_point(mpg ~ hp,  color = ~cylinders, size = ~carb, alpha = 0.75,
 
 ## "One-variable" plots
 
-For some plots, we only have to specify the x-position because the y-position is cacluated
+For some plots, we only have to specify the x-position because the y-position is calculated
 from the x-values.  Histograms, densityplots, and frequency polygons are examples.
 To illustrate, we'll use density plots, but the same ideas apply to 
 `gf_histogram()`, and `gf_freqpolygon()` as well. 
@@ -201,7 +201,7 @@ gf_dens( ~ net, color = ~sex, alpha = 0.7, data = Runners)
 
 Several of the plotting functions include additional arguments that do not modify
 attributes of individual glyphs but control some other aspect of the plot.  In this
-case, `adjust` can be used to increase or decrease the amount of smothing.
+case, `adjust` can be used to increase or decrease the amount of smoothing.
 
 ```{r}
 # less smoothing
@@ -269,7 +269,7 @@ gf_boxplot(net ~ year, data = Runners)
 
 This plot is placing a single box and whisker plot at the mean value of `year`.
 The warning message suggests that we need to tell R how to form the groups
-when using a quantitive variable for `x`.
+when using a quantitative variable for `x`.
 It suggests using the `group` aesthetic, and sometimes, this is 
 just what we want.
 
@@ -379,7 +379,7 @@ gf_ribbon(lo + hi ~ date, data = Temps, color = "navy", alpha = 0.3)
 `position_jitterdodge()` can be used to adjust the positions at which 
 glyphs are placed.  Jittering adds some random noise and can be useful when
 many observations have the same value.  Dodging moves groups of glyphs a fixed
-difference to make it easier to distingish the groups.
+difference to make it easier to distinguish the groups.
 
 ```{r}
 gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
@@ -408,7 +408,7 @@ gf_bar( ~ age, data = HELPrct, stat = "bin")
 Mostly, the stats selected by default are just the ones you need. But sometimes
 it is useful to select a different stat.  The `stat_summary()` and 
 `stat_summary_bin()` stats are particularly useful in this respect.
-These stats use a function to aggegrate over unique values of `x` or over 
+These stats use a function to aggregate over unique values of `x` or over 
 bins of `x` values and save the user needing to do that data transformation
 manually. 
 
@@ -423,7 +423,7 @@ gf_jitter(length ~ sex, color = ~domhand, data = KidsFeet,
           group = ~domhand, stat="summary")
 ```
 
-The other two values computed by `mean_se()` are availble as
+The other two values computed by `mean_se()` are available as
 `..ymin..` and `..ymax..`.
 
 ```{r}
