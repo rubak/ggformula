@@ -132,7 +132,7 @@ gf_dist <- function(
              gf_point(
                gf_segment(object, rlang::set_env(density + 0 ~ x + x, parent.frame()),
                           data = data.frame(density = ydata, x = fewer_values), ...),
-               rlang::set_evn(y ~ x, parent.frame()),
+               rlang::set_env(y ~ x, parent.frame()),
                data = data.frame(y = ydata, x = fewer_values), ...),
            cdf =
              gf_step(object, rlang::set_env(cumulative_density ~ x, parent.frame()),
