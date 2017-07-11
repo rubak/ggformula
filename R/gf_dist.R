@@ -3,6 +3,7 @@
 #' Create a layer displaying a probability distribution.
 #'
 #' @importFrom stats approxfun ppoints
+#' @importFrom rlang set_env
 #' @param object a gg object.
 #' @param dist A character string providing the name of a distribution.  Any
 #'   distribution for which the functions with names formed by prepending
@@ -102,7 +103,7 @@ gf_dist <- function(
   if (kind=='cdf') {
     if (discrete) {
       step = min(diff(fewer_values))
-      cdfx <- seq( min(fewer_values) -1.5 * step , max(fewer_values) + 1.5*step, length.out=resolution)
+      cdfx <- seq( min(fewer_values) -1.5 * step , max(fewer_values) + 1.5 * step, length.out = resolution)
       cdfx <- sort(unique( c(fewer_values, cdfx) ) )
       cdfy <- approxfun( fewer_values, do.call(pdist, c(list(q=fewer_values),pparams)), method='constant',
                          f=0, yleft=0, yright=1 ) (cdfx)
@@ -116,46 +117,50 @@ gf_dist <- function(
 
   ydata <-
     switch(kind,
-           density = do.call(ddist, c(list(x=fewer_values), dparams)),
+           density = do.call(ddist, c(list(x = fewer_values), dparams)),
            cdf = cdfy,
            qq = NULL,
            qqstep = NULL,
-           histogram = do.call(ddist, c(list(x=sample_values), dparams))
-    )
+           histogram = do.call(ddist, c(list(x = sample_values), dparams))
+     )
 
+  # print(length(fewer_values))
 
   if (discrete) {
     switch(kind,
            density =
              gf_point(
-               gf_segment(object, density + 0 ~ x + x,
+               gf_segment(object, rlang::set_env(density + 0 ~ x + x, parent.frame()),
                           data = data.frame(density = ydata, x = fewer_values), ...),
-               y ~ x, data = data.frame(y = ydata, x = fewer_values), ...),
+               rlang::set_evn(y ~ x, parent.frame()),
+               data = data.frame(y = ydata, x = fewer_values), ...),
            cdf =
-             gf_step(object, cumulative_density ~ x,
+             gf_step(object, rlang::set_env(cumulative_density ~ x, parent.frame()),
                      data = data.frame(cumulative_density = ydata, x = cdfx), ...),
            qq =
-             gf_qq(object, ~ x, data = data.frame(x = sample_values), ...),
+             gf_qq(object, rlang::set_env(~ x, parent.frame()), data = data.frame(x = sample_values), ...),
            qqstep =
-             gf_qqstep(object, ~ x, data = data.frame(x = sample_values), ...),
+             gf_qqstep(object, rlang::set_env(~ x, parent.frame()), data = data.frame(x = sample_values), ...),
            histogram =
-             gf_histogram(object, ..density.. ~ x,
+             gf_histogram(object, rlang::set_env(..density.. ~ x, parent.frame()),
                           data = data.frame(x = sample_values), ...)
     )
   } else {
     switch(kind,
            density =
-             gf_line(object, density ~ x,
+             gf_line(object, rlang::set_env(density ~ x, parent.frame()),
                      data = data.frame(density = ydata, x = fewer_values), ...),
            cdf =
-             gf_line(object, cumulative_density ~ x,
+             gf_line(object, rlang::set_env(cumulative_density ~ x, parent.frame()),
                      data = data.frame(cumulative_density = ydata, x = cdfx), ...),
            qq =
-             gf_qq(object, ~ x, data = data.frame(x = sample_values), ...),
+             gf_qq(object, rlang::set_env(~ x, parent.frame()),
+                   data = data.frame(x = sample_values), ...),
            qqstep =
-             gf_qqstep(object, ~ x, data = data.frame(x = sample_values), ...),
+             gf_qqstep(object, rlang::set_env(~ x, parent.frame()),
+                       data = data.frame(x = sample_values), ...),
            histogram =
-             gf_histogram(object, ..density.. ~ x,
+             gf_histogram(object, rlang::set_env(..density.. ~ x, parent.frame()),
                           data = data.frame(x = sample_values), ...)
     )
   }
