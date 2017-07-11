@@ -347,9 +347,9 @@ formula_shape <- function(x) {
     return(0)
   }
   if (as.character(x[[1]]) %in% c(":", "(")){
-    return(-1)
+    return(0)   # was -1 when supporting attribute:value
   }
-  # stop if we hit a name that isn't +
+  # stop if we hit a name that isn't + or ~
   if (is.name(x[[1]]) && ! as.character(x[[1]]) %in% c("+", "~")) {
     return(0)
   }
@@ -378,7 +378,7 @@ formula_shape <- function(x) {
     }
     return( c(2, left_shape, right_shape) )
   }
-  stop("problems here.")
+  stop("Bug: problems determining formula shape.")
 
   c(length(x) - 1, unlist(sapply(x[-1], formula_shape)))
   # list(length(x) - 1, lapply(x[-1], formula_shape))
@@ -408,6 +408,10 @@ formula_to_df <- function(formula = NULL, data_names = character(0),
   # split into pairs/nonpairs
   pairs <- parts[grepl(":+", parts)]
   nonpairs <- parts[ ! grepl(":+", parts)]
+
+  ## !! turning off support for attribute:value !!
+  pairs <- parts[FALSE]
+  nonpairs <- parts[TRUE]
 
   pair_list <- list()
   mapped_pairs <- character(0)
