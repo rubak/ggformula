@@ -8,6 +8,16 @@ utils::globalVariables("role")
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
 #' @import ggplot2
 
+# covert y ~ 1 into ~ x
+standard_formula <- function(formula) {
+  if (length(formula) == 3L && formula[[3]] == 1) {
+    formula[[3]] <- formula[[2]]
+    # can remove either slot 2 or slot 3 here to get 1-sided formula
+    formula[[2]] <- NULL
+  }
+  formula
+}
+
 # The actual graphing functions are created dynamically.
 #  See the functions at the bottom of this file
 
@@ -106,6 +116,7 @@ layer_factory <- function(
   data = NULL
 ) {
   # the formals of this will be modified below
+  # the formals included here help avoid CRAN warnings
   res <- function(show.legend , function_name, ...) {
 
     dots <- list(...)
@@ -141,9 +152,15 @@ layer_factory <- function(
       object <- NULL
     }
 
-    # find matching formula shape
+    # convert y ~ 1 into ~ y if a 1-sided formula is an option
+    if (any(sapply(aes_form, function(f) length(f) == 2L))) {
+      gformula <- standard_formula(gformula)
+    }
 
+    # find matching formula shape
     fmatches <- formula_match(gformula, aes_form = aes_form)
+
+
     if (! any(fmatches)) {
       if (inherits(object, "gg") && inherit) {
         aes_form = NULL
