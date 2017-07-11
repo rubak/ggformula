@@ -78,6 +78,16 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
   if ( ! inherits(data, "data.frame")) stop("second arg must be a data.frame")
   MF <- model.frame(formula, data)
 
+  one_group <- FALSE
+  if (ncol(MF) == 1) {
+    one_group <- TRUE
+    if ("group" %in% names(MF)) {
+      MF[, "..group.."] <- 1
+    } else {
+      MF[, "group"] <- 1
+    }
+  }
+
   res <-
     lapply(dots, function(f)
       aggregate(MF[, 1], by = MF[, -1, drop = FALSE],
@@ -125,6 +135,9 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
   res <- do.call(cbind, c(list(groups), res))
   names(res) <- c(names(res)[1:d], unlist(final_names))
   if (nice_names) names(res) <- base::make.names(names(res), unique = TRUE)
+  if (one_group) {
+    res <- res[, -1]
+  }
   return(res)
 }
 
