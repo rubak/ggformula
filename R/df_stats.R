@@ -138,6 +138,7 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
   if (one_group) {
     res <- res[, -1]
   }
+  row.names(res) <- NULL
   return(res)
 }
 
