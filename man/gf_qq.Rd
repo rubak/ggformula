@@ -2,11 +2,16 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_qq}
 \alias{gf_qq}
+\alias{gf_qqline}
 \alias{gf_qqstep}
 \title{Formula interface to geom_qq()}
 \usage{
 gf_qq(object = NULL, gformula = NULL, data = NULL, geom = "point",
   stat = "qq", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = TRUE, ...)
+
+gf_qqline(object = NULL, gformula = NULL, data = NULL, geom = "line",
+  stat = "qqline", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, ...)
 
 gf_qqstep(object = NULL, gformula = NULL, data = NULL, geom = "step",
@@ -82,7 +87,8 @@ in another.
 }
 \examples{
 gf_qq(~rnorm(100))
-gf_qq(~Sepal.Length | Species, data = iris)
+gf_qq(~Sepal.Length | Species, data = iris) \%>\% gf_qqline()
+gf_qq(~Sepal.Length | Species, data = iris) \%>\% gf_qqline(tail = 0.10)
 gf_qq(~Sepal.Length, color = ~Species, data = iris) \%>\%
 gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
 }

@@ -259,3 +259,83 @@ geom_spline <-
                     control.spar = control.spar, tol = tol, ...)
     )
   }
+
+
+#' @rdname stat_qqline
+#' @param mapping An aesthetic mapping produced with \code{\link{aes}()} or
+#' \code{\link{aes_string}()}.
+#' @param data A data frame.
+#' @param geom A geom.
+#' @param stat A stat.
+#' @param position A position object.
+#' @param tail A tail probability.  The constructed line will connect the \code{tail} and \code{1 - tail} quantiles
+#'   of the sample and theoretical distributions.
+#' @param na.rm A logical indicating whether a warning should be issued when
+#'   missing values are removed before plotting.
+#' @param show.legend A logical indicating whether legends should be included
+#'   for this layer.  If \code{NA}, legends will be inclued for each aesthetic
+#'   that is mapped.
+#' @param inherit.aes A logical indicating whether aesthetics should be
+#'   inherited.  When \code{FALSE}, the supplied \code{mapping} will be
+#'   the only aesthetics used.
+#' @param ... Additional arguments
+#' @export
+#' @examples
+#' ggplot(data = iris, aes(sample = Sepal.Length)) +
+#'   geom_qq() +
+#'   stat_qqline( alpha = 0.7, color = "red", linetype = "dashed") +
+#'   facet_wrap(~Species)
+#'
+# Based on an example found at
+#  * https://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/
+#  * and stackoverflow.com/a/4357932/1346276
+
+qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
+  q.sample <- quantile(sample, c(tail, 1 - tail), na.rm = na.rm)
+  q.theory <- qdist(c(tail, 1 - tail))
+  slope <- diff(q.sample) / diff(q.theory)
+  intercept <- q.sample[1] - slope * q.theory[1]
+  list(slope = slope, intercept = intercept)
+}
+
+#' A stat for adding guide lines to qq-plots
+#'
+#' This stat computes points on a line connecting two quantiles
+#' of the sample and theoretical distributions.
+#'
+#' @rdname stat_qqline
+#' @export
+StatQqline <- ggproto("StatQqline", Stat,
+                      required_aes = c('sample'),
+                      compute_group = function(data, scales,
+                                               distribution = stats::qnorm,
+                                               dparams = list(),
+                                               tail = 0.25,
+                                               na.rm = FALSE) {
+                        qdist <- function(p) do.call(distribution, c(list(p = p), dparams))
+
+                        n <- length(data$sample)
+                        theoretical <- qdist(stats::ppoints(n))
+                        qq <- qq.line(data$sample, qdist = qdist, tail = tail, na.rm = na.rm)
+
+                        data.frame(x = theoretical, y = qq$intercept + theoretical * qq$slope)
+                      }
+)
+
+#' @rdname stat_qqline
+#' @export
+stat_qqline <-
+  function(mapping = NULL, data = NULL, geom = "line",
+           position = "identity", ...,
+           distribution = stats::qnorm,
+           dparams = list(),
+           na.rm = FALSE,
+           show.legend = NA,
+           inherit.aes = TRUE) {
+    layer(stat = StatQqline, data = data, mapping = mapping, geom = geom,
+          position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+          params = list(distribution = distribution,
+                        dparams = dparams,
+                        na.rm = na.rm, ...))
+  }
+

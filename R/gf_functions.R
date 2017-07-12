@@ -2039,7 +2039,8 @@ gf_freqpoly <-
 #' @export
 #' @examples
 #' gf_qq(~rnorm(100))
-#' gf_qq(~Sepal.Length | Species, data = iris)
+#' gf_qq(~Sepal.Length | Species, data = iris) %>% gf_qqline()
+#' gf_qq(~Sepal.Length | Species, data = iris) %>% gf_qqline(tail = 0.10)
 #' gf_qq(~Sepal.Length, color = ~Species, data = iris) %>%
 #' gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
 gf_qq <-
@@ -2047,6 +2048,16 @@ gf_qq <-
     geom = "point", stat = "qq",
     aes_form = ~ sample,
     extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
+  )
+#' @rdname gf_qq
+#' @export
+
+gf_qqline <-
+  layer_factory(
+    geom = "line", stat = "qqline",
+    aes_form = ~ sample,
+    extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list(),
+                   linetype = "dashed", alpha = 0.7)
   )
 
 #' @export
@@ -3016,6 +3027,7 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
 #' @rdname gf_functions
 #' @export
 #' @examples
+#' gf_function(fun = sqrt, xlim = c(0, 10))
 #' if (require(mosaicData)) {
 #'   gf_histogram(..density.. ~ age, data = HELPrct, binwidth = 3, alpha = 0.6) %>%
 #'     gf_function(fun = dnorm,
@@ -3024,10 +3036,13 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
 #' }
 
 
-gf_function <- function(object, fun, ...) {
+gf_function <- function(object = NULL, fun, xlim, ...) {
   if (rlang::is_function(object)) {
     fun <- object
-    object <- ggplot() + geom_blank()
+    object <- NULL
+  }
+  if (is.null(object)) {
+    object <- ggplot(data = data.frame(x = xlim), aes(x))
   }
   qdots <- rlang::quos(...)
   afq <- aes_from_qdots(qdots)
@@ -3036,6 +3051,7 @@ gf_function <- function(object, fun, ...) {
       ggplot2::layer,
       list(geom = "path", stat = "function", position = "identity",
            mapping = afq$mapping,
+           data = if (missing(xlim)) NULL else data.frame(x = xlim),
            params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
     )
@@ -3043,10 +3059,11 @@ gf_function <- function(object, fun, ...) {
 
 #' @rdname gf_functions
 #' @param formula A formula describing a function.  See examples.
+#' @param xlim A numeric vector providing the extent of the x-axis when creating
+#'   the first layer in a plot.  Ignored when creating a subsequent layer.
 #' @export
 #' @examples
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#' gf_fun(5 + 3 * cos(10 * x) ~ x)
+#' gf_fun(5 + 3 * cos(10 * x) ~ x, xlim = c(0,2))
 #' # Utility bill is quadratic in month?
 #' if (require(mosaic)) {
 #'   f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
@@ -3054,13 +3071,17 @@ gf_function <- function(object, fun, ...) {
 #'     gf_fun(f(m) ~ m, color = "red")
 #'   }
 
-gf_fun <- function(object, formula, ...) {
+gf_fun <- function(object = NULL, formula, xlim, ...) {
   if (! requireNamespace("mosaic")) {
     stop("The mosaic package is required to use gf_fun().", call. = FALSE)
   }
-  if (rlang::is_formula(object)) {
+  if (rlang::is_formula(object) && missing(formula)) {
     formula <- object
-    object <- ggplot() + geom_blank()
+    object <- NULL
+  }
+  if (is.null(object)) {
+    object <-
+      ggplot(data = data.frame(x = xlim), aes(x))
   }
   qdots <- rlang::quos(...)
   fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
@@ -3070,6 +3091,7 @@ gf_fun <- function(object, formula, ...) {
       ggplot2::layer,
         list(geom = "path", stat = "function", position = "identity",
              mapping = afq$mapping,
+             data = if (missing(xlim)) NULL else data.frame(x = xlim),
              params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
     )
