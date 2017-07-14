@@ -1,3 +1,4 @@
+#' @ importFrom grid gList
 
 # duplicate from mosaic package
 #
@@ -339,3 +340,193 @@ stat_qqline <-
                         na.rm = na.rm, ...))
   }
 
+
+# StatPredict <- ggproto("StatPredict", Stat,
+#                       required_aes = c(),
+#                       compute_group = function(data,
+#                                                scales,
+#                                                model,
+#                                                interval = "prediction",
+#                                                level = 0.95,
+#                                                pparams = list(),
+#                                                tail = 0.25,
+#                                                na.rm = FALSE) {
+#                         predict_args <-
+#                           c(list(object = model, data = data, interval = interval, level = level), pparams)
+#                         fit <- do.call(stats::predict, predict_args)
+#                         res <- cbind(data, fit)
+#                         res
+#                       }
+# )
+
+
+#' @rdname stat_lm
+#' @export
+stat_lm <-
+  function(
+    mapping = NULL, data = NULL, geom = "lm",
+    position = "identity", model = NULL,
+    interval = c("none", "prediction", "confidence"),
+    level = 0.95,
+    lm.args = list(),
+    formula = y ~ x,
+    se = NULL,
+    backtrans = identity,
+    ...,
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE)  {
+
+
+    interval <- match.arg(interval)
+
+    layer(stat = StatLm, data = data, mapping = mapping, geom = geom,
+          position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+          params = list(interval = interval, level = level, formula = formula,
+                        lm.args = lm.args, na.rm = na.rm, backtrans = backtrans, ...))
+  }
+
+#' @rdname stat_lm
+#' @format NULL
+#' @usage NULL
+#' @export
+StatLm <-
+  ggproto("StatLm", Stat,
+          setup_params = function(data, params) {
+            if (identical(params$interval, "none")) {
+              params$se <- FALSE
+            } else {
+              params$se <- TRUE
+            }
+            params
+          },
+          compute_group = function(data, scales, formula = y ~ x,
+                                   n = 80, span = 0.75, fullrange = TRUE,
+                                   xseq = NULL, level = 0.95, interval = "confidence",
+                                   lm.args = list(), na.rm = FALSE, se = NULL,
+                                   backtrans = identity
+                                   ) {
+
+            model <- NULL
+            interval <- match.arg(interval, c("none", "confidence", "prediction"))
+
+            # if no model provided, fit one
+             if (is.null(model)) {
+               # unless we don't have enough data
+               if (length(unique(data$x)) < 2) {
+                 return(data.frame())
+               }
+               if (is.null(data$weight)) data$weight <- 1
+               # figure out x-values
+               if (is.null(xseq)) {
+                 if (is.integer(data$x)) {
+                   if (fullrange) {
+                     xseq <- scales$x$dimension()
+                   } else {
+                     xseq <- sort(unique(data$x))
+                   }
+                 } else {
+                   if (fullrange) {
+                     range <- scales$x$dimension()
+                   } else {
+                     range <- range(data$x, na.rm = TRUE)
+                   }
+                   xseq <- seq(range[1], range[2], length.out = n)
+                 }
+               }
+               base.args <- list(formula = formula, data = quote(data), weights = quote(weight))
+               model <- do.call(stats::lm, c(base.args, lm.args))
+             }
+
+            predictdf(model, xseq = xseq, level = level, interval = interval, se = se, backtrans = backtrans)
+          },
+          required_aes = c("x", "y")
+  )
+
+# modeled after ggplot2:::predictdf.default, but allowing for prediction intervals
+# as well as confidence intervals and always computes SEs.
+
+predictdf <-
+  function (model, xseq, level, interval, se = TRUE, backtrans = identity)
+  {
+    if (! inherits(model, "lm")) {
+      stop("Model must be created using lm()")
+    }
+
+    if (interval == "none") interval <- "confidence"
+
+    pred <- suppressWarnings(
+      stats::predict(model, newdata = data.frame(x = xseq),
+                     se.fit = TRUE, level = level, interval = interval)
+    )
+    fit <- as.data.frame(pred$fit)
+    names(fit) <- c("y", "ymin", "ymax")
+    fit <- mutate(fit, y = backtrans(y), ymin = backtrans(ymin), ymax = backtrans(ymax))
+    if (se) {
+      data.frame(x = xseq, fit, se = pred$se.fit, se_param = TRUE)
+    } else {
+      data.frame(x = xseq, fit, se = pred$se.fit)
+    }
+  }
+
+
+#' @export
+geom_lm <- function(mapping = NULL, data = NULL,
+                        stat = "lm", position = "identity",
+                        ...,
+                        method = "auto",
+                        formula = y ~ x,
+                        se = TRUE,
+                        backtrans = identity,
+                        na.rm = FALSE,
+                        show.legend = NA,
+                        inherit.aes = TRUE) {
+
+  params <- list(
+    na.rm = na.rm,
+    se = se,
+    backtrans = backtrans,
+    formula = formula,
+    ...
+  )
+
+  layer(
+    data = data,
+    mapping = mapping,
+    stat = stat,
+    geom = GeomLm,
+    position = position,
+    show.legend = show.legend,
+    inherit.aes = inherit.aes,
+    params = params
+  )
+}
+
+#' @rdname ggplot2-ggproto
+#' @format NULL
+#' @usage NULL
+#' @export
+GeomLm <- ggproto("GeomLm", Geom,
+                      setup_data = function(data, params) {
+                        GeomLine$setup_data(data, params)
+                      },
+                      draw_group = function(data, panel_params, coord) {
+                        ribbon <- transform(data, colour = NA)
+                        path <- transform(data, alpha = NA)
+
+                        has_ribbon <- !is.null(data$se_param)  # !is.null(data$ymax) && !is.null(data$ymin)
+
+                        grid::gList(
+                          if (has_ribbon) GeomRibbon$draw_group(ribbon, panel_params, coord),
+                          GeomLine$draw_panel(path, panel_params, coord)
+                        )
+                      },
+
+                      draw_key = draw_key_smooth,
+
+                      required_aes = c("x", "y"),
+                      optional_aes = c("ymin", "ymax"),
+
+                      default_aes = aes(colour = "#3366FF", fill = "grey60", size = 0.7,
+                                        linetype = 1, weight = 1, alpha = 0.3)
+)

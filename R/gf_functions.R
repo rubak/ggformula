@@ -363,8 +363,10 @@ gf_path <-
 #' @examples
 #' if (require(mosaicData)) {
 #'   gf_smooth(births ~ date, color = ~wday, data = Births78)
+#'   gf_smooth(births ~ date, color = ~wday, data = Births78, fullrange = TRUE)
 #'   gf_smooth(births ~ date, color = ~wday, data = Births78, show.legend = FALSE, se = FALSE)
-#'   gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = TRUE, alpha = 0.2)
+#'   gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, alpha = 0.2)
+#'   gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = FALSE, alpha = 0.2)
 #' }
 gf_smooth <-
   layer_factory(
@@ -379,12 +381,11 @@ gf_smooth <-
 
 gf_lm <-
   layer_factory(
-    geom = "smooth",
-    stat = "smooth",
-    extras = alist(method = "lm", formula = y ~ x, se = TRUE, method.args = ,
-                   n = 80 , fullrange = FALSE, level = 0.95)
-    )
-
+    geom = "lm",
+    stat = "lm",
+    aes_form = y ~ x,
+    extras = alist(alpha = 0.3, lm.args = list(), interval = "none", level = 0.95, fullrange = TRUE)
+  )
 
 
 #' Formula interface to geom_spline()
@@ -3036,13 +3037,14 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
 #' }
 
 
-gf_function <- function(object = NULL, fun, xlim, ...) {
-  if (rlang::is_function(object)) {
+gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
+  if (rlang::is_function(object) || rlang::is_character(object)) {
     fun <- object
     object <- NULL
   }
   if (is.null(object)) {
     object <- ggplot(data = data.frame(x = xlim), aes(x))
+    inherit <- TRUE
   }
   qdots <- rlang::quos(...)
   afq <- aes_from_qdots(qdots)
@@ -3051,6 +3053,7 @@ gf_function <- function(object = NULL, fun, xlim, ...) {
       ggplot2::layer,
       list(geom = "path", stat = "function", position = "identity",
            mapping = afq$mapping,
+           inherit.aes = inherit,
            data = if (missing(xlim)) NULL else data.frame(x = xlim),
            params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )
@@ -3071,7 +3074,7 @@ gf_function <- function(object = NULL, fun, xlim, ...) {
 #'     gf_fun(f(m) ~ m, color = "red")
 #'   }
 
-gf_fun <- function(object = NULL, formula, xlim, ...) {
+gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
   if (! requireNamespace("mosaic")) {
     stop("The mosaic package is required to use gf_fun().", call. = FALSE)
   }
@@ -3079,9 +3082,10 @@ gf_fun <- function(object = NULL, formula, xlim, ...) {
     formula <- object
     object <- NULL
   }
+
   if (is.null(object)) {
-    object <-
-      ggplot(data = data.frame(x = xlim), aes(x))
+    object <- ggplot(data = data.frame(x = xlim), aes(x))
+    inherit <- TRUE
   }
   qdots <- rlang::quos(...)
   fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
@@ -3091,6 +3095,7 @@ gf_fun <- function(object = NULL, formula, xlim, ...) {
       ggplot2::layer,
         list(geom = "path", stat = "function", position = "identity",
              mapping = afq$mapping,
+             inherit.aes = inherit,
              data = if (missing(xlim)) NULL else data.frame(x = xlim),
              params = c(list(fun = fun), lapply(afq$qdots, rlang::f_rhs))
       )

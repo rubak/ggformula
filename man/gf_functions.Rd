@@ -5,9 +5,9 @@
 \alias{gf_fun}
 \title{Layers displaying graphs of functions}
 \usage{
-gf_function(object = NULL, fun, xlim, ...)
+gf_function(object = NULL, fun, xlim, ..., inherit = FALSE)
 
-gf_fun(object = NULL, formula, xlim, ...)
+gf_fun(object = NULL, formula, xlim, ..., inherit = FALSE)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

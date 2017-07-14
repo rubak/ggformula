@@ -9,8 +9,8 @@ gf_smooth(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
   stat = "smooth", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, ...)
 
-gf_lm(object = NULL, gformula = NULL, data = NULL, geom = "smooth",
-  stat = "smooth", position = "identity", show.legend = NA,
+gf_lm(object = NULL, gformula = NULL, data = NULL, geom = "lm",
+  stat = "lm", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, ...)
 }
 \arguments{
@@ -78,8 +78,10 @@ in another.
 \examples{
 if (require(mosaicData)) {
   gf_smooth(births ~ date, color = ~wday, data = Births78)
+  gf_smooth(births ~ date, color = ~wday, data = Births78, fullrange = TRUE)
   gf_smooth(births ~ date, color = ~wday, data = Births78, show.legend = FALSE, se = FALSE)
-  gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = TRUE, alpha = 0.2)
+  gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, alpha = 0.2)
+  gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = FALSE, alpha = 0.2)
 }
 }
 \seealso{
