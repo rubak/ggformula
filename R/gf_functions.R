@@ -2773,6 +2773,7 @@ gf_errorbar <-
   layer_factory(
     geom = "errorbar",
     aes_form = ymin + ymax ~ x,
+    inherit.aes = FALSE,
     extras = alist(
       alpha = , color = , group = , linetype = , size =
       )
@@ -2810,6 +2811,8 @@ gf_errorbar <-
 #'
 #' @param gformula A formula with shape \code{y ~ x + xmin + xmax}.
 #'   Faceting can be acheived by including \code{|} in the formula.
+#'   Note: The odd shape for this is due to a quirk in \pkg{ggplot2} which has
+#'   been changed on github, but not yet on CRAN.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -3045,6 +3048,7 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
 #' See details and examples.
 #' @param ... Other arguments such as \code{position="dodge"}.
 #' @param fun A function.
+#' @param inherit A logical indicating whether attributes should be inherited.
 #' @rdname gf_functions
 #' @export
 #' @examples
