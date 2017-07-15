@@ -126,23 +126,16 @@ or they can be **mapped** to a variable in the data or some
 expression involving the variables 
 (e.g., map the color to `sex`, so sex determines the color groupings)
 
-Attributes can be specified in 4 ways:
+Attributes are set or mapped using additional arguments.
 
- * adding an argument of the form `attribute = value` [set]
- * adding an argument of the form `attribute = ~ expression` [map]
- * adding a formula term of the form `+ attribute:value` to the formula [auto chooses set or map]
- * adding a formula term of the form `+ attribute::value` [map]
+ * adding an argument of the form `attribute = value` **sets** `attribute` to `value`.
+ * adding an argument of the form `attribute = ~ expression` **maps** `attribute` to `expression`
  
-where `attribute` is one of `color`, `shape`, etc. and `value` is either a constant 
-(e.g. `"red"` or `0.5`, as appropriate), a variable (e.g. `cyl`), and `expression`
+where `attribute` is one of `color`, `shape`, etc., `value` is a constant 
+(e.g. `"red"` or `0.5`, as appropriate), and `expression`
 may be some more general expression that can be computed using the variables in `data` 
 (although often is is better to create a new variable in the data and to
 use that variable instead of an on-the-fly calculation within the plot).
-When using the `:` separator, mapping will be used if `value` is the name of 
-a variable in `data`, otherwise setting will be used.  The other forms 
-can be used to make things explicit when this auto-detection method doesn't yield the 
-desired results.  In general, the use of function arguments is preferable over adding additional
-terms to the formula.
 
 
 The following plot, for instance, 
@@ -157,7 +150,7 @@ The following plot, for instance,
  all glyphs in this layer.
  
 ```{r}
-gf_point(mpg ~ hp + color:cyl + size:carb + alpha:0.50, data = mtcars) 
+gf_point(mpg ~ hp, color = ~ cyl, size = ~carb, alpha = 0.50, data = mtcars) 
 ```
 
 Here is the same plot where mapping and setting are indicated 
@@ -224,8 +217,8 @@ gf_density( ~ net, fill = ~sex, color = NA, position = "fill", data = Runners, a
 ```
 
 Similar commands can be constructed with `gf_histogram()` and `gf_freqpoly()`,
-but note that `color`, not `fill`, is the active aesthetic for frequency
-polygons and `position:"fill"` doesn't work.  It's also rarely good to overlay
+but note that `color`, not `fill`, is the active attribute for frequency
+polygons.  It's also rarely good to overlay
 histograms on top of one another -- better to use a density plot or a frequency 
 polygon for that application.
 
