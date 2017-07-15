@@ -76,7 +76,7 @@ gf_ash <-
     extras = alist(alpha = , color = , group = , linetype = , size = )
   )
 
-#' @rdname ashplot
+#' @rdname ggformula-ggproto
 #' @export
 StatAsh <-
   ggproto("StatAsh", Stat,
@@ -150,7 +150,7 @@ geom_ash <-
 #'
 #' Functions to allow spline smoothing with ggplot2
 
-#' @rdname geom_spline
+#' @rdname ggformula-ggproto
 #' @export
 StatSpline <-
   ggproto("StatSpline", Stat,
@@ -304,7 +304,7 @@ qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
 #' This stat computes points on a line connecting two quantiles
 #' of the sample and theoretical distributions.
 #'
-#' @rdname stat_qqline
+#' @rdname ggformula-ggproto
 #' @export
 StatQqline <- ggproto("StatQqline", Stat,
                       required_aes = c('sample'),
@@ -341,52 +341,31 @@ stat_qqline <-
   }
 
 
-# StatPredict <- ggproto("StatPredict", Stat,
-#                       required_aes = c(),
-#                       compute_group = function(data,
-#                                                scales,
-#                                                model,
-#                                                interval = "prediction",
-#                                                level = 0.95,
-#                                                pparams = list(),
-#                                                tail = 0.25,
-#                                                na.rm = FALSE) {
-#                         predict_args <-
-#                           c(list(object = model, data = data, interval = interval, level = level), pparams)
-#                         fit <- do.call(stats::predict, predict_args)
-#                         res <- cbind(data, fit)
-#                         res
-#                       }
-# )
 
-
-#' @rdname stat_lm
+#' @rdname geom_lm
 #' @export
 stat_lm <-
   function(
     mapping = NULL, data = NULL, geom = "lm",
-    position = "identity", model = NULL,
+    position = "identity",
     interval = c("none", "prediction", "confidence"),
     level = 0.95,
-    lm.args = list(),
-    formula = y ~ x,
-    se = NULL,
-    backtrans = identity,
+    formula = y ~ x, lm.args = list(), backtrans = identity,
     ...,
     na.rm = FALSE,
     show.legend = NA,
     inherit.aes = TRUE)  {
 
-
     interval <- match.arg(interval)
+    params <- list(interval = interval, level = level, formula = formula,
+                   lm.args = lm.args, na.rm = na.rm, backtrans = backtrans, ...)
 
     layer(stat = StatLm, data = data, mapping = mapping, geom = geom,
           position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-          params = list(interval = interval, level = level, formula = formula,
-                        lm.args = lm.args, na.rm = na.rm, backtrans = backtrans, ...))
+          params = params)
   }
 
-#' @rdname stat_lm
+#' @rdname ggformula-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
@@ -461,7 +440,7 @@ predictdf <-
     )
     fit <- as.data.frame(pred$fit)
     names(fit) <- c("y", "ymin", "ymax")
-    fit <- mutate(fit, y = backtrans(y), ymin = backtrans(ymin), ymax = backtrans(ymax))
+    fit <- transform(fit, y = backtrans(y), ymin = backtrans(ymin), ymax = backtrans(ymax))
     if (se) {
       data.frame(x = xseq, fit, se = pred$se.fit, se_param = TRUE)
     } else {
@@ -469,40 +448,87 @@ predictdf <-
     }
   }
 
-
+#' Linear Model Displays
+#'
+#' Adds linear model fits to plots. `geom_lm()` and `stat_lm()` are essentially
+#' equivalent.  Use `geom_lm()` unless you want a non-standard geom.
+#'
+#' Stat calculation is performed by the (currently undocumented)
+#' `predictdf`.  Pointwise confidence or prediction bands are
+#' calculated using the [predict()] method.
+#'
+#' @rdname geom_lm
+#' @section Aesthetics:
+#' \aesthetics{geom}{lm}
+#'
+#' @inheritParams layer
+#' @inheritParams geom_point
+#' @param geom,stat Use to override the default connection between
+#'   `geom_lm` and `stat_lm`.
+#' @param formula a formula describing the model in terms of `y` (response)
+#'   and `x` (predictor).
+#' @param backtrans a function that transforms the response back to
+#'   the original scale when the `formula` includes a transforamtion on
+#'   `y`.
+#' @param interval One of `"none"`, `"confidence"` or `"prediction"`.
+#' @param level The level used for confidence or prediction intervals
+#'
+#' @seealso [lm()] for details on linear model fitting.
 #' @export
-geom_lm <- function(mapping = NULL, data = NULL,
-                        stat = "lm", position = "identity",
-                        ...,
-                        method = "auto",
-                        formula = y ~ x,
-                        se = TRUE,
-                        backtrans = identity,
-                        na.rm = FALSE,
-                        show.legend = NA,
-                        inherit.aes = TRUE) {
+#' @examples
+#' if (require(mosaicData)) {
+#'   ggplot(data = KidsFeet, aes(y = length, x = width, color = sex)) +
+#'     geom_lm() +
+#'     geom_point()
+#'   ggplot(data = KidsFeet, aes(y = length, x = width, color = sex)) +
+#'     geom_lm(interval = "prediction", color = "skyblue") +
+#'     geom_lm(interval = "confidence") +
+#'     geom_point() +
+#'     facet_wrap(~sex)
+#'  # non-standard display
+#'   ggplot(data = KidsFeet, aes(y = length, x = width, color = sex)) +
+#'     stat_lm(aes(fill = sex), color = NA, interval = "confidence", geom = "ribbon",
+#'     alpha = 0.2) +
+#'     geom_point() +
+#'     facet_wrap(~sex)
+#' ggplot(mpg, aes(displ, hwy)) +
+#'    geom_lm(formula = log(y) ~ poly(x,3), backtrans = exp,
+#'      interval = "prediction", fill = "skyblue") +
+#'    geom_lm(formula = log(y) ~ poly(x,3), backtrans = exp, interval = "confidence",
+#'      color = "red") +
+#'    geom_point()
+#' }
 
-  params <- list(
-    na.rm = na.rm,
-    se = se,
-    backtrans = backtrans,
-    formula = formula,
-    ...
-  )
+geom_lm <-
+  function(
+    mapping = NULL, data = NULL, stat = "lm",
+    position = "identity",
+    interval = c("none", "prediction", "confidence"),
+    level = 0.95,
+    formula = y ~ x, lm.args = list(), backtrans = identity,
+    ...,
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE)  {
 
-  layer(
-    data = data,
-    mapping = mapping,
-    stat = stat,
-    geom = GeomLm,
-    position = position,
-    show.legend = show.legend,
-    inherit.aes = inherit.aes,
-    params = params
-  )
-}
 
-#' @rdname ggplot2-ggproto
+    interval <- match.arg(interval)
+    params <- list(interval = interval, level = level, formula = formula,
+                   lm.args = lm.args, na.rm = na.rm, backtrans = backtrans, ...)
+
+    layer(
+      data = data,
+      mapping = mapping,
+      stat = stat,
+      geom = GeomLm,
+      position = position,
+      show.legend = show.legend,
+      inherit.aes = inherit.aes,
+      params = params
+    )
+  }
+
+#' @rdname ggformula-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
