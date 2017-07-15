@@ -117,7 +117,7 @@ layer_factory <- function(
 ) {
   # the formals of this will be modified below
   # the formals included here help avoid CRAN warnings
-  res <- function(show.legend , function_name, ...) {
+  res <- function(show.legend , function_name, inherit, ...) {
 
     dots <- list(...)
     function_name <- as.character(match.call()[1])
