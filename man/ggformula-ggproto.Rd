@@ -7,19 +7,41 @@
 \alias{StatQqline}
 \alias{StatLm}
 \alias{GeomLm}
-\title{Geoms and stats for spline smoother}
-\format{An object of class \code{StatAsh} (inherits from \code{Stat}, \code{ggproto}) of length 3.}
+\title{ggproto classes for ggplot2}
 \usage{
 StatAsh
 
 StatSpline
 
 StatQqline
+
+StatLm
+
+GeomLm
 }
 \description{
-Functions to allow spline smoothing with ggplot2
+These are typically accessed through their associated \code{geom_*}, \code{stat_*} or
+\code{gf_*} functions.
+}
+\seealso{
+\code{\link{stat_ash}()}
 
-This stat computes points on a line connecting two quantiles
-of the sample and theoretical distributions.
+\code{\link{gf_ash}()}
+
+\code{\link{stat_spline}()}
+
+\code{\link{gf_spline}()}
+
+\code{\link{stat_qq}()}
+
+\code{\link{gf_qq}()}
+
+\code{\link{stat_lm}()}
+
+\code{\link{gf_lm}()}
+
+\code{\link{geom_lm}()}
+
+\code{\link{gf_lm}()}
 }
 \keyword{datasets}

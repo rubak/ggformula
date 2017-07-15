@@ -16,34 +16,70 @@ geom_lm(mapping = NULL, data = NULL, stat = "lm", position = "identity",
   na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
-\item{geom, stat}{Use to override the default connection between
-`geom_lm` and `stat_lm`.}
+\item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
+\code{\link{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+default), it is combined with the default mapping at the top level of the
+plot. You must supply \code{mapping} if there is no plot mapping.}
 
-\item{interval}{One of `"none"`, `"confidence"` or `"prediction"`.}
+\item{data}{The data to be displayed in this layer. There are three
+   options:
+
+   If \code{NULL}, the default, the data is inherited from the plot
+   data as specified in the call to \code{\link{ggplot}}.
+
+   A \code{data.frame}, or other object, will override the plot
+   data. All objects will be fortified to produce a data frame. See
+   \code{\link{fortify}} for which variables will be created.
+
+   A \code{function} will be called with a single argument,
+   the plot data. The return value must be a \code{data.frame.}, and
+   will be used as the layer data.}
+
+\item{geom, stat}{Use to override the default connection between
+\code{geom_lm} and \code{stat_lm}.}
+
+\item{position}{Position adjustment, either as a string, or the result of
+a call to a position adjustment function.}
+
+\item{interval}{One of \code{"none"}, \code{"confidence"} or \code{"prediction"}.}
 
 \item{level}{The level used for confidence or prediction intervals}
 
-\item{formula}{a formula describing the model in terms of `y` (response)
-and `x` (predictor).}
+\item{formula}{a formula describing the model in terms of \code{y} (response)
+and \code{x} (predictor).}
+
+\item{lm.args}{A list of arguments supplied to [lm()] when performing the fit.}
 
 \item{backtrans}{a function that transforms the response back to
-the original scale when the `formula` includes a transforamtion on
-`y`.}
+the original scale when the \code{formula} includes a transforamtion on
+\code{y}.}
+
+\item{...}{other arguments passed on to \code{\link{layer}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{color = "red"} or \code{size = 3}. They may also be parameters
+to the paired geom/stat.}
+
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
+
+\item{show.legend}{logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped.
+\code{FALSE} never includes, and \code{TRUE} always includes.}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link{borders}}.}
 }
 \description{
-Adds linear model fits to plots. `geom_lm()` and `stat_lm()` are essentially
-equivalent.  Use `geom_lm()` unless you want a non-standard geom.
+Adds linear model fits to plots. \code{geom_lm()} and \code{stat_lm()} are essentially
+equivalent.  Use \code{geom_lm()} unless you want a non-standard geom.
 }
 \details{
 Stat calculation is performed by the (currently undocumented)
-`predictdf`.  Pointwise confidence or prediction bands are
+\code{predictdf}.  Pointwise confidence or prediction bands are
 calculated using the [predict()] method.
 }
-\section{Aesthetics}{
-
-\aesthetics{geom}{lm}
-}
-
 \examples{
 if (require(mosaicData)) {
   ggplot(data = KidsFeet, aes(y = length, x = width, color = sex)) +

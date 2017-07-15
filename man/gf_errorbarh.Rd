@@ -14,7 +14,9 @@ of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
 \item{gformula}{A formula with shape \code{y ~ x + xmin + xmax}.
-Faceting can be acheived by including \code{|} in the formula.}
+Faceting can be acheived by including \code{|} in the formula.
+Note: The odd shape for this is due to a quirk in \pkg{ggplot2} which has
+been changed on github, but not yet on CRAN.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
