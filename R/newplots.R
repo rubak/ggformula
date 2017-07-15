@@ -1,20 +1,24 @@
-#' @ importFrom grid gList
+#' @importFrom grid gList
+
+NA
 
 # duplicate from mosaic package
 #
 # Compute knot points of an average shifted histogram
 #
-# Mainly a utility for the \pkg{lattice} and \pkg{ggplot2} plotting
-# functions, \code{ash_points()} returns the points to be plotted.
+# Mainly a utility for plotting functions,
+# \code{ash_points()} returns the points to be plotted.
 #
+# @param x A numberic vector.
 # @param binwidth the width of the histogram bins.  If \code{NULL} (the default) the
 #   binwidth will be chosen so that approximately 10 bins cover the data.  \code{adjust}
 #   can be used to to increase or decrease \code{binwidth}.
-# @return a data frame containing x and y coordinates of the resulting ASH plot.
+# @param adjust A numeric multiplyer to \code{binwidth}.
+# @return A data frame containing x and y coordinates of the resulting ASH plot.
 
 ash_points <- function(x, binwidth = NULL, adjust = 1.0) {
   if (is.null(adjust)) adjust <- 1.0
-  if (is.null(binwidth)) binwidth <- diff(range(x)) / (10.0 / adjust)
+  if (is.null(binwidth)) binwidth <- diff(range(x)) / 10.0
   left <- x - binwidth
   right <- x + binwidth
   knots <- sort(unique(c(left, x, right)))
@@ -76,8 +80,17 @@ gf_ash <-
     extras = alist(alpha = , color = , group = , linetype = , size = )
   )
 
+#' ggproto classes for ggplot2
+#'
+#' These are typically accessed through their associated \code{geom_*}, \code{stat_*} or
+#' \code{gf_*} functions.
+#'
 #' @rdname ggformula-ggproto
+#' @format NULL
 #' @export
+#' @seealso \code{\link{stat_ash}()}
+#' @seealso \code{\link{gf_ash}()}
+
 StatAsh <-
   ggproto("StatAsh", Stat,
           compute_group = function(data, scales, binwidth = NULL, adjust = NULL) {
@@ -146,12 +159,11 @@ geom_ash <-
     )
   }
 
-#' Geoms and stats for spline smoother
-#'
-#' Functions to allow spline smoothing with ggplot2
-
 #' @rdname ggformula-ggproto
+#' @format NULL
 #' @export
+#' @seealso \code{\link{stat_spline}()}
+#' @seealso \code{\link{gf_spline}()}
 StatSpline <-
   ggproto("StatSpline", Stat,
           compute_group = function(data, scales, weight = NULL, df = NULL, spar = NULL,
@@ -175,6 +187,10 @@ StatSpline <-
           required_aes = c("x", "y")
   )
 
+#' Geoms and stats for spline smoothing
+#'
+#' Similar to [geom_smooth], this adds spline fits to plots.
+#'
 #' @rdname geom_spline
 #' @param mapping An aesthetic mapping produced with \code{\link{aes}()} or
 #' \code{\link{aes_string}()}.
@@ -261,32 +277,6 @@ geom_spline <-
     )
   }
 
-
-#' @rdname stat_qqline
-#' @param mapping An aesthetic mapping produced with \code{\link{aes}()} or
-#' \code{\link{aes_string}()}.
-#' @param data A data frame.
-#' @param geom A geom.
-#' @param stat A stat.
-#' @param position A position object.
-#' @param tail A tail probability.  The constructed line will connect the \code{tail} and \code{1 - tail} quantiles
-#'   of the sample and theoretical distributions.
-#' @param na.rm A logical indicating whether a warning should be issued when
-#'   missing values are removed before plotting.
-#' @param show.legend A logical indicating whether legends should be included
-#'   for this layer.  If \code{NA}, legends will be inclued for each aesthetic
-#'   that is mapped.
-#' @param inherit.aes A logical indicating whether aesthetics should be
-#'   inherited.  When \code{FALSE}, the supplied \code{mapping} will be
-#'   the only aesthetics used.
-#' @param ... Additional arguments
-#' @export
-#' @examples
-#' ggplot(data = iris, aes(sample = Sepal.Length)) +
-#'   geom_qq() +
-#'   stat_qqline( alpha = 0.7, color = "red", linetype = "dashed") +
-#'   facet_wrap(~Species)
-#'
 # Based on an example found at
 #  * https://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/
 #  * and stackoverflow.com/a/4357932/1346276
@@ -299,13 +289,11 @@ qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
   list(slope = slope, intercept = intercept)
 }
 
-#' A stat for adding guide lines to qq-plots
-#'
-#' This stat computes points on a line connecting two quantiles
-#' of the sample and theoretical distributions.
-#'
 #' @rdname ggformula-ggproto
+#' @format NULL
 #' @export
+#' @seealso \code{\link{stat_qq}()}
+#' @seealso \code{\link{gf_qq}()}
 StatQqline <- ggproto("StatQqline", Stat,
                       required_aes = c('sample'),
                       compute_group = function(data, scales,
@@ -323,8 +311,38 @@ StatQqline <- ggproto("StatQqline", Stat,
                       }
 )
 
+#' A Stat for Adding Refernce Lines to QQ-Plots
+#'
+#' This stat computes quantiles of the sample and theoretical distribution for
+#' the purpose of providing reference lines for QQ-plots.
+#'
+#' @param mapping An aesthetic mapping produced with \code{\link{aes}()} or
+#' \code{\link{aes_string}()}.
+#' @param data A data frame.
+#' @param geom A geom.
+#' @param position A position object.
+#' @param distribution A quantile function.
+#' @param dparams A list of arguments for \code{distribution}.
+# @param tail A tail probability.
+#   The constructed line will connect the \code{tail} and \code{1 - tail} quantiles
+#   of the sample and theoretical distributions.
+#' @param na.rm A logical indicating whether a warning should be issued when
+#'   missing values are removed before plotting.
+#' @param show.legend A logical indicating whether legends should be included
+#'   for this layer.  If \code{NA}, legends will be inclued for each aesthetic
+#'   that is mapped.
+#' @param inherit.aes A logical indicating whether aesthetics should be
+#'   inherited.  When \code{FALSE}, the supplied \code{mapping} will be
+#'   the only aesthetics used.
+#' @param ... Additional arguments
 #' @rdname stat_qqline
 #' @export
+#' @examples
+#' ggplot(data = iris, aes(sample = Sepal.Length)) +
+#'   geom_qq() +
+#'   stat_qqline( alpha = 0.7, color = "red", linetype = "dashed") +
+#'   facet_wrap(~Species)
+
 stat_qqline <-
   function(mapping = NULL, data = NULL, geom = "line",
            position = "identity", ...,
@@ -367,8 +385,9 @@ stat_lm <-
 
 #' @rdname ggformula-ggproto
 #' @format NULL
-#' @usage NULL
 #' @export
+#' @seealso \code{\link{stat_lm}()}
+#' @seealso \code{\link{gf_lm}()}
 StatLm <-
   ggproto("StatLm", Stat,
           setup_params = function(data, params) {
@@ -450,27 +469,25 @@ predictdf <-
 
 #' Linear Model Displays
 #'
-#' Adds linear model fits to plots. `geom_lm()` and `stat_lm()` are essentially
-#' equivalent.  Use `geom_lm()` unless you want a non-standard geom.
+#' Adds linear model fits to plots. \code{geom_lm()} and \code{stat_lm()} are essentially
+#' equivalent.  Use \code{geom_lm()} unless you want a non-standard geom.
 #'
 #' Stat calculation is performed by the (currently undocumented)
-#' `predictdf`.  Pointwise confidence or prediction bands are
+#' \code{predictdf}.  Pointwise confidence or prediction bands are
 #' calculated using the [predict()] method.
 #'
 #' @rdname geom_lm
-#' @section Aesthetics:
-#' \aesthetics{geom}{lm}
-#'
-#' @inheritParams layer
-#' @inheritParams geom_point
+#' @inheritParams ggplot2::layer
+#' @inheritParams ggplot2::geom_point
 #' @param geom,stat Use to override the default connection between
-#'   `geom_lm` and `stat_lm`.
-#' @param formula a formula describing the model in terms of `y` (response)
-#'   and `x` (predictor).
+#'   \code{geom_lm} and \code{stat_lm}.
+#' @param formula a formula describing the model in terms of \code{y} (response)
+#'   and \code{x} (predictor).
+#' @param lm.args A list of arguments supplied to [lm()] when performing the fit.
 #' @param backtrans a function that transforms the response back to
-#'   the original scale when the `formula` includes a transforamtion on
-#'   `y`.
-#' @param interval One of `"none"`, `"confidence"` or `"prediction"`.
+#'   the original scale when the \code{formula} includes a transforamtion on
+#'   \code{y}.
+#' @param interval One of \code{"none"}, \code{"confidence"} or \code{"prediction"}.
 #' @param level The level used for confidence or prediction intervals
 #'
 #' @seealso [lm()] for details on linear model fitting.
@@ -530,8 +547,10 @@ geom_lm <-
 
 #' @rdname ggformula-ggproto
 #' @format NULL
-#' @usage NULL
 #' @export
+#' @seealso \code{\link{geom_lm}()}
+#' @seealso \code{\link{gf_lm}()}
+
 GeomLm <- ggproto("GeomLm", Geom,
                       setup_data = function(data, params) {
                         GeomLine$setup_data(data, params)
