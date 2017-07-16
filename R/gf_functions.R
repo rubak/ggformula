@@ -1636,7 +1636,7 @@ gf_histogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
+    extras = alist(bins = 25, binwidth = , alpha = , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
   )
 
@@ -1646,7 +1646,7 @@ gf_dhistogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = ),
+    extras = alist(bins = 25, binwidth = , alpha = , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount..",
     aesthetics = aes(y = ..density..)
   )
