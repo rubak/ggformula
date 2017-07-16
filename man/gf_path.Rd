@@ -71,6 +71,7 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
+gf_path()
 if (require(dplyr)) {
   data.frame(t = seq(1, 10 * pi, length.out = 400)) \%>\%
   mutate( x = t * cos(t), y = t * sin(t)) \%>\%

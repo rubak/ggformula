@@ -1,3 +1,5 @@
+
+
 #' Formula interface to ggplot2
 #'
 #' The functions in \pkg{ggformula} provide a formula interface to \code{ggplot2} layer
@@ -91,13 +93,13 @@ NA
 #' @export
 #' @examples
 #' gf_point()
-#' gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
+#' gf_point(mpg ~ hp, color = ~ cyl, size = ~wt, data = mtcars)
 #' # faceting -- two ways
 #' gf_point(mpg ~ hp, data = mtcars) %>%
 #'   gf_facet_wrap(~ am)
-#' gf_point(mpg ~ hp + group:cyl | am, data = mtcars)
-#' gf_point(mpg ~ hp + group:cyl | ~ am, data = mtcars)
-#' gf_point(mpg ~ hp + group:cyl | am ~ ., data = mtcars)
+#' gf_point(mpg ~ hp | am, group = ~ cyl, data = mtcars)
+#' gf_point(mpg ~ hp | ~ am, group = ~ cyl, data = mtcars)
+#' gf_point(mpg ~ hp | am ~ ., group = ~ cyl,  data = mtcars)
 #'
 #' # Chaining in the data
 #' mtcars %>% gf_point(mpg ~ wt)
@@ -231,6 +233,7 @@ gf_jitter <-
 #' @seealso \code{\link{geom_line}()}
 #' @export
 #' @examples
+#' gf_line()
 #' if (require(mosaicData)) {
 #'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
 #'   gf_point(births ~ date, color = ~wday, data = Births78)
@@ -296,6 +299,7 @@ gf_line <-
 #' @seealso \code{\link{geom_path}()}
 #' @export
 #' @examples
+#' gf_path()
 #' if (require(dplyr)) {
 #'   data.frame(t = seq(1, 10 * pi, length.out = 400)) %>%
 #'   mutate( x = t * cos(t), y = t * sin(t)) %>%
@@ -361,6 +365,8 @@ gf_path <-
 #' @seealso \code{\link{geom_smooth}()}
 #' @export
 #' @examples
+#' gf_smooth()
+#' gf_lm()
 #' if (require(mosaicData)) {
 #'   gf_smooth(births ~ date, color = ~wday, data = Births78)
 #'   gf_smooth(births ~ date, color = ~wday, data = Births78, fullrange = TRUE)
@@ -394,10 +400,6 @@ gf_smooth <-
 
 #' @rdname gf_smooth
 #' @export
-#' @examples
-#' if (require(mosaicData)) {
-
-#' }
 
 gf_lm <-
   layer_factory(
@@ -2991,12 +2993,18 @@ gf_rect <-
 #'
 #' # If we want to map the color of the guidelines, it must work with the
 #' # scale of the other colors in the plot.
-#' gf_hline(color = ~"horizontal", yintercept = ~c(20, 25)) %>%
-#'   gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA) %>%
-#'   gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3)
+#' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) %>%
+#'   gf_hline(color = ~"horizontal", yintercept = ~c(20, 25)) %>%
+#'   gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA)
+#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
+#'   gf_hline(color = "orange", yintercept = 20, data = NA) %>%
+#'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) %>%
+#' # reversing the layers requires using inherit = FALSE
 #' gf_hline(color = "orange", yintercept = 20, data = NA) %>%
 #'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) %>%
-#'   gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3)
+#'   gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
+#'     inherit = FALSE)
+#'
 #'
 gf_abline <-
   layer_factory(
@@ -3037,6 +3045,8 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
   if (length(coef) < 2) stop("coef must be of length at least 2.")
   gf_abline(object = object, intercept = coef[1], slope = coef[2], ..., inherit.aes = FALSE)
 }
+
+utils::globalVariables(c("x"))
 
 #' Layers displaying graphs of functions
 #'

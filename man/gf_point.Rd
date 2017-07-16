@@ -73,13 +73,13 @@ in another.
 }
 \examples{
 gf_point()
-gf_point(mpg ~ hp + color:cyl + size:wt, data = mtcars, verbose = TRUE)
+gf_point(mpg ~ hp, color = ~ cyl, size = ~wt, data = mtcars)
 # faceting -- two ways
 gf_point(mpg ~ hp, data = mtcars) \%>\%
   gf_facet_wrap(~ am)
-gf_point(mpg ~ hp + group:cyl | am, data = mtcars)
-gf_point(mpg ~ hp + group:cyl | ~ am, data = mtcars)
-gf_point(mpg ~ hp + group:cyl | am ~ ., data = mtcars)
+gf_point(mpg ~ hp | am, group = ~ cyl, data = mtcars)
+gf_point(mpg ~ hp | ~ am, group = ~ cyl, data = mtcars)
+gf_point(mpg ~ hp | am ~ ., group = ~ cyl,  data = mtcars)
 
 # Chaining in the data
 mtcars \%>\% gf_point(mpg ~ wt)

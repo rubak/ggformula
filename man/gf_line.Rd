@@ -71,6 +71,7 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
+gf_line()
 if (require(mosaicData)) {
   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
   gf_point(births ~ date, color = ~wday, data = Births78)

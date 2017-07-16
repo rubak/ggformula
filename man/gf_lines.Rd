@@ -91,12 +91,18 @@ gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) \%>\%
 
 # If we want to map the color of the guidelines, it must work with the
 # scale of the other colors in the plot.
-gf_hline(color = ~"horizontal", yintercept = ~c(20, 25)) \%>\%
-  gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA) \%>\%
-  gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3)
+gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) \%>\%
+  gf_hline(color = ~"horizontal", yintercept = ~c(20, 25)) \%>\%
+  gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA)
+gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) \%>\%
+  gf_hline(color = "orange", yintercept = 20, data = NA) \%>\%
+  gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) \%>\%
+# reversing the layers requires using inherit = FALSE
 gf_hline(color = "orange", yintercept = 20, data = NA) \%>\%
   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) \%>\%
-  gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3)
+  gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
+    inherit = FALSE)
+
 
 }
 \seealso{

@@ -76,6 +76,8 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
+gf_smooth()
+gf_lm()
 if (require(mosaicData)) {
   gf_smooth(births ~ date, color = ~wday, data = Births78)
   gf_smooth(births ~ date, color = ~wday, data = Births78, fullrange = TRUE)
@@ -99,8 +101,6 @@ gf_lm(hwy ~ displ, data = mpg,
      interval = "confidence", color = "red") \%>\%
   gf_point()
 
-if (require(mosaicData)) {
-}
 }
 \seealso{
 \code{\link{geom_smooth}()}
