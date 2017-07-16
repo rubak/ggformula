@@ -1,3 +1,8 @@
+
+# for predictdf()
+
+utils::globalVariables(c("x", "y", "ymin", "ymax"))
+
 #' @importFrom grid gList
 
 NA
