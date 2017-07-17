@@ -8,12 +8,27 @@ utils::globalVariables("role")
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
 #' @import ggplot2
 
-# covert y ~ 1 into ~ x
+# covert y ~ 1 into ~ 7
+# convert y ~ 1 | a into ~ y | a
+# convert y ~ 1 | a ~ b into ~ y | a ~ b
+# convert y ~ 1 | ~ a into ~ y | ~ a
+
+# This is clunky because | doen't have the right precedence for the intended interpretation of
+# the formula.
+
 standard_formula <- function(formula) {
   if (length(formula) == 3L && formula[[3]] == 1) {
     formula[[3]] <- formula[[2]]
     # can remove either slot 2 or slot 3 here to get 1-sided formula
     formula[[2]] <- NULL
+  } else if (length(formula) == 3L &&
+             length(formula[[3]])  == 3L &&
+             formula[[3]][[1]] == as.name("|") &&
+             formula[[3]][[2]] == 1L) {
+    formula[[3]][[2]] <- formula[[2]]
+    formula[[2]] <- NULL
+  } else if (length(formula) == 3L && rlang::is_formula(formula[[2]])) {
+    formula[[2]] <- standard_formula(formula[[2]])
   }
   formula
 }
