@@ -81,6 +81,12 @@ x <- rnorm(1000)
 gf_histogram(  ~ x, bins = 30)
 gf_histogram( ..density.. ~ x, bins = 30)
 gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
+if (require(mosaicData)) {
+  gf_histogram(~age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black")
+  # bins can be adjusted left/right using center or boundary
+  gf_histogram(~age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black", center = 42.5)
+  gf_histogram(~age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black", boundary = 40)
+}
 }
 \seealso{
 \code{\link{geom_histogram}()}
