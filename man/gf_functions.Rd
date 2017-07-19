@@ -23,7 +23,7 @@ the first layer in a plot.  Ignored when creating a subsequent layer.}
 
 \item{inherit}{A logical indicating whether attributes should be inherited.}
 
-\item{formula}{A formula describing a function.  See examples.}
+\item{formula}{A formula describing a function.  See examples and \code{\link[mosaicCore]{makeFun}()}.}
 }
 \description{
 These functions provide two different
@@ -39,9 +39,7 @@ if (require(mosaicData)) {
 }
 gf_fun(5 + 3 * cos(10 * x) ~ x, xlim = c(0,2))
 # Utility bill is quadratic in month?
-if (require(mosaic)) {
-  f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
-  gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) \%>\%
-    gf_fun(f(m) ~ m, color = "red")
-  }
+f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
+gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) \%>\%
+  gf_fun(f(m) ~ m, color = "red")
 }

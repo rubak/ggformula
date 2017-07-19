@@ -1,4 +1,5 @@
-
+#' importFrom mosaicCore makeFun
+NA
 
 #' Formula interface to ggplot2
 #'
@@ -3102,23 +3103,18 @@ gf_function <- function(object = NULL, fun, xlim, ..., inherit = FALSE) {
 }
 
 #' @rdname gf_functions
-#' @param formula A formula describing a function.  See examples.
+#' @param formula A formula describing a function.  See examples and \code{\link[mosaicCore]{makeFun}()}.
 #' @param xlim A numeric vector providing the extent of the x-axis when creating
 #'   the first layer in a plot.  Ignored when creating a subsequent layer.
 #' @export
 #' @examples
 #' gf_fun(5 + 3 * cos(10 * x) ~ x, xlim = c(0,2))
 #' # Utility bill is quadratic in month?
-#' if (require(mosaic)) {
-#'   f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
-#'   gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) %>%
-#'     gf_fun(f(m) ~ m, color = "red")
-#'   }
+#' f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
+#' gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) %>%
+#'   gf_fun(f(m) ~ m, color = "red")
 
 gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
-  if (! requireNamespace("mosaic")) {
-    stop("The mosaic package is required to use gf_fun().", call. = FALSE)
-  }
   if (rlang::is_formula(object) && missing(formula)) {
     formula <- object
     object <- NULL
@@ -3129,7 +3125,7 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
     inherit <- TRUE
   }
   qdots <- rlang::quos(...)
-  fun <- function(x, ...) mosaic::makeFun(formula)(x, ...)
+  fun <- function(x, ...) mosaicCore::makeFun(formula)(x, ...)
   afq <- aes_from_qdots(qdots)
   object +
     do.call(

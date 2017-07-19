@@ -1,3 +1,6 @@
+#' @importFrom mosaicCore named unnamed named_among
+NA
+
 #' Plot distributions
 #'
 #' Create a layer displaying a probability distribution.
@@ -165,21 +168,5 @@ gf_dist <- function(
     )
   }
 }
-
-# These are borrowed from mosaic
-# #' List extraction
-# #'
-# #' These functions create subsets of lists based on their names
-# #'
-# #'
-# #' @param l a list
-# #' @param n a vector of character strings (potential names)
-# #' @return a sublist of \code{l} determined by \code{names(l)}
-
-named <-function(l)  if (is.null(names(l))) list() else l [ names(l) != "" ]
-
-unnamed <-function(l)  if (is.null(names(l))) l else l [ names(l) == "" ]
-
-named_among <- function(l, n)  l [ intersect( names(l), n ) ]
 
 

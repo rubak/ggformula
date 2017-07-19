@@ -4,34 +4,10 @@
 utils::globalVariables(c("x", "y", "ymin", "ymax"))
 
 #' @importFrom grid gList
+#' @importFrom mosaicCore ash_points
 
 NA
 
-# duplicate from mosaic package
-#
-# Compute knot points of an average shifted histogram
-#
-# Mainly a utility for plotting functions,
-# \code{ash_points()} returns the points to be plotted.
-#
-# @param x A numberic vector.
-# @param binwidth the width of the histogram bins.  If \code{NULL} (the default) the
-#   binwidth will be chosen so that approximately 10 bins cover the data.  \code{adjust}
-#   can be used to to increase or decrease \code{binwidth}.
-# @param adjust A numeric multiplyer to \code{binwidth}.
-# @return A data frame containing x and y coordinates of the resulting ASH plot.
-
-ash_points <- function(x, binwidth = NULL, adjust = 1.0) {
-  if (is.null(adjust)) adjust <- 1.0
-  if (is.null(binwidth)) binwidth <- diff(range(x)) / 10.0
-  left <- x - binwidth
-  right <- x + binwidth
-  knots <- sort(unique(c(left, x, right)))
-  y <- sapply(knots,
-              function(k) sum( 1 / binwidth / length(x) * (1 - abs(x-k) / binwidth) * (abs(x-k) <= binwidth))
-  )
-  data.frame(x = knots, y = y)
-}
 
 
 #' Average Shifted Histograms
