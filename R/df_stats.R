@@ -1,6 +1,7 @@
 #' @importFrom mosaicCore mosaic_formula_q mosaic_formula
 #' @importFrom tidyr gather
 NA
+utils::globalVariables(c("stat", "value"))
 
 #' Calculate basic statistics on a quantitative variable
 #'
@@ -9,13 +10,22 @@ NA
 #' The resulting data frame has one column
 #' for each of the statistics requested as well as columns for any grouping variables.
 #'
-#' @param formula A formula indicating which variables are to be used. See details.
+#' @param formula A formula indicating which variables are to be used.
+#'   Symmatics are approximately as in \code{\link{lm}()} since \code{\link[stats]{model.frame}()}
+#'   is used to turn the formula into a data frame.  But first conditions and \code{groups}
+#'   are re-expressed into a form that \code{\link[stats]{model.frame}()} can interpret.
+#'   See details.
 #' @param data A data frame or list containing the variables.
 #' @param ... Functions used to compute the statistics.  If this is empty,
 #'   a default set of summary statistics is used.  Functions used must accept
 #'   a vector of values and return either a (possibly named) single value,
 #'   a (possibly named) vector of values, or a data frame with one row.
-#'   Note: names may not be among the names of the named arguments of \code{df_stats}().
+#'   Note: If these arguments are named, those names will be used in the data
+#'   frame returned (see details).  Such names may not be among the names of the named
+#'   arguments of \code{df_stats}().
+#' @param groups An expression to be evaluated in \code{data} and defining (additional) groups.
+#'   This isn't necessary, since these can be placed into the formula, but it is provided
+#'   for similarity to other functions from the \pkg{mosaic} package.
 #' @param drop A logical indicating whether combinations of the grouping
 #'   variables that do not occur in \code{data} should be dropped from the
 #'   result.
@@ -52,6 +62,19 @@ NA
 #' For functions that produce multiple
 #' outputs without names, consecutive integers are appended to the names.
 #' See the examples.
+#'
+#' @section Cautions Regarding Formulas:
+#'
+#' The use of \code{|} to define groups is tricky because (a) \code{\link[stats]{model.frame}()}
+#' doesn't handle this sort of thing and (b) \code{|} is also used for logical or.  The
+#' current algorithm for handling this will turn the first  ocurance of \code{|} into an attempt
+#' to condition, so logical or cannot be used before conditioning in the formula.
+#' If you have need of logical or, we suggest creating a new variable that contains the
+#' results of evaluating the expression.
+#'
+#' Similarly, addition (\code{+}) is used to separate grouping variables, not for
+#' arithmetic.
+#'
 #' @return A data frame.
 #'
 #' @examples
@@ -68,7 +91,7 @@ NA
 #'   gf_point(mean_hp ~ cyl, data = df_stats(hp ~ cyl, data = mtcars, mean))
 #'
 #' @export
-#' @importFrom rlang eval_tidy exprs expr
+#' @importFrom rlang eval_tidy exprs expr quos new_quosure
 #' @importFrom stats model.frame aggregate
 #'
 df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
@@ -76,12 +99,13 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
                      format = c("wide", "long"), groups = NULL,
                      long_names = TRUE, nice_names = FALSE) {
   # dots <- lazyeval::lazy_dots(...)
+  qdots <- quos(...)
   dots <- rlang::exprs(...)
   format <- match.arg(format)
 
-  if (length(dots) < 1) {
-    dots <- list(rlang::expr(ggf_favstats))
-    names(dots) <- ""
+  if (length(qdots) < 1) {
+    qdots <- list(rlang::quo(gf_favstats))
+    names(qdots) <- ""
   }
 
   if (inherits(formula, "data.frame") && inherits(data, "formula")) {
@@ -107,13 +131,24 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
     }
   }
 
+
+#  if (is.null(fargs) || length(fargs) < 1L) {
   res <-
-    lapply(dots, function(f)
-      aggregate(MF[, 1], by = MF[, -1, drop = FALSE],
-                FUN = function(x) do.call(rlang::eval_tidy(f), c(list(x), fargs)),
-                drop = drop
-      )
+    lapply(
+      qdots,
+      function(f) {
+        if (inherits(rlang::f_rhs(f), "call")) {
+          aggregate(MF[, 1], by = MF[, -1, drop = FALSE],
+                    FUN = function(x) eval(substitute(x %>% foo, list(foo = rlang::f_rhs(f)))),
+                    drop = drop)
+        } else {
+          aggregate(MF[, 1], by = MF[, -1, drop = FALSE],
+                    FUN = function(x) do.call(rlang::eval_tidy(f), c(list(x), fargs)),
+                    drop = drop)
+        }
+      }
     )
+
   d <- ncol(MF) - 1
   groups <- res[[1]][, 1:d, drop = FALSE]
 
@@ -170,7 +205,7 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
   }
 }
 
-ggf_favstats <- function (x, ..., na.rm = TRUE, type = 7)
+gf_favstats <- function (x, ..., na.rm = TRUE, type = 7)
 {
   if (!is.null(dim(x)) && min(dim(x)) != 1)
     warning("Not respecting matrix dimensions.  Hope that's OK.")

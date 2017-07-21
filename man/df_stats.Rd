@@ -9,7 +9,11 @@ df_stats(formula, data, ..., drop = TRUE, fargs = list(), sep = "_",
   nice_names = FALSE)
 }
 \arguments{
-\item{formula}{A formula indicating which variables are to be used. See details.}
+\item{formula}{A formula indicating which variables are to be used.
+Symmatics are approximately as in \code{\link{lm}()} since \code{\link[stats]{model.frame}()}
+is used to turn the formula into a data frame.  But first conditions and \code{groups}
+are re-expressed into a form that \code{\link[stats]{model.frame}()} can interpret.
+See details.}
 
 \item{data}{A data frame or list containing the variables.}
 
@@ -17,7 +21,9 @@ df_stats(formula, data, ..., drop = TRUE, fargs = list(), sep = "_",
 a default set of summary statistics is used.  Functions used must accept
 a vector of values and return either a (possibly named) single value,
 a (possibly named) vector of values, or a data frame with one row.
-Note: names may not be among the names of the named arguments of \code{df_stats}().}
+Note: If these arguments are named, those names will be used in the data
+frame returned (see details).  Such names may not be among the names of the named
+arguments of \code{df_stats}().}
 
 \item{drop}{A logical indicating whether combinations of the grouping
 variables that do not occur in \code{data} should be dropped from the
@@ -30,6 +36,10 @@ you don't want separation.}
 
 \item{format}{One of \code{"long"} or \code{"wide"} indicating the desired shape of the
 returned data frame.}
+
+\item{groups}{An expression to be evaluated in \code{data} and defining (additional) groups.
+This isn't necessary, since these can be placed into the formula, but it is provided
+for similarity to other functions from the \pkg{mosaic} package.}
 
 \item{long_names}{A logical indciting whether the default names should include the name
 of the variable being summarized as well as the summarizing function name in the default
@@ -69,6 +79,20 @@ For functions that produce multiple
 outputs without names, consecutive integers are appended to the names.
 See the examples.
 }
+\section{Cautions Regarding Formulas}{
+
+
+The use of \code{|} to define groups is tricky because (a) \code{\link[stats]{model.frame}()}
+doesn't handle this sort of thing and (b) \code{|} is also used for logical or.  The
+current algorithm for handling this will turn the first  ocurance of \code{|} into an attempt
+to condition, so logical or cannot be used before conditioning in the formula.
+If you have need of logical or, we suggest creating a new variable that contains the
+results of evaluating the expression.
+
+Similarly, addition (\code{+}) is used to separate grouping variables, not for
+arithmetic.
+}
+
 \examples{
 df_stats( ~ hp, data = mtcars)
 df_stats( ~ hp, data = mtcars, mean, median)
