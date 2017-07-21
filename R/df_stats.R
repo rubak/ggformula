@@ -1,4 +1,5 @@
 #' @importFrom mosaicCore mosaic_formula_q mosaic_formula
+#' @importFrom tidyr gather
 NA
 
 #' Calculate basic statistics on a quantitative variable
