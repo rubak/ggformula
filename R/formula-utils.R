@@ -3,7 +3,7 @@
 
 cond2sum <- function(formula) {
   e <- environment(formula)
-  res <- as.formula(gsub("\\|", "+", format(formula)))
+  res <- as.formula(sub("\\|", "+", format(formula)))
   environment(res) <- e
   res
 }
