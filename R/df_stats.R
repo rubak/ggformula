@@ -21,6 +21,8 @@
 #'   an argument name.
 #' @param nice_names A logical indicating whether \code{\link{make.names}()} should be
 #'   used to force names of the returned data frame to by syntactically valid.
+#' @param format One of \code{"long"} or \code{"wide"} indicating the desired shape of the
+#'   returned data frame.
 #' @importFrom stats quantile
 #'
 #' @details
@@ -49,6 +51,7 @@
 #' df_stats( ~ hp, data = mtcars)
 #' df_stats( ~ hp, data = mtcars, mean, median)
 #' df_stats( hp ~ cyl, data = mtcars, mean, median, range)
+#' df_stats( hp ~ cyl, data = mtcars, mean, median, range, format = "long")
 #' # magrittr style piping is also supported
 #' mtcars %>% df_stats(hp ~ cyl)
 #' gf_violin(hp ~ cyl, data = mtcars, group = ~ cyl) %>%
@@ -58,10 +61,12 @@
 #' @importFrom rlang eval_tidy exprs expr
 #' @importFrom stats model.frame aggregate
 #'
-df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names = TRUE,
-                     nice_names = FALSE) {
+df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
+                     format = c("wide", "long"),
+                     long_names = TRUE, nice_names = FALSE) {
   # dots <- lazyeval::lazy_dots(...)
   dots <- rlang::exprs(...)
+  format <- match.arg(format)
 
   if (length(dots) < 1) {
     dots <- list(rlang::expr(ggf_favstats))
@@ -139,7 +144,13 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(), long_names
     res <- res[, -1]
   }
   row.names(res) <- NULL
-  return(res)
+
+  # return the appropriate format
+  if (format == "long") {
+    res %>% tidyr::gather(stat, value, -(1:d))
+  } else {
+    res
+  }
 }
 
 ggf_favstats <- function (x, ..., na.rm = TRUE, type = 7)
