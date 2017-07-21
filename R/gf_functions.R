@@ -1,4 +1,4 @@
-#' importFrom mosaicCore makeFun
+#' @importFrom mosaicCore makeFun
 NA
 
 #' Formula interface to ggplot2

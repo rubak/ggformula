@@ -11,3 +11,7 @@
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+#' @importFrom mosaicCore makeFun
+#' @export
+mosaicCore::makeFun
