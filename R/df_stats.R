@@ -1,3 +1,6 @@
+#' @importFrom mosaicCore mosaic_formula_q mosaic_formula
+NA
+
 #' Calculate basic statistics on a quantitative variable
 #'
 #' Creates a data frame of statistics calculated on one variable, possibly for each
@@ -11,6 +14,7 @@
 #'   a default set of summary statistics is used.  Functions used must accept
 #'   a vector of values and return either a (possibly named) single value,
 #'   a (possibly named) vector of values, or a data frame with one row.
+#'   Note: names may not be among the names of the named arguments of \code{df_stats}().
 #' @param drop A logical indicating whether combinations of the grouping
 #'   variables that do not occur in \code{data} should be dropped from the
 #'   result.
@@ -52,6 +56,9 @@
 #' df_stats( ~ hp, data = mtcars, mean, median)
 #' df_stats( hp ~ cyl, data = mtcars, mean, median, range)
 #' df_stats( hp ~ cyl, data = mtcars, mean, median, range, format = "long")
+#' df_stats( hp ~ cyl + gear, data = mtcars, mean, median, range)
+#' df_stats( hp ~ cyl | gear, data = mtcars, mean, median, range)
+#' df_stats( hp ~ cyl, groups = gear, data = mtcars, mean, median, range)
 #' # magrittr style piping is also supported
 #' mtcars %>% df_stats(hp ~ cyl)
 #' gf_violin(hp ~ cyl, data = mtcars, group = ~ cyl) %>%
@@ -62,7 +69,7 @@
 #' @importFrom stats model.frame aggregate
 #'
 df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
-                     format = c("wide", "long"),
+                     format = c("wide", "long"), groups = NULL,
                      long_names = TRUE, nice_names = FALSE) {
   # dots <- lazyeval::lazy_dots(...)
   dots <- rlang::exprs(...)
@@ -81,6 +88,9 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
   }
   if ( ! inherits(formula, "formula")) stop("first arg must be a formula")
   if ( ! inherits(data, "data.frame")) stop("second arg must be a data.frame")
+
+  formula <- cond2sum(mosaicCore::mosaic_formula_q(formula, groups = groups))
+
   MF <- model.frame(formula, data)
 
   one_group <- FALSE

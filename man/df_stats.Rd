@@ -5,7 +5,8 @@
 \title{Calculate basic statistics on a quantitative variable}
 \usage{
 df_stats(formula, data, ..., drop = TRUE, fargs = list(),
-  format = c("wide", "long"), long_names = TRUE, nice_names = FALSE)
+  format = c("wide", "long"), groups = NULL, long_names = TRUE,
+  nice_names = FALSE)
 }
 \arguments{
 \item{formula}{A formula indicating which variables are to be used. See details.}
@@ -15,7 +16,8 @@ df_stats(formula, data, ..., drop = TRUE, fargs = list(),
 \item{...}{Functions used to compute the statistics.  If this is empty,
 a default set of summary statistics is used.  Functions used must accept
 a vector of values and return either a (possibly named) single value,
-a (possibly named) vector of values, or a data frame with one row.}
+a (possibly named) vector of values, or a data frame with one row.
+Note: names may not be among the names of the named arguments of \code{df_stats}().}
 
 \item{drop}{A logical indicating whether combinations of the grouping
 variables that do not occur in \code{data} should be dropped from the
@@ -69,6 +71,9 @@ df_stats( ~ hp, data = mtcars)
 df_stats( ~ hp, data = mtcars, mean, median)
 df_stats( hp ~ cyl, data = mtcars, mean, median, range)
 df_stats( hp ~ cyl, data = mtcars, mean, median, range, format = "long")
+df_stats( hp ~ cyl + gear, data = mtcars, mean, median, range)
+df_stats( hp ~ cyl | gear, data = mtcars, mean, median, range)
+df_stats( hp ~ cyl, groups = gear, data = mtcars, mean, median, range)
 # magrittr style piping is also supported
 mtcars \%>\% df_stats(hp ~ cyl)
 gf_violin(hp ~ cyl, data = mtcars, group = ~ cyl) \%>\%

@@ -22,7 +22,6 @@ Imports:
     stringr,
     glue,
     grid
-RoxygenNote: 6.0.1.9000
 Suggests:
     mosaic,
     dplyr,
@@ -34,3 +33,4 @@ Suggests:
     weatherData,
     lubridate
 VignetteBuilder: knitr
+RoxygenNote: 6.0.1.9000
