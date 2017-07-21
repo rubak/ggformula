@@ -4,7 +4,7 @@
 \alias{df_stats}
 \title{Calculate basic statistics on a quantitative variable}
 \usage{
-df_stats(formula, data, ..., drop = TRUE, fargs = list(),
+df_stats(formula, data, ..., drop = TRUE, fargs = list(), sep = "_",
   format = c("wide", "long"), groups = NULL, long_names = TRUE,
   nice_names = FALSE)
 }
@@ -24,6 +24,9 @@ variables that do not occur in \code{data} should be dropped from the
 result.}
 
 \item{fargs}{Arguments passed to the functions in \code{...}.}
+
+\item{sep}{A charachter string to separate components of names.  Set to \code{""} if
+you don't want separation.}
 
 \item{format}{One of \code{"long"} or \code{"wide"} indicating the desired shape of the
 returned data frame.}

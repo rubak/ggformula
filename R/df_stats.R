@@ -27,6 +27,8 @@ NA
 #'   used to force names of the returned data frame to by syntactically valid.
 #' @param format One of \code{"long"} or \code{"wide"} indicating the desired shape of the
 #'   returned data frame.
+#' @param sep A charachter string to separate components of names.  Set to \code{""} if
+#'   you don't want separation.
 #' @importFrom stats quantile
 #'
 #' @details
@@ -69,6 +71,7 @@ NA
 #' @importFrom stats model.frame aggregate
 #'
 df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
+                     sep = "_",
                      format = c("wide", "long"), groups = NULL,
                      long_names = TRUE, nice_names = FALSE) {
   # dots <- lazyeval::lazy_dots(...)
@@ -123,29 +126,32 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
 
   fun_names <- sapply(dots, function(x) deparse(x))
   if (long_names) {
-    fun_names <- paste0(fun_names, "_", deparse(formula[[2]]))
+    fun_names <- paste0(fun_names, sep, deparse(formula[[2]]))
   }
-  final_names <-
-    lapply(
-      1:length(res),
-      function(i) {
-        # use argument names if provided
-        if (arg_names[i] != "") {
-          if (ncols[i] < 2) {
-            return(arg_names[i])
-          }
-          return(paste0(arg_names[i], 1:ncols[i]))
-        }
-        # else use result names, if they exist
-        if (! is.null(res_names[[i]]) ) return (res_names[[i]])
+  fun_names <- ifelse(sapply(res_names, is.null), fun_names, "")
 
-        # else create names from function and variable
-        if (ncols[i] < 2) {
-          return(fun_names[i])
-        }
-        return(paste0(fun_names[i], 1:ncols[i]))
-      }
+  # # Use numbers or "" if there are no names.
+  alt_res_names <- lapply(ncols, function(nc) if (nc > 1) format(1:nc) else "")
+
+  res_names <-
+    mapply(
+      function(x, y) { if (is.null(x)) y else x },
+      res_names, alt_res_names
     )
+  # print(res_names)
+
+  final_names <-
+    mapply(
+      paste0,
+      ifelse(arg_names == "", fun_names, arg_names),
+      sep,
+      res_names) %>%
+    unlist()
+
+  # remove unneccessary seperators
+  final_names <- gsub(paste0(sep, sep), sep, final_names)
+  final_names <- gsub(paste0(sep, "$"), "", final_names)
+  final_names <- gsub(paste0("^", sep), "", final_names)
 
   res <- do.call(cbind, c(list(groups), res))
   names(res) <- c(names(res)[1:d], unlist(final_names))
