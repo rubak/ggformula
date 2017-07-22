@@ -20,6 +20,10 @@ utils::globalVariables(c("stat", "value"))
 #'   a default set of summary statistics is used.  Functions used must accept
 #'   a vector of values and return either a (possibly named) single value,
 #'   a (possibly named) vector of values, or a data frame with one row.
+#'   Functions can be specified with character strings, names, or expressions
+#'   that look like function calls wit the first argugment missing.  The latter
+#'   option provides a convenient way to specify additional argumnts.  See the
+#'   examples.
 #'   Note: If these arguments are named, those names will be used in the data
 #'   frame returned (see details).  Such names may not be among the names of the named
 #'   arguments of \code{df_stats}().
@@ -79,9 +83,18 @@ utils::globalVariables(c("stat", "value"))
 #'
 #' @examples
 #' df_stats( ~ hp, data = mtcars)
-#' df_stats( ~ hp, data = mtcars, mean, median)
+#' # There are several ways to specify functions
+#' df_stats( ~ hp, data = mtcars, mean, trimmed_mean = mean(trim = 0.1), "median",
+#'   range, Q = quantile(c(0.25, 0.75)))
+#' # force names to by syntactically valid
+#' df_stats( ~ hp, data = mtcars, Q = quantile(c(0.25, 0.75)), nice_names = TRUE)
+#' # shorter names
+#' df_stats( ~ hp, data = mtcars, mean, trimmed_mean = mean(trim = 0.1), "median", range,
+#'   long_names = FALSE)
+#' # wide vs long format
 #' df_stats( hp ~ cyl, data = mtcars, mean, median, range)
 #' df_stats( hp ~ cyl, data = mtcars, mean, median, range, format = "long")
+#' # More than one grouping variable -- 3 ways.
 #' df_stats( hp ~ cyl + gear, data = mtcars, mean, median, range)
 #' df_stats( hp ~ cyl | gear, data = mtcars, mean, median, range)
 #' df_stats( hp ~ cyl, groups = gear, data = mtcars, mean, median, range)
@@ -98,9 +111,8 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
                      sep = "_",
                      format = c("wide", "long"), groups = NULL,
                      long_names = TRUE, nice_names = FALSE) {
-  # dots <- lazyeval::lazy_dots(...)
   qdots <- quos(...)
-  dots <- rlang::exprs(...)
+  # dots <- rlang::exprs(...)
   format <- match.arg(format)
 
   if (length(qdots) < 1) {
@@ -160,7 +172,17 @@ df_stats <- function(formula, data, ..., drop = TRUE, fargs = list(),
   res <- lapply(res, function(x) data.frame(lapply(data.frame(x$x), unlist)))
   ncols <- sapply(res, ncol)
 
-  fun_names <- sapply(dots, function(x) deparse(x))
+  fun_names <-
+    sapply(
+      qdots,
+      function(x) {
+        if (is_character(rlang::f_rhs(x)))
+          rlang::f_rhs(x)
+        else
+          deparse(rlang::f_rhs(x))
+      }
+      )
+
   if (long_names) {
     fun_names <- paste0(fun_names, sep, deparse(formula[[2]]))
   }
