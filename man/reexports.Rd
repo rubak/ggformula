@@ -4,6 +4,8 @@
 \name{reexports}
 \alias{reexports}
 \alias{makeFun}
+\alias{reexports}
+\alias{df_stats}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -11,6 +13,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{mosaicCore}{\code{\link[mosaicCore]{makeFun}}}
+  \item{mosaicCore}{\code{\link[mosaicCore]{makeFun}}, \code{\link[mosaicCore]{df_stats}}}
 }}
 
