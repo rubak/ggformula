@@ -119,4 +119,8 @@ mtcars \%>\% df_stats(hp ~ cyl)
 gf_violin(hp ~ cyl, data = mtcars, group = ~ cyl) \%>\%
   gf_point(mean_hp ~ cyl, data = df_stats(hp ~ cyl, data = mtcars, mean))
 
+# can be used on a categorical response, too
+if (require(mosaic)) {
+  df_stats(sex ~ substance, data = HELPrct, props, counts)
+}
 }
