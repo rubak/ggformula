@@ -13,7 +13,7 @@ vignette: >
 library(ggformula)
 library(dplyr)
 library(ggplot2)
-library(mosaic)
+library(mosaicData)
 knitr::opts_chunk$set(
   fig.show = "hold",
   out.width = "45%"
