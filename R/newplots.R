@@ -5,6 +5,7 @@ utils::globalVariables(c("x", "y", "ymin", "ymax"))
 
 #' @importFrom grid gList
 #' @importFrom mosaicCore ash_points
+#' @importFrom stats quantile
 
 NA
 
@@ -263,7 +264,7 @@ geom_spline <-
 #  * and stackoverflow.com/a/4357932/1346276
 
 qq.line <- function(sample, qdist, na.rm = TRUE, tail = 0.25) {
-  q.sample <- quantile(sample, c(tail, 1 - tail), na.rm = na.rm)
+  q.sample <- stats::quantile(sample, c(tail, 1 - tail), na.rm = na.rm)
   q.theory <- qdist(c(tail, 1 - tail))
   slope <- diff(q.sample) / diff(q.theory)
   intercept <- q.sample[1] - slope * q.theory[1]
