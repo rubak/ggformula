@@ -1,11 +1,10 @@
 ## Test environments
 
-* local 
-  * version  R version 3.4.0 (2017-04-21)
-  * system   x86_64, darwin15.6.0        
-  * ui       RStudio (1.1.278)     
-  
+* local OS X install, R version 3.4.1 Patched (2017-07-09 r72910)
+
 * win-builder via devtools::build_win()
+
+  * this prouces errors because it requires the simultaneously submitted upate to mosaic
 
 ## R CMD check results
 

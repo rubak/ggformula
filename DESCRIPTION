@@ -24,7 +24,7 @@ Imports:
     glue,
     grid
 Suggests:
-    mosaic,
+    mosaic (>= 1.0),
     dplyr,
     testthat,
     mosaicData,
