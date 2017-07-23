@@ -40,8 +40,7 @@ This document is intended to help users of the `mosaic` package migrate their `l
 ## Histograms (ggformula)
 
 ```{r}
-library(mosaic)  
-library(ggformula)  
+library(mosaic)   # also loads ggformula 
 gf_histogram(~ age, data = HELPrct)
 ```
 
@@ -67,8 +66,7 @@ Examples of how to bring multidimensional graphics into day one of an introducto
 ## Histograms (lattice)
 
 ```{r}
-library(mosaic) 
-library(lattice)
+library(mosaic)     # also loads lattice
 histogram(~ age, data = HELPrct)
 ```
 

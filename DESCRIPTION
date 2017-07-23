@@ -32,7 +32,6 @@ Suggests:
     statisticalModeling,
     rmarkdown,
     weatherData,
-    lubridate,
-    lattice
+    lubridate
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
