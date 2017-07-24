@@ -32,4 +32,4 @@ learnr::run_tutorial("refining", package = "ggformula")
 
 ### Package Vignette
 
-The package vignette is available at [https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula.html](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula.html).
+The package vignette is available at [https://cran.r-project.org/package=ggformula/vignettes/ggformula.html](https://cran.r-project.org/package=ggformula/vignettes/ggformula.html).
