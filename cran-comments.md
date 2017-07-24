@@ -12,6 +12,8 @@ R CMD check results
 
 1 note about maintainer on winbuilder.
 
+Note: We had first/last names reversed in the earlier submission.  Oops.
+
 
 ## Downstream dependencies
 
