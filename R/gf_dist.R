@@ -38,6 +38,7 @@ NA
 gf_dist <- function(
   object = geom_blank(),
   dist, ...,
+  xlim = NULL,
 #  xmin = NULL, xmax = NULL,
   kind = c("density", "cdf", "qq", "qqstep", "histogram"),
   resolution = 5000L, params = NULL )
@@ -92,10 +93,20 @@ gf_dist <- function(
   unique_values <- unique(sample_values)
   discrete <- length(unique_values) < length(sample_values)
 
+  if (is.null(xlim)) {
+    xlim_opts <- do.call(qdist, c(list(p = c(0, 0.001, 0.999, 1)), qparams))
+    dxlim_opts <- diff(xlim_opts)
+    xlim <- xlim_opts[2:3]
+    if (dxlim_opts[1] < dxlim_opts[2]){xlim[1] <- xlim_opts[1]}
+    if (dxlim_opts[3] < dxlim_opts[2]){xlim[2] <- xlim_opts[4]}
+  }
+  plim <- do.call(pdist, c(list(q = xlim), pparams))
+  #  dpqrdist(dist, type = "p", q = xlim)
+
   if (! discrete) {
     unif_values = seq(
-      do.call(qdist, c(p = list(0.001), qparams)),
-      do.call(qdist, c(p = list(0.999), qparams)),
+      do.call(qdist, c(list(p = plim[1]), qparams)),
+      do.call(qdist, c(list(p = plim[2]), qparams)),
       length.out = resolution
     )
     fewer_values <- unif_values

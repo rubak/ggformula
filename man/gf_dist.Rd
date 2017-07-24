@@ -4,8 +4,8 @@
 \alias{gf_dist}
 \title{Plot distributions}
 \usage{
-gf_dist(object = geom_blank(), dist, ..., kind = c("density", "cdf", "qq",
-  "qqstep", "histogram"), resolution = 5000L, params = NULL)
+gf_dist(object = geom_blank(), dist, ..., xlim = NULL, kind = c("density",
+  "cdf", "qq", "qqstep", "histogram"), resolution = 5000L, params = NULL)
 }
 \arguments{
 \item{object}{a gg object.}
