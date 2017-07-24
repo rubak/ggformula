@@ -6,7 +6,7 @@
 
   * this prouces errors because it requires the simultaneously submitted upate to mosaic
 
-## R CMD check results
+## R CMD check results (local)
 
 R CMD check results
 
