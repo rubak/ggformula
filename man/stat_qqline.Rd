@@ -2,7 +2,7 @@
 % Please edit documentation in R/newplots.R
 \name{stat_qqline}
 \alias{stat_qqline}
-\title{A Stat for Adding Refernce Lines to QQ-Plots}
+\title{A Stat for Adding Reference Lines to QQ-Plots}
 \usage{
 stat_qqline(mapping = NULL, data = NULL, geom = "line",
   position = "identity", ..., distribution = stats::qnorm,
@@ -28,7 +28,7 @@ stat_qqline(mapping = NULL, data = NULL, geom = "line",
 missing values are removed before plotting.}
 
 \item{show.legend}{A logical indicating whether legends should be included
-for this layer.  If \code{NA}, legends will be inclued for each aesthetic
+for this layer.  If \code{NA}, legends will be include for each aesthetic
 that is mapped.}
 
 \item{inherit.aes}{A logical indicating whether aesthetics should be

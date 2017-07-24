@@ -23,7 +23,7 @@ NA
 #'
 #' @param gformula A formula with shape \code{~x} or \code{y ~ x}.
 #'   \code{y} may be \code{..density..} or \code{..count..} or \code{..ndensity..} or \code{..ncount..}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -205,12 +205,12 @@ StatSpline <-
 #'   when using GVC.
 #'   See \code{\link{smooth.spline}()} for details.
 #' @param penalty the coefficient of the penalty for degrees of freedom in the
-#'   GVC cireterion.
+#'   GVC criterion.
 #'   See \code{\link{smooth.spline}()} for details.
 #' @param control.spar An optional list used to control root finding
 #'   when the parameter \code{spar} is computed.
 #'   See \code{\link{smooth.spline}()} for details.
-#' @param tol A tolerance for same-ness or uniqueness of the \code{x} values.
+#' @param tol A tolerance for sameness or uniqueness of the \code{x} values.
 #'   The values are binned into bins of size tol and values which fall into
 #'   the same bin are regarded as the same. Must be strictly positive (and finite).
 #'   When \code{NULL}, \code{IQR(x) * 10e-6} is used.
@@ -293,7 +293,7 @@ StatQqline <- ggproto("StatQqline", Stat,
                       }
 )
 
-#' A Stat for Adding Refernce Lines to QQ-Plots
+#' A Stat for Adding Reference Lines to QQ-Plots
 #'
 #' This stat computes quantiles of the sample and theoretical distribution for
 #' the purpose of providing reference lines for QQ-plots.
@@ -311,7 +311,7 @@ StatQqline <- ggproto("StatQqline", Stat,
 #' @param na.rm A logical indicating whether a warning should be issued when
 #'   missing values are removed before plotting.
 #' @param show.legend A logical indicating whether legends should be included
-#'   for this layer.  If \code{NA}, legends will be inclued for each aesthetic
+#'   for this layer.  If \code{NA}, legends will be include for each aesthetic
 #'   that is mapped.
 #' @param inherit.aes A logical indicating whether aesthetics should be
 #'   inherited.  When \code{FALSE}, the supplied \code{mapping} will be
@@ -467,7 +467,7 @@ predictdf <-
 #'   and \code{x} (predictor).
 #' @param lm.args A list of arguments supplied to [lm()] when performing the fit.
 #' @param backtrans a function that transforms the response back to
-#'   the original scale when the \code{formula} includes a transforamtion on
+#'   the original scale when the \code{formula} includes a transformtion on
 #'   \code{y}.
 #' @param interval One of \code{"none"}, \code{"confidence"} or \code{"prediction"}.
 #' @param level The level used for confidence or prediction intervals

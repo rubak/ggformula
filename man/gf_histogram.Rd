@@ -20,7 +20,7 @@ See details and examples.}
 
 \item{gformula}{A formula with shape \code{~x} or \code{y ~ x}.
 \code{y} may be \code{..density..} or \code{..count..} or \code{..ndensity..} or \code{..ncount..}.
-Faceting can be acheived by including \code{|} in the formula.}
+Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 

@@ -15,7 +15,7 @@ distribution for which the functions with names formed by prepending
 "d", "p", or "q" to \code{dist} exist can be used.}
 
 \item{...}{additional arguments passed both to the distribution functions and
-to the layer.  Note: avoid possible amiguities using \code{params}.}
+to the layer.  Note: avoid possible ambiguities using \code{params}.}
 
 \item{xlim}{A numeric vector of length 2 providing lower and upper bounds for the
 portion of the distribution that will be displayed.  The default is to attempt

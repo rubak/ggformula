@@ -71,7 +71,7 @@ NA
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -143,7 +143,7 @@ gf_point <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -213,7 +213,7 @@ gf_jitter <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -279,7 +279,7 @@ gf_line <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -345,7 +345,7 @@ gf_path <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -442,7 +442,7 @@ gf_lm <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -508,7 +508,7 @@ gf_spline <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -577,7 +577,7 @@ gf_raster <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -641,7 +641,7 @@ gf_quantile <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -707,7 +707,7 @@ gf_density_2d <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -773,7 +773,7 @@ gf_density2d <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -837,7 +837,7 @@ gf_hex <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -910,7 +910,7 @@ gf_boxplot <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -975,7 +975,7 @@ gf_text <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1049,7 +1049,7 @@ gf_label <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1140,7 +1140,7 @@ gf_area <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1207,7 +1207,7 @@ gf_violin <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1280,7 +1280,7 @@ gf_spoke <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1342,7 +1342,7 @@ gf_step <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1406,7 +1406,7 @@ gf_tile <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1474,7 +1474,7 @@ gf_count <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1540,7 +1540,7 @@ gf_col <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1607,7 +1607,7 @@ gf_blank <-
 #'
 #' @param gformula A formula with shape \code{~x} or \code{y ~ x}.
 #'   \code{y} may be \code{..density..} or \code{..count..} or \code{..ndensity..} or \code{..ncount..}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1690,7 +1690,7 @@ gf_dhistogram <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1760,7 +1760,7 @@ gf_density <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1828,7 +1828,7 @@ gf_dens <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1894,7 +1894,7 @@ gf_dotplot <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -1975,7 +1975,7 @@ gf_counts <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2048,7 +2048,7 @@ gf_freqpoly <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~sample}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2133,7 +2133,7 @@ gf_qqstep <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{~x} or \code{y ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2202,7 +2202,7 @@ gf_rug <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{z ~ x + y}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2262,7 +2262,7 @@ gf_contour <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{ymin + ymax ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2343,7 +2343,7 @@ gf_ribbon <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y + yend ~ x + xend}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2408,7 +2408,7 @@ gf_curve <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y + yend ~ x + xend}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2475,7 +2475,7 @@ gf_segment <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{ymin + ymax ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2558,7 +2558,7 @@ gf_linerange <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y + ymin + ymax ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2642,7 +2642,7 @@ gf_pointrange <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y + ymin + ymax ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2731,7 +2731,7 @@ gf_crossbar <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{ymin + ymax ~ x}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2820,7 +2820,7 @@ gf_errorbar <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{y ~ x + xmin + xmax}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #'   Note: The odd shape for this is due to a quirk in \pkg{ggplot2} which has
 #'   been changed on github, but not yet on CRAN.
 #' @param data A data frame with the variables to be plotted.
@@ -2906,7 +2906,7 @@ gf_errorbarh <-
 #' See details and examples.
 #'
 #' @param gformula A formula with shape \code{ymin + ymax ~ xmin + xmax}.
-#'   Faceting can be acheived by including \code{|} in the formula.
+#'   Faceting can be achieved by including \code{|} in the formula.
 #' @param data A data frame with the variables to be plotted.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -2940,8 +2940,8 @@ gf_rect <-
 
 #' Reference lines -- horizontal, vertical, and diagonal.
 #'
-#' These fuctions create layers that display lines described i various ways.  Unlike most
-#' of the plotting functions in \code{ggformula}, these functions do not take a formala
+#' These functions create layers that display lines described i various ways.  Unlike most
+#' of the plotting functions in \code{ggformula}, these functions do not take a formula
 #' as input for describing positional attributes of the plot.
 #'
 #'

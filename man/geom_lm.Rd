@@ -51,7 +51,7 @@ and \code{x} (predictor).}
 \item{lm.args}{A list of arguments supplied to [lm()] when performing the fit.}
 
 \item{backtrans}{a function that transforms the response back to
-the original scale when the \code{formula} includes a transforamtion on
+the original scale when the \code{formula} includes a transformtion on
 \code{y}.}
 
 \item{...}{other arguments passed on to \code{\link{layer}}. These are

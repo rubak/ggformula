@@ -62,14 +62,14 @@ when using GVC.
 See \code{\link{smooth.spline}()} for details.}
 
 \item{penalty}{the coefficient of the penalty for degrees of freedom in the
-GVC cireterion.
+GVC criterion.
 See \code{\link{smooth.spline}()} for details.}
 
 \item{control.spar}{An optional list used to control root finding
 when the parameter \code{spar} is computed.
 See \code{\link{smooth.spline}()} for details.}
 
-\item{tol}{A tolerance for same-ness or uniqueness of the \code{x} values.
+\item{tol}{A tolerance for sameness or uniqueness of the \code{x} values.
 The values are binned into bins of size tol and values which fall into
 the same bin are regarded as the same. Must be strictly positive (and finite).
 When \code{NULL}, \code{IQR(x) * 10e-6} is used.}

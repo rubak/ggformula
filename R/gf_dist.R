@@ -15,7 +15,7 @@ NA
 #'   portion of the distribution that will be displayed.  The default is to attempt
 #'   to determine reasonable bounds using quantiles of the distribution.
 #' @param ... additional arguments passed both to the distribution functions and
-#'   to the layer.  Note: avoid possible amiguities using \code{params}.
+#'   to the layer.  Note: avoid possible ambiguities using \code{params}.
 #' @param kind One of `"density"`, `"cdf"`, `"qq"`, `"qqstep"`, or `"histogram"`
 #'   describing what kind of plot to create.
 #' @param resolution An integer specifying the number of points to use for creating

@@ -63,8 +63,8 @@ This is equivalent to \code{coef = coef(model)}.}
 a gg object
 }
 \description{
-These fuctions create layers that display lines described i various ways.  Unlike most
-of the plotting functions in \code{ggformula}, these functions do not take a formala
+These functions create layers that display lines described i various ways.  Unlike most
+of the plotting functions in \code{ggformula}, these functions do not take a formula
 as input for describing positional attributes of the plot.
 }
 \examples{
