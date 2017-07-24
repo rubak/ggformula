@@ -4,8 +4,6 @@
 
 * win-builder via devtools::build_win()
 
-  * this prouces errors because it requires the simultaneously submitted upate to mosaic
-
 ## R CMD check results (local)
 
 R CMD check results
@@ -15,4 +13,4 @@ R CMD check results
 
 ## Downstream dependencies
 
-There are none at the present time.  This is an initial submission.
+There are none at the present time.  This is a relatively new submission.  The `mosaic` package will depend on `ggformula` once this version of `ggformula` is available.
