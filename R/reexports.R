@@ -18,3 +18,6 @@ mosaicCore::makeFun
 
 #' @export
 mosaicCore::df_stats
+
+#' @export
+mosaicCore::na.warn
