@@ -1171,7 +1171,7 @@ gf_violin <-
     geom = "violin",
     stat = "ydensity",
     position = "dodge",
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight,
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight = ,
       draw_quantiles = NULL, trim = TRUE, scale = "area", bw = , adjust = 1,
       kernel = "gaussian")
   )
