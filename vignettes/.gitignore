@@ -2,3 +2,5 @@ ggformula.html
 ggformula-lattice.R
 ggformula-lattice.pdf
 ggformula.R
+*.html
+*.R
