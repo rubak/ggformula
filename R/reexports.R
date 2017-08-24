@@ -12,7 +12,7 @@
 #' @usage lhs \%>\% rhs
 NULL
 
-#' @importFrom mosaicCore makeFun df_stats
+#' @importFrom mosaicCore makeFun df_stats na.warn
 #' @export
 mosaicCore::makeFun
 
