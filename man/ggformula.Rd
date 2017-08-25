@@ -9,7 +9,7 @@ functions and a system for working with pipes to create multi-layer
 plots and to refine plots.
 For plots with just one layer, the formula interface
 is more compact than native \pkg{ggplot2} code and is consistent with modeling
-functions like \code{\link{lm}()} that use a formula interface and with the
+functions like \code{\link[=lm]{lm()}} that use a formula interface and with the
 numerical summary functions in the \pkg{mosaic} package.
 }
 \details{
@@ -24,9 +24,9 @@ to \code{value}; terms of the form \code{+ attribute:value} will map
 \code{data}, else \code{attribute} will be set to the constant \code{value}.
 
 In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-\code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
-This provides an alternative to \code{\link{gf_facet_wrap}()} and
-\code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+\code{\link[=facet_wrap]{facet_wrap()}} or \code{\link[=facet_grid]{facet_grid()}}.
+This provides an alternative to \code{\link[=gf_facet_wrap]{gf_facet_wrap()}} and
+\code{\link[=gf_facet_grid]{gf_facet_grid()}} that is terser and may feel more familiar to users
 of \pkg{lattice}.
 
 Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.

@@ -17,13 +17,12 @@ Depends:
 Imports:
     mosaicCore,
     rlang,
-    tidyr,
     magrittr,
     tibble,
     stringr,
-    glue,
     grid
 Suggests:
+    lattice,
     mosaic,
     dplyr,
     testthat,
@@ -35,3 +34,4 @@ Suggests:
     lubridate
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
+Roxygen: list(markdown = TRUE)

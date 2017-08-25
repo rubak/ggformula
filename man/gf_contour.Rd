@@ -59,10 +59,10 @@ to \code{value} if \code{value} is the name of a variable in \code{data}, else
 attributes can be set can be set using arguments of the form \code{attribute = value} or
 mapped using arguments of the form \code{attribute = ~ expression}.
 In formulas of the form \code{A | B}, \code{B} will be used to form facets using
-\code{\link{facet_wrap}()} or \code{\link{facet_grid}()}.
+\code{\link[=facet_wrap]{facet_wrap()}} or \code{\link[=facet_grid]{facet_grid()}}.
 This provides an alternative to
-\code{\link{gf_facet_wrap}()} and
-\code{\link{gf_facet_grid}()} that is terser and may feel more familiar to users
+\code{\link[=gf_facet_wrap]{gf_facet_wrap()}} and
+\code{\link[=gf_facet_grid]{gf_facet_grid()}} that is terser and may feel more familiar to users
 of \pkg{lattice}.
 
 Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
@@ -75,5 +75,5 @@ gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy")
   gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
 }
 \seealso{
-\code{\link{geom_contour}()}
+\code{\link[=geom_contour]{geom_contour()}}
 }
