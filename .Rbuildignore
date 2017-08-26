@@ -5,3 +5,4 @@ cran-comments.md
 ^Rbuildignore$
 ^inst/tutorials/introduction/rsconnect$
 ^inst/tutorials/refining/rsconnect$
+^revdep$
