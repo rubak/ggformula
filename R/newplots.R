@@ -183,7 +183,7 @@ StatSpline <-
 #' @param na.rm A logical indicating whether a warning should be issued when
 #'   missing values are removed before plotting.
 #' @param show.legend A logical indicating whether legends should be included
-#'   for this layer.  If `NA`, legends will be inclued for each aesthetic
+#'   for this layer.  If `NA`, legends will be included for each aesthetic
 #'   that is mapped.
 #' @param inherit.aes A logical indicating whether aesthetics should be
 #'   inherited.  When `FALSE`, the supplied `mapping` will be
@@ -467,7 +467,7 @@ predictdf <-
 #'   and `x` (predictor).
 #' @param lm.args A list of arguments supplied to [lm()] when performing the fit.
 #' @param backtrans a function that transforms the response back to
-#'   the original scale when the `formula` includes a transformtion on
+#'   the original scale when the `formula` includes a transformation on
 #'   `y`.
 #' @param interval One of `"none"`, `"confidence"` or `"prediction"`.
 #' @param level The level used for confidence or prediction intervals

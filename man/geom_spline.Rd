@@ -31,7 +31,7 @@ geom_spline(mapping = NULL, data = NULL, stat = "spline",
 missing values are removed before plotting.}
 
 \item{show.legend}{A logical indicating whether legends should be included
-for this layer.  If \code{NA}, legends will be inclued for each aesthetic
+for this layer.  If \code{NA}, legends will be included for each aesthetic
 that is mapped.}
 
 \item{inherit.aes}{A logical indicating whether aesthetics should be
