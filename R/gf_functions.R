@@ -3,7 +3,7 @@ NA
 
 #' Formula interface to ggplot2
 #'
-#' The functions in \pkg{ggformula} provide a formula interface to `ggplot2` layer
+#' The functions in \pkg{ggformula} provide a formula interface to \pkg{ggplot2} layer
 #' functions and a system for working with pipes to create multi-layer
 #' plots and to refine plots.
 #' For plots with just one layer, the formula interface
@@ -12,14 +12,9 @@ NA
 #' numerical summary functions in the \pkg{mosaic} package.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Setting and mapping of additional attributes can be done within the formula or
-#' through the use of additional arguments.  The latter is considered preferable.
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
 #' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`; terms of the form `+ attribute:value` will map
-#' `attribute` to `value` if `value` is the name of a variable in
-#' `data`, else `attribute` will be set to the constant `value`.
 #'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
@@ -42,19 +37,16 @@ NA
 
 #' Formula interface to geom_point()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -114,19 +106,16 @@ gf_point <-
 
 #' Formula interface to geom_jitter()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -184,19 +173,16 @@ gf_jitter <-
 
 #' Formula interface to geom_line()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -250,19 +236,16 @@ gf_line <-
 
 #' Formula interface to geom_path()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -316,19 +299,16 @@ gf_path <-
 
 #' Formula interface to geom_smooth()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -413,19 +393,16 @@ gf_lm <-
 
 #' Formula interface to geom_spline()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -479,19 +456,16 @@ gf_spline <-
 
 #' Formula interface to geom_raster()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -548,19 +522,16 @@ gf_raster <-
 
 #' Formula interface to geom_quantile()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -612,19 +583,16 @@ gf_quantile <-
 
 #' Formula interface to geom_density_2d()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -678,19 +646,16 @@ gf_density_2d <-
 
 #' Formula interface to geom_density2d()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -744,19 +709,16 @@ gf_density2d <-
 
 #' Formula interface to geom_hex()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -807,19 +769,16 @@ gf_hex <-
 
 #' Formula interface to geom_boxplot()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -881,19 +840,16 @@ gf_boxplot <-
 
 #' Formula interface to geom_text()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -946,19 +902,16 @@ gf_text <-
 
 #' Formula interface to geom_label()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1020,19 +973,16 @@ gf_label <-
 
 #' Formula interface to geom_area()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1111,19 +1061,16 @@ gf_area <-
 
 #' Formula interface to geom_violin()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1178,19 +1125,16 @@ gf_violin <-
 
 #' Formula interface to geom_spoke()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1251,19 +1195,16 @@ gf_spoke <-
 
 #' Formula interface to geom_step()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1313,19 +1254,16 @@ gf_step <-
 
 #' Formula interface to geom_tile()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1377,19 +1315,16 @@ gf_tile <-
 
 #' Formula interface to geom_count()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1445,19 +1380,16 @@ gf_count <-
 
 #' Formula interface to geom_col()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1511,19 +1443,16 @@ gf_col <-
   )
 #' Formula interface to geom_blank()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1577,19 +1506,13 @@ gf_blank <-
 
 #' Formula interface to geom_histogram()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
-#' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1661,19 +1584,16 @@ gf_dhistogram <-
 
 #' Formula interface to geom_density()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1731,19 +1651,16 @@ gf_density <-
 
 #' Formula interface to geom_line() and stat_density()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1799,19 +1716,16 @@ gf_dens <-
 
 #' Formula interface to geom_dotplot()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1865,19 +1779,16 @@ gf_dotplot <-
 
 #' Formula interface to geom_bar()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -1946,19 +1857,16 @@ gf_counts <-
 
 #' Formula interface to geom_freqpoly()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2019,19 +1927,16 @@ gf_freqpoly <-
 #' `gf_qq()` uses points and `gf_qqstep()` plots a step function
 #' through these points.
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2104,19 +2009,16 @@ gf_qqstep <-
 
 #' Formula interface to geom_rug()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2173,19 +2075,16 @@ gf_rug <-
 
 #' Formula interface to geom_contour()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2233,19 +2132,16 @@ gf_contour <-
 
 #' Formula interface to geom_ribbon()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2314,19 +2210,16 @@ gf_ribbon <-
 
 #' Formula interface to geom_curve()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2379,19 +2272,16 @@ gf_curve <-
 
 #' Formula interface to geom_segment()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2446,19 +2336,16 @@ gf_segment <-
 
 #' Formula interface to geom_linerange()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2529,19 +2416,16 @@ gf_linerange <-
 
 #' Formula interface to geom_pointrange()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2613,19 +2497,16 @@ gf_pointrange <-
 
 #' Formula interface to geom_crossbar()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2702,19 +2583,16 @@ gf_crossbar <-
 
 #' Formula interface to geom_errorbar()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2791,19 +2669,16 @@ gf_errorbar <-
 
 #' Formula interface to geom_errorbarh()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
@@ -2877,19 +2752,16 @@ gf_errorbarh <-
 
 #' Formula interface to geom_rect()
 #'
-#' \pkg{ggformula} functions provide a formula interface to `ggplot2` layer
+#' \pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
 #' functions.
 #' For plots with just one layer, the formula interface
 #' is more compact and is consistent with modeling and \pkg{mosaic} notation.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
-#' Additional formula terms of the form `+ attribute::value` map `attribute`
-#' to `value`.
-#' Additional terms of the form `+ attribute:value` will map `attribute`
-#' to `value` if `value` is the name of a variable in `data`, else
-#' `attribute` will be set to the constant `value`. Alternatively (and preferably)
-#' attributes can be set can be set using arguments of the form `attribute = value` or
+#' Setting and mapping of additional attributes can be done through the use of additional arguments.
+#' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
+#'
 #' In formulas of the form `A | B`, `B` will be used to form facets using
 #' [facet_wrap()] or [facet_grid()].
 #' This provides an alternative to
