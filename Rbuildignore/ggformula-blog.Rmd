@@ -1,0 +1,213 @@
+---
+title: "ggformula: Another Option for Teaching Graphics in R to Beginners"
+author: "Randall Pruim"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Another Option for Teaching Graphics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style type="text/css">
+span.boxed {
+  border:5px solid gray;
+  border-radius:10px;
+  padding: 5px;
+}
+span.invboxed {
+  border:5px solid gray;
+  padding: 5px;
+  border-radius:10px;
+  color: white;
+}
+table, td, th
+{
+border:0px;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(dplyr)
+library(lattice)
+library(ggformula)
+library(mosaic)
+theme_set(theme_bw())
+knitr::opts_chunk$set(
+  fig.show = "hold",
+  fig.width = 2.5,
+  fig.height = 2.2
+)
+```
+
+David Robinson's excellent blog entry "Teach the tidyverse to beginners"
+(http://varianceexplained.org/r/teach-tidyverse) argues that a `tidyverse`
+approach is the better of two prevalent options for teaching beginners:
+
+1) "Base R first": teach syntax such as `$` and `[[ ]]`, use built-in 
+functions like `ave()` and `tapply()`, and use base graphics.
+
+2) "Tidyverse first": start from scratch with pipes (`%>%`), leverage `dplyr`
+for data transformations and summarization, and use `ggplot2` for graphics.
+
+As his title suggests, David prefers the second option and makes a strong case for it.
+Indeed, if those were the only two options, I'd probably choose `tidyverse` as well.
+
+## A third way
+
+But these are not the only options.
+Nick Horton's "Options for teaching R to beginners: a false
+dichotomy?"(http://sas-and-r.blogspot.com/2017/07/options-for-teaching-r-to-beginners.html)
+describes a third alternative that also "get[s] students doing powerful things quickly",
+as David desires. 
+This third way is based on a formula interface provided by the combination of 
+
+ * the `lattice` package for graphics, 
+ * several functions from the `stats` package for modeling 
+ (e.g., `lm()`, `t.test()`), and 
+ * the `mosaic` package for numerical summaries and for smoothing
+over edge cases and inconsistencies in the other two components.  
+
+Important in this approach is the syntactic similarity that the following
+"formula template" brings to all of these operations.
+
+&nbsp;
+
+<center>
+<h2><strong><span class="boxed">goal</span> ( <span class="boxed">y</span> ~ <span class="boxed">x</span> , data = <span class="boxed">mydata</span>, ... )</strong> 
+</h2></center>
+
+&nbsp;
+
+Many important data analysis operations can be executed by filling in the 
+four boxes with the appropriate information for the desired task.
+This allows students to become fluent quickly with a powerful, coherant toolkit for 
+data analysis.  
+
+Nick's post illustrates this with an investigation of how the price of diamonds
+depends on (among other things) color.  The similarity among the commands to
+compute mean price for each of two colors, to create side-by-side boxplots, to
+run a two-sample t test, and to fit a linear model are what make this approach
+so compelling.
+
+```{r results = "hide", fig.keep = "none"}
+# diamonds2 was called `recoded' in Nick's post
+library(dplyr)
+diamonds2 <- diamonds %>% 
+  filter(color == "D" | color == "J") %>%
+  droplevels()
+
+  mean(price ~ color, data = diamonds2)  
+bwplot(price ~ color, data = diamonds2)
+t.test(price ~ color, data = diamonds2)
+    lm(price ~ color, data = diamonds2)
+```
+
+This "Less Volume, More Creativity" approach
+is outlined in more detail in a recent [*R Journal* article](https://journal.r-project.org/archive/2017/RJ-2017-024/)
+and has worked well for a growing number of instructors in first
+(and subsequent) courses 
+(see for example Wang et al., 
+"Data Viz on Day One: Bringing Big Ideas into Intro Stats Early and Often" (2017),
+TISE).
+
+## Trouble in paradise
+
+But as Nick hinted in his blog post, the use of `lattice` has some drawbacks.
+While basic graphs like histograms, boxplots, scatterplots, and 
+quantile-quantile plots are simple to make with `lattice`, it is challenging 
+to combine these simple plots into more complex plots or to plot data from multiple
+data sources.  Splitting data into subgroups and either overlaying with multiple 
+colors or separating into sub-plots (facets) is easy, but the labeling of 
+such plots is not as convenient (and takes more space) that the equivalent plots
+made with `ggplot2`.  And in our experience, students generally find the look of 
+`ggplot2` graphics more appealing.
+
+On the other hand, introducing `ggplot2` into a first course is challenging. 
+The syntax is more verbose, so it takes up more of the limited space on projected 
+images and course handouts.  More importantly, the syntax is entirely unrelated 
+to the syntax used for other aspects of the course. 
+For those adopting a "Less Volume, More Creativity" approach,
+`ggplot2` is tough to justify.
+
+
+## ggformula: The third-and-a half way
+
+Danny Kaplan and I recently introduced `ggformula`, a package that provides a 
+formula interface to `ggplot2` graphics.  Our hope is that this provides 
+the best aspects of `lattice` (the formula interface and lighter syntax) 
+and `ggplot2` (modularity, layering, and better visual aesthetics).  
+
+For simple plots, the only thing that changes is the name of the plotting function.
+Each of these functions begins with `gf`.  Here are two examples, either of which 
+could replace the side-by-side boxplots made with `lattice` in Nick's post.
+```{r}
+gf_boxplot(price ~ color, data = diamonds2)
+ gf_violin(price ~ color, data = diamonds2)
+```
+
+If we like, we can even overlay these two types of plots to see how they compare.  To
+do so, we simply place the then operator (`%>%`, also called a pipe) between the
+two layers and adjust the transparency so we can see both where they overlap.
+
+```{r}
+gf_boxplot(price ~ color, data = diamonds2, alpha = 0.05) %>%
+ gf_violin(price ~ color, data = diamonds2, alpha = 0.3, fill = "navy", color = NA)
+```
+
+
+## Comparing groups
+
+Groups can be compared either by overlaying multiple groups distinguisable 
+by some attribute (e.g., color) 
+
+```{r}
+gf_point(price ~ carat, color = ~ color, data = diamonds2, alpha = 0.2) %>%
+  gf_lm()
+```
+
+or by creating multiple plots arranged in 
+a grid rather than to overlay subgroups in the same space. 
+`ggformula` provides two ways to create these facets. 
+The first uses `|` very much like `lattice` does.
+
+```{r fig.width = 7}
+gf_point(price ~ carat | color, data = diamonds2, alpha = 0.2) %>%
+  gf_lm()
+gf_point(price ~ carat | color ~ clarity, data = diamonds2, alpha = 0.2) %>%
+  gf_lm()
+```
+
+Notice that the `gf_lm()` layer inherits information from the the `gf_points()` 
+layer in these plots, saving some typing when the information is the same in
+multiple layers.
+
+(The second way to adds facets with `gf_facet_wrap()` or `gf_facet_grid()`
+and can be more convenient for complex plots or when customization
+of facets is desired.)
+      
+## Fitting into the tidyverse work flow
+
+`ggformala` also fits into a tidyverse-style workflow (arguably better than
+`ggplot2` itself does).
+Data can be piped into the initial call to a `ggformula` function and there 
+is no need to switch between `%>%` and `+` when moving from data transformations
+to plot operations.
+
+```{r, fig.height = 1.5}
+diamonds %>%
+  filter(color %in% c("D", "G", "J")) %>%
+  droplevels() %>%
+  gf_bar( ~ color)
+```
+
+## Summary
+
+The "Less Volume, More Creativity" appraoch based on a common formula template
+has served well for several years, but the arrival of `ggformula` strengthens this
+approach by bringing a richer graphical system into reach for beginners without 
+introducing new syntactical structures.  The full range of `ggplot2` features 
+and customizations remains available, and package vignettes and tutorials describe
+these in more detail.
+
+
