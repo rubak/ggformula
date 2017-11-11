@@ -3,11 +3,16 @@
 \name{gf_function}
 \alias{gf_function}
 \alias{gf_fun}
+\alias{gf_fitdistr}
 \title{Layers displaying graphs of functions}
 \usage{
 gf_function(object = NULL, fun, xlim, ..., inherit = FALSE)
 
 gf_fun(object = NULL, formula, xlim, ..., inherit = FALSE)
+
+gf_fitdistr(object = NULL, gformula = NULL, data = NULL, geom = "path",
+  stat = "fitdistr", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = FALSE, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

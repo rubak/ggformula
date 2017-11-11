@@ -3011,3 +3011,12 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
     )
 }
 
+#' @rdname gf_functions
+#' @export
+gf_fitdistr <-
+  layer_factory(
+    geom = "path", stat = "fitdistr", position = "identity",
+    aes_form = list(~ x), inherit.aes = "x",
+    extras = alist(dist = dnorm, start = NULL, alpha = , color = , fill = , group = , linetype = , size = ),
+    note = "dist should be a density function like dnorm or dgamma"
+  )
