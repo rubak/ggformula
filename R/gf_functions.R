@@ -3012,6 +3012,24 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 }
 
 #' @rdname gf_functions
+#'
+#' @param gformula A formula with shape ` ~ x` used to specify the data
+#'   to be fit to a family of distributions.
+#' @param data A data frame containing the variable to be fitted.
+#  @param ... Additional arguments to [MASS::fitdistr()].
+#' @param geom A character string naming the geom used to make the layer.
+#' @param stat A character string naming the stat used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param show.legend A logical indicating whether this layer should be included in
+#'   the legends.  `NA`, the default, includes layer in the legends if any
+#'   of the attributes of the layer are mapped.
+#' @param show.help If `TRUE`, display some minimal help.
+#  @param inherit A logical indicating whether default attributes are inherited.
+#' @return a gg object
+#' @seealso [mosaicCore::fit_distr_fun()]
+#' @export
+#' @examples
 #' @export
 gf_fitdistr <-
   layer_factory(

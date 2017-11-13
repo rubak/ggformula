@@ -629,8 +629,30 @@ StatFitdistr <-
   )
 
 
-#' @rdname fitdistr
+#' A stat for fitting distributions
+#'
+#' This stat computes points for plotting a distribution function.  Fitting is done
+#' useing `MASS::fitdistr()` when analytic solutions are not available.
+#'
+#' @param mapping Aesthetics created using `aes()` or `aes_string()`.
+#' @param data A data frame.
+#' @param dist A character string indicating the distribution to fit.  Examlpes include
+#'   `"dnorm"`, `"dgamma"`, etc.
+#' @param start A list of starting values used by `MASS::fitdistr()` when numerically
+#'   approximating the maximimum likelihood estimate.
+#' @param geom A character string naming the geom used to make the layer.
+#' @param position Either a character string naming the position function used
+#'   for the layer or a position object returned from a call to a position function.
+#' @param inherit.aes If `FALSE`, overrides the default aesthetics, rather than combining
+#'   with them.
+#' @param na.rm If TRUE, do not emit a warning about missing data.
+#' @param show.legend A logical. Should this layer be included in the legends? `NA`,
+#'   the default, includes if any aesthetics are mapped. `FALSE` never includes,
+#'   and `TRUE` always includes.
+#' @param ... Additional arguments.
+#' @return A gg object
 #' @export
+
 stat_fitdistr <-
   function(mapping = NULL, data = NULL, geom = "path",
            position = "identity", na.rm = FALSE, show.legend = NA,
