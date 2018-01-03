@@ -577,7 +577,7 @@ StatAsh <-
           required_aes = c("x")
   )
 
-#' @rdname fitdistr
+#' @rdname gf_fitdistr
 #' @export
 stat_fitdistr <-
   function(mapping = NULL, data = NULL, geom = "path",
