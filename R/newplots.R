@@ -577,25 +577,23 @@ StatAsh <-
           required_aes = c("x")
   )
 
-#' @rdname gf_fitdistr
-#' @export
-stat_fitdistr <-
-  function(mapping = NULL, data = NULL, geom = "path",
-           position = "identity", na.rm = FALSE, show.legend = NA,
-           inherit.aes = TRUE, start = NULL, ...) {
-    ggplot2::layer(
-      stat = StatFitdistr, data = data, mapping = mapping, geom = geom,
-      position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-      params = list(start = NULL, ...)
-    )
-  }
+# #' @rdname gf_fitdistr
+# #' @export
+# stat_fitdistr <-
+#   function(mapping = NULL, data = NULL, geom = "path",
+#            position = "identity", na.rm = FALSE, show.legend = NA,
+#            inherit.aes = TRUE, start = NULL, ...) {
+#     ggplot2::layer(
+#       stat = StatFitdistr, data = data, mapping = mapping, geom = geom,
+#       position = position, show.legend = show.legend, inherit.aes = inherit.aes,
+#       params = list(start = NULL, ...)
+#     )
+#   }
 
 
 #' @rdname ggformula-ggproto
 #' @format NULL
 #' @export
-#' @seealso [stat_fitdistr()]
-#' @seealso [gf_fitdistr()]
 
 StatFitdistr <-
   ggproto(

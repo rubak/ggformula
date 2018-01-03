@@ -56,9 +56,5 @@ These are typically accessed through their associated \code{geom_*}, \code{stat_
 \code{\link[=stat_ash]{stat_ash()}}
 
 \code{\link[=gf_ash]{gf_ash()}}
-
-\code{\link[=stat_fitdistr]{stat_fitdistr()}}
-
-\code{\link[=gf_fitdistr]{gf_fitdistr()}}
 }
 \keyword{datasets}
