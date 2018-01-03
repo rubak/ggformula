@@ -3,16 +3,11 @@
 \name{gf_function}
 \alias{gf_function}
 \alias{gf_fun}
-\alias{gf_fitdistr}
 \title{Layers displaying graphs of functions}
 \usage{
 gf_function(object = NULL, fun, xlim, ..., inherit = FALSE)
 
 gf_fun(object = NULL, formula, xlim, ..., inherit = FALSE)
-
-gf_fitdistr(object = NULL, gformula = NULL, data = NULL, geom = "path",
-  stat = "fitdistr", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = FALSE, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -29,27 +24,6 @@ the first layer in a plot.  Ignored when creating a subsequent layer.}
 \item{inherit}{A logical indicating whether attributes should be inherited.}
 
 \item{formula}{A formula describing a function.  See examples and \code{\link[mosaicCore:makeFun]{mosaicCore::makeFun()}}.}
-
-\item{gformula}{A formula with shape \code{~ x} used to specify the data
-to be fit to a family of distributions.}
-
-\item{data}{A data frame containing the variable to be fitted.}
-
-\item{geom}{A character string naming the geom used to make the layer.}
-
-\item{stat}{A character string naming the stat used to make the layer.}
-
-\item{position}{Either a character string naming the position function used
-for the layer or a position object returned from a call to a position function.}
-
-\item{show.legend}{A logical indicating whether this layer should be included in
-the legends.  \code{NA}, the default, includes layer in the legends if any
-of the attributes of the layer are mapped.}
-
-\item{show.help}{If \code{TRUE}, display some minimal help.}
-}
-\value{
-a gg object
 }
 \description{
 These functions provide two different
@@ -68,7 +42,4 @@ gf_fun(5 + 3 * cos(10 * x) ~ x, xlim = c(0,2))
 f <- makeFun(lm(totalbill ~ poly(month, 2), data = Utilities))
 gf_point(totalbill ~ month, data = Utilities, alpha = 0.6) \%>\%
   gf_fun(f(m) ~ m, color = "red")
-}
-\seealso{
-\code{\link[mosaicCore:fit_distr_fun]{mosaicCore::fit_distr_fun()}}
 }

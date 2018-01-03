@@ -3011,8 +3011,6 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
     )
 }
 
-#' @rdname gf_functions
-#'
 #' @param gformula A formula with shape ` ~ x` used to specify the data
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
@@ -3030,7 +3028,12 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #' @seealso [mosaicCore::fit_distr_fun()]
 #' @export
 #' @examples
-#' @export
+#' gf_fitdistr( ~ length, data = KidsFeet, inherit = FALSE) %>%
+#' gf_dhistogram( ~ length, data = KidsFeet, binwidth = 0.5, alpha = 0.25)
+#'
+#' gf_dhistogram( ~ length, data = KidsFeet, binwidth = 0.5, alpha = 0.25) %>%
+#'   gf_fitdistr()
+
 gf_fitdistr <-
   layer_factory(
     geom = "path", stat = "fitdistr", position = "identity",
