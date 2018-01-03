@@ -3011,6 +3011,11 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
     )
 }
 
+#' Plot density function based on fit to data
+#'
+#' `MASS::fitdistr()` is used to fit coeffecients of a specified family of
+#' distributions and the resulting density curve is displayed.
+#'
 #' @param gformula A formula with shape ` ~ x` used to specify the data
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
