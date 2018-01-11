@@ -548,7 +548,7 @@ and accepts a formula with one of three shapes
 ```
 
 
-## Plots with one variable
+## Plots with one positional variable
 
 Some `gf_` functions only require the user to supply one variable. The y-positions
 for these plots can calculated from the x-variable.
