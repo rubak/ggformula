@@ -106,7 +106,7 @@ emit_help <- function(function_name, aes_form, extras = list(), note = NULL,
   if (is.character(stat) && stat != "identity")
     message_text <- paste(message_text, "\n    * stat: ", stat)
   if (is.character(position) && position != "identity")
-    message_text <- paste(message_text, "\n    * stat: ", position)
+    message_text <- paste(message_text, "\n    * position: ", position)
 
   if(length(extras) > 0) {
     message_text <-
