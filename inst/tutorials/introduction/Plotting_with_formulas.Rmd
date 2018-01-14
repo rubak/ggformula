@@ -61,7 +61,7 @@ Here is an interesting plot showing the number of live births in the United
 States each day of 1978.  We are going to use it to learn how to create
 plots using the `ggformula` package.
 
-```{r, echo = FALSE}
+```{r, first-look, echo = FALSE}
 gf_point(births ~ date, data = Births1978)
 ```
 
@@ -134,7 +134,7 @@ eventually.)
 Sometimes we will add or subtract a bit from our formula.
 Here are some other forms we will eventually see.
 
-```{r eval=FALSE, echo = TRUE}
+```{r templates, eval=FALSE, echo = TRUE}
 # simpler version
 goal( ~ x, data = mydata )          
 # fancier version
@@ -225,7 +225,7 @@ Note: R is case sensitive, so watch your capitalization.
   
 For the record, here are the first few rows of `Births1978`.
   
-```{r}
+```{r, top-of-data}
 Births1978 %>% head(3) %>% select(births, date, day_of_year)
 ```
 
@@ -236,13 +236,13 @@ describe the positional information of a plot.
 Formulas in R always involve the tilde character, which is easy to overlook.
 It looks like this:  
 
-```{r echo = FALSE, fig.align = "center"}
+```{r tilde, echo = FALSE, fig.align = "center"}
 knitr::include_graphics("images/tilde.png")
 ```
 
 The position of ![](images/tilde-small.png) on the keyboard varies from brand to brand. On Apple keyboards, it's here.
 
-```{r echo = FALSE, fig.align = "center", out.width = "40%"}
+```{r tilde02, echo = FALSE, fig.align = "center", out.width = "40%"}
 knitr::include_graphics("images/keyboard-tilde.png")
 ```
 
