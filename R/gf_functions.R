@@ -65,6 +65,7 @@ NA
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`,
@@ -134,6 +135,7 @@ gf_point <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -201,6 +203,7 @@ gf_jitter <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -264,6 +267,7 @@ gf_line <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -327,6 +331,7 @@ gf_path <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -421,6 +426,7 @@ gf_lm <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -484,6 +490,7 @@ gf_spline <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -550,6 +557,7 @@ gf_raster <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -611,6 +619,7 @@ gf_quantile <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -674,6 +683,7 @@ gf_density_2d <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -737,6 +747,7 @@ gf_density2d <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -798,6 +809,7 @@ gf_hex <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -868,6 +880,7 @@ gf_boxplot <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -930,6 +943,7 @@ gf_text <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1001,6 +1015,7 @@ gf_label <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1089,6 +1104,7 @@ gf_area <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1153,6 +1169,7 @@ gf_violin <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1223,6 +1240,7 @@ gf_spoke <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1297,6 +1315,7 @@ gf_step <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1358,6 +1377,7 @@ gf_tile <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1423,6 +1443,7 @@ gf_count <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1486,6 +1507,7 @@ gf_col <-
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1547,6 +1569,7 @@ gf_blank <-
 #'   `y` may be `..density..` or `..count..` or `..ndensity..` or `..ncount..`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1627,6 +1650,7 @@ gf_dhistogram <-
 #' @param gformula A formula with shape `~x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1694,6 +1718,7 @@ gf_density <-
 #' @param gformula A formula with shape `~x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1759,6 +1784,7 @@ gf_dens <-
 #' @param gformula A formula with shape `~x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1822,6 +1848,7 @@ gf_dotplot <-
 #' @param gformula A formula with shape `~x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1900,6 +1927,7 @@ gf_counts <-
 #' @param gformula A formula with shape `~x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1970,6 +1998,7 @@ gf_freqpoly <-
 #' @param gformula A formula with shape `~sample`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2052,6 +2081,7 @@ gf_qqstep <-
 #' @param gformula A formula with shape `~x` or `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2118,6 +2148,7 @@ gf_rug <-
 #' @param gformula A formula with shape `z ~ x + y`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2175,6 +2206,7 @@ gf_contour <-
 #' @param gformula A formula with shape `ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2253,6 +2285,7 @@ gf_ribbon <-
 #' @param gformula A formula with shape `y + yend ~ x + xend`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2315,6 +2348,7 @@ gf_curve <-
 #' @param gformula A formula with shape `y + yend ~ x + xend`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2379,6 +2413,7 @@ gf_segment <-
 #' @param gformula A formula with shape `ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2459,6 +2494,7 @@ gf_linerange <-
 #' @param gformula A formula with shape `y + ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2540,6 +2576,7 @@ gf_pointrange <-
 #' @param gformula A formula with shape `y + ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2626,6 +2663,7 @@ gf_crossbar <-
 #' @param gformula A formula with shape `ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2714,6 +2752,7 @@ gf_errorbar <-
 #'   Note: The odd shape for this is due to a quirk in \pkg{ggplot2} which has
 #'   been changed on github, but not yet on CRAN.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2795,6 +2834,7 @@ gf_errorbarh <-
 #' @param gformula A formula with shape `ymin + ymax ~ xmin + xmax`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2838,6 +2878,7 @@ gf_rect <-
 #'
 #' @param gformula Must be `NULL`.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -2876,20 +2917,16 @@ gf_rect <-
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
 #'   gf_abline(color = "red", slope = ~slope, intercept = ~intercept,
 #'   data = data.frame(slope = -0.10, intercept = 33:35))
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
-#'   gf_abline(intercept = ~ c(10, 20, 30), slope = ~c(1, 0, -1)/100,
-#'     color = c("red", "green", "blue"))
 #'
-#' # We can set the color of the guidelines while mapping color in other
-#' # layers
+#' # We can set the color of the guidelines while mapping color in other layers
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
-#'   gf_hline(color = "navy", yintercept = ~c(20, 25)) %>%
-#'   gf_vline(color = "brown", xintercept = ~c(200, 300))
+#'   gf_hline(color = "navy", yintercept = c(20, 25), data = NA) %>%
+#'   gf_vline(color = "brown", xintercept = c(200, 300), data = NA)
 #'
 #' # If we want to map the color of the guidelines, it must work with the
 #' # scale of the other colors in the plot.
 #' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) %>%
-#'   gf_hline(color = ~"horizontal", yintercept = ~c(20, 25)) %>%
+#'   gf_hline(color = ~"horizontal", yintercept = ~c(20, 25), data = NA) %>%
 #'   gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA)
 #' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
 #'   gf_hline(color = "orange", yintercept = 20, data = NA) %>%
@@ -2899,7 +2936,6 @@ gf_rect <-
 #'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) %>%
 #'   gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
 #'     inherit = FALSE)
-#'
 #'
 gf_abline <-
   layer_factory(
@@ -3036,6 +3072,7 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #' @param gformula A formula with shape ` ~ x` used to specify the data
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments
 ####  to [MASS::fitdistr()].
 #' @param geom A character string naming the geom used to make the layer.

@@ -7,11 +7,11 @@
 \usage{
 gf_histogram(object = NULL, gformula = NULL, data = NULL, geom = "bar",
   stat = "bin", position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, ...)
+  inherit = TRUE, environment = parent.frame(), ...)
 
 gf_dhistogram(object = NULL, gformula = NULL, data = NULL, geom = "bar",
   stat = "bin", position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, ...)
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -38,6 +38,8 @@ of the attributes of the layer are mapped.}
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
 \item{inherit}{A logical indicating whether default attributes are inherited.}
+
+\item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

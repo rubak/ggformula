@@ -8,15 +8,15 @@
 \usage{
 gf_qq(object = NULL, gformula = NULL, data = NULL, geom = "point",
   stat = "qq", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, ...)
+  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
 gf_qqline(object = NULL, gformula = NULL, data = NULL, geom = "line",
   stat = "qqline", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, ...)
+  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
 gf_qqstep(object = NULL, gformula = NULL, data = NULL, geom = "step",
   stat = "qq", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, ...)
+  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -42,6 +42,8 @@ of the attributes of the layer are mapped.}
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
 \item{inherit}{A logical indicating whether default attributes are inherited.}
+
+\item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

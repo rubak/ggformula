@@ -25,6 +25,7 @@ NA
 #'   `y` may be `..density..` or `..count..` or `..ndensity..` or `..ncount..`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or

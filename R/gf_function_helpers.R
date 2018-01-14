@@ -158,7 +158,10 @@ layer_factory <- function(
 
   # the formals of this will be modified below
   # the formals included here help avoid CRAN warnings
-  res <- function(show.legend , function_name, inherit, ...) {
+  res <-
+    function( show.legend , function_name, inherit, environment = parent.frame(), ...) {
+
+#     if (is.null(environment)) {environment <- parent.frame()}
 
     dots <- list(...)
     function_name <- as.character(match.call()[1])
@@ -268,27 +271,39 @@ layer_factory <- function(
       if (add)
         return(object + new_layer)
       else
-        return(ggplot(data = ingredients$data, mapping = ingredients[["mapping"]]) + new_layer)
+        return(
+          ggplot(
+            data = ingredients$data,
+            mapping = ingredients[["mapping"]],
+            environment = environment
+          ) + new_layer)
     } else {
       if (add)
         return(object + new_layer + ingredients[["facet"]])
       else
-        return(ggplot(data = ingredients$data, mapping = ingredients[["mapping"]]) +
-                 new_layer + ingredients[["facet"]])
+        return(
+          ggplot(
+            data = ingredients$data,
+            mapping = ingredients[["mapping"]],
+            environment = environment
+            ) +
+            new_layer +
+            ingredients[["facet"]])
     }
   }
   formals(res) <-
     c(
       list(
-        object = NULL, gformula = NULL, data = data,
+        object = NULL, gformula = NULL, data = NULL,
         geom = geom, stat = stat, position = position,
         show.legend = NA,
         show.help = NULL,
-        inherit = inherit.aes
+        inherit = inherit.aes,
+        environment = quote(parent.frame())
       ),
       alist(... = )
     )
-  # assign("inherit.aes", inherit.aes, environment(res))
+  assign("inherit.aes", inherit.aes, environment(res))
   res
 }
 
