@@ -75,6 +75,26 @@ D <- data.frame(
   count = c(20, 25, 18)
 )
 gf_col(count ~ group, data = D)
+
+# A Pareto chart
+
+if(require(dplyr)) {
+  HELPrct \%>\%
+    group_by(substance) \%>\%
+    summarise(count = n()) \%>\%
+    ungroup() \%>\%
+    arrange(-count) \%>\%
+    mutate(
+      cumcount = cumsum(count),
+      substance = reorder(substance, - count)
+    ) \%>\%
+    gf_col(count ~ substance, fill = "skyblue") \%>\%
+    gf_point(cumcount ~ substance) \%>\%
+    gf_line(cumcount ~ substance, group = 1) \%>\%
+    gf_refine(
+      scale_y_continuous(sec.axis = sec_axis(~ . /nrow(HELPrct)))
+    )
+  }
 }
 \seealso{
 \code{\link[=geom_col]{geom_col()}}
