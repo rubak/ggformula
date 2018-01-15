@@ -78,7 +78,7 @@ gf_col(count ~ group, data = D)
 
 # A Pareto chart
 
-if(require(dplyr)) {
+if(require(dplyr) && require(mosaicData)) {
   HELPrct \%>\%
     group_by(substance) \%>\%
     summarise(count = n()) \%>\%
