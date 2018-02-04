@@ -1560,10 +1560,11 @@ gf_rect <-
 #'
 gf_abline <-
   layer_factory(
-    geom = "abline", aes_form = NULL,
+    aes_form = NULL,
     extras = alist( slope =, intercept = ),
     inherit.aes = FALSE,
-    data = NA
+    data = NA,
+    layer_fun = ggplot2::geom_abline
   )
 
 #' @rdname gf_lines

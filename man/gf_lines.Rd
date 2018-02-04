@@ -7,7 +7,7 @@
 \alias{gf_coefline}
 \title{Reference lines -- horizontal, vertical, and diagonal.}
 \usage{
-gf_abline(object = NULL, gformula = NULL, data = NULL, geom = "abline",
+gf_abline(object = NULL, gformula = NULL, data = NULL, geom = "point",
   stat = "identity", position = "identity", show.legend = NA,
   show.help = NULL, inherit = FALSE, environment = parent.frame(), xlab,
   ylab, title, subtitle, caption, ...)
