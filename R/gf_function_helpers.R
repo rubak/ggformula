@@ -147,7 +147,8 @@ layer_factory <- function(
   note = NULL,
   aesthetics = aes(),
   inherit.aes = TRUE,
-  data = NULL
+  data = NULL,
+  layer_fun = ggplot2::layer
 ) {
   if (!is.logical(inherit.aes)) {
     inherited.aes <- inherit.aes
@@ -159,7 +160,9 @@ layer_factory <- function(
   # the formals of this will be modified below
   # the formals included here help avoid CRAN warnings
   res <-
-    function( show.legend , function_name, inherit, environment = parent.frame(), ...) {
+    function( xlab, ylab, title, subtitle, caption,
+              show.legend , function_name, inherit,
+              environment = parent.frame(), ...) {
 
 #     if (is.null(environment)) {environment <- parent.frame()}
 
@@ -262,34 +265,48 @@ layer_factory <- function(
         show.legend = show.legend,
         inherit.aes = inherit
       )
-    # print(layer_args[c("mapping", "setting", "params", "inherit.aes")])
-    new_layer <- do.call(ggplot2::layer, layer_args)
-    # message(
-    #   do.call(call, c(list("layer"), layer_args))
-    # )
+
+    new_layer <- do.call(layer_fun, layer_args)
+
     if (is.null(ingredients[["facet"]])) {
       if (add)
-        return(object + new_layer)
+        p <- object + new_layer
       else
-        return(
+        p <-
           ggplot(
             data = ingredients$data,
             mapping = ingredients[["mapping"]],
             environment = environment
-          ) + new_layer)
+          ) + new_layer
     } else {
       if (add)
-        return(object + new_layer + ingredients[["facet"]])
+        p <- object + new_layer + ingredients[["facet"]]
       else
-        return(
+        p <-
           ggplot(
             data = ingredients$data,
             mapping = ingredients[["mapping"]],
             environment = environment
             ) +
             new_layer +
-            ingredients[["facet"]])
+            ingredients[["facet"]]
     }
+    if (have_arg("ylab")) {
+      p <- p + ggplot2::ylab(ylab)
+    }
+    if (have_arg("xlab")) {
+      p <- p + ggplot2::xlab(xlab)
+    }
+    if (have_arg("title")) {
+      p <- p + ggplot2::labs(title = title)
+    }
+    if (have_arg("subtitle")) {
+      p <- p + ggplot2::labs(subtitle = subtitle)
+    }
+    if (have_arg("caption")) {
+      p <- p + ggplot2::labs(caption = caption)
+    }
+    p
   }
   formals(res) <-
     c(
@@ -301,6 +318,11 @@ layer_factory <- function(
         inherit = inherit.aes,
         environment = quote(parent.frame())
       ),
+      if (is.null(extras[["xlab"]])) alist(xlab = ) else list(xlab = extras[["xlab"]]),
+      if (is.null(extras[["ylab"]])) alist(ylab = ) else list(ylab = extras[["ylab"]]),
+      if (is.null(extras[["title"]])) alist(title = ) else list(title = extras[["title"]]),
+      if (is.null(extras[["subtitle"]])) alist(subtitle = ) else list(subtitle = extras[["subtitle"]]),
+      if (is.null(extras[["caption"]])) alist(caption = ) else list(caption = extras[["caption"]]),
       alist(... = )
     )
   assign("inherit.aes", inherit.aes, environment(res))
@@ -333,6 +355,12 @@ formula_split <- function(formula) {
     facet_type <- "none"
   }
   list(formula = formula, condition = condition, facet_type = facet_type)
+}
+
+have_arg <- function(arg, env = sys.frame(-1)) {
+  L <- as.list(env)
+  arg %in% names(L) &&
+    !(inherits(L[[arg]], "name") && as.character(L[[arg]]) == "")
 }
 
 gf_ingredients <-
