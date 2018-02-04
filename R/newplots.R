@@ -17,6 +17,7 @@ NA
 #' `geom_ash()` and `gf_ash()` provide ways to create ASH plots
 #' using \pkg{ggplot2} or \pkg{ggformula}.
 #'
+#' @inherit gf_freqpoly
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument.
 #' See details and examples.
