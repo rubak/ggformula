@@ -1302,6 +1302,13 @@ gf_linerange <-
 #'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
 #'     gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
 #'     gf_facet_grid( ~ sex)
+#'  # width is defined differently for gf_boxplot() and gf_jitter()
+#'  #   * for gf_boxplot() it is the full width of the box.
+#'  #   * for gf_jitter() it is half that -- the maximum amount added or subtracted.
+#'  gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) %>%
+#'    gf_jitter(width = 0.4, height = 0, color = "skyblue", alpha = 0.5)
+#'  gf_boxplot(age ~ substance, data = HELPrct, width = 0.4) %>%
+#'    gf_jitter(width = 0.2, height = 0, color = "skyblue", alpha = 0.5)
 #' }
 
 gf_pointrange <-
