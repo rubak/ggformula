@@ -2,12 +2,18 @@
 % Please edit documentation in R/gf_functions.R
 \name{gf_linerange}
 \alias{gf_linerange}
-\title{Formula interface to geom_linerange()}
+\alias{gf_pointrange}
+\title{Formula interface to geom_linerange() and geom_pointrange()}
 \usage{
 gf_linerange(object = NULL, gformula = NULL, data = NULL,
   geom = "linerange", stat = "identity", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+  environment = parent.frame(), xlab, ylab, title, subtitle, caption, ...)
+
+gf_pointrange(object = NULL, gformula = NULL, data = NULL,
+  geom = "pointrange", stat = "identity", position = "identity",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), xlab, ylab, title, subtitle, caption, ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -36,6 +42,19 @@ of the attributes of the layer are mapped.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
+\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
@@ -47,14 +66,12 @@ Available attributes include
 a gg object
 }
 \description{
-\pkg{ggformula} functions provide a formula interface to \pkg{ggplot2} layer
-functions.
-For plots with just one layer, the formula interface
-is more compact and is consistent with modeling and \pkg{mosaic} notation.
+Formula interface to geom_linerange() and geom_pointrange()
 }
 \details{
-Positional aesthetics are typically specified using a formula (see the \code{gformula} argument).
-Setting and mapping of additional attributes can be done through the use of additional arguments.
+Positional aesthetics are specified using the formula in \code{gformula}.
+Setting and mapping of additional attributes can be done through the
+use of additional arguments.
 Attributes can be set can be set using arguments of the form \code{attribute = value} or
 mapped using arguments of the form \code{attribute = ~ expression}.
 
@@ -95,7 +112,31 @@ Temps \%>\% gf_ribbon(lo + hi ~ date, alpha = 0.4) \%>\%
   gf_facet_grid(city ~ .)
 }
 
+if (require(mosaicData) && require(dplyr)) {
+HELP2 <- HELPrct \%>\%
+  group_by(substance, sex) \%>\%
+  summarise(
+    mean.age = mean(age),
+    median.age = median(age),
+    max.age = max(age),
+    min.age = min(age),
+    sd.age = sd(age),
+    lo = mean.age - sd.age,
+    hi = mean.age + sd.age
+    )
+
+  gf_jitter(age ~ substance, data = HELPrct,
+      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
+    gf_pointrange( mean.age + lo + hi ~ substance,  data = HELP2) \%>\%
+    gf_facet_grid( ~ sex)
+  gf_jitter(age ~ substance, data = HELPrct,
+      alpha = 0.5, width = 0.2, height = 0, color = "skyblue") \%>\%
+    gf_errorbar( lo + hi ~ substance,  data = HELP2) \%>\%
+    gf_facet_grid( ~ sex)
+}
 }
 \seealso{
-\code{\link[=geom_linerange]{geom_linerange()}}
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_linerange()}}
+
+\code{\link[ggplot2:geom_pointrange]{ggplot2::geom_pointrange()}}
 }
