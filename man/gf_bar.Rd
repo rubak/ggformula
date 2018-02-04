@@ -106,6 +106,13 @@ if (require(mosaicData)) {
   gf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
   # gf_counts() is another name for gf_bar()
   gf_counts( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  # gf_props() and gf_percents() use proportions or percentages instead of counts
+  gf_props( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  gf_percents( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  if (require(scales)) {
+    gf_props( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge()) \%>\%
+      gf_refine(scale_y_continuous(labels = scales::percent))
+  }
 }
 }
 \seealso{
