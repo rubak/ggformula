@@ -2,7 +2,7 @@ Package: ggformula
 Title: Formula Interface to the Grammar of Graphics
 Description: Provides a formula interface to 'ggplot2' graphics.
 Type: Package
-Version: 0.6.1.9001
+Version: 0.6.2
 Date: 2018-02-04
 Authors@R: c(
     person("Daniel", "Kaplan", email = "kaplan@macalester.edu", role = c("aut")),
@@ -20,8 +20,7 @@ Imports:
     magrittr,
     tibble,
     stringr,
-    grid,
-    scales
+    grid
 Suggests:
     lattice,
     mosaic,
@@ -34,7 +33,8 @@ Suggests:
     weatherData,
     lubridate,
     survival,
-    broom
+    broom,
+    scales
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
