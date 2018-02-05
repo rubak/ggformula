@@ -30,7 +30,6 @@ Suggests:
     knitr,
     mosaicModel,
     rmarkdown,
-    weatherData,
     lubridate,
     survival,
     broom,
