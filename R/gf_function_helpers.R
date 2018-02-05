@@ -7,134 +7,6 @@ utils::globalVariables("role")
 #' @importFrom utils modifyList
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
 #' @import ggplot2
-
-# covert y ~ 1 into ~ 7
-# convert y ~ 1 | a into ~ y | a
-# convert y ~ 1 | a ~ b into ~ y | a ~ b
-# convert y ~ 1 | ~ a into ~ y | ~ a
-
-# This is clunky because | doen't have the right precedence for the intended interpretation of
-# the formula.
-
-standard_formula <- function(formula) {
-  if (length(formula) == 3L && formula[[3]] == 1) {
-    formula[[3]] <- formula[[2]]
-    # can remove either slot 2 or slot 3 here to get 1-sided formula
-    formula[[2]] <- NULL
-  } else if (length(formula) == 3L &&
-             length(formula[[3]])  == 3L &&
-             formula[[3]][[1]] == as.name("|") &&
-             formula[[3]][[2]] == 1L) {
-    formula[[3]][[2]] <- formula[[2]]
-    formula[[2]] <- NULL
-  } else if (length(formula) == 3L && rlang::is_formula(formula[[2]])) {
-    formula[[2]] <- standard_formula(formula[[2]])
-  }
-  formula
-}
-
-# The actual graphing functions are created dynamically.
-#  See the functions at the bottom of this file
-
-# These are unexported helper functions to create the gf_ functions. The gf_ functions
-# themselves are at the end of this file....
-
-# traverse a formula and return a nested list of "nodes"
-# stop traversal if we encouter a binary operator in stop_binops
-formula_slots <- function(x, stop_binops = c(":", "::")) {
-  if (length(x) == 2L && deparse(x[[1]]) == "~") {
-    formula_slots(x[[2]])
-  } else if (length(x) == 3L && deparse(x[[1]]) == "~") {
-    list(formula_slots(x[[2]]), formula_slots(x[[3]]))
-  } else if (length(x) > 1 && is.name(x[[1]]) && !deparse(x[[1]]) %in% c("+", "|")) {
-    list(x)
-  } else if (length(x) == 3L && deparse(x[[1]]) %in% stop_binops) {
-    list(x)
-  } else if (length(x) <= 2L) {
-    list(x)
-  } else {
-    list(formula_slots(x[[2]]), formula_slots(x[[3]]))
-  }
-}
-
-# add quotes to character elements of list x and returns a vector of character
-.quotify <- function(x) {
-  if(is_null(x)) return("NULL")
-  x <- if (rlang::is_character(x)) paste0('"', x, '"') else x
-  x <- if (is.name(x)) as.character(x) else x
-  x <- if (rlang::is_character(x)) x else format(x)
-  x
-}
-
-
-.default_value <- function(x) {
-  sapply(
-    x,
-    function(x) if (is.symbol(x))  "" else paste0(" = ", .quotify(x))
-  )
-}
-
-aes_from_qdots <- function(qdots, mapping = aes()) {
-  if (length(qdots) > 0) {
-    # proceed backwards through list so that removing items doesn't mess up indexing
-    for (i in length(qdots):1L) {
-      if (rlang::is_formula(f_rhs(qdots[[i]])) && length(rlang::f_rhs(qdots[[i]])) == 2L) {
-        mapping[[names(qdots)[i]]] <- f_rhs(qdots[[i]])[[2]]
-        qdots[[i]] <- NULL
-      }
-    }
-  }
-  list(
-    mapping = do.call(aes, mapping),
-    qdots = qdots
-  )
-}
-
-emit_help <- function(function_name, aes_form, extras = list(), note = NULL,
-                      geom, stat = "identity", position = "identity"){
-  message_text <- ""
-  if (any(sapply(aes_form, is.null))) {
-    message_text <-
-      paste(message_text, function_name, "() does not require a formula.")
-  } else {
-    message_text <-
-      paste(message_text, function_name, "() uses \n    * a formula with shape ",
-            paste(sapply(aes_form, format), collapse = " or "), ".")
-  }
-  if (is.character(geom))
-    message_text <- paste(message_text, "\n    * geom: ", geom)
-  if (is.character(stat) && stat != "identity")
-    message_text <- paste(message_text, "\n    * stat: ", stat)
-  if (is.character(position) && position != "identity")
-    message_text <- paste(message_text, "\n    * position: ", position)
-
-  if(length(extras) > 0) {
-    message_text <-
-      paste(
-        message_text,
-        "\n    * attributes: ",
-        paste(
-          strwrap(
-            width = options("width")[[1]] - 20, simplify = TRUE,
-            paste(
-              names(extras), .default_value(extras),
-              collapse = ", ", sep = ""),
-            initial = "",
-            prefix = "\n                   "
-          ),
-        collapse = "", sep = ""
-        )
-      )
-  }
-  if (!is.null(note))
-    message_text <- paste(message_text, "\nNote: ", note)
-  message_text <- paste0(message_text, "\n\nFor more information, try ?", function_name)
-
-  message(message_text)
-
-  return(invisible(NULL))
-}
-
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
 
@@ -347,6 +219,134 @@ layer_factory <- function(
   assign("inherit.aes", inherit.aes, environment(res))
   res
 }
+
+# covert y ~ 1 into ~ 7
+# convert y ~ 1 | a into ~ y | a
+# convert y ~ 1 | a ~ b into ~ y | a ~ b
+# convert y ~ 1 | ~ a into ~ y | ~ a
+
+# This is clunky because | doen't have the right precedence for the intended
+# interpretation of the formula.
+
+standard_formula <- function(formula) {
+  if (length(formula) == 3L && formula[[3]] == 1) {
+    formula[[3]] <- formula[[2]]
+    # can remove either slot 2 or slot 3 here to get 1-sided formula
+    formula[[2]] <- NULL
+  } else if (length(formula) == 3L &&
+             length(formula[[3]])  == 3L &&
+             formula[[3]][[1]] == as.name("|") &&
+             formula[[3]][[2]] == 1L) {
+    formula[[3]][[2]] <- formula[[2]]
+    formula[[2]] <- NULL
+  } else if (length(formula) == 3L && rlang::is_formula(formula[[2]])) {
+    formula[[2]] <- standard_formula(formula[[2]])
+  }
+  formula
+}
+
+# The actual graphing functions are created dynamically.
+#  See the functions at the bottom of this file
+
+# These are unexported helper functions to create the gf_ functions. The gf_ functions
+# themselves are at the end of this file....
+
+# traverse a formula and return a nested list of "nodes"
+# stop traversal if we encouter a binary operator in stop_binops
+formula_slots <- function(x, stop_binops = c(":", "::")) {
+  if (length(x) == 2L && deparse(x[[1]]) == "~") {
+    formula_slots(x[[2]])
+  } else if (length(x) == 3L && deparse(x[[1]]) == "~") {
+    list(formula_slots(x[[2]]), formula_slots(x[[3]]))
+  } else if (length(x) > 1 && is.name(x[[1]]) && !deparse(x[[1]]) %in% c("+", "|")) {
+    list(x)
+  } else if (length(x) == 3L && deparse(x[[1]]) %in% stop_binops) {
+    list(x)
+  } else if (length(x) <= 2L) {
+    list(x)
+  } else {
+    list(formula_slots(x[[2]]), formula_slots(x[[3]]))
+  }
+}
+
+# add quotes to character elements of list x and returns a vector of character
+.quotify <- function(x) {
+  if(is_null(x)) return("NULL")
+  x <- if (rlang::is_character(x)) paste0('"', x, '"') else x
+  x <- if (is.name(x)) as.character(x) else x
+  x <- if (rlang::is_character(x)) x else format(x)
+  x
+}
+
+
+.default_value <- function(x) {
+  sapply(
+    x,
+    function(x) if (is.symbol(x))  "" else paste0(" = ", .quotify(x))
+  )
+}
+
+aes_from_qdots <- function(qdots, mapping = aes()) {
+  if (length(qdots) > 0) {
+    # proceed backwards through list so that removing items doesn't mess up indexing
+    for (i in length(qdots):1L) {
+      if (rlang::is_formula(f_rhs(qdots[[i]])) && length(rlang::f_rhs(qdots[[i]])) == 2L) {
+        mapping[[names(qdots)[i]]] <- f_rhs(qdots[[i]])[[2]]
+        qdots[[i]] <- NULL
+      }
+    }
+  }
+  list(
+    mapping = do.call(aes, mapping),
+    qdots = qdots
+  )
+}
+
+emit_help <- function(function_name, aes_form, extras = list(), note = NULL,
+                      geom, stat = "identity", position = "identity"){
+  message_text <- ""
+  if (any(sapply(aes_form, is.null))) {
+    message_text <-
+      paste(message_text, function_name, "() does not require a formula.")
+  } else {
+    message_text <-
+      paste(message_text, function_name, "() uses \n    * a formula with shape ",
+            paste(sapply(aes_form, format), collapse = " or "), ".")
+  }
+  if (is.character(geom))
+    message_text <- paste(message_text, "\n    * geom: ", geom)
+  if (is.character(stat) && stat != "identity")
+    message_text <- paste(message_text, "\n    * stat: ", stat)
+  if (is.character(position) && position != "identity")
+    message_text <- paste(message_text, "\n    * position: ", position)
+
+  if(length(extras) > 0) {
+    message_text <-
+      paste(
+        message_text,
+        "\n    * attributes: ",
+        paste(
+          strwrap(
+            width = options("width")[[1]] - 20, simplify = TRUE,
+            paste(
+              names(extras), .default_value(extras),
+              collapse = ", ", sep = ""),
+            initial = "",
+            prefix = "\n                   "
+          ),
+        collapse = "", sep = ""
+        )
+      )
+  }
+  if (!is.null(note))
+    message_text <- paste(message_text, "\nNote: ", note)
+  message_text <- paste0(message_text, "\n\nFor more information, try ?", function_name)
+
+  message(message_text)
+
+  return(invisible(NULL))
+}
+
 
 formula_split <- function(formula) {
   # split A | B into formula <- A; condition <- B
