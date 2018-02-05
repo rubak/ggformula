@@ -1562,6 +1562,7 @@ gf_rect <-
 #'
 gf_abline <-
   layer_factory(
+    geom = "abline",
     aes_form = NULL,
     extras = alist( slope =, intercept = ),
     inherit.aes = FALSE,
@@ -1573,7 +1574,8 @@ gf_abline <-
 #' @export
 gf_hline <-
   layer_factory(
-    geom = "hline", aes_form = NULL,
+    geom = "hline",
+    aes_form = NULL,
     extras = alist(yintercept = ),
     inherit.aes = FALSE,
     data = NA,
@@ -1584,10 +1586,12 @@ gf_hline <-
 #' @export
 gf_vline <-
   layer_factory(
-    geom = "vline", aes_form = NULL,
+    geom = "vline",
+    aes_form = NULL,
     extras = alist(xintercept = ),
     inherit.aes = FALSE,
-    data = NA
+    data = NA,
+    layer_fun = ggplot2::geom_vline
     )
 
 #' @rdname gf_lines
