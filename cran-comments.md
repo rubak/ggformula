@@ -1,6 +1,9 @@
 ## Test environments
 
-* local OS X install, 
+* local OS X install 
+  * R version 3.4.3 (2017-11-30)
+  * Platform: x86_64-apple-darwin15.6.0 (64-bit)
+  * Running under: macOS High Sierra 10.13.3
 
 * win-builder via devtools::build_win()
 
@@ -13,7 +16,5 @@ R CMD check results
 
 ## Downstream dependencies
 
-This is a quick turn-around to change from statisticalModeling (which has been
-archived) to mosaicModel (which replaces it).  Another CRAN release is in the
-works but not quite ready.  Should be coming soon.  At that point, I may also try 
-to make the vignette do something better when mosaicModel is not available.
+There are no known breaking changes and the only downstream dependencies at this 
+point are ones for which I am an author or co-author.
