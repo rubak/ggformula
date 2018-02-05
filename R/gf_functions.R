@@ -104,11 +104,13 @@ NA
 #' mtcars %>% gf_point(mpg ~ wt)
 #'
 #' # short cuts for main labels in the plot
-#' gf_point(births ~ date, color = ~ wday, data = Births78,
-#'   xlab = "Date", ylab = "Number of Live Births",
-#'   title = "Interesting Patterns in the Number of Births",
-#'   subtitle = "(United States, 1978)",
-#'   caption = "Source: mosaicData::Births78")
+#' if (require(mosaicData)) {
+#'   gf_point(births ~ date, color = ~ wday, data = Births78,
+#'     xlab = "Date", ylab = "Number of Live Births",
+#'     title = "Interesting Patterns in the Number of Births",
+#'     subtitle = "(United States, 1978)",
+#'     caption = "Source: mosaicData::Births78")
+#' }
 #'
 
 gf_point <-
@@ -1608,7 +1610,7 @@ utils::globalVariables(c("x"))
 #' These functions provide two different
 #' interfaces for creating a layer that contains the graph of a function.
 #'
-#' @param object
+#' @inheritParams gf_point
 #' @param ... Other arguments such as `position="dodge"`.
 #' @param fun A function.
 #' @rdname gf_function

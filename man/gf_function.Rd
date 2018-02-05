@@ -10,12 +10,18 @@ gf_function(object = NULL, fun, xlim, ..., inherit = FALSE)
 gf_fun(object = NULL, formula, xlim, ..., inherit = FALSE)
 }
 \arguments{
+\item{object}{When chaining, this holds an object produced in the earlier portions
+of the chain.  Most users can safely ignore this argument.
+See details and examples.}
+
 \item{fun}{A function.}
 
 \item{xlim}{A numeric vector providing the extent of the x-axis when creating
 the first layer in a plot.  Ignored when creating a subsequent layer.}
 
 \item{...}{Other arguments such as \code{position="dodge"}.}
+
+\item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{formula}{A formula describing a function.  See examples and \code{\link[mosaicCore:makeFun]{mosaicCore::makeFun()}}.}
 }
