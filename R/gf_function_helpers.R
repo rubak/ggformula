@@ -254,17 +254,36 @@ layer_factory <- function(
         aes_form = aes_form,
         aesthetics = aesthetics)
 
-    layer_args <-
-      list(
-        geom = geom, stat = stat,
-        data = ingredients[["data"]],
-        mapping = ingredients[["mapping"]],
-        position = position,
-        params = ingredients[["params"]],
-        check.aes = TRUE, check.param = FALSE,
-        show.legend = show.legend,
-        inherit.aes = inherit
-      )
+    if ("params" %in% names(formals(layer_fun))) {
+      layer_args <-
+        list(
+          geom = geom, stat = stat,
+          data = ingredients[["data"]],
+          mapping = ingredients[["mapping"]],
+          position = position,
+          params = ingredients[["params"]],
+          check.aes = TRUE, check.param = FALSE,
+          show.legend = show.legend,
+          inherit.aes = inherit
+        )
+    } else {
+      layer_args <-
+        c(
+          list(
+            geom = geom, stat = stat,
+            data = ingredients[["data"]],
+            mapping = ingredients[["mapping"]],
+            position = position,
+            check.aes = TRUE, check.param = FALSE,
+            show.legend = show.legend,
+            inherit.aes = inherit
+          ),
+          ingredients[["params"]]
+        )
+      for (i in setdiff(names(layer_args), names(formals(layer_fun)))) {
+        layer_args[[i]] <- NULL
+      }
+    }
 
     new_layer <- do.call(layer_fun, layer_args)
 
