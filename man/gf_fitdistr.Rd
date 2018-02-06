@@ -54,7 +54,7 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 a gg object
 }
 \description{
-\code{MASS::fitdistr()} is used to fit coeffecients of a specified family of
+\code{MASS::fitdistr()} is used to fit coefficients of a specified family of
 distributions and the resulting density curve is displayed.
 }
 \details{

@@ -1356,7 +1356,7 @@ gf_crossbar <-
 #'   `alpha`, `color`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_errorbar()]
 #' @section Note:
-#'   There is discrepency between the information required for `gf_errorbar()`
+#'   There is discrepancy between the information required for `gf_errorbar()`
 #'   and `gf_errobarh()`.  It expected that this will change in a future release
 #'   of `ggplot2`.
 #' @export
@@ -1412,7 +1412,7 @@ gf_errorbar <-
 #'   Available attributes include
 #'   `alpha`, `color`, `group`, `linetype`, `size`
 #' @section Note:
-#'   There is discrepency between the information required for `gf_errorbar()`
+#'   There is discrepancy between the information required for `gf_errorbar()`
 #'   and `gf_errobarh()`.  It expected that this will change in a future release
 #'   of `ggplot2`.
 #'
@@ -1660,7 +1660,7 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 
 #' Plot density function based on fit to data
 #'
-#' `MASS::fitdistr()` is used to fit coeffecients of a specified family of
+#' `MASS::fitdistr()` is used to fit coefficients of a specified family of
 #' distributions and the resulting density curve is displayed.
 #'
 #' @inherit gf_point

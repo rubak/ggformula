@@ -83,7 +83,7 @@ in another.
 }
 \section{Note}{
 
-There is discrepency between the information required for \code{gf_errorbar()}
+There is discrepancy between the information required for \code{gf_errorbar()}
 and \code{gf_errobarh()}.  It expected that this will change in a future release
 of \code{ggplot2}.
 }
