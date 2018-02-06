@@ -89,26 +89,22 @@ in another.
 }
 \examples{
 gf_linerange()
-if (require(weatherData) & require(dplyr)) {
-Temps <- NewYork2013 \%>\% mutate(city = "NYC") \%>\%
-bind_rows(Mumbai2013 \%>\% mutate(city = "Mumbai")) \%>\%
-bind_rows(London2013 \%>\% mutate(city = "London")) \%>\%
-  mutate(date = lubridate::date(Time),
-         month = lubridate::month(Time)) \%>\%
-  group_by(city, date) \%>\%
-  summarise(
-    hi = max(Temperature, na.rm = TRUE),
-    lo = min(Temperature, na.rm = TRUE),
-    mid = (hi + lo)/2
-  )
 
-gf_ribbon(lo + hi ~ date, data = Temps, fill = ~city, alpha = 0.4) \%>\%
+if (require(mosaicData)) {
+gf_ribbon(low_temp + high_temp ~ date, data = Weather,
+          fill = ~ city, alpha = 0.4) \%>\%
    gf_theme(theme = theme_minimal())
-gf_linerange(lo + hi ~ date | city ~ ., color = ~mid, data = Temps) \%>\%
-  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
-gf_ribbon(lo + hi ~ date | city ~ ., data = Temps)
+gf_linerange(
+  low_temp + high_temp ~ date | city ~ ., data = Weather,
+  color = ~ ((low_temp + high_temp) / 2) ) \%>\%
+  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) \%>\%
+  gf_labs(color = "mid-temp")
+
+gf_ribbon(low_temp + high_temp ~ date | city ~ ., data = Weather)
+
 # Chaining in the data
-Temps \%>\% gf_ribbon(lo + hi ~ date, alpha = 0.4) \%>\%
+Weather \%>\%
+  gf_ribbon(low_temp + high_temp ~ date, alpha = 0.4) \%>\%
   gf_facet_grid(city ~ .)
 }
 

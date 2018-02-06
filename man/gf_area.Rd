@@ -82,35 +82,17 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-if (require(weatherData) && require(dplyr)) {
-  Temps <- NewYork2013 \%>\%
-    mutate(date = lubridate::date(Time),
-         month = lubridate::month(Time)) \%>\%
-    filter(month <= 4) \%>\%
-    group_by(date) \%>\%
-    summarise(
-      hi = max(Temperature, na.rm = TRUE),
-      lo = min(Temperature, na.rm = TRUE)
-    )
-  gf_linerange(lo + hi  ~ date, color = ~hi, data = Temps)
-  gf_ribbon(lo + hi ~ date, data = Temps, color = "navy", alpha = 0.3)
-  gf_area(hi ~ date, data = Temps, color = "navy", alpha = 0.3)
+if (require(dplyr) && require(mosaicData)) {
+  Temps <- Weather \%>\%
+    filter(city == "Chicago", year == 2016, month <= 4)
+  gf_linerange(low_temp + high_temp  ~ date, color = ~ high_temp, data = Temps)
+  gf_ribbon(low_temp + high_temp ~ date, data = Temps, color = "navy", alpha = 0.3)
+  gf_area(high_temp ~ date, data = Temps, color = "navy", alpha = 0.3)
 
-  Temps2 <- NewYork2013 \%>\% mutate(city = "NYC") \%>\%
-    bind_rows(Mumbai2013 \%>\% mutate(city = "Mumbai")) \%>\%
-    bind_rows(London2013 \%>\% mutate(city = "London")) \%>\%
-    mutate(date = lubridate::date(Time),
-           month = lubridate::month(Time)) \%>\%
-    group_by(city, date) \%>\%
-    summarise(
-      hi = max(Temperature, na.rm = TRUE),
-      lo = min(Temperature, na.rm = TRUE),
-      mid = (hi + lo)/2
-    )
-  gf_ribbon(lo + hi ~ date, data = Temps2, alpha = 0.3) \%>\%
+  gf_ribbon(low_temp + high_temp ~ date, data = Weather, alpha = 0.3) \%>\%
     gf_facet_grid(city ~ .)
 
-  gf_linerange(lo + hi ~ date, color = ~ mid, data = Temps2) \%>\%
+  gf_linerange(low_temp + high_temp ~ date, color = ~ high_temp, data = Weather) \%>\%
     gf_facet_grid(city ~ .) \%>\%
     gf_refine(scale_colour_gradientn(colors = rev(rainbow(5))))
 }
