@@ -32,7 +32,9 @@ gf_percents(object = NULL, gformula = NULL, data = NULL, geom = "bar",
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape \code{~ x}.
+\item{gformula}{A formula, typically with shape \code{~ x}.  (\code{y ~ x} is also possible,
+but typically using one of \code{\link[=gf_col]{gf_col()}}, \code{\link[=gf_props]{gf_props()}}, or \code{\link[=gf_percs]{gf_percs()}} is preferable
+to using this formula shape.)
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}

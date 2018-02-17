@@ -909,7 +909,9 @@ gf_dotplot <-
 #' @inherit gf_point
 #' @inherit ggplot2::geom_bar description references
 #'
-#' @param gformula A formula with shape `~ x`.
+#' @param gformula A formula, typically with shape `~ x`.  (`y ~ x` is also possible,
+#'   but typically using one of [gf_col()], [gf_props()], or [gf_percs()] is preferable
+#'   to using this formula shape.)
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -938,7 +940,7 @@ gf_dotplot <-
 gf_bar <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = ~ x,
+    aes_form = list(~ x, y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL, binwidth = NULL )
