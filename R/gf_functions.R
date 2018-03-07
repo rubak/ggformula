@@ -984,7 +984,7 @@ gf_percents <-
 #'
 #' @inherit gf_point
 #' @inherit ggplot2::geom_freqpoly description references
-#' @param gformula A formula with shape `~ x`.
+#' @param gformula A formula with shape `~ x` or `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -1005,11 +1005,12 @@ gf_percents <-
 gf_freqpoly <-
   layer_factory(
     geom = "path", stat = "bin",
-    aes_form = ~ x,
+    aes_form = list(~ x, y ~ x),
     extras = alist(
       alpha = , color = , group = , linetype = , size =,
       binwidth =, bins = , center = , boundary = ,
-    )
+    ),
+    note = "y may be omitted or ..density.. or ..count.. or ..ndensity.. or ..ncount.."
   )
 
 #' Formula interface to geom_qq()
@@ -1504,7 +1505,8 @@ gf_rect <-
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
 #'   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2)
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_hline(slope = 0, yintercept = ~median, color = ~cyl, data = mtcars2)
+#'   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2) %>%
+#'   gf_hline(yintercept = ~median, color = ~cyl, data = mtcars2)
 #'
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
 #'   gf_abline(color="red", slope = -0.10, intercept = 35)
@@ -1535,9 +1537,11 @@ gf_abline <-
   layer_factory(
     geom = "abline",
     aes_form = NULL,
-    extras = alist( slope =, intercept = ),
+    extras = alist( slope =, intercept =, color =, size =, linetype =, apha =  ),
     inherit.aes = FALSE,
     data = NA,
+    remove_args = c("position", "geom", "stat", "check.aes",
+                    "check.param", "inherit.aes"),
     layer_fun = ggplot2::geom_abline
   )
 
@@ -1547,10 +1551,12 @@ gf_hline <-
   layer_factory(
     geom = "hline",
     aes_form = NULL,
-    extras = alist(yintercept = ),
+    extras = alist( yintercept =, color =, size =, linetype =, apha =  ),
     inherit.aes = FALSE,
     data = NA,
-    layer_fun = ggplot2::geom_hline
+    layer_fun = ggplot2::geom_hline,
+    remove_args = c("position", "geom", "stat", "check.aes",
+                    "check.param", "inherit.aes")
   )
 
 #' @rdname gf_lines
@@ -1559,10 +1565,12 @@ gf_vline <-
   layer_factory(
     geom = "vline",
     aes_form = NULL,
-    extras = alist(xintercept = ),
+    extras = alist( xintercept =, color =, size =, linetype =, apha =  ),
     inherit.aes = FALSE,
     data = NA,
-    layer_fun = ggplot2::geom_vline
+    layer_fun = ggplot2::geom_vline,
+    remove_args = c("position", "geom", "stat", "check.aes",
+                    "check.param", "inherit.aes")
     )
 
 #' @rdname gf_lines

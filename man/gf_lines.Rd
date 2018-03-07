@@ -84,7 +84,8 @@ mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
 gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) \%>\%
   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2)
 gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) \%>\%
-  gf_hline(slope = 0, yintercept = ~median, color = ~cyl, data = mtcars2)
+  gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2) \%>\%
+  gf_hline(yintercept = ~median, color = ~cyl, data = mtcars2)
 
 gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) \%>\%
   gf_abline(color="red", slope = -0.10, intercept = 35)
