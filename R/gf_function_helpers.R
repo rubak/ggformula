@@ -156,6 +156,9 @@ layer_factory <- function(
         layer_args[[i]] <- NULL
       }
     }
+    # bring back the dots into the arguments handed to the layer function
+    if ("..." %in% names(formals(layer_fun)))
+        layer_args <- c(layer_args, dots[ !names(dots) %in% names(formals(layer_fun))])
 
     new_layer <- do.call(layer_fun, layer_args)
 

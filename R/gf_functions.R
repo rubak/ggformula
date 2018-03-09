@@ -910,7 +910,7 @@ gf_dotplot <-
 #' @inherit ggplot2::geom_bar description references
 #'
 #' @param gformula A formula, typically with shape `~ x`.  (`y ~ x` is also possible,
-#'   but typically using one of [gf_col()], [gf_props()], or [gf_percs()] is preferable
+#'   but typically using one of [gf_col()], [gf_props()], or [gf_percents()] is preferable
 #'   to using this formula shape.)
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param ... Additional arguments.  Typically these are
@@ -1500,11 +1500,11 @@ gf_rect <-
 #'   [ggplot2::geom_hline()]
 #' @export
 #' @examples
-#' mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
+#' mtcars2 <- df_stats( wt ~ cyl, data = mtcars, median_wt = median, long_names = FALSE)
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
 #'   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2)
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_hline(slope = 0, yintercept = ~median, color = ~cyl, data = mtcars2)
+#'   gf_hline(yintercept = ~median_wt, color = ~cyl, data = mtcars2)
 #'
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
 #'   gf_abline(color="red", slope = -0.10, intercept = 35)
