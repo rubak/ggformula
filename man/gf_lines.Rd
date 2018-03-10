@@ -80,10 +80,10 @@ of the plotting functions in \code{ggformula}, these functions do not take a for
 as input for describing positional attributes of the plot.
 }
 \examples{
+mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
 gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) \%>\%
   gf_abline(slope = ~0, intercept = ~median, color = ~cyl, data = mtcars2)
 
-mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
 gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) \%>\%
   gf_abline(slope = 0, intercept = 3, color = "green", data = mtcars2)
 
