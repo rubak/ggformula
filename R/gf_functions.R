@@ -1501,15 +1501,19 @@ gf_rect <-
 #'   [ggplot2::geom_hline()]
 #' @export
 #' @examples
+#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
+#'   gf_abline(slope = ~0, intercept = ~median, color = ~cyl, data = mtcars2)
+#'
 #' mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2)
+#'   gf_abline(slope = 0, intercept = 3, color = "green", data = mtcars2)
+#'
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_abline(slope = 0, intercept = ~median, color = ~cyl, data = mtcars2) %>%
 #'   gf_hline(yintercept = ~median, color = ~cyl, data = mtcars2)
 #'
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
 #'   gf_abline(color="red", slope = -0.10, intercept = 35)
+#'
 #' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
 #'   gf_abline(color = "red", slope = ~slope, intercept = ~intercept,
 #'   data = data.frame(slope = -0.10, intercept = 33:35))
@@ -1524,9 +1528,11 @@ gf_rect <-
 #' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) %>%
 #'   gf_hline(color = ~"horizontal", yintercept = ~c(20, 25), data = NA) %>%
 #'   gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA)
+#'
 #' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
 #'   gf_hline(color = "orange", yintercept = 20, data = NA) %>%
-#'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) %>%
+#'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA)
+#'
 #' # reversing the layers requires using inherit = FALSE
 #' gf_hline(color = "orange", yintercept = ~20, data = NA) %>%
 #'   gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) %>%
@@ -1540,8 +1546,6 @@ gf_abline <-
     extras = alist( slope =, intercept =, color =, size =, linetype =, apha =  ),
     inherit.aes = FALSE,
     data = NA,
-    remove_args = c("position", "geom", "stat", "check.aes",
-                    "check.param", "inherit.aes"),
     layer_fun = ggplot2::geom_abline
   )
 
@@ -1554,9 +1558,7 @@ gf_hline <-
     extras = alist( yintercept =, color =, size =, linetype =, apha =  ),
     inherit.aes = FALSE,
     data = NA,
-    layer_fun = ggplot2::geom_hline,
-    remove_args = c("position", "geom", "stat", "check.aes",
-                    "check.param", "inherit.aes")
+    layer_fun = ggplot2::geom_hline
   )
 
 #' @rdname gf_lines
@@ -1568,9 +1570,7 @@ gf_vline <-
     extras = alist( xintercept =, color =, size =, linetype =, apha =  ),
     inherit.aes = FALSE,
     data = NA,
-    layer_fun = ggplot2::geom_vline,
-    remove_args = c("position", "geom", "stat", "check.aes",
-                    "check.param", "inherit.aes")
+    layer_fun = ggplot2::geom_vline
     )
 
 #' @rdname gf_lines

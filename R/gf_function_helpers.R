@@ -9,9 +9,6 @@ utils::globalVariables("role")
 #' @import ggplot2
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
-#' @param remove_args a list of arguments to remove from `layer_args`. `geom_abline()` and friends
-#' (for example) emit warning about unused arguments but also include `...`  We can use this
-#' machanism to remove uwanted arguments.
 
 layer_factory <- function(
   geom = "point",
@@ -23,7 +20,6 @@ layer_factory <- function(
   aesthetics = aes(),
   inherit.aes = TRUE,
   data = NULL,
-  remove_args = list(),
   layer_fun = ggplot2::layer
 ) {
   if (!is.logical(inherit.aes)) {
@@ -150,11 +146,12 @@ layer_factory <- function(
           list(
             data = ingredients[["data"]],
             mapping = ingredients[["mapping"]],
-            show.legend = show.legend,
-            geom = geom, stat = stat,
-            position = position,
-            check.aes = TRUE, check.param = FALSE,
-            inherit.aes = inherit
+            show.legend = show.legend
+            # arguments below are not used by geom_abline() and friends, so don't include them.
+            # geom = geom, stat = stat,
+            # position = position,
+            # check.aes = TRUE, check.param = FALSE,
+            # inherit.aes = inherit
           ),
           ingredients[["params"]]
         )
@@ -165,10 +162,7 @@ layer_factory <- function(
         layer_args[[i]] <- NULL
       }
     }
-    # remove any args listed in remove_args
-    for (arg in remove_args) {
-      layer_args[[arg]] <- NULL
-    }
+
 
 
 
