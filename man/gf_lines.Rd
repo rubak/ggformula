@@ -110,11 +110,15 @@ gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) \%>\%
 
 gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) \%>\%
   gf_hline(color = "orange", yintercept = 20, data = NA) \%>\%
-  gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA)
+  gf_vline(color = ~c("4", "6", "8"), xintercept = ~c(80, 120, 250), data = NA)
+
+gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) \%>\%
+  gf_hline(color = "orange", yintercept = 20, data = NA) \%>\%
+  gf_vline(color = c("green", "red", "blue"), xintercept = c(80, 120, 250), data = NA)
 
 # reversing the layers requires using inherit = FALSE
 gf_hline(color = "orange", yintercept = ~20, data = NA) \%>\%
-  gf_vline(color = ~c("4", "6", "8"), xintercept = c(80, 120, 250), data = NA) \%>\%
+  gf_vline(color = ~c("4", "6", "8"), xintercept = ~c(80, 120, 250), data = NA) \%>\%
   gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
     inherit = FALSE)
 
