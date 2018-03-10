@@ -7,25 +7,29 @@
 \alias{gf_percents}
 \title{Formula interface to geom_bar()}
 \usage{
-gf_bar(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "count", position = "stack", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_bar(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
+  group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
+  subtitle, caption, geom = "bar", stat = "count", position = "stack",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), ...)
 
-gf_counts(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "count", position = "stack", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_counts(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
+  group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
+  subtitle, caption, geom = "bar", stat = "count", position = "stack",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), ...)
 
-gf_props(object = NULL, gformula = NULL, data = NULL, geom = "bar",
+gf_props(object = NULL, gformula = NULL, data = NULL, bins = 25,
+  binwidth, alpha, color, fill, group, linetype, size, xlab,
+  ylab = "proportion", title, subtitle, caption, geom = "bar",
   stat = "count", position = "stack", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), xlab,
-  ylab = "proportion", title, subtitle, caption, ...)
+  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
-gf_percents(object = NULL, gformula = NULL, data = NULL, geom = "bar",
-  stat = "count", position = "stack", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), xlab,
-  ylab = "percent", title, subtitle, caption, ...)
+gf_percents(object = NULL, gformula = NULL, data = NULL, bins = 25,
+  binwidth, alpha, color, fill, group, linetype, size, xlab, ylab = "percent",
+  title, subtitle, caption, geom = "bar", stat = "count",
+  position = "stack", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -38,6 +42,19 @@ to using this formula shape.)
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
 
@@ -55,19 +72,6 @@ of the attributes of the layer are mapped.}
 \item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
-
-\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

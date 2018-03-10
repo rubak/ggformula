@@ -7,20 +7,20 @@
 \alias{gf_coefline}
 \title{Reference lines -- horizontal, vertical, and diagonal.}
 \usage{
-gf_abline(object = NULL, gformula = NULL, data = NULL, geom = "abline",
-  stat = "identity", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = FALSE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_abline(object = NULL, gformula = NULL, data = NULL, slope, intercept,
+  color, size, linetype, alpha, xlab, ylab, title, subtitle, caption,
+  show.legend = NA, show.help = NULL, inherit = FALSE,
+  environment = parent.frame(), ...)
 
-gf_hline(object = NULL, gformula = NULL, data = NULL, geom = "hline",
-  stat = "identity", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = FALSE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_hline(object = NULL, gformula = NULL, data = NULL, yintercept, color,
+  size, linetype, alpha, xlab, ylab, title, subtitle, caption,
+  show.legend = NA, show.help = NULL, inherit = FALSE,
+  environment = parent.frame(), ...)
 
-gf_vline(object = NULL, gformula = NULL, data = NULL, geom = "vline",
-  stat = "identity", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = FALSE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_vline(object = NULL, gformula = NULL, data = NULL, xintercept, color,
+  size, linetype, alpha, xlab, ylab, title, subtitle, caption,
+  show.legend = NA, show.help = NULL, inherit = FALSE,
+  environment = parent.frame(), ...)
 
 gf_coefline(object = NULL, coef = NULL, model = NULL, ...)
 }
@@ -32,23 +32,6 @@ See details and examples.}
 \item{gformula}{Must be \code{NULL}.}
 
 \item{data}{A data frame with the variables to be plotted.}
-
-\item{geom}{A character string naming the geom used to make the layer.}
-
-\item{stat}{A character string naming the stat used to make the layer.}
-
-\item{position}{Either a character string naming the position function used
-for the layer or a position object returned from a call to a position function.}
-
-\item{show.legend}{A logical indicating whether this layer should be included in
-the legends.  \code{NA}, the default, includes layer in the legends if any
-of the attributes of the layer are mapped.}
-
-\item{show.help}{If \code{TRUE}, display some minimal help.}
-
-\item{inherit}{A logical indicating whether default attributes are inherited.}
-
-\item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -62,6 +45,16 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{show.legend}{A logical indicating whether this layer should be included in
+the legends.  \code{NA}, the default, includes layer in the legends if any
+of the attributes of the layer are mapped.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
+\item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

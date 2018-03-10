@@ -4,10 +4,13 @@
 \alias{gf_dotplot}
 \title{Formula interface to geom_dotplot()}
 \usage{
-gf_dotplot(object = NULL, gformula = NULL, data = NULL,
-  geom = "dotplot", stat = "bindot", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), xlab, ylab, title, subtitle, caption, ...)
+gf_dotplot(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, binwidth = NULL, binaxis = "x", method = "dotdensity",
+  binpositions = "bygroup", stackdir = "up", stackratio = 1,
+  dotsize = 1, stackgroups = FALSE, origin = NULL, right = TRUE,
+  width = 0.9, drop = FALSE, xlab, ylab, title, subtitle, caption,
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -18,23 +21,6 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
-
-\item{geom}{A character string naming the geom used to make the layer.}
-
-\item{stat}{A character string naming the stat used to make the layer.}
-
-\item{position}{Either a character string naming the position function used
-for the layer or a position object returned from a call to a position function.}
-
-\item{show.legend}{A logical indicating whether this layer should be included in
-the legends.  \code{NA}, the default, includes layer in the legends if any
-of the attributes of the layer are mapped.}
-
-\item{show.help}{If \code{TRUE}, display some minimal help.}
-
-\item{inherit}{A logical indicating whether default attributes are inherited.}
-
-\item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -48,6 +34,19 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{position}{Either a character string naming the position function used
+for the layer or a position object returned from a call to a position function.}
+
+\item{show.legend}{A logical indicating whether this layer should be included in
+the legends.  \code{NA}, the default, includes layer in the legends if any
+of the attributes of the layer are mapped.}
+
+\item{show.help}{If \code{TRUE}, display some minimal help.}
+
+\item{inherit}{A logical indicating whether default attributes are inherited.}
+
+\item{environment}{An environment in which to look for variables not found in \code{data}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

@@ -4,10 +4,11 @@
 \alias{gf_fitdistr}
 \title{Plot density function based on fit to data}
 \usage{
-gf_fitdistr(object = NULL, gformula = NULL, data = NULL, geom = "path",
-  stat = "fitdistr", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = FALSE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_fitdistr(object = NULL, gformula = NULL, data = NULL, dist = dnorm,
+  start = NULL, alpha, color, fill, group, linetype, size, xlab, ylab, title,
+  subtitle, caption, geom = "path", stat = "fitdistr",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = FALSE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -17,6 +18,19 @@ of the chain.  Most users can safely ignore this argument. See examples.}
 to be fit to a family of distributions.}
 
 \item{data}{A data frame containing the variable to be fitted.}
+
+\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
 
@@ -34,19 +48,6 @@ of the attributes of the layer are mapped.}
 \item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
-
-\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{...}{Additional arguments}
 }

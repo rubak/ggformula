@@ -5,15 +5,20 @@
 \alias{gf_label}
 \title{Formula interface to geom_text() and geom_label()}
 \usage{
-gf_text(object = NULL, gformula = NULL, data = NULL, geom = "text",
-  stat = "identity", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_text(object = NULL, gformula = NULL, data = NULL, label, alpha, angle,
+  color, family, fontface, group, hjust, lineheight, size, vjust,
+  parse = FALSE, nudge_x = 0, nudge_y = 0, check_overlap = FALSE, xlab,
+  ylab, title, subtitle, caption, geom = "text", stat = "identity",
+  position = "nudge", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 
-gf_label(object = NULL, gformula = NULL, data = NULL, geom = "label",
-  stat = "identity", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), xlab,
-  ylab, title, subtitle, caption, ...)
+gf_label(object = NULL, gformula = NULL, data = NULL, label, alpha, angle,
+  color, family, fontface, group, hjust, lineheight, size, vjust, parse,
+  nudge_x = 0, nudge_y = 0, label.padding = unit(0.25, "lines"),
+  label.r = unit(0.15, "lines"), label.size = 0.25, xlab, ylab, title,
+  subtitle, caption, stat = "identity", position = "nudge",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -24,6 +29,19 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
 
@@ -41,19 +59,6 @@ of the attributes of the layer are mapped.}
 \item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
-
-\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
@@ -90,6 +95,10 @@ in another.
 \examples{
 gf_text(Sepal.Length ~ Sepal.Width, data = iris,
   label = ~Species, color = ~Species, size = 2, angle = 30)
+gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species) \%>\%
+gf_text(Sepal.Length ~ Sepal.Width, data = iris,
+  label = ~Species, color = ~Species,
+  size = 2, angle = 0, hjust = 0, nudge_x  = 0.1, nudge_y = 0.1)
 
 if (require(dplyr)) {
   iris_means <-

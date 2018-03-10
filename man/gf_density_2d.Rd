@@ -5,15 +5,19 @@
 \alias{gf_density2d}
 \title{Formula interface to geom_density_2d()}
 \usage{
-gf_density_2d(object = NULL, gformula = NULL, data = NULL,
-  geom = "density_2d", stat = "density_2d", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), xlab, ylab, title, subtitle, caption, ...)
+gf_density_2d(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  group, linetype, size, contour = TRUE, n = 100, h = NULL,
+  lineend = "butt", linejoin = "round", linemitre = 1, xlab, ylab, title,
+  subtitle, caption, geom = "density_2d", stat = "density_2d",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 
-gf_density2d(object = NULL, gformula = NULL, data = NULL,
-  geom = "density2d", stat = "density2d", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), xlab, ylab, title, subtitle, caption, ...)
+gf_density2d(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  group, linetype, size, contour = TRUE, n = 100, h = NULL,
+  lineend = "butt", linejoin = "round", linemitre = 1, xlab, ylab, title,
+  subtitle, caption, geom = "density2d", stat = "density2d",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -24,6 +28,19 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{title}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{subtitle}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
+
+\item{caption}{Title, sub-title, and caption for the plot.
+See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
 
@@ -41,19 +58,6 @@ of the attributes of the layer are mapped.}
 \item{inherit}{A logical indicating whether default attributes are inherited.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
-
-\item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{title}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{subtitle}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
-
-\item{caption}{Title, sub-title, and caption for the plot.
-See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},

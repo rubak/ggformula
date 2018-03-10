@@ -470,12 +470,21 @@ gf_boxplot <-
 #' @examples
 #' gf_text(Sepal.Length ~ Sepal.Width, data = iris,
 #'   label = ~Species, color = ~Species, size = 2, angle = 30)
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species) %>%
+#' gf_text(Sepal.Length ~ Sepal.Width, data = iris,
+#'   label = ~Species, color = ~Species,
+#'   size = 2, angle = 0, hjust = 0, nudge_x  = 0.1, nudge_y = 0.1)
 #'
 gf_text <-
   layer_factory(
     geom = "text",
+    position = "nudge",
+    pre = {
+      if (nudge_x != 0 || nudge_y != 0)
+        position <- position_nudge(nudge_x, nudge_y)
+      },
     extras = alist(
-      label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
+      label = , alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
       lineheight = , size = , vjust = , parse = FALSE, nudge_x = 0, nudge_y = 0,
       check_overlap = FALSE
       )
@@ -497,10 +506,16 @@ gf_text <-
 gf_label <-
   layer_factory(
     geom = "label",
+    position = "nudge",
+    pre = {
+      if (nudge_x != 0 || nudge_y != 0)
+        position <- position_nudge(nudge_x, nudge_y)
+      },
+    layer_fun = ggplot2::geom_label,
     extras = alist(
       label =, alpha = , angle = , color = , family = , fontface = , group = , hjust = ,
       lineheight = , size = , vjust = ,
-      parse = , nudge_x = , nudge_y = ,
+      parse = ,
       nudge_x = 0, nudge_y = 0,
       label.padding = unit(0.25, "lines"), label.r = unit(0.15, "lines"),
       label.size = 0.25)
@@ -810,7 +825,7 @@ gf_histogram <-
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
     extras = alist(bins = 25, binwidth = , alpha = , color = , fill = , group = , linetype = , size = ),
-    note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
+    note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.., but see gf_dhistogram()."
   )
 
 #' @rdname gf_histogram
@@ -895,6 +910,7 @@ gf_dens <-
 gf_dotplot <-
   layer_factory(
     geom = "dotplot", stat = "bindot",
+    layer_fun = ggplot2::geom_dotplot,
     aes_form = ~x,
     extras = alist(
       alpha = , color = , fill =, group = ,
@@ -1547,7 +1563,7 @@ gf_abline <-
   layer_factory(
     geom = "abline",
     aes_form = NULL,
-    extras = alist( slope =, intercept =, color =, size =, linetype =, apha =  ),
+    extras = alist( slope =, intercept =, color =, size =, linetype =, alpha =  ),
     inherit.aes = FALSE,
     data = NA,
     layer_fun = ggplot2::geom_abline
@@ -1559,7 +1575,7 @@ gf_hline <-
   layer_factory(
     geom = "hline",
     aes_form = NULL,
-    extras = alist( yintercept =, color =, size =, linetype =, apha =  ),
+    extras = alist( yintercept =, color =, size =, linetype =, alpha =  ),
     inherit.aes = FALSE,
     data = NA,
     layer_fun = ggplot2::geom_hline
@@ -1571,7 +1587,7 @@ gf_vline <-
   layer_factory(
     geom = "vline",
     aes_form = NULL,
-    extras = alist( xintercept =, color =, size =, linetype =, apha =  ),
+    extras = alist( xintercept =, color =, size =, linetype =, alpha =  ),
     inherit.aes = FALSE,
     data = NA,
     layer_fun = ggplot2::geom_vline
