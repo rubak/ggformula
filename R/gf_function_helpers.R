@@ -56,6 +56,12 @@ layer_factory <- function(
         extras_and_dots[[n]] <- NULL
       }
 
+      # evaluate any items that are still calls
+      for (n in seq_along(extras_and_dots)) {
+        if (is.call(extras_and_dots[[n]]))
+          extras_and_dots[[n]] <- eval(extras_and_dots[[n]])
+      }
+
       function_name <- as.character(match.call()[1])
 
       # make sure we have a list of formulas here
