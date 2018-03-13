@@ -200,7 +200,7 @@ layer_factory <- function(
       # remove any duplicated arguments
       layer_args <- layer_args[unique(names(layer_args))]
 
-      new_layer <- do.call(layer_fun, layer_args)
+      new_layer <- do.call(layer_fun, layer_args, envir = environment(gformula))
 
       if (is.null(ingredients[["facet"]])) {
         if (add) {
