@@ -47,15 +47,6 @@ layer_factory <- function(
       # merge extras and dots into single list
       dots <- list(...)
 
-      # collect arguments
-      #  * remove those that are "missing"
-      #  * remove function args not for layers
-      extras_and_dots <- modifyList(formals(), as.list(match.call())[-1])
-      extras_and_dots <- extras_and_dots[! sapply(extras_and_dots, is.symbol)]
-      for (n in setdiff(names(formals()), names(extras))) {
-        extras_and_dots[[n]] <- NULL
-      }
-
       function_name <- as.character(match.call()[1])
 
       # make sure we have a list of formulas here
@@ -73,24 +64,10 @@ layer_factory <- function(
         return(invisible(NULL))
       }
 
-      # turn character position into a position object using any available arguments
-      if (is.character(position)) {
-        position_fun <- paste0("position_", position)
-        pdots <-
-          extras_and_dots[intersect(names(extras_and_dots), names(formals(position_fun)))]
-        position <- do.call(position_fun, pdots)
-      }
-
       # figure out what sort of object is first and adjust args as required
       if (inherits(object, "formula")) {
         gformula <- object
         object <- NULL
-      }
-
-      # evaluate any items that are still calls
-      for (n in seq_along(extras_and_dots)) {
-        if (is.call(extras_and_dots[[n]]))
-          extras_and_dots[[n]] <- eval(extras_and_dots[[n]], environment(gformula))
       }
 
       if (inherits(object, "data.frame")) {
@@ -115,6 +92,35 @@ layer_factory <- function(
       } else {
         aes_form <- aes_form[[which.max(fmatches)]]
       }
+
+      ############# create extras_and_dots ############
+      # collect arguments
+      #  * remove those that are "missing"
+      #  * remove function args not for layers
+      extras_and_dots <- modifyList(formals(), as.list(match.call())[-1])
+      extras_and_dots <- extras_and_dots[! sapply(extras_and_dots, is.symbol)]
+      for (n in setdiff(names(formals()), names(extras))) {
+        extras_and_dots[[n]] <- NULL
+      }
+      # evaluate any items that are still calls
+      # for (n in seq_along(extras_and_dots)) {
+      #   if (is.call(extras_and_dots[[n]]))
+      #     extras_and_dots[[n]] <- eval(extras_and_dots[[n]], environment)
+      # }
+      extras_and_dots <-
+        lapply(extras_and_dots, function(x) eval(x, environment))
+
+      ########### end create extras_and_dots ##########
+
+
+      # turn character position into a position object using any available arguments
+      if (is.character(position)) {
+        position_fun <- paste0("position_", position)
+        pdots <-
+          extras_and_dots[intersect(names(extras_and_dots), names(formals(position_fun)))]
+        position <- do.call(position_fun, pdots)
+      }
+
 
       # look for arguments of the form argument = ~ something and turn them
       # into aesthetics
@@ -200,7 +206,7 @@ layer_factory <- function(
       # remove any duplicated arguments
       layer_args <- layer_args[unique(names(layer_args))]
 
-      new_layer <- do.call(layer_fun, layer_args, envir = environment(gformula))
+      new_layer <- do.call(layer_fun, layer_args, envir = environment)
 
       if (is.null(ingredients[["facet"]])) {
         if (add) {
