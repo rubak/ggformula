@@ -8,10 +8,9 @@
 \title{Formula interface to geom_bar()}
 \usage{
 gf_bar(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "bar", stat = "count", position = "stack",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+  group, linetype, size, width = NULL, xlab, ylab, title, subtitle, caption,
+  geom = "bar", stat = "count", position = "stack", show.legend = NA,
+  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
 gf_counts(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
   group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
@@ -19,17 +18,16 @@ gf_counts(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 
-gf_props(object = NULL, gformula = NULL, data = NULL, bins = 25,
-  binwidth, alpha, color, fill, group, linetype, size, xlab,
-  ylab = "proportion", title, subtitle, caption, geom = "bar",
-  stat = "count", position = "stack", show.legend = NA,
+gf_props(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
+  group, linetype, size, xlab, ylab = "proportion", title, subtitle, caption,
+  geom = "bar", stat = "count", position = "stack", show.legend = NA,
   show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
-gf_percents(object = NULL, gformula = NULL, data = NULL, bins = 25,
-  binwidth, alpha, color, fill, group, linetype, size, xlab, ylab = "percent",
-  title, subtitle, caption, geom = "bar", stat = "count",
-  position = "stack", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame(), ...)
+gf_percents(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, xlab, ylab = "percent", title, subtitle,
+  caption, geom = "bar", stat = "count", position = "stack",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -42,6 +40,21 @@ to using this formula shape.)
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{group}{Used for grouping.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{width}{Width of the bars.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -76,9 +89,11 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{width}, \code{binwidth}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
+
+\item{binwidth}{\code{geom_bar} no longer has a binwidth argument - if
+you use it you'll get an warning telling to you use
+\code{\link{geom_histogram}} instead.}
 }
 \value{
 a gg object

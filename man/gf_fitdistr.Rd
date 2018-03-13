@@ -19,6 +19,23 @@ to be fit to a family of distributions.}
 
 \item{data}{A data frame containing the variable to be fitted.}
 
+\item{dist}{A distribution.}
+
+\item{start}{Starting value(s) for the search for MLE.  (See \link[MASS:fitdistr]{MASS::fitdistr}.)}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{group}{Used for grouping.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}

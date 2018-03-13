@@ -1,4 +1,6 @@
 #' @importFrom mosaicCore makeFun
+#' @importFrom stats dnorm
+
 NA
 
 #' Formula interface to ggplot2
@@ -8,7 +10,7 @@ NA
 #' plots and to refine plots.
 #' For plots with just one layer, the formula interface
 #' is more compact than native \pkg{ggplot2} code and is consistent with modeling
-#' functions like [lm()] that use a formula interface and with the
+#' functions like [stats::lm()] that use a formula interface and with the
 #' numerical summary functions in the \pkg{mosaic} package.
 #'
 #' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
@@ -66,14 +68,19 @@ NA
 #' @param gformula A formula with shape `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param data A data frame with the variables to be plotted.
+#' @param alpha Opacity (0 = invisible, 1 = opaque).
+#' @param size A numeric size or a formula used for mapping size.
+#' @param shape An integer or letter shape or a formula used for mapping shape.
+#' @param color A color or a formula used for mapping color.
+#' @param fill A color for filling, or a formula used for mapping fill.
+#' @param group Used for grouping.
+#' @param stroke A numeric size of the border or a formula used to map stroke.
 #' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`,
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`, or
 #'   (d) arguments for the geom, stat, or position function.
-#'   Available attributes include
-#'   `alpha`, `color`, `size`, `shape`, `fill`, `group`, `stroke`
 #' @param geom A character string naming the geom used to make the layer.
 #' @param stat A character string naming the stat used to make the layer.
 #' @param position Either a character string naming the position function used
@@ -93,6 +100,8 @@ NA
 #' @export
 #' @examples
 #' gf_point()
+#' gf_point( (10 * ((1:25) %/% 10)) ~ ((1:25) %% 10), shape = 1:25,
+#'   fill = "skyblue", color = "navy", size = 4, stroke = 1, data = NA)
 #' gf_point(mpg ~ hp, color = ~ cyl, size = ~wt, data = mtcars)
 #' # faceting -- two ways
 #' gf_point(mpg ~ hp, data = mtcars) %>%
@@ -124,14 +133,13 @@ gf_point <-
 #' Jittered scatter plots in `ggformula`.
 #'
 #' @inherit gf_point
+#' @param width Amount of horizontal jitter.
+#' @param height Amount of vertical jitter.
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `size`, `shape`, `fill`, `group`,
-#'   `stroke`, `width`, `height`
 #' @seealso [ggplot2::geom_jitter()], [gf_point()]
 #' @export
 #' @examples
@@ -149,7 +157,8 @@ gf_jitter <-
   layer_factory(
     geom = "point",
     position = "jitter",
-    extras = alist(alpha = ,  color = , size = , shape = , fill = , group = , stroke = )
+    extras = alist(alpha = ,  color = , size = , shape = , fill = ,
+                   width = , height = , group = , stroke = )
     )
 
 #' Formula interface to geom_line() and geom_path()
@@ -158,13 +167,12 @@ gf_jitter <-
 #' are connected in the order in which they appear in `data`.
 #'
 #' @inherit gf_point
-#'
+#' @param linetype A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+#'   for mapping linetype.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`, `lineend`, `linejoin`, `linemitre`, `arrow`
 #' @seealso [ggplot2::geom_line()], [gf_point()]
 #' @export
 #' @examples
@@ -184,6 +192,7 @@ gf_line <-
     )
 
 #' @rdname gf_line
+#' @inheritParams ggplot2::geom_path
 #' @export
 #' @examples
 #' gf_path()
@@ -204,14 +213,14 @@ gf_path <-
 #'
 #' LOESS and linear model smoothers in `ggformula`.
 #'
-#' @inherit gf_point
+#' @inherit gf_line
+#' @inheritParams ggplot2::geom_smooth
+#' @inheritParams ggplot2::stat_smooth
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `method`, `formula`, `se`, `method.args`, `n`, `span`, `fullrange`, `level`
 #' @seealso [ggplot2::geom_smooth()], [gf_spline()]
 #'
 #' @export
@@ -250,6 +259,8 @@ gf_smooth <-
     )
 
 #' @rdname gf_smooth
+#' @inheritParams geom_lm
+#' @param lm.args A list of arguments to [stats::lm()].
 #' @export
 
 gf_lm <-
@@ -264,14 +275,13 @@ gf_lm <-
 #'
 #' Fitting splines in `ggformula`.
 #'
-#' @inherit gf_point
+#' @inherit gf_line
+#' @inheritParams geom_spline
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `weight`, `df`, `spar`, `tol`
 #' @seealso [geom_spline()], [gf_smooth()], [gf_lm()]
 #' @export
 #' @examples
@@ -293,14 +303,14 @@ gf_spline <-
 #'
 #' Formula interface to geom_raster()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
+#' @inheritParams ggplot2::geom_raster
+#'
 #' @param gformula A formula with shape  `y ~ x` or `fill ~ x + y`
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`, `hjust`, `vjust`, `interpolate`
 #' @seealso [ggplot2::geom_raster()]
 #' @export
 #' @examples
@@ -323,16 +333,16 @@ gf_raster <-
 
 #' Formula interface to geom_quantile()
 #'
-#' Quantile-Quantile plots in `ggformula`.
-#'
-#' @inherit gf_point
+#' @inherit ggplot2::stat_quantile description references
+#' @inherit gf_line
+#' @inheritParams ggplot2::geom_quantile
+#' @inheritParams ggplot2::stat_quantile
+#' @inheritParams gf_violin
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `weight`, `lineend`, `linejoin`, `linemitre`, `quantiles`, `formula`, `method`, `method.args`
 #' @seealso [ggplot2::geom_quantile()]
 #' @export
 #' @examples
@@ -350,15 +360,14 @@ gf_quantile <-
 
 #' Formula interface to geom_density_2d()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_density_2d description
+#' @inheritParams ggplot2::geom_density_2d
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `contour`, `n`, `h`, `lineend`, `linejoin`, `linemitre`
 #' @seealso [ggplot2::geom_density_2d()]
 #' @export
 #' @examples
@@ -395,14 +404,13 @@ gf_density2d <-
 
 #' Formula interface to geom_hex()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_hex details
+#' @inheritParams ggplot2::geom_hex
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `bins`, `binwidth`, `alpha`, `color`, `fill`, `group`, `size`
 #' @seealso [ggplot2::geom_hex()]
 #' @export
 #' @examples
@@ -419,15 +427,14 @@ gf_hex <-
 
 #' Formula interface to geom_boxplot()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_boxplot description references
+#' @inheritParams ggplot2::geom_boxplot
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `shape`, `size`, `weight`, `coef`, `outlier.color`, `outlier.fill`, `outlier.shape`, `outlier.size`, `outlier.stroke`, `outlier.alpha`, `notch`, `notchwidth`, `varwidth`
 #'
 #' @seealso [ggplot2::geom_boxplot()], [fivenum()], [df_stats()]
 #' @export
@@ -439,16 +446,21 @@ gf_hex <-
 #'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, outlier.color = "gray50")
 #'   # longer whiskers
 #'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, coef = 2)
+#'   # Note: width for boxplots is full width of box.  For jittering, it is the
+#'   # half-width.
+#'   gf_boxplot(age ~ substance | sex, data = HELPrct, coef = 5, width = 0.4) %>%
+#'     gf_jitter(width = 0.2, alpha = 0.3)
 #'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
 #' }
+
 gf_boxplot <-
   layer_factory(
     geom = "boxplot",
     stat = "boxplot",
     position = "dodge",
     extras = alist(
-      alpha = , color = , fill = , group = , linetype = , shape = , size = ,
-      weight =, coef = ,
+      alpha = , color = , fill = , group = , linetype = , size = , # shape = ,
+      coef = ,
       outlier.color = NULL, outlier.fill = NULL,
       outlier.shape = 19, outlier.size = 1.5, outlier.stroke = 0.5,
       outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE)
@@ -458,13 +470,18 @@ gf_boxplot <-
 #'
 #' @inherit gf_point
 #' @inherit ggplot2::geom_text references description
-#'
+#' @inheritParams ggplot2::geom_text
+#' @param label The text to be displayed.
+#' @param angle An angle for rotating the text.
+#' @param family A font family.
+#' @param hjust,vjust Numbers between 0 and 1 indicating how to justify
+#'   text relative the the specified location.
+#' @param lineheight Line height.
+#' @param fontface One of `"plain"`, `"bold"`, `"italic"`, or `"bold italic"`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `label`, `alpha`, `angle`, `color`, `family`, `fontface`, `group`, `hjust`, `lineheight`, `size`, `vjust`, `parse`, `nudge_x`, `nudge_y`, `check_overlap`
 #' @seealso [ggplot2::geom_text()]
 #' @export
 #' @examples
@@ -523,15 +540,14 @@ gf_label <-
 
 #' Formula interface to geom_area()
 #'
-#' @inherit gf_point
+#' @inheritParams gf_line
 #' @inherit ggplot2::geom_area description
+#' @inheritParams ggplot2::geom_area
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_area()]
 #' @export
 #' @examples
@@ -559,14 +575,17 @@ gf_area <-
 #' Formula interface to geom_violin()
 #'
 #' @inherit gf_point
+#' @inheritParams gf_line
 #' @inherit ggplot2::geom_violin references description
+#' @inheritParams ggplot2::geom_violin
+#' @inheritParams ggplot2::stat_ydensity
+#' @param weight Useful for summarized data, `weight` provides a count
+#'   of the number of values with the given combination of `x` and `y` values.
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`, \code{}, `draw_quatiles`, `trim`, `scale`, `bw`, `adjust`, `kernel`
 #' @seealso [ggplot2::geom_violin()]
 #' @export
 #' @examples
@@ -580,22 +599,27 @@ gf_violin <-
     geom = "violin",
     stat = "ydensity",
     position = "dodge",
-    extras = alist(alpha = , color = , fill = , group = , linetype = , size = , weight = ,
-      draw_quantiles = NULL, trim = TRUE, scale = "area", bw = , adjust = 1,
-      kernel = "gaussian")
+    extras = alist(alpha = , color = , fill = , group = , linetype = ,
+                   size = , weight = , draw_quantiles = NULL, trim = TRUE,
+                   scale = "area", bw = , adjust = 1, kernel = "gaussian")
   )
 
 #' Formula interface to geom_spoke()
 #'
-#' @inherit gf_point
+#' This is a polar parameterisation of geom_segment.
+#' It is useful when you have variables that describe direction
+#' and distance.
+#'
+#' @inherit gf_line
 #' @inherit ggplot2::geom_spoke description references
+#' @inheritParams ggplot2::geom_spoke
+#' @param angle The angle at which segment leaves the point (x,y).
+#' @param radius The length of the segment.
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `angle`, `radius`, `alpha`, `color`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_spoke()]
 #' @export
 #' @examples
@@ -621,15 +645,14 @@ gf_spoke <-
 
 #' Formula interface to geom_step()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_step description references
+#' @inheritParams ggplot2::geom_step
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `direction`
 #' @seealso [ggplot2::geom_step()]
 #' @export
 #' @examples
@@ -661,14 +684,13 @@ gf_step <-
 #' Formula interface to geom_tile()
 #'
 #' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_tile description references
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_tile()]
 #' @export
 #' @examples
@@ -693,8 +715,6 @@ gf_tile <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `shape`, `size`, `stroke`
 #' @seealso [ggplot2::geom_count()]
 #' @export
 #' @examples
@@ -716,15 +736,13 @@ gf_count <-
 
 #' Formula interface to geom_col()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_col description references
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_col()]
 #' @export
 #' @examples
@@ -765,15 +783,13 @@ gf_col <-
 
 #' Formula interface to geom_blank()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_blank description references
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   \code{}
 #' @seealso [ggplot2::geom_blank()]
 #' @export
 #' @examples
@@ -795,16 +811,15 @@ gf_frame <-
 #' Formula interface to geom_histogram()
 #'
 #' Count and density histograms in `ggformula`.
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_histogram description references
+#' @inheritParams ggplot2::geom_histogram
 #' @param gformula A formula with shape `~ x` (or `y ~ x`, but this shape is not
 #'   generally needed).
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_histogram()]
 #' @export
 #' @examples
@@ -824,7 +839,7 @@ gf_histogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
-    extras = alist(bins = 25, binwidth = , alpha = , color = , fill = , group = , linetype = , size = ),
+    extras = alist(bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.., but see gf_dhistogram()."
   )
 
@@ -834,15 +849,16 @@ gf_dhistogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
-    extras = alist(bins = 25, binwidth = , alpha = , color = , fill = , group = , linetype = , size = ),
+    extras = alist(bins = 25, binwidth = , alpha = 0.5 , color = , fill = , group = , linetype = , size = ),
     note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount..",
     aesthetics = aes(y = ..density..)
   )
 
 #' Formula interface to stat_density()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_density description references
+#' @inheritParams ggplot2::geom_density
 #'
 #' @param gformula A formula with shape `~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -850,8 +866,6 @@ gf_dhistogram <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`, `weight`
 #' @seealso [ggplot2::geom_density()]
 #' @export
 #' @examples
@@ -866,7 +880,7 @@ gf_density <-
     geom = "area", stat = "density",
     aes_form = ~ x,
     extras = alist(alpha = 0.5 , color = , fill = ,
-                   group = , linetype = , size = , weight = ,
+                   group = , linetype = , size = ,
                    kernel = "gaussian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
@@ -885,7 +899,7 @@ gf_dens <-
     geom = "line", stat = "density",
     aes_form = ~ x,
     extras = alist(alpha = 0.5 , color = ,
-                   group = , linetype = , size = , weight = ,
+                   group = , linetype = , size = ,
                    kernel = "gaussian", n = 512, trim = FALSE),
     aesthetics = aes(y = ..density..)
   )
@@ -894,14 +908,13 @@ gf_dens <-
 #'
 #' @inherit gf_point
 #' @inherit ggplot2::geom_dotplot description
+#' @inheritParams ggplot2::geom_dotplot
 #' @param gformula A formula with shape `~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `binwidth`, `binaxis`, `method`, `binpositions`, `stackdir`, `stackratio`, `dotsize`, `stackgroups`, `origin`, `right`, `width`, `drop`
 #' @seealso [ggplot2::geom_dotplot()]
 #' @export
 #' @examples
@@ -923,18 +936,19 @@ gf_dotplot <-
 #' Formula interface to geom_bar()
 #'
 #' @inherit gf_point
+#' @inheritParams gf_line
 #' @inherit ggplot2::geom_bar description references
+#' @inheritParams ggplot2::geom_bar
 #'
 #' @param gformula A formula, typically with shape `~ x`.  (`y ~ x` is also possible,
 #'   but typically using one of [gf_col()], [gf_props()], or [gf_percents()] is preferable
 #'   to using this formula shape.)
 #'   Faceting can be achieved by including `|` in the formula.
+#' @param width Width of the bars.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`, `width`, `binwidth`
 #' @seealso [ggplot2::geom_bar()]
 #' @export
 #' @examples
@@ -959,7 +973,7 @@ gf_bar <-
     aes_form = list(~ x, y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
-      width = NULL, binwidth = NULL )
+      width = NULL)
   )
 
 #' @rdname gf_bar
@@ -980,8 +994,9 @@ gf_props <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
     aes_form = list(~x),
-    extras = alist(bins = 25, binwidth = , alpha = , color = ,
-                   fill = , group = , linetype = , size = , ylab = "proportion"),
+    extras =
+      alist(alpha = , color = , fill = , group = ,
+            linetype = , size = , ylab = "proportion"),
     aesthetics = aes(y = ..count.. / sum(..count..))
   )
 
@@ -991,15 +1006,16 @@ gf_percents <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
     aes_form = list(~x),
-    extras = alist(bins = 25, binwidth = , alpha = , color = ,
-                   fill = , group = , linetype = , size = , ylab = "percent"),
+    extras = alist(alpha = , color = , fill = , group = ,
+                   linetype = , size = , ylab = "percent"),
     aesthetics = aes(y = 100 * ..count.. / sum(..count..))
   )
 
 #' Formula interface to geom_freqpoly()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_freqpoly description references
+#' @inheritParams ggplot2::geom_freqpoly
 #' @param gformula A formula with shape `~ x` or `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #'
@@ -1007,8 +1023,6 @@ gf_percents <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `binwidth`, `bins`, `center`, `boundary`, \code{}
 #' @seealso [ggplot2::geom_freqpoly()]
 #' @export
 #' @examples
@@ -1024,7 +1038,7 @@ gf_freqpoly <-
     aes_form = list(~ x, y ~ x),
     extras = alist(
       alpha = , color = , group = , linetype = , size =,
-      binwidth =, bins = , center = , boundary = ,
+      binwidth =, bins = , center = , boundary =
     ),
     note = "y may be omitted or ..density.. or ..count.. or ..ndensity.. or ..ncount.."
   )
@@ -1037,13 +1051,14 @@ gf_freqpoly <-
 #' through these points.
 #'
 #' @inherit gf_freqpoly
+#' @inheritParams ggplot2::stat_qq
+#' @param gformula A formula with shape `~ sample`. Facets can be
+#'   added using `|`.
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `group`, `x`, `y`, `distribution`, `dparams`
 #' @seealso [ggplot2::geom_qq()]
 #' @export
 #' @examples
@@ -1056,7 +1071,7 @@ gf_qq <-
   layer_factory(
     geom = "point", stat = "qq",
     aes_form = ~ sample,
-    extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
+    extras = alist(group = , distribution = stats::qnorm , dparams = list())
   )
 #' @rdname gf_qq
 #' @export
@@ -1065,7 +1080,7 @@ gf_qqline <-
   layer_factory(
     geom = "line", stat = "qqline",
     aes_form = ~ sample,
-    extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list(),
+    extras = alist(group = , distribution = stats::qnorm , dparams = list(),
                    linetype = "dashed", alpha = 0.7)
   )
 
@@ -1076,21 +1091,19 @@ gf_qqstep <-
   layer_factory(
     geom = "step", stat = "qq", position = "identity",
     aes_form = ~ sample,
-    extras = alist(group = , x = , y =, distribution = stats::qnorm , dparams = list())
+    extras = alist(group = , distribution = stats::qnorm , dparams = list())
   )
 
 
 #' Formula interface to geom_rug()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_rug
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `sides`, `alpha`, `color`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_rug()]
 #' @export
 #' @examples
@@ -1115,13 +1128,12 @@ gf_rug <-
 #'
 #' @inherit gf_point
 #' @inherit ggplot2::geom_contour description references
+#' @inheritParams ggplot2::geom_contour
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   \code{}
 #' @seealso [ggplot2::geom_contour()], [gf_density_2d()]
 #' @export
 #' @examples
@@ -1135,8 +1147,9 @@ gf_contour <-
 
 #' Formula interface to geom_ribbon()
 #'
-#' @inherit gf_point
+#' @inherit gf_area
 #' @inherit ggplot2::geom_ribbon description references
+#' @inheritParams ggplot2::geom_ribbon
 #' @param gformula A formula with shape `ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
 #'
@@ -1144,8 +1157,6 @@ gf_contour <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`
 #' @seealso [ggplot2::geom_ribbon()]
 #' @export
 #' @examples
@@ -1171,16 +1182,15 @@ gf_ribbon <-
 
 #' Formula interface to geom_curve()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_curve description references
+#' @inheritParams ggplot2::geom_curve
 #'
 #' @param gformula A formula with shape `y + yend ~ x + xend`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `curvature`, `angle`, `ncp`, `arrow`, `lineend`
 #' @seealso [ggplot2::geom_curve()]
 #' @export
 #' @examples
@@ -1201,13 +1211,12 @@ gf_curve <-
 #'
 #' @inherit gf_curve
 #' @inherit ggplot2::geom_segment description references
+#' @inheritParams ggplot2::geom_segment
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `arrow`, `lineend`
 #' @seealso [ggplot2::geom_segment()]
 #' @export
 #' @examples
@@ -1230,13 +1239,13 @@ gf_segment <-
 #'
 #' @inherit gf_ribbon
 #' @inherit ggplot2::geom_linerange description references
+#' @inheritParams ggplot2::geom_linerange
+#' @inheritParams gf_line
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_linerange()]
 #' @export
 #' @examples
@@ -1268,6 +1277,7 @@ gf_linerange <-
   )
 
 #' @rdname gf_linerange
+#' @inheritParams ggplot2::geom_pointrange
 #' @seealso [ggplot2::geom_pointrange()]
 #' @export
 #' @examples
@@ -1312,8 +1322,9 @@ gf_pointrange <-
 
 #' Formula interface to geom_crossbar()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_crossbar description references
+#' @inheritParams ggplot2::geom_crossbar
 #'
 #' @param gformula A formula with shape `y + ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -1321,8 +1332,6 @@ gf_pointrange <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`, `fatten`
 #' @seealso [ggplot2::geom_crossbar()]
 #' @export
 #' @examples
@@ -1366,13 +1375,13 @@ gf_crossbar <-
 #' Formula interface to geom_errorbar()
 #'
 #' @inherit gf_ribbon
+#' @inheritParams gf_line
+#' @inheritParams ggplot2::geom_errorbar
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_errorbar()]
 #' @section Note:
 #'   There is discrepancy between the information required for `gf_errorbar()`
@@ -1419,8 +1428,9 @@ gf_errorbar <-
 
 #' Formula interface to geom_errorbarh()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_errorbarh description references
+#' @inheritParams ggplot2::geom_errorbarh
 #' @param gformula A formula with shape `y ~ x + xmin + xmax`.
 #'   Faceting can be achieved by including `|` in the formula.
 #'
@@ -1428,8 +1438,6 @@ gf_errorbar <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `group`, `linetype`, `size`
 #' @section Note:
 #'   There is discrepancy between the information required for `gf_errorbar()`
 #'   and `gf_errobarh()`.  It expected that this will change in a future release
@@ -1471,8 +1479,9 @@ gf_errorbarh <-
 
 #' Formula interface to geom_rect()
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @inherit ggplot2::geom_rect description references
+#' @inheritParams ggplot2::geom_rect
 #'
 #' @param gformula A formula with shape `ymin + ymax ~ xmin + xmax`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -1481,8 +1490,6 @@ gf_errorbarh <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `alpha`, `color`, `fill`, `group`, `linetype`, `size`
 #' @seealso [ggplot2::geom_rect()]
 #' @export
 #' @examples
@@ -1502,15 +1509,15 @@ gf_rect <-
 #' of the plotting functions in `ggformula`, these functions do not take a formula
 #' as input for describing positional attributes of the plot.
 #'
-#' @inheritParams gf_point
+#' @inheritParams ggplot2::geom_abline
+#' @inheritParams ggplot2::geom_line
+#' @inheritParams gf_line
 #'
 #' @param gformula Must be `NULL`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#'   Available attributes include
-#'   `slope`, `intercept`
 #' @rdname gf_lines
 #' @seealso [ggplot2::geom_abline()],
 #'   [ggplot2::geom_vline()],
@@ -1613,7 +1620,8 @@ utils::globalVariables(c("x"))
 #' These functions provide two different
 #' interfaces for creating a layer that contains the graph of a function.
 #'
-#' @inheritParams gf_point
+#' @inheritParams gf_line
+#' @inheritParams ggplot2::stat_function
 #' @param ... Other arguments such as `position="dodge"`.
 #' @param fun A function.
 #' @rdname gf_function
@@ -1621,8 +1629,8 @@ utils::globalVariables(c("x"))
 #' @examples
 #' gf_function(fun = sqrt, xlim = c(0, 10))
 #' if (require(mosaicData)) {
-#'   gf_histogram(..density.. ~ age, data = HELPrct, binwidth = 3, alpha = 0.6) %>%
-#'     gf_function(fun = dnorm,
+#'   gf_dhistogram(~ age, data = HELPrct, binwidth = 3, alpha = 0.6) %>%
+#'     gf_function(fun = stats::dnorm,
 #'       args = list(mean = mean(HELPrct$age), sd = sd(HELPrct$age)),
 #'       color = "red")
 #' }
@@ -1693,12 +1701,14 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #' `MASS::fitdistr()` is used to fit coefficients of a specified family of
 #' distributions and the resulting density curve is displayed.
 #'
-#' @inherit gf_point
+#' @inherit gf_line
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument. See examples.
 #' @param gformula A formula with shape ` ~ x` used to specify the data
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
+#' @param dist A distribution.
+#' @param start Starting value(s) for the search for MLE.  (See [MASS::fitdistr].)
 #' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments
 ####  to [MASS::fitdistr()].

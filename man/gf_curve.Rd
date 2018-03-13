@@ -19,6 +19,34 @@ See details and examples.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{group}{Used for grouping.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{curvature}{A numeric value giving the amount of curvature.
+    Negative values produce left-hand curves, positive values
+    produce right-hand curves, and zero produces a straight line.}
+
+\item{angle}{A numeric value between 0 and 180,
+    giving an amount to skew the control
+    points of the curve.  Values less than 90 skew the curve towards
+    the start point and values greater than 90 skew the curve
+    towards the end point.}
+
+\item{ncp}{The number of control points used to draw the curve.
+    More control points creates a smoother curve.}
+
+\item{arrow}{Arrow specification, as created by \code{\link[grid]{arrow}}}
+
+\item{lineend}{Line end style (round, butt, square)}
+
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -52,9 +80,7 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{alpha}, \code{color}, \code{group}, \code{linetype}, \code{size}, \code{curvature}, \code{angle}, \code{ncp}, \code{arrow}, \code{lineend}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
 a gg object

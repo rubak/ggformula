@@ -5,7 +5,7 @@
 \title{Formula interface to geom_boxplot()}
 \usage{
 gf_boxplot(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  fill, group, linetype, shape, size, weight, coef, outlier.color = NULL,
+  fill, group, linetype, size, coef, outlier.color = NULL,
   outlier.fill = NULL, outlier.shape = 19, outlier.size = 1.5,
   outlier.stroke = 0.5, outlier.alpha = NULL, notch = FALSE,
   notchwidth = 0.5, varwidth = FALSE, xlab, ylab, title, subtitle, caption,
@@ -22,6 +22,70 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{group}{Used for grouping.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{coef}{length of the whiskers as multiple of IQR.  Defaults to 1.5}
+
+\item{outlier.color}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
+  aesthetics used for the box.
+
+  In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.}
+
+\item{outlier.fill}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
+  aesthetics used for the box.
+
+  In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.}
+
+\item{outlier.shape}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
+  aesthetics used for the box.
+
+  In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.}
+
+\item{outlier.size}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
+  aesthetics used for the box.
+
+  In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.}
+
+\item{outlier.stroke}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
+  aesthetics used for the box.
+
+  In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.}
+
+\item{outlier.alpha}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
+  aesthetics used for the box.
+
+  In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.}
+
+\item{notch}{if \code{FALSE} (default) make a standard box plot. If
+\code{TRUE}, make a notched box plot. Notches are used to compare groups;
+if the notches of two boxes do not overlap, this suggests that the medians
+are significantly different.}
+
+\item{notchwidth}{for a notched box plot, width of the notch relative to
+the body (default 0.5)}
+
+\item{varwidth}{if \code{FALSE} (default) make a standard box plot. If
+\code{TRUE}, boxes are drawn with widths proportional to the
+square-roots of the number of observations in the groups (possibly
+weighted, using the \code{weight} aesthetic).}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -56,9 +120,7 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{shape}, \code{size}, \code{weight}, \code{coef}, \code{outlier.color}, \code{outlier.fill}, \code{outlier.shape}, \code{outlier.size}, \code{outlier.stroke}, \code{outlier.alpha}, \code{notch}, \code{notchwidth}, \code{varwidth}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
 a gg object
@@ -93,6 +155,10 @@ if (require(mosaicData)) {
   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, outlier.color = "gray50")
   # longer whiskers
   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, coef = 2)
+  # Note: width for boxplots is full width of box.  For jittering, it is the
+  # half-width.
+  gf_boxplot(age ~ substance | sex, data = HELPrct, coef = 5, width = 0.4) \%>\%
+    gf_jitter(width = 0.2, alpha = 0.3)
   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
 }
 }

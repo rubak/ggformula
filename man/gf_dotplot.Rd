@@ -22,6 +22,50 @@ Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{group}{Used for grouping.}
+
+\item{binwidth}{When \code{method} is "dotdensity", this specifies maximum bin
+width. When \code{method} is "histodot", this specifies bin width.
+Defaults to 1/30 of the range of the data}
+
+\item{binaxis}{The axis to bin along, "x" (default) or "y"}
+
+\item{method}{"dotdensity" (default) for dot-density binning, or
+"histodot" for fixed bin widths (like stat_bin)}
+
+\item{binpositions}{When \code{method} is "dotdensity", "bygroup" (default)
+determines positions of the bins for each group separately. "all" determines
+positions of the bins with all the data taken together; this is used for
+aligning dot stacks across multiple groups.}
+
+\item{stackdir}{which direction to stack the dots. "up" (default),
+"down", "center", "centerwhole" (centered, but with dots aligned)}
+
+\item{stackratio}{how close to stack the dots. Default is 1, where dots just
+just touch. Use smaller values for closer, overlapping dots.}
+
+\item{dotsize}{The diameter of the dots relative to \code{binwidth}, default 1.}
+
+\item{stackgroups}{should dots be stacked across groups? This has the effect
+that \code{position = "stack"} should have, but can't (because this geom has
+some odd properties).}
+
+\item{origin}{When \code{method} is "histodot", origin of first bin}
+
+\item{right}{When \code{method} is "histodot", should intervals be closed
+on the right (a, b], or not [a, b)}
+
+\item{width}{When \code{binaxis} is "y", the spacing of the dot stacks
+for dodging.}
+
+\item{drop}{If TRUE, remove all bins with zero counts}
+
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -51,9 +95,7 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{alpha}, \code{color}, \code{fill}, \code{group}, \code{binwidth}, \code{binaxis}, \code{method}, \code{binpositions}, \code{stackdir}, \code{stackratio}, \code{dotsize}, \code{stackgroups}, \code{origin}, \code{right}, \code{width}, \code{drop}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
 a gg object

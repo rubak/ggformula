@@ -6,16 +6,16 @@
 \title{Formula interface to stat_density()}
 \usage{
 gf_density(object = NULL, gformula = NULL, data = NULL, alpha = 0.5,
-  color, fill, group, linetype, size, weight, kernel = "gaussian", n = 512,
+  color, fill, group, linetype, size, kernel = "gaussian", n = 512,
   trim = FALSE, xlab, ylab, title, subtitle, caption, geom = "area",
   stat = "density", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
 gf_dens(object = NULL, gformula = NULL, data = NULL, alpha = 0.5, color,
-  group, linetype, size, weight, kernel = "gaussian", n = 512,
-  trim = FALSE, xlab, ylab, title, subtitle, caption, geom = "line",
-  stat = "density", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
+  group, linetype, size, kernel = "gaussian", n = 512, trim = FALSE, xlab,
+  ylab, title, subtitle, caption, geom = "line", stat = "density",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions
@@ -26,6 +26,32 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{group}{Used for grouping.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{kernel}{Kernel. See list of available kernels in \code{\link{density}}.}
+
+\item{n}{number of equally spaced points at which the density is to be
+estimated, should be a power of two, see \code{\link{density}} for
+details}
+
+\item{trim}{This parameter only matters if you are displaying multiple
+densities in one plot. If \code{FALSE}, the default, each density is
+computed on the full range of the data. If \code{TRUE}, each density
+is computed over the range of that group: this typically means the
+estimated x values will not line-up, and hence you won't be able to
+stack density values.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -60,9 +86,7 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{alpha}, \code{color}, \code{fill}, \code{group}, \code{linetype}, \code{size}, \code{weight}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
 a gg object

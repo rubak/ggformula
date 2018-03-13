@@ -518,6 +518,46 @@ gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp, data = Weather) %>
   gf_facet_grid(city ~ year, scales = "free_x")
 ```
 
+### New types of plots
+
+`ggformula` add some additional plot options to `ggplot2`
+
+#### ASH plots
+
+Average shifted histograms can be created with `gf_ash()`.  These plots 
+average the height over all histograms with the same bin width.
+ASH plots often work well with larger bin widths than you might use for an 
+individual histogram.
+
+```{r}
+gf_ash( ~ age, data = HELPrct, binwidth = 2) %>%
+  gf_dhistogram( ~ age, data = HELPrct, binwidth = 2, alpha = 0.3) 
+gf_ash( ~ age, data = HELPrct, binwidth = 10) %>% 
+  gf_dhistogram( ~ age, data = HELPrct, binwidth = 2, alpha = 0.3) 
+```
+
+#### Distribution plots
+
+`gf_dist()` can be used to create plots of discrete and continuous distributions.
+
+```{r}
+gf_dist("pois", lambda = 5)
+gf_dist("pois", lambda = 5, kind = "cdf")
+gf_dist("gamma", shape = 3, rate = 4)
+gf_dist("gamma", shape = 3, rate = 4, kind = "cdf")
+```
+
+`ggformula` also provides an interface to `MASS::fitdistr()` for fitting distributions
+to day and displaying the resulting pdf.
+
+```{r}
+x <- rgamma(1000, shape = 2, rate = 5)
+gf_dhistogram( ~ x, alpha = 0.3) %>%
+  gf_fitdistr() %>%         # normal fit by default
+  gf_fitdistr(dist = "dgamma", color = "blue") %>%
+  gf_fitdistr(dist = "dweibull", color = "red")
+```
+
 ### Global plot adjustments
 
 
@@ -541,4 +581,12 @@ gf_histogram( ~ age, data = Runners, alpha = 0.5, fill = "white",
   gf_theme(theme = theme_dark())
 ```
 
+For convenience, a few modifications can also be made directly in the original
+function call:
 
+```{r}
+gf_histogram( ~ age, data = Runners, alpha = 0.5, fill = "skyblue", color = "navy",
+              binwidth = 5, 
+              xlab = "age (years)", title = "Age of runners"
+              ) 
+```

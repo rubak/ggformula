@@ -20,6 +20,20 @@ Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{shape}{An integer or letter shape or a formula used for mapping shape.}
+
+\item{fill}{A color for filling, or a formula used for mapping fill.}
+
+\item{group}{Used for grouping.}
+
+\item{stroke}{A numeric size of the border or a formula used to map stroke.}
+
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -48,9 +62,7 @@ of the attributes of the layer are mapped.}
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression},
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}, or
-(d) arguments for the geom, stat, or position function.
-Available attributes include
-\code{alpha}, \code{color}, \code{size}, \code{shape}, \code{fill}, \code{group}, \code{stroke}}
+(d) arguments for the geom, stat, or position function.}
 }
 \value{
 a gg object
@@ -79,6 +91,8 @@ in another.
 }
 \examples{
 gf_point()
+gf_point( (10 * ((1:25) \%/\% 10)) ~ ((1:25) \%\% 10), shape = 1:25,
+  fill = "skyblue", color = "navy", size = 4, stroke = 1, data = NA)
 gf_point(mpg ~ hp, color = ~ cyl, size = ~wt, data = mtcars)
 # faceting -- two ways
 gf_point(mpg ~ hp, data = mtcars) \%>\%

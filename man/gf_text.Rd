@@ -30,6 +30,39 @@ Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
+\item{label}{The text to be displayed.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{angle}{An angle for rotating the text.}
+
+\item{color}{A color or a formula used for mapping color.}
+
+\item{family}{A font family.}
+
+\item{fontface}{One of \code{"plain"}, \code{"bold"}, \code{"italic"}, or \code{"bold italic"}.}
+
+\item{group}{Used for grouping.}
+
+\item{hjust, vjust}{Numbers between 0 and 1 indicating how to justify
+text relative the the specified location.}
+
+\item{lineheight}{Line height.}
+
+\item{size}{A numeric size or a formula used for mapping size.}
+
+\item{parse}{If TRUE, the labels will be parsed into expressions and
+displayed as described in ?plotmath}
+
+\item{nudge_x}{Horizontal and vertical adjustment to nudge labels by.
+Useful for offsetting text from points, particularly on discrete scales.}
+
+\item{nudge_y}{Horizontal and vertical adjustment to nudge labels by.
+Useful for offsetting text from points, particularly on discrete scales.}
+
+\item{check_overlap}{If \code{TRUE}, text that overlaps previous text in the
+same layer will not be plotted.}
+
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -63,9 +96,13 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{label}, \code{alpha}, \code{angle}, \code{color}, \code{family}, \code{fontface}, \code{group}, \code{hjust}, \code{lineheight}, \code{size}, \code{vjust}, \code{parse}, \code{nudge_x}, \code{nudge_y}, \code{check_overlap}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
+
+\item{label.padding}{Amount of padding around label. Defaults to 0.25 lines.}
+
+\item{label.r}{Radius of rounded corners. Defaults to 0.15 lines.}
+
+\item{label.size}{Size of label border, in mm.}
 }
 \value{
 a gg object

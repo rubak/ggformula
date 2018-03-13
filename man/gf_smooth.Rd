@@ -28,6 +28,36 @@ Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
+\item{method}{smoothing method (function) to use, eg. "lm", "glm",
+  "gam", "loess", "rlm".
+
+  For \code{method = "auto"} the smoothing method is chosen based on the
+  size of the largest group (across all panels). \code{\link{loess}} is
+  used for than 1,000 observations; otherwise \code{\link[mgcv]{gam}} is
+  used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
+  \code{loess} gives a better appearance, but is O(n^2) in memory, so does
+  not work for larger datasets.}
+
+\item{formula}{formula to use in smoothing function, eg. \code{y ~ x},
+\code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
+
+\item{se}{display confidence interval around smooth? (TRUE by default, see
+level to control}
+
+\item{method.args}{List of additional arguments passed on to the modelling
+function defined by \code{method}.}
+
+\item{n}{number of points to evaluate smoother at}
+
+\item{span}{Controls the amount of smoothing for the default loess smoother.
+Smaller numbers produce wigglier lines, larger numbers produce smoother
+lines.}
+
+\item{fullrange}{should the fit span the full range of the plot, or just
+the data}
+
+\item{level}{level of confidence interval to use (0.95 by default)}
+
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{ylab}{Label for y-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -61,9 +91,13 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{method}, \code{formula}, \code{se}, \code{method.args}, \code{n}, \code{span}, \code{fullrange}, \code{level}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
+
+\item{lm.args}{A list of arguments to \code{\link[stats:lm]{stats::lm()}}.}
+
+\item{interval}{One of \code{"none"}, \code{"confidence"} or \code{"prediction"}.}
 }
 \value{
 a gg object

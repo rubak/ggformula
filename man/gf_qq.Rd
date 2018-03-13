@@ -6,19 +6,19 @@
 \alias{gf_qqstep}
 \title{Formula interface to geom_qq()}
 \usage{
-gf_qq(object = NULL, gformula = NULL, data = NULL, group, x, y,
+gf_qq(object = NULL, gformula = NULL, data = NULL, group,
   distribution = stats::qnorm, dparams = list(), xlab, ylab, title,
   subtitle, caption, geom = "point", stat = "qq", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 
-gf_qqline(object = NULL, gformula = NULL, data = NULL, group, x, y,
+gf_qqline(object = NULL, gformula = NULL, data = NULL, group,
   distribution = stats::qnorm, dparams = list(), linetype = "dashed",
   alpha = 0.7, xlab, ylab, title, subtitle, caption, geom = "line",
   stat = "qqline", position = "identity", show.legend = NA,
   show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
-gf_qqstep(object = NULL, gformula = NULL, data = NULL, group, x, y,
+gf_qqstep(object = NULL, gformula = NULL, data = NULL, group,
   distribution = stats::qnorm, dparams = list(), xlab, ylab, title,
   subtitle, caption, geom = "step", stat = "qq", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
@@ -29,10 +29,17 @@ gf_qqstep(object = NULL, gformula = NULL, data = NULL, group, x, y,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape \code{~ x} or \code{y ~ x}.
-Faceting can be achieved by including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{~ sample}. Facets can be
+added using \code{|}.}
 
 \item{data}{A data frame with the variables to be plotted.}
+
+\item{group}{Used for grouping.}
+
+\item{distribution}{Distribution function to use, if x not specified}
+
+\item{dparams}{Additional parameters passed on to \code{distribution}
+function.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
@@ -67,9 +74,12 @@ of the attributes of the layer are mapped.}
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
-(c) attributes of the layer as a whole, which are set with \code{attribute = value}.
-Available attributes include
-\code{group}, \code{x}, \code{y}, \code{distribution}, \code{dparams}}
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
+
+\item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
+for mapping linetype.}
+
+\item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 }
 \value{
 a gg object
