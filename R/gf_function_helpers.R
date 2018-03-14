@@ -109,7 +109,7 @@ layer_factory <- function(
       # }
       extras_and_dots <-
         lapply(extras_and_dots, function(x) eval(x, environment))
-
+      #
       ########### end create extras_and_dots ##########
 
 
@@ -177,7 +177,7 @@ layer_factory <- function(
             list(
               data = ingredients[["data"]],
               mapping = ingredients[["mapping"]],
-              # show.legend = show.legend,
+              show.legend = show.legend,
               geom = geom, stat = stat
               # arguments below are not used by geom_abline() and friends, so don't include them.
               # check.aes = TRUE, check.param = FALSE,
