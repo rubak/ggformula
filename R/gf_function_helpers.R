@@ -52,9 +52,9 @@ layer_factory <- function(
       # make sure we have a list of formulas here
       if (!is.list(aes_form)) aes_form <- list(aes_form)
 
-      # show help if requested
+      # show help if requested or if there are no arguments to the function
       if (is.null(show.help)) {
-        show.help <- is.null(object) && is.null(gformula) && length(dots) == 0L
+        show.help <- length(match.call()) < 2 # && is.null(object)
       }
 
       if (show.help) {
