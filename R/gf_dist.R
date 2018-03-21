@@ -90,8 +90,10 @@ gf_dist <- function(
     qparams <- params
   }
   names(dots) <- gsub("plot_", "", names(dots))
-  dots[["object"]] <- NULL
-  dots[["dist"]] <- NULL
+  # remove some things from dots
+  #
+  if ("object" %in% names(dots)) dots[["object"]] <- NULL
+  if ("dist" %in% names(dots)) dots[["dist"]] <- NULL
 
   # attempting to make evaluation of these arguments more intuitive
   env <- parent.frame()
