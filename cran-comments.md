@@ -16,5 +16,11 @@ R CMD check results
 
 ## Downstream dependencies
 
-There are no known breaking changes and the only downstream dependencies at this 
-point are ones for which I am an author or co-author.
+Checked with `devtools::revdep_check()`.  
+
+Error in `mosaicCore` and warning in `mosaic` should go away once `mosaic`, `mosaicCore` 
+and `ggformula` are all updated.  All three check cleaning against each other in the
+versions being submitted.
+
+
+
