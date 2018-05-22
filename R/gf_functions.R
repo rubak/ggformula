@@ -1097,9 +1097,16 @@ gf_qqstep <-
 
 #' Formula interface to geom_rug()
 #'
+#' `gf_rugx()` and `gf_rugy()` are versions that only add a rug to x- or y- axis.
+#' By default, these functions do not inherit from the formula in the original layer
+#' (because doing so would often result in rugs on both axes), so the formula is required.
+#'
 #' @inherit gf_line
 #' @inherit ggplot2::geom_rug
 #'
+#'
+#' @param formula A formula with shape `y ~ x` (`gf_rug()`) or `~ x` (`gf_rugx()`) or
+#'   `~ y` (`gf_rugy()`).
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
@@ -1107,14 +1114,51 @@ gf_qqstep <-
 #' @seealso [ggplot2::geom_rug()]
 #' @export
 #' @examples
-#' gf_histogram(~eruptions, data = faithful) %>%
-#' gf_rug(~eruptions, data = faithful, color = "red", sides = "bl") %>%
-#' gf_rug(~eruptions, data = faithful, color = "navy", sides = "tr")
 #' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
 #' gf_rug(Sepal.Length ~ Sepal.Width)
+#'
+#' # There are several ways to control x- and y-rugs separately
 #' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#' gf_rug( x = ~ Sepal.Width, data = iris, color = "navy") %>%
-#' gf_rug( y = ~ Sepal.Length, data = iris, color = "red")
+#' gf_rugx( ~ Sepal.Width,  data = iris, color = "red") %>%
+#' gf_rugy(Sepal.Length ~ ., data = iris, color = "green")
+#'
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_rug(. ~ Sepal.Width,  data = iris, color = "red", inherit = FALSE) %>%
+#' gf_rug(Sepal.Length ~ ., data = iris, color = "green", inherit = FALSE)
+#'
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_rug(. ~ Sepal.Width,  data = iris, color = "red", sides = "b") %>%
+#' gf_rug(Sepal.Length ~ ., data = iris, color = "green", sides = "l")
+#'
+#' # jitter requires both an x and a y, but we can turn off one or the other with sides
+#' gf_jitter(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_rug(color = "green", sides = "b", position = "jitter")
+#'
+#' # rugs work with some 1-varialbe plots as well.
+#' gf_histogram( ~ eruptions, data = faithful) %>%
+#' gf_rug( ~ eruptions, data = faithful, color = "red")%>%
+#' gf_rug( ~ eruptions, data = faithful, color = "navy", sides = "t")
+#'
+#' # we can take advantage of inheritance to shorten the code
+#' gf_histogram( ~ eruptions, data = faithful) %>%
+#' gf_rug(color = "red") %>%
+#' gf_rug(color = "navy", sides = "t")
+#'
+#' # Need to turn off inheritance when using gf_dhistogram:
+#' gf_dhistogram( ~ eruptions, data = faithful) %>%
+#' gf_rug( ~ eruptions, data = faithful, color = "red", inherit = FALSE)
+#'
+#' # using jitter with gf_histogram() requires manually setting the y value.
+#' gf_dhistogram(~ Sepal.Width, data = iris) %>%
+#' gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
+#'
+#' # the choice of y value can affect how the plot
+#' gf_dhistogram(~ Sepal.Width, data = iris) %>%
+#' gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
+
+#' gf_jitter(Sepal.Length ~ Sepal.Width, data = iris) %>%
+#' gf_rug( Sepal.Length ~ . , data = iris, color = "green") %>%
+#' gf_rug( . ~ Sepal.Width, data = iris, color = "red")
 gf_rug <-
   layer_factory(
     geom = "rug",
@@ -1122,7 +1166,25 @@ gf_rug <-
     extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
     )
 
+#' @rdname gf_rug
+#' @export
+gf_rugx <-
+  layer_factory(
+    geom = "rug",
+    aes_form = list(~ x, NULL),
+    inherit.aes = FALSE,
+    extras = alist(sides = "b", alpha = , color = , group = , linetype = , size = )
+    )
 
+#' @rdname gf_rug
+#' @export
+gf_rugy <-
+  layer_factory(
+    geom = "rug",
+    aes_form = list(~ y, y ~ ., NULL),
+    inherit.aes = FALSE,
+    extras = alist(sides = "l", alpha = , color = , group = , linetype = , size = )
+    )
 
 #' Formula interface to geom_contour()
 #'
@@ -1731,6 +1793,24 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #'
 #'   gf_dhistogram( ~ length, data = KidsFeet, binwidth = 0.5, alpha = 0.25) %>%
 #'     gf_fitdistr()
+#'
+#'   set.seed(12345)
+#'   Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
+#'   gf_dhistogram(~g, data = Dat) %>%
+#'     gf_fitdistr(dist = dgamma)
+#'
+#'   gf_dhistogram(~f, data = Dat) %>%
+#'     gf_fitdistr(dist = df)
+#'
+#'   gf_dhistogram(~g, data = Dat) %>%
+#'     gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+#'
+#'   # fitted parameters are default argument values
+#'   args(
+#'     mosaicCore::fit_distr_fun(~f, data = Dat, dist = df,
+#'       start = list(df1 = 10, df2 = 10)))
+#'   args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+#'
 #' }
 
 gf_fitdistr <-

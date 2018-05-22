@@ -101,6 +101,24 @@ if (require(mosaicData)) {
 
   gf_dhistogram( ~ length, data = KidsFeet, binwidth = 0.5, alpha = 0.25) \%>\%
     gf_fitdistr()
+
+  set.seed(12345)
+  Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
+  gf_dhistogram(~g, data = Dat) \%>\%
+    gf_fitdistr(dist = dgamma)
+
+  gf_dhistogram(~f, data = Dat) \%>\%
+    gf_fitdistr(dist = df)
+
+  gf_dhistogram(~g, data = Dat) \%>\%
+    gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+
+  # fitted parameters are default argument values
+  args(
+    mosaicCore::fit_distr_fun(~f, data = Dat, dist = df,
+      start = list(df1 = 10, df2 = 10)))
+  args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+
 }
 }
 \seealso{
