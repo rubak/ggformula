@@ -72,7 +72,7 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-Formula interface to geom_count()
+Scatterplots in \code{ggformula}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.

@@ -71,7 +71,7 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-Formula interface to geom_tile()
+Scatterplots in \code{ggformula}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.

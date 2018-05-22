@@ -104,7 +104,8 @@ a call to a position adjustment function.}
 a gg object
 }
 \description{
-Formula interface to geom_quantile()
+This fits a quantile regression to the data and draws the fitted quantiles
+with lines. This is as a continuous analogue to \code{\link{geom_boxplot}}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.

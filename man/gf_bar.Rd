@@ -99,7 +99,7 @@ you use it you'll get an warning telling to you use
 a gg object
 }
 \description{
-Formula interface to geom_bar()
+Scatterplots in \code{ggformula}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.

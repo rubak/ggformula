@@ -64,7 +64,8 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-Formula interface to geom_blank()
+Line plots in \code{ggformula}.  \code{gf_path()} differs from \code{gf_line()} in that points
+are connected in the order in which they appear in \code{data}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.

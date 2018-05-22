@@ -80,7 +80,9 @@ a call to a position adjustment function.}
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \description{
-Formula interface to geom_errorbar()
+For each x value, \code{geom_ribbon} displays a y interval defined
+by \code{ymin} and \code{ymax}. \code{geom_area} is a special case of
+\code{geom_ribbon}, where the \code{ymin} is fixed to 0.
 }
 \section{Note}{
 
