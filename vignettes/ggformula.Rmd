@@ -19,6 +19,7 @@ have_packages <-
 
 knitr::opts_chunk$set(
   fig.show = "hold",
+  fig.align = "center",
   out.width = "45%",
   eval = have_packages
 )
@@ -518,9 +519,31 @@ gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp, data = Weather) %>
   gf_facet_grid(city ~ year, scales = "free_x")
 ```
 
+### Maps
+
+Improved map functionality is coming in `ggplot2` version 2.3.  For now,
+basic maps can be created using `gf_polygon()`.
+
+```{r, fig.width = 6, fig.height = 3, out.width = "75%"}
+if (require(maps) && require(mosaic) && require(dplyr)) {
+  US <- map_data("state") %>%
+    dplyr::mutate(name_length = nchar(region))
+  States <- US %>%
+    dplyr::group_by(region) %>%
+    dplyr::summarise(lat = mean(range(lat)), long = mean(range(long))) %>%
+    dplyr::mutate(name = abbreviate(region, 3))
+
+  gf_polygon(lat ~ long, data = US, group = ~ group,
+             fill = ~ name_length, color = "white") %>%
+  gf_text(lat ~ long, label = ~ name, data = States,
+    color = "gray70", inherit = FALSE) %>%
+  gf_refine(mosaic::theme_map())
+}
+```
+
 ### New types of plots
 
-`ggformula` add some additional plot options to `ggplot2`
+`ggformula` adds some additional plot options to `ggplot2`
 
 #### ASH plots
 
