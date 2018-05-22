@@ -1105,7 +1105,7 @@ gf_qqstep <-
 #' @inherit ggplot2::geom_rug
 #'
 #'
-#' @param formula A formula with shape `y ~ x` (`gf_rug()`) or `~ x` (`gf_rugx()`) or
+#' @param gformula A formula with shape `y ~ x` (`gf_rug()`) or `~ x` (`gf_rugx()`) or
 #'   `~ y` (`gf_rugy()`).
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,

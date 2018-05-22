@@ -29,8 +29,8 @@ gf_rugy(object = NULL, gformula = NULL, data = NULL, sides = "l", alpha,
 of the chain.  Most users can safely ignore this argument.
 See details and examples.}
 
-\item{gformula}{A formula with shape \code{y ~ x}.
-Faceting can be achieved by including \code{|} in the formula.}
+\item{gformula}{A formula with shape \code{y ~ x} (\code{gf_rug()}) or \code{~ x} (\code{gf_rugx()}) or
+\code{~ y} (\code{gf_rugy()}).}
 
 \item{data}{A data frame with the variables to be plotted.}
 
@@ -83,9 +83,6 @@ of the attributes of the layer are mapped.}
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
 (b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
-
-\item{formula}{A formula with shape \code{y ~ x} (\code{gf_rug()}) or \code{~ x} (\code{gf_rugx()}) or
-\code{~ y} (\code{gf_rugy()}).}
 }
 \value{
 a gg object
