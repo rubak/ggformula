@@ -227,7 +227,7 @@ gf_path <-
 #'              fill = ~ name_length, color = "white") %>%
 #'   gf_text(lat ~ long, label = ~ name, data = States,
 #'     color = "gray70", inherit = FALSE) %>%
-#'   gf_refine(coord_map("bonne", lat0 = 25), ggthemes::theme_map())
+#'   gf_refine(ggthemes::theme_map())
 #' }
 #'
 #' @export

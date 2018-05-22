@@ -74,7 +74,7 @@ of the attributes of the layer are mapped.}
 a gg object
 }
 \description{
-Formula interface to geom_polygon()
+Scatterplots in \code{ggformula}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.
@@ -109,7 +109,7 @@ if (require(maps) && require(ggthemes) && require(dplyr)) {
              fill = ~ name_length, color = "white") \%>\%
   gf_text(lat ~ long, label = ~ name, data = States,
     color = "gray70", inherit = FALSE) \%>\%
-  gf_refine(coord_map("bonne", lat0 = 25), ggthemes::theme_map())
+  gf_refine(ggthemes::theme_map())
 }
 
 }
