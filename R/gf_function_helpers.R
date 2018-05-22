@@ -6,6 +6,7 @@ utils::globalVariables("role")
 #' @importFrom stats as.formula
 #' @importFrom utils modifyList
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
+#' @importFrom mosaicCore reop_formula
 #' @import ggplot2
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
@@ -76,7 +77,7 @@ layer_factory <- function(
       }
 
       # allow some operations in formulas without requiring I()
-      gformula <- reop_formula(gformula)
+      gformula <- mosaicCore::reop_formula(gformula)
 
       # convert y ~ 1 into ~ y if a 1-sided formula is an option
       if (any(sapply(aes_form, function(f) length(f) == 2L))) {
