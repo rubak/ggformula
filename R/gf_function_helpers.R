@@ -75,9 +75,12 @@ layer_factory <- function(
         object <- NULL
       }
 
+      # allow some operations in formulas without requiring I()
+      gformula <- reop_formula(gformula)
+
       # convert y ~ 1 into ~ y if a 1-sided formula is an option
       if (any(sapply(aes_form, function(f) length(f) == 2L))) {
-        gformula <- standard_formula(gformula)
+        gformula <- response2explanatory(gformula)
       }
 
       # find matching formula shape
@@ -297,22 +300,24 @@ layer_factory <- function(
 # This is clunky because | doen't have the right precedence for the intended
 # interpretation of the formula.
 
-standard_formula <- function(formula) {
-  if (length(formula) == 3L && formula[[3]] == 1) {
+response2explanatory <- function(formula) {
+  if (length(formula) == 3L && isTRUE(formula[[3]] == 1)) {
     formula[[3]] <- formula[[2]]
     # can remove either slot 2 or slot 3 here to get 1-sided formula
     formula[[2]] <- NULL
   } else if (length(formula) == 3L &&
              length(formula[[3]])  == 3L &&
-             formula[[3]][[1]] == as.name("|") &&
-             formula[[3]][[2]] == 1L) {
+             isTRUE(formula[[3]][[1]] == as.name("|")) &&
+             isTRUE(formula[[3]][[2]] == 1L)) {
     formula[[3]][[2]] <- formula[[2]]
     formula[[2]] <- NULL
   } else if (length(formula) == 3L && rlang::is_formula(formula[[2]])) {
-    formula[[2]] <- standard_formula(formula[[2]])
+    formula[[2]] <- response2explanatory(formula[[2]])
   }
   formula
 }
+
+
 
 # The actual graphing functions are created dynamically.
 #  See the functions at the bottom of this file
@@ -491,10 +496,18 @@ gf_ingredients <-
   names(set_list) <- aes_df[["role"]][!aes_df$map]
   set_list <- modifyList(extras, set_list)
 
+  mapping <- modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list))
+  # remove item -> . mappings
+  for (item in names(mapping)) {
+    if (mapping[[item]] == as.name(".")) {
+      mapping[[item]] <- NULL
+    }
+  }
+
   res <-
     list(
       data = data,
-      mapping = modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list)),
+      mapping = mapping,
       setting = set_list,
       facet =
         if (is.null(fs[["condition"]])){
