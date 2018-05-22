@@ -209,6 +209,35 @@ gf_path <-
                    lineend = "butt", linejoin = "round", linemitre = 1, arrow = NULL)
   )
 
+#' Formula interface to geom_polygon()
+#'
+#'
+#' @inherit gf_point
+#' @examples
+#' gf_polygon()
+#' if (require(maps) && require(ggthemes) && require(dplyr)) {
+#'   US <- map_data("state") %>%
+#'     dplyr::mutate(name_length = nchar(region))
+#'   States <- US %>%
+#'     dplyr::group_by(region) %>%
+#'     dplyr::summarise(lat = mean(range(lat)), long = mean(range(long))) %>%
+#'     dplyr::mutate(name = abbreviate(region, 3))
+#'
+#'   gf_polygon(lat ~ long, data = US, group = ~ group,
+#'              fill = ~ name_length, color = "white") %>%
+#'   gf_text(lat ~ long, label = ~ name, data = States,
+#'     color = "gray70", inherit = FALSE) %>%
+#'   gf_refine(coord_map("bonne", lat0 = 25), ggthemes::theme_map())
+#' }
+#'
+#' @export
+gf_polygon <-
+  layer_factory(
+    geom = "polygon",
+    extras = alist(alpha = , color = , size = , shape = , fill = , group = , stroke = )
+  )
+
+
 #' Formula interface to geom_smooth()
 #'
 #' LOESS and linear model smoothers in `ggformula`.
