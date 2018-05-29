@@ -26,18 +26,18 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{The data to be displayed in this layer. There are three
-options:
+   options:
 
-If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+   If \code{NULL}, the default, the data is inherited from the plot
+   data as specified in the call to \code{\link{ggplot}}.
 
-A \code{data.frame}, or other object, will override the plot
-data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+   A \code{data.frame}, or other object, will override the plot
+   data. All objects will be fortified to produce a data frame. See
+   \code{\link{fortify}} for which variables will be created.
 
-A \code{function} will be called with a single argument,
-the plot data. The return value must be a \code{data.frame.}, and
-will be used as the layer data.}
+   A \code{function} will be called with a single argument,
+   the plot data. The return value must be a \code{data.frame.}, and
+   will be used as the layer data.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
@@ -73,9 +73,7 @@ a call to a position adjustment function.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.
-It can also be a named logical vector to finely select the aesthetics to
-display.}
+\code{FALSE} never includes, and \code{TRUE} always includes.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 

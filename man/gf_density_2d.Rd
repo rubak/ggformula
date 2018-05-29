@@ -46,13 +46,13 @@ estimation}
 \item{n}{number of grid points in each direction}
 
 \item{h}{Bandwidth (vector of length two). If \code{NULL}, estimated
-using \code{\link[MASS:bandwidth.nrd]{MASS::bandwidth.nrd()}}.}
+using \code{\link[MASS]{bandwidth.nrd}}.}
 
-\item{lineend}{Line end style (round, butt, square).}
+\item{lineend}{Line end style (round, butt, square)}
 
-\item{linejoin}{Line join style (round, mitre, bevel).}
+\item{linejoin}{Line join style (round, mitre, bevel)}
 
-\item{linemitre}{Line mitre limit (number greater than 1).}
+\item{linemitre}{Line mitre limit (number greater than 1)}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

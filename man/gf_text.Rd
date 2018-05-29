@@ -51,7 +51,7 @@ text relative the the specified location.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{parse}{If \code{TRUE}, the labels will be parsed into expressions and
+\item{parse}{If TRUE, the labels will be parsed into expressions and
 displayed as described in ?plotmath}
 
 \item{nudge_x}{Horizontal and vertical adjustment to nudge labels by.

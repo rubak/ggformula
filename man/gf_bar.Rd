@@ -93,7 +93,7 @@ of the attributes of the layer are mapped.}
 
 \item{binwidth}{\code{geom_bar} no longer has a binwidth argument - if
 you use it you'll get an warning telling to you use
-\code{\link[=geom_histogram]{geom_histogram()}} instead.}
+\code{\link{geom_histogram}} instead.}
 }
 \value{
 a gg object
