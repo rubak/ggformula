@@ -1,6 +1,9 @@
+#' @importFrom stats setNames
+NULL
+
 formula2aes <- function(formula, template) {
-  fs <- ggformula:::formula_slots(formula) %>% unlist()
-  ts <- ggformula:::formula_slots(template) %>% unlist()
+  fs <- formula_slots(formula) %>% unlist()
+  ts <- formula_slots(template) %>% unlist()
   names(fs) <- sapply(ts, as.character)
   do.call(aes, fs)
 }
