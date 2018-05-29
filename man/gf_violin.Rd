@@ -50,13 +50,13 @@ observations. If "width", all violins have the same maximum width.}
 \item{bw}{The smoothing bandwidth to be used.
 If numeric, the standard deviation of the smoothing kernel.
 If character, a rule to choose the bandwidth, as listed in
-\code{\link[stats]{bw.nrd}}.}
+\code{\link[stats:bw.nrd]{stats::bw.nrd()}}.}
 
 \item{adjust}{A multiplicate bandwidth adjustment. This makes it possible
 to adjust the bandwidth while still using the a bandwidth estimator.
-For exampe, \code{adjust = 1/2} means use half of the default bandwidth.}
+For example, \code{adjust = 1/2} means use half of the default bandwidth.}
 
-\item{kernel}{Kernel. See list of available kernels in \code{\link{density}}.}
+\item{kernel}{Kernel. See list of available kernels in \code{\link[=density]{density()}}.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 

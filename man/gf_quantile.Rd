@@ -20,18 +20,18 @@ See details and examples.}
 Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{The data to be displayed in this layer. There are three
-   options:
+options:
 
-   If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-   A \code{data.frame}, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   \code{\link{fortify}} for which variables will be created.
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-   A \code{function} will be called with a single argument,
-   the plot data. The return value must be a \code{data.frame.}, and
-   will be used as the layer data.}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
@@ -47,18 +47,18 @@ for mapping linetype.}
 \item{weight}{Useful for summarized data, \code{weight} provides a count
 of the number of values with the given combination of \code{x} and \code{y} values.}
 
-\item{lineend}{Line end style (round, butt, square)}
+\item{lineend}{Line end style (round, butt, square).}
 
-\item{linejoin}{Line join style (round, mitre, bevel)}
+\item{linejoin}{Line join style (round, mitre, bevel).}
 
-\item{linemitre}{Line mitre limit (number greater than 1)}
+\item{linemitre}{Line mitre limit (number greater than 1).}
 
 \item{quantiles}{conditional quantiles of y to calculate and display}
 
 \item{formula}{formula relating y variables to x variables}
 
 \item{method}{Quantile regression method to use.  Currently only supports
-\code{\link[quantreg]{rq}}.}
+\code{\link[quantreg:rq]{quantreg::rq()}}.}
 
 \item{method.args}{List of additional arguments passed on to the modelling
 function defined by \code{method}.}
@@ -87,7 +87,9 @@ a call to a position adjustment function.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -105,7 +107,7 @@ a gg object
 }
 \description{
 This fits a quantile regression to the data and draws the fitted quantiles
-with lines. This is as a continuous analogue to \code{\link{geom_boxplot}}.
+with lines. This is as a continuous analogue to \code{\link[=geom_boxplot]{geom_boxplot()}}.
 }
 \details{
 Positional aesthetics are specified using the formula in \code{gformula}.

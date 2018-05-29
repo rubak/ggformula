@@ -28,35 +28,35 @@ Faceting can be achieved by including \code{|} in the formula.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
-\item{method}{smoothing method (function) to use, eg. "lm", "glm",
-  "gam", "loess", "rlm".
+\item{method}{Smoothing method (function) to use, eg. \code{lm}, \code{glm},
+\code{gam}, \code{loess}, \code{MASS::rlm}.
 
-  For \code{method = "auto"} the smoothing method is chosen based on the
-  size of the largest group (across all panels). \code{\link{loess}} is
-  used for than 1,000 observations; otherwise \code{\link[mgcv]{gam}} is
-  used with \code{formula = y ~ s(x, bs = "cs")}. Somewhat anecdotally,
-  \code{loess} gives a better appearance, but is O(n^2) in memory, so does
-  not work for larger datasets.}
+For \code{method = "auto"} the smoothing method is chosen based on the
+size of the largest group (across all panels). \code{\link[=loess]{loess()}} is
+used for less than 1,000 observations; otherwise \code{\link[mgcv:gam]{mgcv::gam()}} is
+used with \code{formula = y ~ mgcv::s(x, bs = "cs")}. Somewhat anecdotally,
+\code{loess} gives a better appearance, but is O(n^2) in memory, so does
+not work for larger datasets.}
 
-\item{formula}{formula to use in smoothing function, eg. \code{y ~ x},
+\item{formula}{Formula to use in smoothing function, eg. \code{y ~ x},
 \code{y ~ poly(x, 2)}, \code{y ~ log(x)}}
 
-\item{se}{display confidence interval around smooth? (TRUE by default, see
-level to control}
+\item{se}{Display confidence interval around smooth? (TRUE by default, see
+level to control.)}
 
 \item{method.args}{List of additional arguments passed on to the modelling
 function defined by \code{method}.}
 
-\item{n}{number of points to evaluate smoother at}
+\item{n}{Number of points at which to evaluate smoother.}
 
 \item{span}{Controls the amount of smoothing for the default loess smoother.
 Smaller numbers produce wigglier lines, larger numbers produce smoother
 lines.}
 
-\item{fullrange}{should the fit span the full range of the plot, or just
-the data}
+\item{fullrange}{Should the fit span the full range of the plot, or just
+the data?}
 
-\item{level}{level of confidence interval to use (0.95 by default)}
+\item{level}{Level of confidence interval to use (0.95 by default).}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
 
