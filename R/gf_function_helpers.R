@@ -129,13 +129,21 @@ layer_factory <- function(
       # look for arguments of the form argument = ~ something and turn them
       # into aesthetics
       if (length(extras_and_dots) > 0) {
-        # proceed backwards through list so that removing items doesn't mess up indexing
-        for (i in length(extras_and_dots):1L) {
-          if (is_formula(extras_and_dots[[i]]) && length(extras_and_dots[[i]]) == 2L) {
-            aesthetics[[names(extras_and_dots)[i]]] <- extras_and_dots[[i]][[2]]
-            extras_and_dots[[i]] <- NULL
-          }
-        }
+        w <- which(
+          sapply(extras_and_dots, function(x) {is_formula(x) && length(x) == 2L})
+        )
+        aesthetics <- add_aes(aesthetics, extras_and_dots[w])
+        extras_and_dots[w] <- NULL
+
+        # # proceed backwards through list so that removing items doesn't mess up indexing
+        # for (i in length(extras_and_dots):1L) {
+        #   if (is_formula(extras_and_dots[[i]]) && length(extras_and_dots[[i]]) == 2L) {
+        #     aesthetics <-
+        #       add_aes(aesthetics, names(extras_and_dots)[i], extras_and_dots[[i]][[2]])
+        #     # aesthetics[[names(extras_and_dots)[i]]] <- extras_and_dots[[i]][[2]]
+        #     extras_and_dots[[i]] <- NULL
+        #   }
+        # }
       }
 
       # remove symbols from extras_and_dots (why?)
@@ -149,6 +157,7 @@ layer_factory <- function(
       # add in selected additional aesthetics -- partial inheritance
       if (add) {
         for (aes.name in inherited.aes) {
+          # aesthetics <- add_aes(aesthetics, aes.name, object$mapping[[aes.name]])
           aesthetics[[aes.name]] <- object$mapping[[aes.name]]
         }
       }
@@ -209,6 +218,7 @@ layer_factory <- function(
 
       # remove any duplicated arguments
       layer_args <- layer_args[unique(names(layer_args))]
+      print(layer_args$mapping)
 
       new_layer <- do.call(layer_fun, layer_args, envir = environment)
 
@@ -290,6 +300,20 @@ layer_factory <- function(
   assign("inherit.aes", inherit.aes, environment(res))
   assign("pre", pre, environment(res))
   assign("extras", extras, environment(res))
+  res
+}
+
+add_aes <- function(mapping, new) {
+  # convert ~ x into just x (as a name)
+  if (length(new) > 0L) {
+    for (i in 1L:length(new)) {
+      if (is_formula(new[[i]]) && length(new[[i]] == 2L)) {
+        new[[i]] <- new[[i]][[2]]
+      }
+    }
+  }
+  new <- do.call(aes, new)
+  res <- modifyList(mapping, new)
   res
 }
 
@@ -497,7 +521,9 @@ gf_ingredients <-
   names(set_list) <- aes_df[["role"]][!aes_df$map]
   set_list <- modifyList(extras, set_list)
 
-  mapping <- modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list))
+  # mapping <- modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list))
+  mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
+
   # remove item -> . mappings
   for (item in names(mapping)) {
     if (mapping[[item]] == as.name(".")) {
