@@ -27,17 +27,15 @@ generally needed).}
 
 \item{data}{A data frame with the variables to be plotted.}
 
-\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30}
 
-\item{binwidth}{The width of the bins. Can be specified as a numeric value,
-or a function that calculates width from x.
-The default is to use \code{bins}
-bins that cover the range of the data. You should always override
-this value, exploring multiple widths to find the best to illustrate the
-stories in your data.
+\item{binwidth}{The width of the bins. The default is to use \code{bins}
+  bins that cover the range of the data. You should always override
+  this value, exploring multiple widths to find the best to illustrate the
+  stories in your data.
 
-The bin width of a date variable is the number of days in each time; the
-bin width of a time variable is the number of seconds.}
+  The bin width of a date variable is the number of days in each time; the
+  bin width of a time variable is the number of seconds.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
@@ -116,12 +114,18 @@ in another.
 x <- rnorm(1000)
 gf_histogram(  ~ x, bins = 30)
 gf_histogram( ..density.. ~ x, bins = 30)
-gf_histogram(~ Sepal.Length | Species, data = iris, binwidth = 0.25)
+gf_dhistogram( ~ x, bins = 30)
+gf_dhistogram( ~ x, bins = 30) \%>\%
+ gf_fitdistr()  # normal by default; see help for gf_fitdistr() for more info.
+
+gf_histogram( ~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 if (require(mosaicData)) {
-  gf_histogram(~age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black")
+  gf_histogram( ~ age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black")
   # bins can be adjusted left/right using center or boundary
-  gf_histogram(~age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black", center = 42.5)
-  gf_histogram(~age, data = HELPrct, binwidth = 5, fill = "skyblue", color = "black", boundary = 40)
+  gf_histogram( ~ age, data = HELPrct,
+               binwidth = 5, fill = "skyblue", color = "black", center = 42.5)
+  gf_histogram( ~ age, data = HELPrct,
+                binwidth = 5, fill = "skyblue", color = "black", boundary = 40)
 }
 }
 \seealso{
