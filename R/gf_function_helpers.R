@@ -218,7 +218,6 @@ layer_factory <- function(
 
       # remove any duplicated arguments
       layer_args <- layer_args[unique(names(layer_args))]
-      print(layer_args$mapping)
 
       new_layer <- do.call(layer_fun, layer_args, envir = environment)
 
@@ -481,6 +480,8 @@ have_arg <- function(arg, env = sys.frame(-1)) {
     !(inherits(L[[arg]], "name") && as.character(L[[arg]]) == "")
 }
 
+#' @importFrom utils packageVersion
+
 gf_ingredients <-
   function(formula = NULL, data = NULL,
            extras = list(),
@@ -502,27 +503,47 @@ gf_ingredients <-
       names(data)
     }
 
-  aes_df <-
-    rbind(
-      formula_to_df(fs[["formula"]], var_names, aes_form = aes_form),
-      data.frame(
-        role = names(aesthetics),
-        expr = sapply(aesthetics, deparse),
-        map  = rep(TRUE, length(aesthetics)),
-        stringsAsFactors = FALSE
+  # create mapping -- using method appropriate for version
+  # of ggplot2 that is installed
+
+  if (packageVersion("ggplot2") <= "2.2.1") {
+    aes_df <-
+      rbind(
+        formula_to_df(fs[["formula"]], var_names, aes_form = aes_form),
+        data.frame(
+          role = names(aesthetics),
+          expr = sapply(aesthetics, deparse),
+          map  = rep(TRUE, length(aesthetics)),
+          stringsAsFactors = FALSE
+        )
       )
-    )
 
+    mapped_list <- as.list(aes_df[["expr"]][aes_df$map])
+    names(mapped_list) <- aes_df[["role"]][aes_df$map]
 
-  mapped_list <- as.list(aes_df[["expr"]][aes_df$map])
-  names(mapped_list) <- aes_df[["role"]][aes_df$map]
+    set_list <- as.list(aes_df[["expr"]][!aes_df$map])
+    names(set_list) <- aes_df[["role"]][!aes_df$map]
+    set_list <- modifyList(extras, set_list)
 
-  set_list <- as.list(aes_df[["expr"]][!aes_df$map])
-  names(set_list) <- aes_df[["role"]][!aes_df$map]
-  set_list <- modifyList(extras, set_list)
+    # mapping <- modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list))
+    mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
+  } else { # new version of ggplot2
+    aes_df <-
+      formula_to_df(fs[["formula"]], var_names, aes_form = aes_form)
 
-  # mapping <- modifyList(do.call(aes, aesthetics), do.call(aes_string, mapped_list))
-  mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
+    mapped_list <- as.list(aes_df[["expr"]][aes_df$map])
+    names(mapped_list) <- aes_df[["role"]][aes_df$map]
+    more_mapped_list <-
+      lapply(aesthetics, function(x) deparse(x[[2]])) %>%
+      stats::setNames(names(aesthetics))
+    mapped_list <-  c(mapped_list, more_mapped_list)
+
+    set_list <- as.list(aes_df[["expr"]][!aes_df$map])
+    names(set_list) <- aes_df[["role"]][!aes_df$map]
+    set_list <- modifyList(extras, set_list)
+
+    mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
+  }
 
   # remove item -> . mappings
   for (item in names(mapping)) {
