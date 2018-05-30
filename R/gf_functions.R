@@ -948,7 +948,6 @@ gf_density <-
 
 #' @rdname gf_density
 #' @export
-#' @examples
 
 gf_dens <-
   layer_factory(
@@ -1100,7 +1099,7 @@ gf_percents <-
 #' gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
 #'   gf_freqpoly( ~ Sepal.Length, data = iris, color = ~Species, bins = 20)
 #' gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris, bins = 20)
-#' if (utils(packageVersion("ggplot2") >= 2.2.1.9000")) {
+#' if (utils::packageVersion("ggplot2") >= 2.2.1.9000") {
 #'   gf_dens( ~ Sepal.Length, data = iris, color = "navy") %>%
 #'     gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,
 #'       color = "red", bins = 20)
@@ -1688,8 +1687,8 @@ gf_rect <-
 #' # If we want to map the color of the guidelines, it must work with the
 #' # scale of the other colors in the plot.
 #' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) %>%
-#'   gf_hline(color = ~"horizontal", yintercept = ~c(20, 25), data = NA) %>%
-#'   gf_vline(color = ~"vertical", xintercept = ~c(100, 200, 300), data = NA)
+#'   gf_hline(color = ~"horizontal", yintercept = ~ c(20, 25), data = NA) %>%
+#'   gf_vline(color = ~"vertical", xintercept = ~ c(100, 200, 300), data = NA)
 #'
 #' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
 #'   gf_hline(color = "orange", yintercept = 20, data = NA) %>%
