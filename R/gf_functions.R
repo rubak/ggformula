@@ -854,7 +854,6 @@ gf_frame <-
 #' @examples
 #' x <- rnorm(1000)
 #' gf_histogram(  ~ x, bins = 30)
-#' gf_histogram( ..density.. ~ x, bins = 30)
 #' gf_dhistogram( ~ x, bins = 30)
 #' gf_dhistogram( ~ x, bins = 30) %>%
 #'  gf_fitdistr()  # normal by default; see help for gf_fitdistr() for more info.
@@ -875,7 +874,12 @@ gf_histogram <-
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
     extras = alist(bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = , linetype = , size = ),
-    note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.., but see gf_dhistogram()."
+    note =
+      if (packageVersion("ggplot2") <= "2.2.1") {
+        "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.., but see gf_dhistogram()."
+      }else {
+        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount), but see gf_dhistogram()."
+      }
   )
 
 #' @rdname gf_histogram
@@ -884,9 +888,20 @@ gf_dhistogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
     aes_form = list(~x, y ~ x),
-    extras = alist(bins = 25, binwidth = , alpha = 0.5 , color = , fill = , group = , linetype = , size = ),
-    note = "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount..",
-    aesthetics = aes(y = ..density..)
+    extras =
+      alist(bins = 25, binwidth = , alpha = 0.5 , color = , fill = , group = , linetype = , size = ),
+    note =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        "y may be ..density.. or ..count.. or ..ndensity.. or ..ncount.."
+      } else {
+        "y may be stat(density) or stat(count) or stat(ndensity) or stat(ncount)"
+      },
+    aesthetics =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        aes(y = ..density..)
+      } else {
+        aes(y = stat(density))
+      }
   )
 
 #' Formula interface to stat_density()
@@ -917,7 +932,12 @@ gf_density <-
     extras = alist(alpha = 0.5 , color = , fill = ,
                    group = , linetype = , size = ,
                    kernel = "gaussian", n = 512, trim = FALSE),
-    aesthetics = aes(y = ..density..)
+    aesthetics =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        aes(y = ..density..)
+      } else {
+        aes(y = stat(density))
+      }
   )
 
 #' @rdname gf_density
@@ -936,7 +956,12 @@ gf_dens <-
     extras = alist(alpha = 0.5 , color = ,
                    group = , linetype = , size = ,
                    kernel = "gaussian", n = 512, trim = FALSE),
-    aesthetics = aes(y = ..density..)
+    aesthetics =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        aes(y = ..density..)
+      } else {
+        aes(y = stat(density))
+      }
   )
 
 #' Formula interface to geom_dotplot()
@@ -1032,7 +1057,12 @@ gf_props <-
     extras =
       alist(alpha = , color = , fill = , group = ,
             linetype = , size = , ylab = "proportion"),
-    aesthetics = aes(y = ..count.. / sum(..count..))
+    aesthetics =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        aes(y = ..count.. / sum(..count..))
+      } else {
+        aes(y = stat(count / sum(count)))
+      }
   )
 
 #' @rdname gf_bar
@@ -1043,7 +1073,12 @@ gf_percents <-
     aes_form = list(~x),
     extras = alist(alpha = , color = , fill = , group = ,
                    linetype = , size = , ylab = "percent"),
-    aesthetics = aes(y = 100 * ..count.. / sum(..count..))
+    aesthetics =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        aes(y = 100 * ..count.. / sum(..count..))
+      } else {
+        aes(y = stat(100 * count / sum(count)))
+      }
   )
 
 #' Formula interface to geom_freqpoly()
@@ -1065,7 +1100,7 @@ gf_percents <-
 #'   gf_freqpoly(~ Sepal.Length, data = iris, color = ~Species, bins = 20)
 #' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris, bins = 20)
 #' gf_dens(~ Sepal.Length, data = iris, color = "navy") %>%
-#' gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
+# gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
 
 gf_freqpoly <-
   layer_factory(
@@ -1075,7 +1110,12 @@ gf_freqpoly <-
       alpha = , color = , group = , linetype = , size =,
       binwidth =, bins = , center = , boundary =
     ),
-    note = "y may be omitted or ..density.. or ..count.. or ..ndensity.. or ..ncount.."
+    note =
+      if (packageVersion("ggplot2") <= "2.2.1") {
+        "y may be omitted or ..density.. or ..count.. or ..ndensity.. or ..ncount.."
+      } else {
+        "y may be omitted or stat(density) or stat(count) or stat(ndensity) or stant(ncount)."
+      }
   )
 
 #' Formula interface to geom_qq()
