@@ -6,8 +6,9 @@ utils::globalVariables("role")
 #' @importFrom stats as.formula
 #' @importFrom utils modifyList
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
-# #' @importFrom mosaicCore reop_formula
+#' @importFrom dplyr last
 #' @import ggplot2
+
 # produces a gf_ function wrapping a particular geom.
 # use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
 
@@ -534,7 +535,7 @@ gf_ingredients <-
     mapped_list <- as.list(aes_df[["expr"]][aes_df$map])
     names(mapped_list) <- aes_df[["role"]][aes_df$map]
     more_mapped_list <-
-      lapply(aesthetics, function(x) deparse(x[[2]])) %>%
+      lapply(aesthetics, function(x) deparse(dplyr::last(x))) %>%
       stats::setNames(names(aesthetics))
     mapped_list <-  c(mapped_list, more_mapped_list)
 
@@ -587,7 +588,7 @@ remove_dot_from_mapping <- function(mapping) {
     }
   } else {
     for (item in rev(seq_along(mapping))) {
-      if (length(mapping[[item]]) > 1 && mapping[[item]][[2]] == as.name(".")) {
+      if (dplyr::last(mapping[[item]]) == as.name(".")) {
         mapping[[item]] <- NULL
       }
     }
