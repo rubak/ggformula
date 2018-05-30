@@ -41,7 +41,7 @@ NA
 #' gf_dist("binom", params = list(size = 20, prob = 0.25), size = 2)
 
 gf_dist <- function(
-  object = geom_blank(),
+  object = ggplot(),
   dist, ...,
   xlim = NULL,
 #  xmin = NULL, xmax = NULL,
