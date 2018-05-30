@@ -116,15 +116,9 @@ in another.
 }
 \examples{
 gf_dens()
-gf_density(~ Sepal.Length,  color = ~Species, data = iris)
-gf_dens(~ Sepal.Length, color = ~Species, data = iris)
-gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
-# Chaining in the data
-iris \%>\% gf_dens(~ Sepal.Length, color = ~Species)
-gf_dens()
-gf_density(~ Sepal.Length,  color = ~Species, data = iris)
-gf_dens(~ Sepal.Length, color = ~Species, data = iris)
-gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
+gf_density(~ Sepal.Length,  fill = ~ Species, data = iris)
+gf_dens(~ Sepal.Length, color = ~ Species, data = iris)
+gf_freqpoly(~ Sepal.Length, color = ~ Species, data = iris, bins = 15)
 # Chaining in the data
 iris \%>\% gf_dens(~ Sepal.Length, color = ~Species)
 }

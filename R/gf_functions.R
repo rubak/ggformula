@@ -926,9 +926,9 @@ gf_dhistogram <-
 #' @export
 #' @examples
 #' gf_dens()
-#' gf_density(~ Sepal.Length,  color = ~Species, data = iris)
-#' gf_dens(~ Sepal.Length, color = ~Species, data = iris)
-#' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
+#' gf_density(~ Sepal.Length,  fill = ~ Species, data = iris)
+#' gf_dens(~ Sepal.Length, color = ~ Species, data = iris)
+#' gf_freqpoly(~ Sepal.Length, color = ~ Species, data = iris, bins = 15)
 #' # Chaining in the data
 #' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
 gf_density <-
@@ -949,12 +949,7 @@ gf_density <-
 #' @rdname gf_density
 #' @export
 #' @examples
-#' gf_dens()
-#' gf_density(~ Sepal.Length,  color = ~Species, data = iris)
-#' gf_dens(~ Sepal.Length, color = ~Species, data = iris)
-#' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris)
-#' # Chaining in the data
-#' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
+
 gf_dens <-
   layer_factory(
     geom = "line", stat = "density",
@@ -1102,11 +1097,14 @@ gf_percents <-
 #' @seealso [ggplot2::geom_freqpoly()]
 #' @export
 #' @examples
-#' gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
-#'   gf_freqpoly(~ Sepal.Length, data = iris, color = ~Species, bins = 20)
-#' gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris, bins = 20)
-#' gf_dens(~ Sepal.Length, data = iris, color = "navy") %>%
-# gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
+#' gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
+#'   gf_freqpoly( ~ Sepal.Length, data = iris, color = ~Species, bins = 20)
+#' gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris, bins = 20)
+#' if (utils(packageVersion("ggplot2") >= 2.2.1.9000")) {
+#'   gf_dens( ~ Sepal.Length, data = iris, color = "navy") %>%
+#'     gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,
+#'       color = "red", bins = 20)
+#' }
 
 gf_freqpoly <-
   layer_factory(
@@ -1666,8 +1664,8 @@ gf_rect <-
 #' @export
 #' @examples
 #' mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_abline(slope = ~0, intercept = ~median, color = ~cyl, data = mtcars2)
+#' gf_point(wt ~ hp, size = ~ wt, color = ~ cyl, data = mtcars) %>%
+#'   gf_abline(slope = ~ 0, intercept = ~ median, color = ~ cyl, data = mtcars2)
 #'
 #' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
 #'   gf_abline(slope = 0, intercept = 3, color = "green", data = mtcars2)
