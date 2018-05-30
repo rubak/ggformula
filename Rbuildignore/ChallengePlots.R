@@ -1,6 +1,6 @@
 require(RColorBrewer)
 require(ggformula)
-load("~/Downloads/likertdata.Rdata")
+load("/Users/rpruim/projects/github/talks/LessVolume/Data/likertdata.Rdata")
 colors1 <- brewer.pal(5, "Spectral")
 colorsB <- colors1[c(2,3,4,5,1)]
 baseplot <- ggplot(mapping = aes(x=citystate, y=Freq, fill = Response, order=Response)) +
@@ -32,7 +32,7 @@ reprex::reprex(
   {
     require(RColorBrewer)
     require(ggformula)
-    load("~/Downloads/likertdata.Rdata")
+    load("/Users/rpruim/projects/github/talks/LessVolume/Data/likertdata.Rdata")
     colors1 <- brewer.pal(5, "Spectral")
     colorsB <- colors1[c(2,3,4,5,1)]
     gf_col(Freq ~ citystate, fill = ~ Response, order = ~ Response, data = trial2$neg) %>%
@@ -64,7 +64,7 @@ reprex::reprex(
   {
     require(RColorBrewer)
     require(ggformula)
-    load("~/Downloads/likertdata.Rdata")
+    load("/Users/rpruim/projects/github/talks/LessVolume/Data/likertdata.Rdata")
     colors1 <- brewer.pal(5, "Spectral")
     colorsB <- colors1[c(2,3,4,5,1)]
     responses1 <- c("Not at all satisfied", "2", "3", "4", "Extremely satisfied")
