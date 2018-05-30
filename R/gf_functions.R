@@ -484,6 +484,12 @@ gf_hex <-
 
 gf_boxplot <-
   layer_factory(
+    aes_form =
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
+        y ~ x
+      } else {
+        list(y ~ x, ~ y, y ~ .)
+      },
     geom = "boxplot",
     stat = "boxplot",
     position = "dodge",
@@ -1227,13 +1233,11 @@ gf_qqstep <-
 #' gf_dhistogram(~ Sepal.Width, data = iris) %>%
 #' gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 #'
-#' # the choice of y value can affect how the plot
+#' # the choice of y value can affect how the plot looks.
 #' gf_dhistogram(~ Sepal.Width, data = iris) %>%
 #' gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 
-#' gf_jitter(Sepal.Length ~ Sepal.Width, data = iris) %>%
-#' gf_rug( Sepal.Length ~ . , data = iris, color = "green") %>%
-#' gf_rug( . ~ Sepal.Width, data = iris, color = "red")
+
 gf_rug <-
   layer_factory(
     geom = "rug",
