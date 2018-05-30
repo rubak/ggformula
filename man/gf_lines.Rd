@@ -32,26 +32,26 @@ See details and examples.}
 \item{gformula}{Must be \code{NULL}.}
 
 \item{data}{The data to be displayed in this layer. There are three
-   options:
+options:
 
-   If \code{NULL}, the default, the data is inherited from the plot
-   data as specified in the call to \code{\link{ggplot}}.
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-   A \code{data.frame}, or other object, will override the plot
-   data. All objects will be fortified to produce a data frame. See
-   \code{\link{fortify}} for which variables will be created.
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-   A \code{function} will be called with a single argument,
-   the plot data. The return value must be a \code{data.frame.}, and
-   will be used as the layer data.}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
 
 \item{slope}{Parameters that control the
 position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden}
+\code{show.legend} are overridden.}
 
 \item{intercept}{Parameters that control the
 position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden}
+\code{show.legend} are overridden.}
 
 \item{color}{A color or a formula used for mapping color.}
 
@@ -77,7 +77,9 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.}
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -92,11 +94,11 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{yintercept}{Parameters that control the
 position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden}
+\code{show.legend} are overridden.}
 
 \item{xintercept}{Parameters that control the
 position of the line. If these are set, \code{data}, \code{mapping} and
-\code{show.legend} are overridden}
+\code{show.legend} are overridden.}
 
 \item{coef}{A numeric vector of coefficients.}
 

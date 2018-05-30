@@ -31,15 +31,17 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{binwidth}{The width of the bins. The default is to use \code{bins}
-  bins that cover the range of the data. You should always override
-  this value, exploring multiple widths to find the best to illustrate the
-  stories in your data.
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from x.
+The default is to use \code{bins}
+bins that cover the range of the data. You should always override
+this value, exploring multiple widths to find the best to illustrate the
+stories in your data.
 
-  The bin width of a date variable is the number of days in each time; the
-  bin width of a time variable is the number of seconds.}
+The bin width of a date variable is the number of days in each time; the
+bin width of a time variable is the number of seconds.}
 
-\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30}
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
 \item{center}{The center of one of the bins.  Note that if center is above or
 below the range of the data, things will be shifted by an appropriate
@@ -51,7 +53,7 @@ specified.}
 \item{boundary}{A boundary between two bins. As with \code{center}, things
 are shifted when \code{boundary} is outside the range of the data. For
 example, to center on integers, use \code{width = 1} and \code{boundary =
-0.5}, even if \code{0.5} is outside the range of the data.  At most one of
+  0.5}, even if \code{0.5} is outside the range of the data.  At most one of
 \code{center} and \code{boundary} may be specified.}
 
 \item{xlab}{Label for x-axis. See also \code{\link[=gf_labs]{gf_labs()}}.}
@@ -120,7 +122,6 @@ gf_histogram(~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) \%>\
   gf_freqpoly(~ Sepal.Length, data = iris, color = ~Species, bins = 20)
 gf_freqpoly(~ Sepal.Length, color = ~Species, data = iris, bins = 20)
 gf_dens(~ Sepal.Length, data = iris, color = "navy") \%>\%
-gf_freqpoly(~ Sepal.Length, y = ~..density.., data = iris, color = "red", bins = 20)
 }
 \seealso{
 \code{\link[ggplot2:geom_freqpoly]{ggplot2::geom_freqpoly()}}

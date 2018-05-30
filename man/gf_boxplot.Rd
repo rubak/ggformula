@@ -36,53 +36,53 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{coef}{length of the whiskers as multiple of IQR.  Defaults to 1.5}
+\item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 
 \item{outlier.color}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
+aesthetics used for the box.
 
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.}
 
 \item{outlier.fill}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
+aesthetics used for the box.
 
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.}
 
 \item{outlier.shape}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
+aesthetics used for the box.
 
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.}
 
 \item{outlier.size}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
+aesthetics used for the box.
 
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.}
 
 \item{outlier.stroke}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
+aesthetics used for the box.
 
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.}
 
 \item{outlier.alpha}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
-  aesthetics used for the box.
+aesthetics used for the box.
 
-  In the unlikely event you specify both US and UK spellings of colour, the
-  US spelling will take precedence.}
+In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.}
 
-\item{notch}{if \code{FALSE} (default) make a standard box plot. If
+\item{notch}{If \code{FALSE} (default) make a standard box plot. If
 \code{TRUE}, make a notched box plot. Notches are used to compare groups;
 if the notches of two boxes do not overlap, this suggests that the medians
 are significantly different.}
 
-\item{notchwidth}{for a notched box plot, width of the notch relative to
+\item{notchwidth}{For a notched box plot, width of the notch relative to
 the body (default 0.5)}
 
-\item{varwidth}{if \code{FALSE} (default) make a standard box plot. If
+\item{varwidth}{If \code{FALSE} (default) make a standard box plot. If
 \code{TRUE}, boxes are drawn with widths proportional to the
 square-roots of the number of observations in the groups (possibly
 weighted, using the \code{weight} aesthetic).}
@@ -165,7 +165,7 @@ if (require(mosaicData)) {
 }
 \references{
 McGill, R., Tukey, J. W. and Larsen, W. A. (1978) Variations of
-    box plots. The American Statistician 32, 12-16.
+box plots. The American Statistician 32, 12-16.
 }
 \seealso{
 \code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}, \code{\link[=fivenum]{fivenum()}}, \code{\link[=df_stats]{df_stats()}}

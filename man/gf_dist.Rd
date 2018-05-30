@@ -4,7 +4,7 @@
 \alias{gf_dist}
 \title{Plot distributions}
 \usage{
-gf_dist(object = geom_blank(), dist, ..., xlim = NULL, kind = c("density",
+gf_dist(object = ggplot(), dist, ..., xlim = NULL, kind = c("density",
   "cdf", "qq", "qqstep", "histogram"), resolution = 5000L, params = NULL)
 }
 \arguments{

@@ -114,18 +114,17 @@ in another.
 \section{Aesthetics}{
 
 
-{\code{geom_rug} understands the following aesthetics (required aesthetics are in bold):
-
+\code{geom_rug} understands the following aesthetics (required aesthetics are in bold):
 \itemize{
-  \item \code{alpha}
-  \item \code{colour}
-  \item \code{group}
-  \item \code{linetype}
-  \item \code{size}
-  \item \code{x}
-  \item \code{y}
+\item \code{alpha}
+\item \code{colour}
+\item \code{group}
+\item \code{linetype}
+\item \code{size}
+\item \code{x}
+\item \code{y}
 }
-}
+Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
 
 }
 
@@ -168,12 +167,9 @@ gf_rug( ~ eruptions, data = faithful, color = "red", inherit = FALSE)
 gf_dhistogram(~ Sepal.Width, data = iris) \%>\%
 gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 
-# the choice of y value can affect how the plot
+# the choice of y value can affect how the plot looks.
 gf_dhistogram(~ Sepal.Width, data = iris) \%>\%
 gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
-gf_jitter(Sepal.Length ~ Sepal.Width, data = iris) \%>\%
-gf_rug( Sepal.Length ~ . , data = iris, color = "green") \%>\%
-gf_rug( . ~ Sepal.Width, data = iris, color = "red")
 }
 \seealso{
 \code{\link[ggplot2:geom_rug]{ggplot2::geom_rug()}}

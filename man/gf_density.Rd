@@ -40,10 +40,10 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{kernel}{Kernel. See list of available kernels in \code{\link{density}}.}
+\item{kernel}{Kernel. See list of available kernels in \code{\link[=density]{density()}}.}
 
 \item{n}{number of equally spaced points at which the density is to be
-estimated, should be a power of two, see \code{\link{density}} for
+estimated, should be a power of two, see \code{\link[=density]{density()}} for
 details}
 
 \item{trim}{This parameter only matters if you are displaying multiple
