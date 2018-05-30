@@ -545,12 +545,8 @@ gf_ingredients <-
     mapping <- modifyList(aesthetics, do.call(aes_string, mapped_list))
   }
 
-  # remove item -> . mappings
-  for (item in names(mapping)) {
-    if (mapping[[item]] == as.name(".")) {
-      mapping[[item]] <- NULL
-    }
-  }
+  mapping <- remove_dot_from_mapping(mapping)
+
 
   res <-
     list(
@@ -580,6 +576,24 @@ gf_ingredients <-
   res
 }
 
+
+# remove item -> . mappings
+remove_dot_from_mapping <- function(mapping) {
+  if (packageVersion("ggplot2") <= "2.2.1") {
+    for (item in names(mapping)) {
+      if (mapping[[item]] == as.name(".")) {
+        mapping[[item]] <- NULL
+      }
+    }
+  } else {
+    for (item in rev(seq_along(mapping))) {
+      if (length(mapping[[item]]) > 1 && mapping[[item]][[2]] == as.name(".")) {
+        mapping[[item]] <- NULL
+      }
+    }
+  }
+  mapping
+}
 
 formula_shape <- function(x) {
   if (length(x) < 2) return(0)
