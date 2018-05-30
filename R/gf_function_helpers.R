@@ -563,10 +563,18 @@ gf_ingredients <-
       params = modifyList(set_list, extras)
     )
   if (identical(data, NA)) {
-    res$data <-
-      do.call(
-        data.frame,
-        c(res[["mapping"]], res[["setting"]], list(stringsAsFactors = FALSE)))
+    if (packageVersion("ggplot2") <= "2.2.1") {
+      res$data <-
+        do.call(
+          data.frame,
+          c(res[["mapping"]], res[["setting"]], list(stringsAsFactors = FALSE)))
+    } else {
+      res$data <-
+        do.call(
+          data.frame,
+          c(lapply(res[["mapping"]], dplyr::last), res[["setting"]],
+            list(stringsAsFactors = FALSE)))
+    }
     res$params[names(res$mapping)] <- NULL  # remove mapped attributes
     aes_list <- as.list(intersect(names(res$data), names(res$mapping)))
     names(aes_list) <- aes_list
