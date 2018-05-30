@@ -20,11 +20,11 @@ Imports:
     magrittr,
     tibble,
     stringr,
+    dplyr,
     grid
 Suggests:
     lattice,
     mosaic,
-    dplyr,
     testthat,
     mosaicData,
     knitr,
