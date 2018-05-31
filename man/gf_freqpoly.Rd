@@ -118,20 +118,14 @@ be the right thing if formulas created in one environment are used to create plo
 in another.
 }
 \examples{
-gf_line()
-if (require(mosaicData)) {
-  gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
-  gf_point(births ~ date, color = ~wday, data = Births78)
-  # lines make the exceptions stand out more prominently
-  gf_line(births ~ date, color = ~wday, data = Births78)
-  }
-
-gf_path()
-if (require(dplyr)) {
-  data.frame(t = seq(1, 10 * pi, length.out = 400)) \%>\%
-  mutate( x = t * cos(t), y = t * sin(t)) \%>\%
-  gf_path(y ~ x, color = ~t)
-  }
+gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) \%>\%
+  gf_freqpoly( ~ Sepal.Length, data = iris, color = ~Species, bins = 20)
+gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris, bins = 20)
+if (utils::packageVersion("ggplot2") >= "2.2.1.9000") {
+  gf_dens( ~ Sepal.Length, data = iris, color = "navy") \%>\%
+    gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,
+      color = "red", bins = 20)
+}
 }
 \seealso{
 \code{\link[ggplot2:geom_freqpoly]{ggplot2::geom_freqpoly()}}
