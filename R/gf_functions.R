@@ -1099,7 +1099,7 @@ gf_percents <-
 #' gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
 #'   gf_freqpoly( ~ Sepal.Length, data = iris, color = ~Species, bins = 20)
 #' gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris, bins = 20)
-#' if (utils::packageVersion("ggplot2") >= 2.2.1.9000") {
+#' if (utils::packageVersion("ggplot2") >= "2.2.1.9000") {
 #'   gf_dens( ~ Sepal.Length, data = iris, color = "navy") %>%
 #'     gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,
 #'       color = "red", bins = 20)
@@ -1896,3 +1896,34 @@ gf_fitdistr <-
     extras = alist(dist = dnorm, start = NULL, alpha = , color = , fill = , group = , linetype = , size = ),
     note = "dist should be a density function like dnorm or dgamma"
   )
+
+#' Mapping with shape files
+#'
+#' Mapping with shape files
+#'
+#' @inherit gf_point
+#' @param geometry A column of class sfc containg simple features data. (Another option
+#'   is that `data` may contain a column named `geometry`.)  `geometry` is never
+#'   inherited.
+#' @export
+#' @examples
+#'
+#' if (require(maps)) {
+#'   US <- sf::st_as_sf(map('state', plot = FALSE, fill = TRUE))
+#'   gf_sf( fill = ~ factor(nchar(ID)), data = US) %>%
+#'   gf_refine(coord_sf())
+#'   MI <- sf::st_as_sf(map('county', 'michigan', plot = FALSE, fill = TRUE))
+#'   gf_sf( fill = ~ factor(nchar(ID)), data = MI) %>%
+#'   gf_refine(coord_sf())
+#' }
+
+gf_sf <-
+  layer_factory(
+    layer_fun = ggplot2::geom_sf,
+    geom = "sf", stat = "sf",
+    position = "identity",
+    aes_form = list(NULL),
+    extras = alist(alpha = , color = , fill = , group = , linetype = ,
+                   size =, geometry =  )
+  )
+
