@@ -794,7 +794,7 @@ gf_count <-
 #'     group_by(substance) %>%
 #'     summarise(count = n()) %>%
 #'     ungroup() %>%
-#'     arrange(-count) %>%
+#'     dplyr::arrange(-count) %>%
 #'     mutate(
 #'       cumcount = cumsum(count),
 #'       substance = reorder(substance, - count)
@@ -1901,20 +1901,35 @@ gf_fitdistr <-
 #'
 #' Mapping with shape files
 #'
-#' @inherit gf_point
+#' @inheritParams gf_point
+#' @inherit gf_line
+#' @inherit geom_sf
 #' @param geometry A column of class sfc containg simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.
+#' @seealso [geom_sf()]
 #' @export
 #' @examples
 #'
-#' if (require(maps)) {
+#' if (require(maps) && require(sf)) {
 #'   US <- sf::st_as_sf(map('state', plot = FALSE, fill = TRUE))
 #'   gf_sf( fill = ~ factor(nchar(ID)), data = US) %>%
 #'   gf_refine(coord_sf())
+#'
+#'   # We can specify shape data and external data separately using geometry
 #'   MI <- sf::st_as_sf(map('county', 'michigan', plot = FALSE, fill = TRUE))
-#'   gf_sf( fill = ~ factor(nchar(ID)), data = MI) %>%
-#'   gf_refine(coord_sf())
+#'   gf_sf(fill = ~ log10(population), data = MIpop %>% dplyr::arrange(county),
+#'         geometry = ~ MI$geometry, color = "white") %>%
+#'   gf_refine(coord_sf(), theme_bw())
+#'
+#'   # alternatively we can merge external data and shape data into one data frame.
+#'   MI %>%
+#'     dplyr::mutate(county = gsub("michigan,", "", ID)) %>%
+#'     dplyr::left_join(MIpop %>% dplyr::mutate(county = tolower(county))) %>%
+#'     gf_sf(fill = ~ population/1e3) %>%
+#'   gf_refine(
+#'     coord_sf(), theme_bw(),
+#'     scale_fill_continuous(name = "population (thousands)", trans = "log10"))
 #' }
 
 gf_sf <-
