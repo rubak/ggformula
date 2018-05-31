@@ -6,3 +6,4 @@ cran-comments.md
 ^inst/tutorials/introduction/rsconnect$
 ^inst/tutorials/refining/rsconnect$
 ^revdep$
+^data-raw$
