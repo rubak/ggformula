@@ -8,9 +8,36 @@ utils::globalVariables("role")
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
 #' @importFrom dplyr last
 #' @import ggplot2
+NA
 
-# produces a gf_ function wrapping a particular geom.
-# use gf_roxy to create boilerplate roxygen documentation to match (and then edit by hand as needed).
+
+#' Create a ggformula layer function
+#'
+#' Primarily intended for package developers, this function factory
+#' is used to create the layer functions in the ggformula package.
+#'
+#' @param geom The geom to use for the layer
+#'   (may be specified as a string).
+#' @param position The position function to use for the layer
+#'   (may be specified as a string).
+#' @param stat The stat function to use for the layer
+#'   (may be specified as a string).
+#' @param pre code to run as a "pre-process".
+#' @param aes_form A single formula or a list of formulas specifying
+#'   how attributes are inferred from the formula.  Use `NULL` if the
+#'   funciton may be used without a formula.
+#' @param extras An alist of additional arguments (potentially with defaults)
+#' @param note A note to add to the quick help.
+#' @param aesthetics Additional aesthetics (typically created using
+#'   [`ggplot2::aes()`]) set rather than inferred from formula.
+#'   `gf_dhistogram()` uses this to set the y aesthetic to `stat(density)`,
+#'   for example.
+#' @param interit.aes A logical indicating whether aesthetics should be
+#'   inherited from prior layers.
+#' @param data A data frame or `NULL` or `NA`.
+#' @param layer_fun The function used to create the layer.
+#' @return A function.
+#' @export
 
 layer_factory <- function(
   geom = "point",
