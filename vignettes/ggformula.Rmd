@@ -521,8 +521,9 @@ gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp, data = Weather) %>
 
 ### Maps
 
-Improved map functionality is coming in `ggplot2` version 2.3.  For now,
-basic maps can be created using `gf_polygon()`.
+
+Prior to `ggplot2` version 2.3,
+basic maps could be created using `gf_polygon()`.
 
 ```{r, fig.width = 6, fig.height = 3, out.width = "75%"}
 if (require(maps) && require(mosaic) && require(dplyr)) {
@@ -540,6 +541,33 @@ if (require(maps) && require(mosaic) && require(dplyr)) {
   gf_refine(mosaic::theme_map())
 }
 ```
+
+Starting with `ggplot2` version 2.3, there is direct support for shape files.
+This allows each row of a data frame to contain all the geometry information
+for a region in a single column.  There is also better support for overlaying
+information from multiple shape files.
+
+
+```{r, fig.width = 6, fig.height = 3, out.width = "75%"}
+if (require(maps) && require(mosaic) && require(dplyr) && require(sf) && require(purrr)) {
+  USshape <- 
+    sf::st_as_sf(maps::map('state', plot = FALSE, fill = TRUE)) %>%
+    dplyr::mutate(
+      name_length = nchar(ID),
+      centroid = purrr::map(geometry, st_centroid),
+      coords_x = purrr::map_dbl(centroid, 1),
+      coords_y = purrr::map_dbl(centroid, 2)
+    ) 
+    
+  gf_sf(fill = ~ factor(name_length), color = "white", data = USshape, alpha = 0.5) %>%
+    gf_sf(data = sf::st_centroid(USshape), color = "white", alpha = 0.5, size = 3) %>%
+    gf_text(coords_y ~ coords_x, label = ~ ID, color = "gray20", size = 2) %>%
+    gf_labs(x = "", y = "") %>%
+    gf_refine(mosaic::theme_map(), theme_bw()) %>%
+    gf_labs(fill = "name length")
+}
+```
+
 
 ### New types of plots
 

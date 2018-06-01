@@ -94,6 +94,34 @@ This will typically do the right thing when formulas are created on the fly, but
 be the right thing if formulas created in one environment are used to create plots
 in another.
 }
+\section{Geometry aesthetic}{
+
+
+\code{geom_sf} uses a unique aesthetic: \code{geometry}, giving an
+column of class \code{sfc} containg simple features data. There
+are three ways to supply the \code{geometry} aesthetic:
+\itemize{
+\item Do nothing: by default \code{geom_sf} assumes it is stored in
+the \code{geometry} column.
+\item Explicitly pass an \code{sf} object to the \code{data} argument.
+This will use the primary geometry column, no matter what it's called.
+\item Supply your own using \code{aes(geometry = my_column)}
+}
+
+Unlike other aesthetics, \code{geometry} will never be inherited from
+the plot.
+
+}
+
+\section{CRS}{
+
+
+\code{coord_sf()} ensures that all layers use a common CRS. You can
+either specify it using the \code{CRS} param, or \code{coord_sf} will
+take it from the first layer that defines a CRS.
+
+}
+
 \examples{
 
 if (require(maps) && require(sf)) {
@@ -118,5 +146,5 @@ if (require(maps) && require(sf)) {
 }
 }
 \seealso{
-\code{\link[=geom_sf]{geom_sf()}}
+\code{\link[ggplot2:geom_sf]{ggplot2::geom_sf()}}
 }

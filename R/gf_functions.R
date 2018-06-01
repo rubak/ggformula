@@ -1903,11 +1903,11 @@ gf_fitdistr <-
 #'
 #' @inheritParams gf_point
 #' @inherit gf_line
-#' @inherit geom_sf
+#' @inherit ggplot2::ggsf
 #' @param geometry A column of class sfc containg simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.
-#' @seealso [geom_sf()]
+#' @seealso [ggplot2::geom_sf()]
 #' @export
 #' @examples
 #'
