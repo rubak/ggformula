@@ -32,7 +32,7 @@ NA
 #'   [`ggplot2::aes()`]) set rather than inferred from formula.
 #'   `gf_dhistogram()` uses this to set the y aesthetic to `stat(density)`,
 #'   for example.
-#' @param interit.aes A logical indicating whether aesthetics should be
+#' @param inherit.aes A logical indicating whether aesthetics should be
 #'   inherited from prior layers.
 #' @param data A data frame or `NULL` or `NA`.
 #' @param layer_fun The function used to create the layer.

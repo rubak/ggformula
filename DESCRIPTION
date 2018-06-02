@@ -36,6 +36,7 @@ Suggests:
     scales,
     maps,
     sf,
+    purr,
     ggthemes
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000

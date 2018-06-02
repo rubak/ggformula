@@ -34,12 +34,12 @@ funciton may be used without a formula.}
 \code{gf_dhistogram()} uses this to set the y aesthetic to \code{stat(density)},
 for example.}
 
+\item{inherit.aes}{A logical indicating whether aesthetics should be
+inherited from prior layers.}
+
 \item{data}{A data frame or \code{NULL} or \code{NA}.}
 
 \item{layer_fun}{The function used to create the layer.}
-
-\item{interit.aes}{A logical indicating whether aesthetics should be
-inherited from prior layers.}
 }
 \value{
 A function.
