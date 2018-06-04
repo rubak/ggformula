@@ -116,6 +116,8 @@ in another.
 x <- rnorm(1000)
 gf_histogram(  ~ x, bins = 30)
 gf_dhistogram( ~ x, bins = 30)
+gf_dhistogram( ~ x, binwidth = 0.5, center = 0, color = "black")
+gf_dhistogram( ~ x, binwidth = 0.5, boundary = 0, color = "black")
 gf_dhistogram( ~ x, bins = 30) \%>\%
  gf_fitdistr()  # normal by default; see help for gf_fitdistr() for more info.
 
