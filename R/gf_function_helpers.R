@@ -623,7 +623,7 @@ remove_dot_from_mapping <- function(mapping) {
     }
   } else {
     for (item in rev(seq_along(mapping))) {
-      if (rlang::get_expr(mapping[[item]]) == as.name(".")) {
+      if (identical(rlang::get_expr(mapping[[item]]), quote(.))) {
         mapping[[item]] <- NULL
       }
     }
