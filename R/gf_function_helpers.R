@@ -6,7 +6,7 @@ utils::globalVariables("role")
 #' @importFrom stats as.formula
 #' @importFrom utils modifyList
 #' @importFrom rlang is_character exprs f_rhs is_formula is_null enquo
-#' @importFrom dplyr last
+#' @importFrom rlang get_expr
 #' @import ggplot2
 NA
 
@@ -562,7 +562,7 @@ gf_ingredients <-
     mapped_list <- as.list(aes_df[["expr"]][aes_df$map])
     names(mapped_list) <- aes_df[["role"]][aes_df$map]
     more_mapped_list <-
-      lapply(aesthetics, function(x) deparse(dplyr::last(x))) %>%
+      lapply(aesthetics, function(x) deparse(rlang::get_expr(x))) %>%
       stats::setNames(names(aesthetics))
     mapped_list <-  c(mapped_list, more_mapped_list)
 
@@ -599,7 +599,7 @@ gf_ingredients <-
       res$data <-
         do.call(
           data.frame,
-          c(lapply(res[["mapping"]], dplyr::last), res[["setting"]],
+          c(lapply(res[["mapping"]], rlang::get_expr), res[["setting"]],
             list(stringsAsFactors = FALSE)))
     }
     res$params[names(res$mapping)] <- NULL  # remove mapped attributes
@@ -623,7 +623,7 @@ remove_dot_from_mapping <- function(mapping) {
     }
   } else {
     for (item in rev(seq_along(mapping))) {
-      if (dplyr::last(mapping[[item]]) == as.name(".")) {
+      if (rlang::get_expr(mapping[[item]]) == as.name(".")) {
         mapping[[item]] <- NULL
       }
     }
