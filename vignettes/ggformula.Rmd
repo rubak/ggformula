@@ -454,6 +454,24 @@ gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
                 position = position_dodge(width = 0.6))
 ```
 
+### Plotting functions
+
+`ggformula` provides two way to plot functions: `gf_function()` and `gf_fun()`.  They differ primarily in how one specifies the function to be plotted.  
+
+ * `gf_function()` requires a (vectorized) function of one variable.
+ * `gf_fun()` requires a formula describing how the y-values are computed from the x-values.
+ 
+If these are used as a first layer, the limits for the x-axis must be specified.
+ 
+```{r, functions}
+gf_function(fun = sqrt, xlim = c(0, 10)) %>%
+  gf_fun(2 + 3 * cos(10 * x) ~ x, color = "red", n = 800)
+f <- makeFun(lm(totalbill ~ poly(month, 2), data = mosaicData::Utilities))
+gf_point(totalbill ~ month, data = mosaicData::Utilities, alpha = 0.6) %>%
+  gf_fun(f(m) ~ m, color = "red")
+```
+
+
 ## Chaining to create complex plots
 
 ### Multiple layers 
