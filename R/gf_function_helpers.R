@@ -78,6 +78,19 @@ layer_factory <- function(
 
       function_name <- as.character(match.call()[1])
 
+      # grab formals for geom and stat
+
+      if (is.character(stat) && ! grepl("^stat_", stat)) {
+        stat_formals <- formals(paste0("stat_", stat))
+      } else {
+        stat_formals <- formals(stat)
+      }
+      if (is.character(geom) && ! grepl("^geom_", geom)) {
+        geom_formals <- formals(paste0("geom_", geom))
+      } else {
+        geom_formals <- formals(geom)
+      }
+
       # make sure we have a list of formulas here
       if (!is.list(aes_form)) aes_form <- list(aes_form)
 
@@ -128,10 +141,21 @@ layer_factory <- function(
       ############# create extras_and_dots ############
       # collect arguments
       #  * remove those that are "missing"
-      #  * remove function args not for layers
+      #  * remove function args not for layer, stat, or geom
+
       extras_and_dots <- modifyList(formals(), as.list(match.call())[-1])
-      extras_and_dots <- extras_and_dots[! sapply(extras_and_dots, is.symbol)]
-      for (n in setdiff(names(formals()), names(extras))) {
+      # remove missing -- is there a better way to determine missing?
+      extras_and_dots <-
+        extras_and_dots[! sapply(extras_and_dots,
+                                 function(x) is.symbol(x) && identical(as.character(x), ""))]
+      # remove args not used by stat or geom and not in extras
+      for (n in setdiff(names(formals()),
+                        union(
+                          union(
+                            stat_formals,
+                            geom_formals),
+                          names(extras)))
+           ) {
         extras_and_dots[[n]] <- NULL
       }
       # evaluate any items that are still calls
@@ -139,8 +163,9 @@ layer_factory <- function(
       #   if (is.call(extras_and_dots[[n]]))
       #     extras_and_dots[[n]] <- eval(extras_and_dots[[n]], environment)
       # }
+      # return(extras_and_dots)
       extras_and_dots <-
-        lapply(extras_and_dots, function(x) eval(x, environment))
+        lapply(extras_and_dots, function(x) if(is.symbol(x)) eval(x, environment) else x)
       #
       ########### end create extras_and_dots ##########
 
