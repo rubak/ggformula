@@ -984,11 +984,11 @@ gf_dens <-
 
 gf_dotplot <-
   layer_factory(
-    geom = "dotplot", stat = "bindot",
+    geom = "dotplot", stat = ggplot2::StatBin,
     layer_fun = ggplot2::geom_dotplot,
     aes_form = ~x,
     extras = alist(
-      alpha = , color = , fill =, group = ,
+      alpha = , color = , fill = , group = ,
       binwidth = NULL, binaxis = "x", method = "dotdensity",
       binpositions = "bygroup", stackdir = "up", stackratio = 1,
       dotsize = 1, stackgroups = FALSE, origin = NULL, right = TRUE,

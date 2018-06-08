@@ -78,18 +78,6 @@ layer_factory <- function(
 
       function_name <- as.character(match.call()[1])
 
-      # grab formals for geom and stat
-
-      if (is.character(stat) && ! grepl("^stat_", stat)) {
-        stat_formals <- formals(paste0("stat_", stat))
-      } else {
-        stat_formals <- formals(stat)
-      }
-      if (is.character(geom) && ! grepl("^geom_", geom)) {
-        geom_formals <- formals(paste0("geom_", geom))
-      } else {
-        geom_formals <- formals(geom)
-      }
 
       # make sure we have a list of formulas here
       if (!is.list(aes_form)) aes_form <- list(aes_form)
@@ -142,6 +130,24 @@ layer_factory <- function(
       # collect arguments
       #  * remove those that are "missing"
       #  * remove function args not for layer, stat, or geom
+
+      # grab formals for geom and stat
+
+      if (is.character(stat) && ! grepl("^stat_", stat)) {
+        stat_formals <- formals(paste0("stat_", stat))
+      } else if (is.function(stat)) {
+        stat_formals <- formals(stat)
+      } else {
+        stat_formals <- list()
+      }
+
+      if (is.character(geom) && ! grepl("^geom_", geom)) {
+        geom_formals <- formals(paste0("geom_", geom))
+      } else if (is.function(geom)) {
+        geom_formals <- formals(geom)
+      } else {
+        geom_formals <- list()
+      }
 
       extras_and_dots <- modifyList(formals(), as.list(match.call())[-1])
       # remove missing -- is there a better way to determine missing?
