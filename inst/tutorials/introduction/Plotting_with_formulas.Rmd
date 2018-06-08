@@ -358,7 +358,8 @@ The general form for these is `option = value`.
 For example, 
 
   * `spar = 0.5` (or any number between 0 and 1) controls the amount of smoothing in `gf_spline()`.
-  * `se = FALSE` (note capitalization) turns off the "error band" in `gf_smooth()`.
+  * `se = TRUE` (note capitalization) turns on the "error band" in `gf_smooth()`
+  and `gf_lm()`.
   * `color = "red"` or `fill = "navy"` (note quotes) can be used to change the colors of things.  (`fill` is typically used for regions that are "filled in" and `color` for dots and lines.)
   * `alpha = 0.5` (or any number between 0 and 1) will set the opacity (0 is completely
   transparnt and 1 is completely opaque).
@@ -378,7 +379,7 @@ gf_spline(births ~ date, data = Births1978,
 
 ```{r, gf-options-2, exercise = TRUE}
 gf_smooth(births ~ date, data = Births1978, 
-          se = FALSE, 
+          se = TRUE, 
           color = "red")
 ```
 

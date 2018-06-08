@@ -428,12 +428,12 @@ gf_jitter(length ~ sex, color = ~ domhand, data = KidsFeet,
 ```
 
 The other two values computed by `mean_se()` are available as
-`..ymin..` and `..ymax..`.
+`stat(ymin)` and `stat(ymax)`.
 
 ```{r, stats03}
 gf_jitter(length ~ sex, color = ~ domhand, data = KidsFeet,
           width = 0.1, height = 0, alpha = 0.3) %>%
-  gf_pointrange(length + ..ymin.. + ..ymax.. ~ sex, 
+  gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
                 color = ~ domhand, data = KidsFeet, 
                 group = ~ domhand, stat="summary")
 ```
@@ -447,7 +447,7 @@ named `y`, `ymin`, and `ymax`.
 gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
           width = 0.1, height = 0, alpha = 0.5,
           position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.3)) %>%
-  gf_pointrange(length + ..ymin.. + ..ymax.. ~ sex, 
+  gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
                 color = ~ domhand, data = KidsFeet, 
                 group = ~ domhand, stat="summary",
                 fun.y = median, fun.ymin = min, fun.ymax = max,

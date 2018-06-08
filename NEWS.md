@@ -1,4 +1,10 @@
 
+# ggformula 0.8.0
+
+ * The internals of all of the `gf_` funcitons have been modified to make them work with `ggplot2` version 2.3.
+ 
+ * The default value for `se` in `gf_smooth()` has been changed from `TRUE` to `FALSE`.  
+ 
 # ggformula 0.7.0
 
  * Formulas of the shape `y ~ .` can be used for plots that require a `y` aesthetic 

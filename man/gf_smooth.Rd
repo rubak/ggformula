@@ -6,7 +6,7 @@
 \title{Formula interface to geom_smooth()}
 \usage{
 gf_smooth(object = NULL, gformula = NULL, data = NULL, method = "auto",
-  formula = y ~ x, se = TRUE, method.args, n = 80, span = 0.75,
+  formula = y ~ x, se = FALSE, method.args, n = 80, span = 0.75,
   fullrange = FALSE, level = 0.95, xlab, ylab, title, subtitle, caption,
   geom = "smooth", stat = "smooth", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
