@@ -34,10 +34,6 @@ See details and examples.}
 
 \item{data}{A data frame with the variables to be plotted.}
 
-\item{sides}{A string that controls which sides of the plot the rugs appear on.
-It can be set to a string containing any of \code{"trbl"}, for top, right,
-bottom, and left.}
-
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
 \item{color}{A color or a formula used for mapping color.}
@@ -92,8 +88,10 @@ a gg object
 By default, these functions do not inherit from the formula in the original layer
 (because doing so would often result in rugs on both axes), so the formula is required.
 }
-\details{
-Positional aesthetics are specified using the formula in \code{gformula}.
+\section{Specifying plot attributes}{
+
+
+Positional attributes (a.k.a, aesthetics) are specified using the formula in \code{gformula}.
 Setting and mapping of additional attributes can be done through the
 use of additional arguments.
 Attributes can be set can be set using arguments of the form \code{attribute = value} or
@@ -105,27 +103,15 @@ This provides an alternative to
 \code{\link[=gf_facet_wrap]{gf_facet_wrap()}} and
 \code{\link[=gf_facet_grid]{gf_facet_grid()}} that is terser and may feel more familiar to users
 of \pkg{lattice}.
+}
+
+\section{Evaluation}{
+
 
 Evaluation of the \pkg{ggplot2} code occurs in the environment of \code{gformula}.
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.
-}
-\section{Aesthetics}{
-
-
-\code{geom_rug} understands the following aesthetics (required aesthetics are in bold):
-\itemize{
-\item \code{alpha}
-\item \code{colour}
-\item \code{group}
-\item \code{linetype}
-\item \code{size}
-\item \code{x}
-\item \code{y}
-}
-Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}
-
 }
 
 \examples{

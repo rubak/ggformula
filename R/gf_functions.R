@@ -5,6 +5,8 @@ NA
 
 #' Formula interface to ggplot2
 #'
+#' @section The ggformula system:
+#'
 #' The functions in \pkg{ggformula} provide a formula interface to \pkg{ggplot2} layer
 #' functions and a system for working with pipes to create multi-layer
 #' plots and to refine plots.
@@ -13,7 +15,10 @@ NA
 #' functions like [stats::lm()] that use a formula interface and with the
 #' numerical summary functions in the \pkg{mosaic} package.
 #'
-#' Positional aesthetics are typically specified using a formula (see the `gformula` argument).
+#' @section Specifying plot attributes:
+#'
+#' Positional attributes (a.k.a aesthetics) are typically specified using a formula
+#' (see the `gformula` argument).
 #' Setting and mapping of additional attributes can be done through the use of additional arguments.
 #' Attributes can be set can be set using arguments of the form `attribute = value` or
 #' mapped using arguments of the form `attribute = ~ expression`.
@@ -26,6 +31,7 @@ NA
 #' [gf_facet_grid()] that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
 #'
+#' @section Evaluation:
 #' Evaluation of the \pkg{ggplot2} code occurs in the environment of `gformula`.
 #' This will typically do the right thing when formulas are created on the fly, but might not
 #' be the right thing if formulas created in one environment are used to create plots
@@ -43,7 +49,9 @@ NA
 #'
 #' Scatterplots in `ggformula`.
 #'
-#' Positional aesthetics are specified using the formula in `gformula`.
+#' @section Specifying plot attributes:
+#'
+#' Positional attributes (a.k.a, aesthetics) are specified using the formula in `gformula`.
 #' Setting and mapping of additional attributes can be done through the
 #' use of additional arguments.
 #' Attributes can be set can be set using arguments of the form `attribute = value` or
@@ -55,6 +63,8 @@ NA
 #' [gf_facet_wrap()] and
 #' [gf_facet_grid()] that is terser and may feel more familiar to users
 #' of \pkg{lattice}.
+#'
+#' @section Evaluation:
 #'
 #' Evaluation of the \pkg{ggplot2} code occurs in the environment of `gformula`.
 #' This will typically do the right thing when formulas are created on the fly, but might not
@@ -389,8 +399,8 @@ gf_quantile <-
 
 #' Formula interface to geom_density_2d()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_density_2d description
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_density_2d
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -433,8 +443,8 @@ gf_density2d <-
 
 #' Formula interface to geom_hex()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_hex details
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_hex
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -456,8 +466,8 @@ gf_hex <-
 
 #' Formula interface to geom_boxplot()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_boxplot description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_boxplot
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -503,8 +513,8 @@ gf_boxplot <-
 
 #' Formula interface to geom_text() and geom_label()
 #'
-#' @inherit gf_point
 #' @inherit ggplot2::geom_text references description
+#' @inherit gf_point
 #' @inheritParams ggplot2::geom_text
 #' @param label The text to be displayed.
 #' @param angle An angle for rotating the text.
@@ -575,8 +585,8 @@ gf_label <-
 
 #' Formula interface to geom_area()
 #'
-#' @inheritParams gf_line
 #' @inherit ggplot2::geom_area description
+#' @inheritParams gf_line
 #' @inheritParams ggplot2::geom_area
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -609,9 +619,9 @@ gf_area <-
 
 #' Formula interface to geom_violin()
 #'
+#' @inherit ggplot2::geom_violin references description
 #' @inherit gf_point
 #' @inheritParams gf_line
-#' @inherit ggplot2::geom_violin references description
 #' @inheritParams ggplot2::geom_violin
 #' @inheritParams ggplot2::stat_ydensity
 #' @param weight Useful for summarized data, `weight` provides a count
@@ -619,7 +629,7 @@ gf_area <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_violin()]
 #' @export
@@ -645,8 +655,8 @@ gf_violin <-
 #' It is useful when you have variables that describe direction
 #' and distance.
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_spoke description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_spoke
 #' @param angle The angle at which segment leaves the point (x,y).
 #' @param radius The length of the segment.
@@ -680,8 +690,8 @@ gf_spoke <-
 
 #' Formula interface to geom_step()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_step description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_step
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -718,9 +728,9 @@ gf_step <-
 
 #' Formula interface to geom_tile()
 #'
-#' @inherit gf_point
-#' @inherit gf_line
 #' @inherit ggplot2::geom_tile description references
+#' @inherit gf_line
+#' @inherit gf_point
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -743,8 +753,8 @@ gf_tile <-
 
 #' Formula interface to geom_count()
 #'
-#' @inherit gf_point
 #' @inherit ggplot2::geom_count description references
+#' @inherit gf_point
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -771,8 +781,8 @@ gf_count <-
 
 #' Formula interface to geom_col()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_col description references
+#' @inherit gf_line
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -818,8 +828,8 @@ gf_col <-
 
 #' Formula interface to geom_blank()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_blank description references
+#' @inherit gf_line
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
@@ -846,8 +856,8 @@ gf_frame <-
 #' Formula interface to geom_histogram()
 #'
 #' Count and density histograms in `ggformula`.
-#' @inherit gf_line
 #' @inherit ggplot2::geom_histogram description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_histogram
 #' @param gformula A formula with shape `~ x` (or `y ~ x`, but this shape is not
 #'   generally needed).
@@ -914,8 +924,8 @@ gf_dhistogram <-
 
 #' Formula interface to stat_density()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_density description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_density
 #'
 #' @param gformula A formula with shape `~ x`.
@@ -969,7 +979,7 @@ gf_dens <-
 #' Formula interface to geom_dotplot()
 #'
 #' @inherit gf_point
-#' @inherit ggplot2::geom_dotplot description
+#' @inherit ggplot2::geom_dotplot details description references
 #' @inheritParams ggplot2::geom_dotplot
 #' @param gformula A formula with shape `~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -997,9 +1007,9 @@ gf_dotplot <-
 
 #' Formula interface to geom_bar()
 #'
+#' @inherit ggplot2::geom_bar description references
 #' @inherit gf_point
 #' @inheritParams gf_line
-#' @inherit ggplot2::geom_bar description references
 #' @inheritParams ggplot2::geom_bar
 #'
 #' @param gformula A formula, typically with shape `~ x`.  (`y ~ x` is also possible,
@@ -1085,8 +1095,8 @@ gf_percents <-
 
 #' Formula interface to geom_freqpoly()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_freqpoly description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_freqpoly
 #' @param gformula A formula with shape `~ x` or `y ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -1181,8 +1191,8 @@ gf_qqstep <-
 #' By default, these functions do not inherit from the formula in the original layer
 #' (because doing so would often result in rugs on both axes), so the formula is required.
 #'
+#' @inherit ggplot2::geom_rug description
 #' @inherit gf_line
-#' @inherit ggplot2::geom_rug
 #'
 #'
 #' @param gformula A formula with shape `y ~ x` (`gf_rug()`) or `~ x` (`gf_rugx()`) or
@@ -1266,8 +1276,8 @@ gf_rugy <-
 
 #' Formula interface to geom_contour()
 #'
-#' @inherit gf_point
 #' @inherit ggplot2::geom_contour description references
+#' @inherit gf_point
 #' @inheritParams ggplot2::geom_contour
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -1287,8 +1297,8 @@ gf_contour <-
 
 #' Formula interface to geom_ribbon()
 #'
-#' @inherit gf_area
 #' @inherit ggplot2::geom_ribbon description references
+#' @inherit gf_area
 #' @inheritParams ggplot2::geom_ribbon
 #' @param gformula A formula with shape `ymin + ymax ~ x`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -1322,8 +1332,8 @@ gf_ribbon <-
 
 #' Formula interface to geom_curve()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_curve description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_curve
 #'
 #' @param gformula A formula with shape `y + yend ~ x + xend`.
@@ -1349,8 +1359,8 @@ gf_curve <-
 
 #' Formula interface to geom_segment()
 #'
-#' @inherit gf_curve
 #' @inherit ggplot2::geom_segment description references
+#' @inherit gf_curve
 #' @inheritParams ggplot2::geom_segment
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -1377,8 +1387,8 @@ gf_segment <-
 
 #' Formula interface to geom_linerange() and geom_pointrange()
 #'
-#' @inherit gf_ribbon
 #' @inherit ggplot2::geom_linerange description references
+#' @inherit gf_ribbon
 #' @inheritParams ggplot2::geom_linerange
 #' @inheritParams gf_line
 #'
@@ -1462,8 +1472,8 @@ gf_pointrange <-
 
 #' Formula interface to geom_crossbar()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_crossbar description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_crossbar
 #'
 #' @param gformula A formula with shape `y + ymin + ymax ~ x`.
@@ -1568,8 +1578,8 @@ gf_errorbar <-
 
 #' Formula interface to geom_errorbarh()
 #'
-#' @inherit gf_line
 #' @inherit ggplot2::geom_errorbarh description references
+#' @inherit gf_line
 #' @inheritParams ggplot2::geom_errorbarh
 #' @param gformula A formula with shape `y ~ x + xmin + xmax`.
 #'   Faceting can be achieved by including `|` in the formula.
@@ -1904,8 +1914,8 @@ gf_fitdistr <-
 #' Mapping with shape files
 #'
 #' @inheritParams gf_point
-#' @inherit gf_line
 #' @inherit ggplot2::ggsf
+#' @inherit gf_line
 #' @param geometry A column of class sfc containg simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.

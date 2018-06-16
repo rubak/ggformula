@@ -93,9 +93,8 @@ middle bar in \code{geom_crossbar()} and the middle point in
 \code{geom_pointrange()}.}
 }
 \description{
-For each x value, \code{geom_ribbon} displays a y interval defined
-by \code{ymin} and \code{ymax}. \code{geom_area} is a special case of
-\code{geom_ribbon}, where the \code{ymin} is fixed to 0.
+Various ways of representing a vertical interval defined by \code{x},
+\code{ymin} and \code{ymax}. Each case draws a single graphical object.
 }
 \examples{
 gf_linerange()
