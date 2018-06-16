@@ -15,7 +15,10 @@ have_packages <-
   require(dplyr) &&
   require(ggplot2) &&
   require(mosaicData) &&
-  require(mosaicModel)
+  require(mosaicModel) &&
+  require(maps) &&
+  require(mosaic) &&
+  require(dplyr)
 
 knitr::opts_chunk$set(
   fig.show = "hold",
@@ -32,7 +35,8 @@ cat(
 ## Warning: Missing packages
 
 Because one or more of 
-`ggformula`, `ggplot2`, `dplyr`, `mosaicModel` and `mosaicData` 
+`ggformula`, `ggplot2`, `dplyr`, `mosaicModel`, `mosaicData`,
+`maps`, `mosaic`, and `dplyr`
 appears to be missing, this vignette is compiling
 without executing any code. 
 
@@ -408,7 +412,34 @@ gf_bar( ~ age, data = HELPrct, stat = "bin")
   * `gf_violin()`, `gf_density()`, and `gf_density2d()` use stats to compute a 
   sequence of points along an estimated density.  It is these points, and the not
   the raw data that are used to create the plot.
+
+There are also a number of stats that can be used to show a 
+functional relationship between two variables.
+
+* `gf_smooth()` plots a model fit using `lm()`, `glm()`, `gam()`, 
+ `loess()`, `MASS::rlm()`.
  
+* `gf_lm()` is `gf_smooth()` with the method set to `lm()` so it 
+ plots a least squares regression line.
+ 
+* `gf_spline()` plots a spline fit to the data.
+ 
+```{r}
+gf_point(length ~ width, data = KidsFeet, color = ~ sex) %>%
+  gf_lm()
+gf_point(births ~ date, color = ~wday,
+         data = mosaicData::Births, alpha = 0.25) %>%
+  gf_smooth()
+```
+
+Confidence or prediction bands can be added to these as well.
+
+```{r}
+gf_point(length ~ width | sex, data = KidsFeet, color = ~ sex) %>%
+  gf_lm(interval = "prediction", fill = "red") %>%
+  gf_lm(interval = "confidence", fill = "navy")
+```
+
 Mostly, the stats selected by default are just the ones you need. But sometimes
 it is useful to select a different stat.  The `stat_summary()` and 
 `stat_summary_bin()` stats are particularly useful in this respect.
@@ -453,6 +484,7 @@ gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
                 fun.y = median, fun.ymin = min, fun.ymax = max,
                 position = position_dodge(width = 0.6))
 ```
+
 
 ### Plotting functions
 
