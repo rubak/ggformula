@@ -289,7 +289,8 @@ gf_boxplot(net ~ year, group = ~ year, data = Runners)
 
 But often, is is better to convert a discrete quantitative variable used for grouping into
 a categorical variable (a factor or character vector). This can be done in several ways:
-```{r, factors, fig.keep = 1, fig.width = 5}
+
+```{r, factors, fig.keep = 1, fig.width = 5, echo = TRUE}
 # add a new variable to the data
 Runners$the_year <- as.character(Runners$year)               # in base R
 Runners <- Runners %>% mutate(the_year = as.character(year)) # in dplyr
@@ -641,22 +642,35 @@ gf_ash( ~ age, data = HELPrct, binwidth = 10) %>%
 
 `gf_dist()` can be used to create plots of discrete and continuous distributions.
 
+
 ```{r}
 gf_dist("pois", lambda = 5)
 gf_dist("pois", lambda = 5, kind = "cdf")
-gf_dist("gamma", shape = 3, rate = 4)
+gf_dist("gamma", shape = 3, rate = 4, geom = "area")
+gf_dist("gamma", shape = 3, rate = 4, geom = "area", fill = ~ (x <= 1))
 gf_dist("gamma", shape = 3, rate = 4, kind = "cdf")
 ```
 
+When distribution parameters and plot attributes have the same name, 
+there are two ways to avoid the name colision:
+
+```{r}
+# size is used by the binomial distribution functions and when plotting
+gf_dist("binom", size = 20, prob = 0.25, plot_size = 3)
+gf_dist("binom", params = list(size = 20, prob = 0.25), size = 3)
+```
+
+
+
 `ggformula` also provides an interface to `MASS::fitdistr()` for fitting distributions
-to day and displaying the resulting pdf.
+to data and displaying the resulting pdf.
 
 ```{r}
 x <- rgamma(1000, shape = 2, rate = 5)
 gf_dhistogram( ~ x, alpha = 0.3) %>%
-  gf_fitdistr() %>%         # normal fit by default
-  gf_fitdistr(dist = "dgamma", color = "blue") %>%
-  gf_fitdistr(dist = "dweibull", color = "red")
+  gf_fitdistr(dist = "dnorm", color = ~ "Normal") %>% 
+  gf_fitdistr(dist = "dgamma", color = ~ "Gamma") %>%
+  gf_fitdistr(dist = "dweibull", color = ~ "Weibull")
 ```
 
 ### Global plot adjustments
