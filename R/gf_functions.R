@@ -1854,12 +1854,12 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #' distributions and the resulting density curve is displayed.
 #'
 #' @inherit gf_line
+#' @inheritParms mosaicCore::fit_distr_fun
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument. See examples.
 #' @param gformula A formula with shape ` ~ x` used to specify the data
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
-#' @param dist A distribution.
 #' @param start Starting value(s) for the search for MLE.  (See [MASS::fitdistr].)
 #' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments
@@ -1887,19 +1887,19 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #'   set.seed(12345)
 #'   Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
 #'   gf_dhistogram(~g, data = Dat) %>%
-#'     gf_fitdistr(dist = dgamma)
+#'     gf_fitdistr(dist = "dgamma")
 #'
 #'   gf_dhistogram(~f, data = Dat) %>%
-#'     gf_fitdistr(dist = df)
+#'     gf_fitdistr(dist = "df")
 #'
 #'   gf_dhistogram(~g, data = Dat) %>%
-#'     gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+#'     gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
 #'
 #'   # fitted parameters are default argument values
 #'   args(
-#'     mosaicCore::fit_distr_fun(~f, data = Dat, dist = df,
+#'     mosaicCore::fit_distr_fun(~f, data = Dat, dist = "df",
 #'       start = list(df1 = 10, df2 = 10)))
-#'   args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+#'   args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
 #'
 #' }
 
@@ -1907,7 +1907,8 @@ gf_fitdistr <-
   layer_factory(
     geom = "path", stat = "fitdistr", position = "identity",
     aes_form = list(~ x), inherit.aes = "x",
-    extras = alist(dist = dnorm, start = NULL, alpha = , color = , fill = , group = , linetype = , size = ),
+    extras = alist(dist = "dnorm", start = NULL, alpha = ,
+                   color = , fill = , group = , linetype = , size = ),
     note = "dist should be a density function like dnorm or dgamma"
   )
 

@@ -4,7 +4,7 @@
 \alias{gf_fitdistr}
 \title{Plot density function based on fit to data}
 \usage{
-gf_fitdistr(object = NULL, gformula = NULL, data = NULL, dist = dnorm,
+gf_fitdistr(object = NULL, gformula = NULL, data = NULL, dist = "dnorm",
   start = NULL, alpha, color, fill, group, linetype, size, xlab, ylab, title,
   subtitle, caption, geom = "path", stat = "fitdistr",
   position = "identity", show.legend = NA, show.help = NULL,
@@ -18,8 +18,6 @@ of the chain.  Most users can safely ignore this argument. See examples.}
 to be fit to a family of distributions.}
 
 \item{data}{A data frame containing the variable to be fitted.}
-
-\item{dist}{A distribution.}
 
 \item{start}{Starting value(s) for the search for MLE.  (See \link[MASS:fitdistr]{MASS::fitdistr}.)}
 
@@ -112,19 +110,19 @@ if (require(mosaicData)) {
   set.seed(12345)
   Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
   gf_dhistogram(~g, data = Dat) \%>\%
-    gf_fitdistr(dist = dgamma)
+    gf_fitdistr(dist = "dgamma")
 
   gf_dhistogram(~f, data = Dat) \%>\%
-    gf_fitdistr(dist = df)
+    gf_fitdistr(dist = "df")
 
   gf_dhistogram(~g, data = Dat) \%>\%
-    gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+    gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
 
   # fitted parameters are default argument values
   args(
-    mosaicCore::fit_distr_fun(~f, data = Dat, dist = df,
+    mosaicCore::fit_distr_fun(~f, data = Dat, dist = "df",
       start = list(df1 = 10, df2 = 10)))
-  args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = dgamma))
+  args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
 
 }
 }
