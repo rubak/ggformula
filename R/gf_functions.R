@@ -1956,11 +1956,4 @@ gf_sf <-
                    size =, geometry =  )
   )
 
-#' Plot model values
-#'
-#' `gf_model()` is an alias for [`mosaicModel::mod_plot()`].
-#'
-#' @inherit mosaicModel::mod_plot
-#' @export
-gf_model <- mosaicModel::mod_plot
 

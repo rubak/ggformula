@@ -28,7 +28,6 @@ Suggests:
     testthat,
     mosaicData,
     knitr,
-    mosaicModel,
     rmarkdown,
     lubridate,
     survival,
