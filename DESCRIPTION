@@ -25,8 +25,9 @@ Imports:
 Suggests:
     lattice,
     mosaic,
-    testthat,
+    mosaicModel,
     mosaicData,
+    testthat,
     knitr,
     rmarkdown,
     lubridate,
@@ -40,5 +41,6 @@ Suggests:
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
 URL: https://github.com/ProjectMOSAIC/ggformula
 BugReports: https://github.com/ProjectMOSAIC/ggformula/issues
