@@ -1,9 +1,16 @@
 
+ 
 # ggformula 0.8.0
 
- * The internals of all of the `gf_` funcitons have been modified to make them work with `ggplot2` version 2.3.
+ * The internals of all of the `gf_` funcitons have been modified to make them
+ work with `ggplot2` version 2.3. In future releases, a version `ggplot2` at
+ least this new will be required.
  
  * The default value for `se` in `gf_smooth()` has been changed from `TRUE` to `FALSE`.  
+ 
+ * `gf_sf()` added to support simple features data for maps.
+ 
+ * improved documentation and examples
  
 # ggformula 0.7.0
 
