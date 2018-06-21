@@ -32,7 +32,23 @@ See details and examples.}
 \item{gformula}{A formula with shape \code{y ~ x} (\code{gf_rug()}) or \code{~ x} (\code{gf_rugx()}) or
 \code{~ y} (\code{gf_rugy()}).}
 
-\item{data}{A data frame with the variables to be plotted.}
+\item{data}{The data to be displayed in this layer. There are three
+options:
+
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
+
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame.}, and
+will be used as the layer data.}
+
+\item{sides}{A string that controls which sides of the plot the rugs appear on.
+It can be set to a string containing any of \code{"trbl"}, for top, right,
+bottom, and left.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
@@ -60,14 +76,17 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 
 \item{geom}{A character string naming the geom used to make the layer.}
 
-\item{stat}{A character string naming the stat used to make the layer.}
+\item{stat}{The statistical transformation to use on the data for this
+layer, as a string.}
 
-\item{position}{Either a character string naming the position function used
-for the layer or a position object returned from a call to a position function.}
+\item{position}{Position adjustment, either as a string, or the result of
+a call to a position adjustment function.}
 
-\item{show.legend}{A logical indicating whether this layer should be included in
-the legends.  \code{NA}, the default, includes layer in the legends if any
-of the attributes of the layer are mapped.}
+\item{show.legend}{logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped.
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 

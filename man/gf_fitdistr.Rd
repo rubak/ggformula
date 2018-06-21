@@ -19,6 +19,9 @@ to be fit to a family of distributions.}
 
 \item{data}{A data frame containing the variable to be fitted.}
 
+\item{dist}{A quoted name of a distribution function.
+See \code{\link[mosaicCore:fit_distr_fun]{mosaicCore::fit_distr_fun()}} for more details about allowable distributions.}
+
 \item{start}{Starting value(s) for the search for MLE.  (See \link[MASS:fitdistr]{MASS::fitdistr}.)}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}

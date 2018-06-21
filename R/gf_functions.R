@@ -1194,6 +1194,7 @@ gf_qqstep <-
 #' (because doing so would often result in rugs on both axes), so the formula is required.
 #'
 #' @inherit ggplot2::geom_rug description
+#' @inheritParams ggplot2::geom_rug
 #' @inherit gf_line
 #'
 #'
@@ -1854,12 +1855,13 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #' distributions and the resulting density curve is displayed.
 #'
 #' @inherit gf_line
-#' @inheritParms mosaicCore::fit_distr_fun
 #' @param object When chaining, this holds an object produced in the earlier portions
 #' of the chain.  Most users can safely ignore this argument. See examples.
 #' @param gformula A formula with shape ` ~ x` used to specify the data
 #'   to be fit to a family of distributions.
 #' @param data A data frame containing the variable to be fitted.
+#' @param dist A quoted name of a distribution function.
+#'   See [`mosaicCore::fit_distr_fun()`] for more details about allowable distributions.
 #' @param start Starting value(s) for the search for MLE.  (See [MASS::fitdistr].)
 #' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments
@@ -1917,12 +1919,12 @@ gf_fitdistr <-
 #' Mapping with shape files
 #'
 #' @inheritParams gf_point
-#' @inherit ggplot2::ggsf
+#' @inherit ggplot2::geom_sf
 #' @inherit gf_line
 #' @param geometry A column of class sfc containg simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.
-#' @seealso [ggplot2::geom_sf()]
+#' @seealso [`ggplot2::geom_sf()`]
 #' @export
 #' @examples
 #'
@@ -1948,13 +1950,14 @@ gf_fitdistr <-
 #' }
 
 gf_sf <-
-  layer_factory(
-    layer_fun = ggplot2::geom_sf,
-    geom = "sf", stat = "sf",
-    position = "identity",
-    aes_form = list(NULL),
-    extras = alist(alpha = , color = , fill = , group = , linetype = ,
-                   size =, geometry =  )
-  )
+    layer_factory(
+      require = "sp",
+      layer_fun = ggplot2::geom_sf,
+      geom = "sf", stat = "sf",
+      position = "identity",
+      aes_form = list(NULL),
+      extras = alist(alpha = , color = , fill = , group = , linetype = ,
+                     size =, geometry =  )
+    )
 
 
