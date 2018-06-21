@@ -80,7 +80,7 @@ of the attributes of the layer are mapped.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -120,16 +120,16 @@ in another.
 gf_line()
 if (require(mosaicData)) {
   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
-  gf_point(births ~ date, color = ~wday, data = Births78)
+  gf_point(births ~ date, color = ~ wday, data = Births78)
   # lines make the exceptions stand out more prominently
-  gf_line(births ~ date, color = ~wday, data = Births78)
+  gf_line(births ~ date, color = ~ wday, data = Births78)
   }
 
 gf_path()
 if (require(dplyr)) {
   data.frame(t = seq(1, 10 * pi, length.out = 400)) \%>\%
   mutate( x = t * cos(t), y = t * sin(t)) \%>\%
-  gf_path(y ~ x, color = ~t)
+  gf_path(y ~ x, color = ~ t)
   }
 }
 \seealso{

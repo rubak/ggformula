@@ -100,7 +100,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -144,7 +144,7 @@ gf_dhistogram( ~ x, binwidth = 0.5, boundary = 0, color = "black")
 gf_dhistogram( ~ x, bins = 30) \%>\%
  gf_fitdistr(dist = "dnorm")  # see help for gf_fitdistr() for more info.
 
-gf_histogram( ~ x, fill = ~(abs(x) <= 2), boundary = 2, binwidth = 0.25)
+gf_histogram( ~ x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
 
 gf_histogram( ~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 if (require(mosaicData)) {

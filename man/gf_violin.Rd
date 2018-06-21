@@ -147,7 +147,7 @@ in another.
 \examples{
 if (require(mosaicData)) {
   gf_violin(age ~ substance, data = HELPrct)
-  gf_violin(age ~ substance, data = HELPrct, fill = ~sex)
+  gf_violin(age ~ substance, data = HELPrct, fill = ~ sex)
 }
 
 }

@@ -104,7 +104,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
 \item{binwidth}{\code{geom_bar} no longer has a binwidth argument - if
@@ -152,15 +152,15 @@ in another.
 \examples{
 if (require(mosaicData)) {
   gf_bar( ~ substance, data = HELPrct)
-  gf_bar( ~ substance, data = HELPrct, fill = ~sex)
-  gf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  gf_bar( ~ substance, data = HELPrct, fill = ~ sex)
+  gf_bar( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
   # gf_counts() is another name for gf_bar()
-  gf_counts( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  gf_counts( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
   # gf_props() and gf_percents() use proportions or percentages instead of counts
-  gf_props( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
-  gf_percents( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+  gf_props( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
+  gf_percents( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
   if (require(scales)) {
-    gf_props( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge()) \%>\%
+    gf_props( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge()) \%>\%
       gf_refine(scale_y_continuous(labels = scales::percent))
   }
 }

@@ -171,7 +171,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -212,15 +212,15 @@ in another.
 if (require(mosaicData)) {
   gf_boxplot(age ~ substance, data = HELPrct)
   gf_boxplot(age ~ substance, data = HELPrct, varwidth = TRUE)
-  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex)
-  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, outlier.color = "gray50")
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex)
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex, outlier.color = "gray50")
   # longer whiskers
-  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, coef = 2)
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex, coef = 2)
   # Note: width for boxplots is full width of box.  For jittering, it is the
   # half-width.
   gf_boxplot(age ~ substance | sex, data = HELPrct, coef = 5, width = 0.4) \%>\%
     gf_jitter(width = 0.2, alpha = 0.3)
-  gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
+  gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex, position = position_dodge(width = 0.9))
 }
 }
 \references{

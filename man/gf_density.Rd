@@ -101,7 +101,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -140,11 +140,11 @@ in another.
 
 \examples{
 gf_dens()
-gf_density(~ Sepal.Length,  fill = ~ Species, data = iris)
-gf_dens(~ Sepal.Length, color = ~ Species, data = iris)
-gf_freqpoly(~ Sepal.Length, color = ~ Species, data = iris, bins = 15)
+gf_density( ~ Sepal.Length,  fill = ~ Species, data = iris)
+gf_dens( ~ Sepal.Length, color = ~ Species, data = iris)
+gf_freqpoly( ~ Sepal.Length, color = ~ Species, data = iris, bins = 15)
 # Chaining in the data
-iris \%>\% gf_dens(~ Sepal.Length, color = ~Species)
+iris \%>\% gf_dens( ~ Sepal.Length, color = ~ Species)
 }
 \seealso{
 \code{\link[ggplot2:geom_density]{ggplot2::geom_density()}}

@@ -64,7 +64,7 @@ of the attributes of the layer are mapped.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -128,7 +128,7 @@ if(require(dplyr) && require(mosaicData)) {
     gf_point(cumcount ~ substance) \%>\%
     gf_line(cumcount ~ substance, group = 1) \%>\%
     gf_refine(
-      scale_y_continuous(sec.axis = sec_axis(~ . /nrow(HELPrct)))
+      scale_y_continuous(sec.axis = sec_axis( ~ . /nrow(HELPrct)))
     )
   }
 }

@@ -88,7 +88,7 @@ NA
 #' @param environment An environment in which to look for variables not found in `data`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`,
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`,
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`, or
 #'   (d) arguments for the geom, stat, or position function.
 #' @param geom A character string naming the geom used to make the layer.
@@ -112,10 +112,10 @@ NA
 #' gf_point()
 #' gf_point( (10 * ((1:25) %/% 10)) ~ ((1:25) %% 10), shape = 1:25,
 #'   fill = "skyblue", color = "navy", size = 4, stroke = 1, data = NA)
-#' gf_point(mpg ~ hp, color = ~ cyl, size = ~wt, data = mtcars)
+#' gf_point(mpg ~ hp, color = ~ cyl, size = ~ wt, data = mtcars)
 #' # faceting -- two ways
 #' gf_point(mpg ~ hp, data = mtcars) %>%
-#'   gf_facet_wrap(~ am)
+#'   gf_facet_wrap( ~ am)
 #' gf_point(mpg ~ hp | am, group = ~ cyl, data = mtcars)
 #' gf_point(mpg ~ hp | ~ am, group = ~ cyl, data = mtcars)
 #' gf_point(mpg ~ hp | am ~ ., group = ~ cyl,  data = mtcars)
@@ -148,7 +148,7 @@ gf_point <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_jitter()], [gf_point()]
 #' @export
@@ -181,7 +181,7 @@ gf_jitter <-
 #'   for mapping linetype.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_line()], [gf_point()]
 #' @export
@@ -189,9 +189,9 @@ gf_jitter <-
 #' gf_line()
 #' if (require(mosaicData)) {
 #'   gf_point(age ~ sex, alpha = 0.25, data = HELPrct)
-#'   gf_point(births ~ date, color = ~wday, data = Births78)
+#'   gf_point(births ~ date, color = ~ wday, data = Births78)
 #'   # lines make the exceptions stand out more prominently
-#'   gf_line(births ~ date, color = ~wday, data = Births78)
+#'   gf_line(births ~ date, color = ~ wday, data = Births78)
 #'   }
 #'
 gf_line <-
@@ -209,7 +209,7 @@ gf_line <-
 #' if (require(dplyr)) {
 #'   data.frame(t = seq(1, 10 * pi, length.out = 400)) %>%
 #'   mutate( x = t * cos(t), y = t * sin(t)) %>%
-#'   gf_path(y ~ x, color = ~t)
+#'   gf_path(y ~ x, color = ~ t)
 #'   }
 
 gf_path <-
@@ -258,7 +258,7 @@ gf_polygon <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_smooth()], [gf_spline()]
 #'
@@ -267,12 +267,12 @@ gf_polygon <-
 #' gf_smooth()
 #' gf_lm()
 #' if (require(mosaicData)) {
-#'   gf_smooth(births ~ date, color = ~wday, data = Births78)
-#'   gf_smooth(births ~ date, color = ~wday, data = Births78, fullrange = TRUE)
-#'   gf_smooth(births ~ date, color = ~wday, data = Births78, show.legend = FALSE, se = FALSE)
-#'   gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, alpha = 0.2) %>%
+#'   gf_smooth(births ~ date, color = ~ wday, data = Births78)
+#'   gf_smooth(births ~ date, color = ~ wday, data = Births78, fullrange = TRUE)
+#'   gf_smooth(births ~ date, color = ~ wday, data = Births78, show.legend = FALSE, se = FALSE)
+#'   gf_lm(length ~ width, data = KidsFeet, color = ~ biggerfoot, alpha = 0.2) %>%
 #'     gf_point()
-#'   gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = FALSE, alpha = 0.2)
+#'   gf_lm(length ~ width, data = KidsFeet, color = ~ biggerfoot, fullrange = FALSE, alpha = 0.2)
 #'     gf_point()
 #'   gf_lm(length ~ width, color = ~ sex, data = KidsFeet,
 #'         formula = y ~ poly(x,2), linetype = "dashed") %>%
@@ -319,15 +319,15 @@ gf_lm <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [geom_spline()], [gf_smooth()], [gf_lm()]
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
-#'   gf_spline(births ~ date, color = ~wday, data = Births78)
-#'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 20)
-#'   gf_spline(births ~ date, color = ~wday, data = Births78, df = 4)
+#'   gf_spline(births ~ date, color = ~ wday, data = Births78)
+#'   gf_spline(births ~ date, color = ~ wday, data = Births78, df = 20)
+#'   gf_spline(births ~ date, color = ~ wday, data = Births78, df = 4)
 #' }
 
 gf_spline <-
@@ -348,7 +348,7 @@ gf_spline <-
 #' @param gformula A formula with shape  `y ~ x` or `fill ~ x + y`
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_raster()]
 #' @export
@@ -380,7 +380,7 @@ gf_raster <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_quantile()]
 #' @export
@@ -405,7 +405,7 @@ gf_quantile <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_density_2d()]
 #' @export
@@ -448,7 +448,7 @@ gf_density2d <-
 #' @inheritParams ggplot2::geom_hex
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_hex()]
 #' @export
@@ -472,7 +472,7 @@ gf_hex <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #'
 #' @seealso [ggplot2::geom_boxplot()], [fivenum()], [df_stats()]
@@ -481,15 +481,15 @@ gf_hex <-
 #' if (require(mosaicData)) {
 #'   gf_boxplot(age ~ substance, data = HELPrct)
 #'   gf_boxplot(age ~ substance, data = HELPrct, varwidth = TRUE)
-#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex)
-#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, outlier.color = "gray50")
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex)
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex, outlier.color = "gray50")
 #'   # longer whiskers
-#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, coef = 2)
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex, coef = 2)
 #'   # Note: width for boxplots is full width of box.  For jittering, it is the
 #'   # half-width.
 #'   gf_boxplot(age ~ substance | sex, data = HELPrct, coef = 5, width = 0.4) %>%
 #'     gf_jitter(width = 0.2, alpha = 0.3)
-#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~sex, position = position_dodge(width = 0.9))
+#'   gf_boxplot(age ~ substance, data = HELPrct, color = ~ sex, position = position_dodge(width = 0.9))
 #' }
 
 gf_boxplot <-
@@ -525,16 +525,16 @@ gf_boxplot <-
 #' @param fontface One of `"plain"`, `"bold"`, `"italic"`, or `"bold italic"`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_text()]
 #' @export
 #' @examples
 #' gf_text(Sepal.Length ~ Sepal.Width, data = iris,
-#'   label = ~Species, color = ~Species, size = 2, angle = 30)
-#' gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species) %>%
+#'   label = ~ Species, color = ~ Species, size = 2, angle = 30)
+#' gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) %>%
 #' gf_text(Sepal.Length ~ Sepal.Width, data = iris,
-#'   label = ~Species, color = ~Species,
+#'   label = ~ Species, color = ~ Species,
 #'   size = 2, angle = 0, hjust = 0, nudge_x  = 0.1, nudge_y = 0.1)
 #'
 gf_text <-
@@ -562,7 +562,7 @@ gf_text <-
 #'     summarise(Sepal.Length = mean(Sepal.Length), Sepal.Width = mean(Sepal.Width))
 #'   gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) %>%
 #'   gf_label(Sepal.Length ~ Sepal.Width, data = iris_means,
-#'     label = ~Species, color = ~Species, size = 2, alpha = 0.7)
+#'     label = ~ Species, color = ~ Species, size = 2, alpha = 0.7)
 #' }
 
 gf_label <-
@@ -591,7 +591,7 @@ gf_label <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_area()]
 #' @export
@@ -636,7 +636,7 @@ gf_area <-
 #' @examples
 #' if (require(mosaicData)) {
 #'   gf_violin(age ~ substance, data = HELPrct)
-#'   gf_violin(age ~ substance, data = HELPrct, fill = ~sex)
+#'   gf_violin(age ~ substance, data = HELPrct, fill = ~ sex)
 #' }
 #'
 gf_violin <-
@@ -663,7 +663,7 @@ gf_violin <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_spoke()]
 #' @export
@@ -673,10 +673,10 @@ gf_violin <-
 #' D$speed <- runif(100, 0, sqrt(0.1 * D$x))
 #'
 #' gf_point(y ~ x, data = D) %>%
-#'   gf_spoke(y ~ x, angle = ~angle, radius = 0.5)
+#'   gf_spoke(y ~ x, angle = ~ angle, radius = 0.5)
 #'
 #' gf_point(y ~ x, data = D) %>%
-#'   gf_spoke(y ~ x, angle = ~angle, radius = ~speed)
+#'   gf_spoke(y ~ x, angle = ~ angle, radius = ~ speed)
 
 gf_spoke <-
   layer_factory(
@@ -696,13 +696,13 @@ gf_spoke <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_step()]
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
-#'   gf_step( births ~ date, data = Births78, color = ~wday)
+#'   gf_step( births ~ date, data = Births78, color = ~ wday)
 #' }
 #'
 #' # Roll your own Kaplan-Meier plot
@@ -734,7 +734,7 @@ gf_step <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_tile()]
 #' @export
@@ -758,7 +758,7 @@ gf_tile <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_count()]
 #' @export
@@ -786,7 +786,7 @@ gf_count <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_col()]
 #' @export
@@ -813,7 +813,7 @@ gf_count <-
 #'     gf_point(cumcount ~ substance) %>%
 #'     gf_line(cumcount ~ substance, group = 1) %>%
 #'     gf_refine(
-#'       scale_y_continuous(sec.axis = sec_axis(~ . /nrow(HELPrct)))
+#'       scale_y_continuous(sec.axis = sec_axis( ~ . /nrow(HELPrct)))
 #'     )
 #'   }
 
@@ -833,7 +833,7 @@ gf_col <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_blank()]
 #' @export
@@ -863,7 +863,7 @@ gf_frame <-
 #'   generally needed).
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_histogram()]
 #' @export
@@ -876,7 +876,7 @@ gf_frame <-
 #' gf_dhistogram( ~ x, bins = 30) %>%
 #'  gf_fitdistr(dist = "dnorm")  # see help for gf_fitdistr() for more info.
 #'
-#' gf_histogram( ~ x, fill = ~(abs(x) <= 2), boundary = 2, binwidth = 0.25)
+#' gf_histogram( ~ x, fill = ~ (abs(x) <= 2), boundary = 2, binwidth = 0.25)
 #'
 #' gf_histogram( ~ Sepal.Length | Species, data = iris, binwidth = 0.25)
 #' if (require(mosaicData)) {
@@ -892,7 +892,7 @@ gf_frame <-
 gf_histogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
-    aes_form = list(~x, y ~ x),
+    aes_form = list( ~ x, y ~ x),
     extras = alist(bins = 25, binwidth = , alpha = 0.5, color = , fill = , group = , linetype = , size = ),
     note =
       if (packageVersion("ggplot2") <= "2.2.1") {
@@ -907,7 +907,7 @@ gf_histogram <-
 gf_dhistogram <-
   layer_factory(
     geom = "bar", stat = "bin", position = "stack",
-    aes_form = list(~x, y ~ x),
+    aes_form = list( ~ x, y ~ x),
     extras =
       alist(bins = 25, binwidth = , alpha = 0.5 , color = , fill = , group = , linetype = , size = ),
     note =
@@ -934,17 +934,17 @@ gf_dhistogram <-
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_density()]
 #' @export
 #' @examples
 #' gf_dens()
-#' gf_density(~ Sepal.Length,  fill = ~ Species, data = iris)
-#' gf_dens(~ Sepal.Length, color = ~ Species, data = iris)
-#' gf_freqpoly(~ Sepal.Length, color = ~ Species, data = iris, bins = 15)
+#' gf_density( ~ Sepal.Length,  fill = ~ Species, data = iris)
+#' gf_dens( ~ Sepal.Length, color = ~ Species, data = iris)
+#' gf_freqpoly( ~ Sepal.Length, color = ~ Species, data = iris, bins = 15)
 #' # Chaining in the data
-#' iris %>% gf_dens(~ Sepal.Length, color = ~Species)
+#' iris %>% gf_dens( ~ Sepal.Length, color = ~ Species)
 gf_density <-
   layer_factory(
     geom = "area", stat = "density",
@@ -987,18 +987,18 @@ gf_dens <-
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_dotplot()]
 #' @export
 #' @examples
-#' gf_dotplot(~ Sepal.Length, fill = ~Species, data = iris)
+#' gf_dotplot( ~ Sepal.Length, fill = ~ Species, data = iris)
 
 gf_dotplot <-
   layer_factory(
     geom = "dotplot", stat = ggplot2::StatBin,
     layer_fun = ggplot2::geom_dotplot,
-    aes_form = ~x,
+    aes_form = ~ x,
     extras = alist(
       alpha = , color = , fill = , group = ,
       binwidth = NULL, binaxis = "x", method = "dotdensity",
@@ -1021,22 +1021,22 @@ gf_dotplot <-
 #' @param width Width of the bars.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_bar()]
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
 #'   gf_bar( ~ substance, data = HELPrct)
-#'   gf_bar( ~ substance, data = HELPrct, fill = ~sex)
-#'   gf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+#'   gf_bar( ~ substance, data = HELPrct, fill = ~ sex)
+#'   gf_bar( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
 #'   # gf_counts() is another name for gf_bar()
-#'   gf_counts( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+#'   gf_counts( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
 #'   # gf_props() and gf_percents() use proportions or percentages instead of counts
-#'   gf_props( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
-#'   gf_percents( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())
+#'   gf_props( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
+#'   gf_percents( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge())
 #'   if (require(scales)) {
-#'     gf_props( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge()) %>%
+#'     gf_props( ~ substance, data = HELPrct, fill = ~ sex, position = position_dodge()) %>%
 #'       gf_refine(scale_y_continuous(labels = scales::percent))
 #'   }
 #' }
@@ -1044,7 +1044,7 @@ gf_dotplot <-
 gf_bar <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = list(~ x, y ~ x),
+    aes_form = list( ~ x, y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL)
@@ -1067,7 +1067,7 @@ gf_counts <-
 gf_props <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = list(~x),
+    aes_form = list( ~ x),
     extras =
       alist(alpha = , color = , fill = , group = ,
             linetype = , size = , ylab = "proportion"),
@@ -1084,7 +1084,7 @@ gf_props <-
 gf_percents <-
   layer_factory(
     geom = "bar", stat = "count", position = "stack",
-    aes_form = list(~x),
+    aes_form = list( ~ x),
     extras = alist(alpha = , color = , fill = , group = ,
                    linetype = , size = , ylab = "percent"),
     aesthetics =
@@ -1105,14 +1105,14 @@ gf_percents <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_freqpoly()]
 #' @export
 #' @examples
 #' gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
-#'   gf_freqpoly( ~ Sepal.Length, data = iris, color = ~Species, bins = 20)
-#' gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris, bins = 20)
+#'   gf_freqpoly( ~ Sepal.Length, data = iris, color = ~ Species, bins = 20)
+#' gf_freqpoly( ~ Sepal.Length, color = ~ Species, data = iris, bins = 20)
 #' if (utils::packageVersion("ggplot2") >= "2.2.1.9000") {
 #'   gf_dens( ~ Sepal.Length, data = iris, color = "navy") %>%
 #'     gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,
@@ -1122,7 +1122,7 @@ gf_percents <-
 gf_freqpoly <-
   layer_factory(
     geom = "path", stat = "bin",
-    aes_form = list(~ x, y ~ x),
+    aes_form = list( ~ x, y ~ x),
     extras = alist(
       alpha = , color = , group = , linetype = , size =,
       binwidth =, bins = , center = , boundary =
@@ -1149,16 +1149,16 @@ gf_freqpoly <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_qq()]
 #' @export
 #' @examples
-#' gf_qq(~rnorm(100))
-#' gf_qq(~Sepal.Length | Species, data = iris) %>% gf_qqline()
-#' gf_qq(~Sepal.Length | Species, data = iris) %>% gf_qqline(tail = 0.10)
-#' gf_qq(~Sepal.Length, color = ~Species, data = iris) %>%
-#' gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
+#' gf_qq( ~ rnorm(100))
+#' gf_qq( ~ Sepal.Length | Species, data = iris) %>% gf_qqline()
+#' gf_qq( ~ Sepal.Length | Species, data = iris) %>% gf_qqline(tail = 0.10)
+#' gf_qq( ~ Sepal.Length, color = ~ Species, data = iris) %>%
+#' gf_qqstep( ~ Sepal.Length, color = ~ Species, data = iris)
 gf_qq <-
   layer_factory(
     geom = "point", stat = "qq",
@@ -1202,7 +1202,7 @@ gf_qqstep <-
 #'   `~ y` (`gf_rugy()`).
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_rug()]
 #' @export
@@ -1242,18 +1242,18 @@ gf_qqstep <-
 #' gf_rug( ~ eruptions, data = faithful, color = "red", inherit = FALSE)
 #'
 #' # using jitter with gf_histogram() requires manually setting the y value.
-#' gf_dhistogram(~ Sepal.Width, data = iris) %>%
+#' gf_dhistogram( ~ Sepal.Width, data = iris) %>%
 #' gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 #'
 #' # the choice of y value can affect how the plot looks.
-#' gf_dhistogram(~ Sepal.Width, data = iris) %>%
+#' gf_dhistogram( ~ Sepal.Width, data = iris) %>%
 #' gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 
 
 gf_rug <-
   layer_factory(
     geom = "rug",
-    aes_form = list(~ x, y ~ x, NULL),
+    aes_form = list( ~ x, y ~ x, NULL),
     extras = alist(sides = "bl", alpha = , color = , group = , linetype = , size = )
     )
 
@@ -1262,7 +1262,7 @@ gf_rug <-
 gf_rugx <-
   layer_factory(
     geom = "rug",
-    aes_form = list(~ x, NULL),
+    aes_form = list( ~ x, NULL),
     inherit.aes = FALSE,
     extras = alist(sides = "b", alpha = , color = , group = , linetype = , size = )
     )
@@ -1272,7 +1272,7 @@ gf_rugx <-
 gf_rugy <-
   layer_factory(
     geom = "rug",
-    aes_form = list(~ y, y ~ ., NULL),
+    aes_form = list( ~ y, y ~ ., NULL),
     inherit.aes = FALSE,
     extras = alist(sides = "l", alpha = , color = , group = , linetype = , size = )
     )
@@ -1285,7 +1285,7 @@ gf_rugy <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_contour()], [gf_density_2d()]
 #' @export
@@ -1308,7 +1308,7 @@ gf_contour <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_ribbon()]
 #' @export
@@ -1342,7 +1342,7 @@ gf_ribbon <-
 #' @param gformula A formula with shape `y + yend ~ x + xend`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_curve()]
 #' @export
@@ -1368,7 +1368,7 @@ gf_curve <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_segment()]
 #' @export
@@ -1397,7 +1397,7 @@ gf_segment <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_linerange()]
 #' @export
@@ -1483,7 +1483,7 @@ gf_pointrange <-
 #'   Faceting can be achieved by including `|` in the formula.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_crossbar()]
 #' @export
@@ -1533,7 +1533,7 @@ gf_crossbar <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_errorbar()]
 #' @section Note:
@@ -1589,7 +1589,7 @@ gf_errorbar <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @section Note:
 #'   There is discrepancy between the information required for `gf_errorbar()`
@@ -1641,7 +1641,7 @@ gf_errorbarh <-
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @seealso [ggplot2::geom_rect()]
 #' @export
@@ -1669,7 +1669,7 @@ gf_rect <-
 #' @param gformula Must be `NULL`.
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
-#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~expression`, or
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
 #' @rdname gf_lines
 #' @seealso [ggplot2::geom_abline()],
@@ -1677,46 +1677,46 @@ gf_rect <-
 #'   [ggplot2::geom_hline()]
 #' @export
 #' @examples
-#' mtcars2 <- df_stats( wt ~ cyl, data = mtcars)
+#' mtcars2 <- df_stats( wt ~ cyl, data = mtcars, median_wt = median)
 #' gf_point(wt ~ hp, size = ~ wt, color = ~ cyl, data = mtcars) %>%
-#'   gf_abline(slope = ~ 0, intercept = ~ median, color = ~ cyl, data = mtcars2)
+#'   gf_abline(slope = ~ 0, intercept = ~ median_wt, color = ~ cyl, data = mtcars2)
 #'
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_abline(slope = 0, intercept = 3, color = "green", data = mtcars2)
+#' gf_point(wt ~ hp, size = ~ wt, color = ~ cyl, data = mtcars) %>%
+#'   gf_abline(slope = 0, intercept = 3, color = "green", data = NA)
 #'
-#' gf_point(wt ~ hp, size = ~wt, color = ~cyl, data = mtcars) %>%
-#'   gf_hline(yintercept = ~median, color = ~cyl, data = mtcars2)
+#' gf_point(wt ~ hp, size = ~ wt, color = ~ cyl, data = mtcars) %>%
+#'   gf_hline(yintercept = ~ median_wt, color = ~ cyl, data = mtcars2)
 #'
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#' gf_point(mpg ~ hp, color = ~ cyl, size = ~ wt, data = mtcars) %>%
 #'   gf_abline(color="red", slope = -0.10, intercept = 35)
 #'
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
-#'   gf_abline(color = "red", slope = ~slope, intercept = ~intercept,
+#' gf_point(mpg ~ hp, color = ~ cyl, size = ~ wt, data = mtcars) %>%
+#'   gf_abline(color = "red", slope = ~ slope, intercept = ~ intercept,
 #'   data = data.frame(slope = -0.10, intercept = 33:35))
 #'
 #' # We can set the color of the guidelines while mapping color in other layers
-#' gf_point(mpg ~ hp, color = ~cyl, size = ~wt, data = mtcars) %>%
+#' gf_point(mpg ~ hp, color = ~ cyl, size = ~ wt, data = mtcars) %>%
 #'   gf_hline(color = "navy", yintercept = c(20, 25), data = NA) %>%
 #'   gf_vline(color = "brown", xintercept = c(200, 300), data = NA)
 #'
 #' # If we want to map the color of the guidelines, it must work with the
 #' # scale of the other colors in the plot.
-#' gf_point(mpg ~ hp, size = ~wt, data = mtcars, alpha = 0.3) %>%
-#'   gf_hline(color = ~"horizontal", yintercept = ~ c(20, 25), data = NA) %>%
-#'   gf_vline(color = ~"vertical", xintercept = ~ c(100, 200, 300), data = NA)
+#' gf_point(mpg ~ hp, size = ~ wt, data = mtcars, alpha = 0.3) %>%
+#'   gf_hline(color = ~ "horizontal", yintercept = ~ c(20, 25), data = NA) %>%
+#'   gf_vline(color = ~ "vertical", xintercept = ~ c(100, 200, 300), data = NA)
 #'
-#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
+#' gf_point(mpg ~ hp, size = ~ wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
 #'   gf_hline(color = "orange", yintercept = 20, data = NA) %>%
-#'   gf_vline(color = ~c("4", "6", "8"), xintercept = ~c(80, 120, 250), data = NA)
+#'   gf_vline(color = ~ c("4", "6", "8"), xintercept = ~ c(80, 120, 250), data = NA)
 #'
-#' gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
+#' gf_point(mpg ~ hp, size = ~ wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3) %>%
 #'   gf_hline(color = "orange", yintercept = 20, data = NA) %>%
 #'   gf_vline(color = c("green", "red", "blue"), xintercept = c(80, 120, 250), data = NA)
 #'
 #' # reversing the layers requires using inherit = FALSE
 #' gf_hline(color = "orange", yintercept = 20, data = NA) %>%
-#'   gf_vline(color = ~c("4", "6", "8"), xintercept = ~c(80, 120, 250), data = NA) %>%
-#'   gf_point(mpg ~ hp, size = ~wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
+#'   gf_vline(color = ~ c("4", "6", "8"), xintercept = ~ c(80, 120, 250), data = NA) %>%
+#'   gf_point(mpg ~ hp, size = ~ wt, color = ~ factor(cyl), data = mtcars, alpha = 0.3,
 #'     inherit = FALSE)
 #'
 gf_abline <-
@@ -1782,7 +1782,7 @@ utils::globalVariables(c("x"))
 #' @examples
 #' gf_function(fun = sqrt, xlim = c(0, 10))
 #' if (require(mosaicData)) {
-#'   gf_dhistogram(~ age, data = HELPrct, binwidth = 3, alpha = 0.6) %>%
+#'   gf_dhistogram( ~ age, data = HELPrct, binwidth = 3, alpha = 0.6) %>%
 #'     gf_function(fun = stats::dnorm,
 #'       args = list(mean = mean(HELPrct$age), sd = sd(HELPrct$age)),
 #'       color = "red")
@@ -1888,27 +1888,27 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #'
 #'   set.seed(12345)
 #'   Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
-#'   gf_dhistogram(~g, data = Dat) %>%
+#'   gf_dhistogram( ~ g, data = Dat) %>%
 #'     gf_fitdistr(dist = "dgamma")
 #'
-#'   gf_dhistogram(~f, data = Dat) %>%
+#'   gf_dhistogram( ~ f, data = Dat) %>%
 #'     gf_fitdistr(dist = "df")
 #'
-#'   gf_dhistogram(~g, data = Dat) %>%
-#'     gf_fun(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
+#'   gf_dhistogram( ~ g, data = Dat) %>%
+#'     gf_fun(mosaicCore::fit_distr_fun( ~ g, data = Dat, dist = "dgamma"))
 #'
 #'   # fitted parameters are default argument values
 #'   args(
-#'     mosaicCore::fit_distr_fun(~f, data = Dat, dist = "df",
+#'     mosaicCore::fit_distr_fun( ~ f, data = Dat, dist = "df",
 #'       start = list(df1 = 10, df2 = 10)))
-#'   args(mosaicCore::fit_distr_fun(~g, data = Dat, dist = "dgamma"))
+#'   args(mosaicCore::fit_distr_fun( ~ g, data = Dat, dist = "dgamma"))
 #'
 #' }
 
 gf_fitdistr <-
   layer_factory(
     geom = "path", stat = "fitdistr", position = "identity",
-    aes_form = list(~ x), inherit.aes = "x",
+    aes_form = list( ~ x), inherit.aes = "x",
     extras = alist(dist = "dnorm", start = NULL, alpha = ,
                    color = , fill = , group = , linetype = , size = ),
     note = "dist should be a density function like dnorm or dgamma"

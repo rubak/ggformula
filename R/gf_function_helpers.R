@@ -269,6 +269,12 @@ layer_factory <- function(
             ingredients[["params"]]
           )
       }
+# =======
+#     }
+#     # bring back the dots into the arguments handed to the layer function
+#     if ("..." %in% names(formals(layer_fun)))
+#         layer_args <- c(layer_args, dots[ !names(dots) %in% names(formals(layer_fun))])
+# >>>>>>> Issue070
 
       # If no ..., be sure to remove things not in the formals list
       if (! "..." %in% names(formals(layer_fun))) {

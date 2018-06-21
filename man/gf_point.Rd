@@ -60,7 +60,7 @@ of the attributes of the layer are mapped.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression},
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression},
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}, or
 (d) arguments for the geom, stat, or position function.}
 }
@@ -100,10 +100,10 @@ in another.
 gf_point()
 gf_point( (10 * ((1:25) \%/\% 10)) ~ ((1:25) \%\% 10), shape = 1:25,
   fill = "skyblue", color = "navy", size = 4, stroke = 1, data = NA)
-gf_point(mpg ~ hp, color = ~ cyl, size = ~wt, data = mtcars)
+gf_point(mpg ~ hp, color = ~ cyl, size = ~ wt, data = mtcars)
 # faceting -- two ways
 gf_point(mpg ~ hp, data = mtcars) \%>\%
-  gf_facet_wrap(~ am)
+  gf_facet_wrap( ~ am)
 gf_point(mpg ~ hp | am, group = ~ cyl, data = mtcars)
 gf_point(mpg ~ hp | ~ am, group = ~ cyl, data = mtcars)
 gf_point(mpg ~ hp | am ~ ., group = ~ cyl,  data = mtcars)

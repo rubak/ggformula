@@ -110,7 +110,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
 \item{label.padding}{Amount of padding around label. Defaults to 0.25 lines.}
@@ -154,10 +154,10 @@ in another.
 
 \examples{
 gf_text(Sepal.Length ~ Sepal.Width, data = iris,
-  label = ~Species, color = ~Species, size = 2, angle = 30)
-gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~Species) \%>\%
+  label = ~ Species, color = ~ Species, size = 2, angle = 30)
+gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) \%>\%
 gf_text(Sepal.Length ~ Sepal.Width, data = iris,
-  label = ~Species, color = ~Species,
+  label = ~ Species, color = ~ Species,
   size = 2, angle = 0, hjust = 0, nudge_x  = 0.1, nudge_y = 0.1)
 
 if (require(dplyr)) {
@@ -167,7 +167,7 @@ if (require(dplyr)) {
     summarise(Sepal.Length = mean(Sepal.Length), Sepal.Width = mean(Sepal.Width))
   gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) \%>\%
   gf_label(Sepal.Length ~ Sepal.Width, data = iris_means,
-    label = ~Species, color = ~Species, size = 2, alpha = 0.7)
+    label = ~ Species, color = ~ Species, size = 2, alpha = 0.7)
 }
 }
 \seealso{

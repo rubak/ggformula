@@ -82,7 +82,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -125,10 +125,10 @@ D$angle <- runif(100, 0, 2*pi)
 D$speed <- runif(100, 0, sqrt(0.1 * D$x))
 
 gf_point(y ~ x, data = D) \%>\%
-  gf_spoke(y ~ x, angle = ~angle, radius = 0.5)
+  gf_spoke(y ~ x, angle = ~ angle, radius = 0.5)
 
 gf_point(y ~ x, data = D) \%>\%
-  gf_spoke(y ~ x, angle = ~angle, radius = ~speed)
+  gf_spoke(y ~ x, angle = ~ angle, radius = ~ speed)
 }
 \seealso{
 \code{\link[ggplot2:geom_spoke]{ggplot2::geom_spoke()}}

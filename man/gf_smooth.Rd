@@ -94,7 +94,7 @@ of the attributes of the layer are mapped.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
@@ -139,12 +139,12 @@ in another.
 gf_smooth()
 gf_lm()
 if (require(mosaicData)) {
-  gf_smooth(births ~ date, color = ~wday, data = Births78)
-  gf_smooth(births ~ date, color = ~wday, data = Births78, fullrange = TRUE)
-  gf_smooth(births ~ date, color = ~wday, data = Births78, show.legend = FALSE, se = FALSE)
-  gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, alpha = 0.2) \%>\%
+  gf_smooth(births ~ date, color = ~ wday, data = Births78)
+  gf_smooth(births ~ date, color = ~ wday, data = Births78, fullrange = TRUE)
+  gf_smooth(births ~ date, color = ~ wday, data = Births78, show.legend = FALSE, se = FALSE)
+  gf_lm(length ~ width, data = KidsFeet, color = ~ biggerfoot, alpha = 0.2) \%>\%
     gf_point()
-  gf_lm(length ~ width, data = KidsFeet, color = ~biggerfoot, fullrange = FALSE, alpha = 0.2)
+  gf_lm(length ~ width, data = KidsFeet, color = ~ biggerfoot, fullrange = FALSE, alpha = 0.2)
     gf_point()
   gf_lm(length ~ width, color = ~ sex, data = KidsFeet,
         formula = y ~ poly(x,2), linetype = "dashed") \%>\%

@@ -104,7 +104,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -146,8 +146,8 @@ in another.
 
 \examples{
 gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) \%>\%
-  gf_freqpoly( ~ Sepal.Length, data = iris, color = ~Species, bins = 20)
-gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris, bins = 20)
+  gf_freqpoly( ~ Sepal.Length, data = iris, color = ~ Species, bins = 20)
+gf_freqpoly( ~ Sepal.Length, color = ~ Species, data = iris, bins = 20)
 if (utils::packageVersion("ggplot2") >= "2.2.1.9000") {
   gf_dens( ~ Sepal.Length, data = iris, color = "navy") \%>\%
     gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,

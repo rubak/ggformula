@@ -96,7 +96,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
@@ -169,11 +169,11 @@ gf_dhistogram( ~ eruptions, data = faithful) \%>\%
 gf_rug( ~ eruptions, data = faithful, color = "red", inherit = FALSE)
 
 # using jitter with gf_histogram() requires manually setting the y value.
-gf_dhistogram(~ Sepal.Width, data = iris) \%>\%
+gf_dhistogram( ~ Sepal.Width, data = iris) \%>\%
 gf_rug(0 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 
 # the choice of y value can affect how the plot looks.
-gf_dhistogram(~ Sepal.Width, data = iris) \%>\%
+gf_dhistogram( ~ Sepal.Width, data = iris) \%>\%
 gf_rug(0.5 ~ Sepal.Width, data = iris, color = "green", sides = "b", position = "jitter")
 }
 \seealso{

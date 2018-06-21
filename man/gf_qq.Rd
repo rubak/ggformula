@@ -89,7 +89,7 @@ display.}
 
 \item{...}{Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with \code{attribute = value},
-(b) ggplot2 aesthetics to be mapped with \code{attribute = ~expression}, or
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
 (c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 
 \item{linetype}{A linetype (numeric or "dashed", "dotted", etc.) or a formula used
@@ -133,11 +133,11 @@ in another.
 }
 
 \examples{
-gf_qq(~rnorm(100))
-gf_qq(~Sepal.Length | Species, data = iris) \%>\% gf_qqline()
-gf_qq(~Sepal.Length | Species, data = iris) \%>\% gf_qqline(tail = 0.10)
-gf_qq(~Sepal.Length, color = ~Species, data = iris) \%>\%
-gf_qqstep(~Sepal.Length, color = ~Species, data = iris)
+gf_qq( ~ rnorm(100))
+gf_qq( ~ Sepal.Length | Species, data = iris) \%>\% gf_qqline()
+gf_qq( ~ Sepal.Length | Species, data = iris) \%>\% gf_qqline(tail = 0.10)
+gf_qq( ~ Sepal.Length, color = ~ Species, data = iris) \%>\%
+gf_qqstep( ~ Sepal.Length, color = ~ Species, data = iris)
 }
 \seealso{
 \code{\link[ggplot2:geom_qq]{ggplot2::geom_qq()}}
