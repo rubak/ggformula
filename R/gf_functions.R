@@ -1951,13 +1951,17 @@ gf_fitdistr <-
 
 gf_sf <-
     layer_factory(
-      require = "sp",
       layer_fun = ggplot2::geom_sf,
       geom = "sf", stat = "sf",
       position = "identity",
       aes_form = list(NULL),
       extras = alist(alpha = , color = , fill = , group = , linetype = ,
-                     size =, geometry =  )
+                     size =, geometry =  ),
+      pre = {
+          if (! requireNamespace("sf", quietly = TRUE)) {
+            stop("The sf package is required.  Please install and try again.")
+          }
+        }
     )
 
 

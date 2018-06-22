@@ -36,7 +36,6 @@ NA
 #'   inherited from prior layers.
 #' @param data A data frame or `NULL` or `NA`.
 #' @param layer_fun The function used to create the layer.
-#' @param require A character vector of required packages.
 #' @return A function.
 #' @export
 
@@ -51,15 +50,9 @@ layer_factory <- function(
   aesthetics = aes(),
   inherit.aes = TRUE,
   data = NULL,
-  layer_fun = ggplot2::layer,
-  require = character(0)
+  layer_fun = ggplot2::layer
 ) {
 
-  for (p in require) {
-    if (! requireNamespace(p, quietly = TRUE)) {
-      stop("Package", p, "is required.  Please install and try again.")
-    }
-  }
 
   # do any preprosessing required
   pre <- substitute(pre)
@@ -82,7 +75,6 @@ layer_factory <- function(
               environment = parent.frame(), ...) {
 
       eval(pre)
-
       # merge extras and dots into single list
       dots <- list(...)
 
