@@ -7,7 +7,7 @@
 layer_factory(geom = "point", position = "identity", stat = "identity",
   pre = { }, aes_form = y ~ x, extras = alist(), note = NULL,
   aesthetics = aes(), inherit.aes = TRUE, data = NULL,
-  layer_fun = ggplot2::layer, require = character(0))
+  layer_fun = ggplot2::layer)
 }
 \arguments{
 \item{geom}{The geom to use for the layer
@@ -40,8 +40,6 @@ inherited from prior layers.}
 \item{data}{A data frame or \code{NULL} or \code{NA}.}
 
 \item{layer_fun}{The function used to create the layer.}
-
-\item{require}{A character vector of required packages.}
 }
 \value{
 A function.
