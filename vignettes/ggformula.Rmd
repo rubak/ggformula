@@ -459,10 +459,10 @@ gf_jitter(length ~ sex, color = ~ domhand, data = KidsFeet,
           group = ~ domhand, stat="summary")
 ```
 
-The other two values computed by `mean_se()` are available as
-`stat(ymin)` and `stat(ymax)`.
+The other two values computed by `mean_se()` are available (starting with 
+`ggplot2` version 2.3) as `stat(ymin)` and `stat(ymax)`.
 
-```{r, stats03}
+```{r, stats03, eval = utils::packageVersion("ggplot2") > "2.2.1"}
 gf_jitter(length ~ sex, color = ~ domhand, data = KidsFeet,
           width = 0.1, height = 0, alpha = 0.3) %>%
   gf_pointrange(length + stat(ymin) + stat(ymax) ~ sex, 
@@ -475,7 +475,7 @@ or a single function `fun.data` that returns a data frame with variables
 named `y`, `ymin`, and `ymax`.
 
 
-```{r, stats04}
+```{r, stats04, eval = utils::packageVersion("ggplot2") > "2.2.1"}
 gf_point(length ~ sex, color = ~ domhand, data = KidsFeet,
           width = 0.1, height = 0, alpha = 0.5,
           position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.3)) %>%
