@@ -17,19 +17,7 @@ See details and examples.}
 \item{gformula}{A formula with shape \code{y ~ x}.
 Faceting can be achieved by including \code{|} in the formula.}
 
-\item{data}{The data to be displayed in this layer. There are three
-options:
-
-If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
-
-A \code{data.frame}, or other object, will override the plot
-data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
-
-A \code{function} will be called with a single argument,
-the plot data. The return value must be a \code{data.frame.}, and
-will be used as the layer data.}
+\item{data}{A data frame with the variables to be plotted.}
 
 \item{alpha}{Opacity (0 = invisible, 1 = opaque).}
 
@@ -61,18 +49,14 @@ See also \code{\link[=gf_labs]{gf_labs()}}.}
 \item{caption}{Title, sub-title, and caption for the plot.
 See also \code{\link[=gf_labs]{gf_labs()}}.}
 
-\item{stat}{The statistical transformation to use on the data for this
-layer, as a string.}
+\item{stat}{A character string naming the stat used to make the layer.}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Either a character string naming the position function used
+for the layer or a position object returned from a call to a position function.}
 
-\item{show.legend}{logical. Should this layer be included in the legends?
-\code{NA}, the default, includes if any aesthetics are mapped.
-\code{FALSE} never includes, and \code{TRUE} always includes.
-
-You can also set this to one of "polygon", "line", and "point" to
-override the default legend.}
+\item{show.legend}{A logical indicating whether this layer should be included in
+the legends.  \code{NA}, the default, includes layer in the legends if any
+of the attributes of the layer are mapped.}
 
 \item{show.help}{If \code{TRUE}, display some minimal help.}
 
@@ -80,10 +64,10 @@ override the default legend.}
 
 \item{environment}{An environment in which to look for variables not found in \code{data}.}
 
-\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{color = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Additional arguments.  Typically these are
+(a) ggplot2 aesthetics to be set with \code{attribute = value},
+(b) ggplot2 aesthetics to be mapped with \code{attribute = ~ expression}, or
+(c) attributes of the layer as a whole, which are set with \code{attribute = value}.}
 }
 \value{
 a gg object
@@ -91,34 +75,6 @@ a gg object
 \description{
 Mapping with shape files
 }
-\section{Geometry aesthetic}{
-
-
-\code{geom_sf} uses a unique aesthetic: \code{geometry}, giving an
-column of class \code{sfc} containg simple features data. There
-are three ways to supply the \code{geometry} aesthetic:
-\itemize{
-\item Do nothing: by default \code{geom_sf} assumes it is stored in
-the \code{geometry} column.
-\item Explicitly pass an \code{sf} object to the \code{data} argument.
-This will use the primary geometry column, no matter what it's called.
-\item Supply your own using \code{aes(geometry = my_column)}
-}
-
-Unlike other aesthetics, \code{geometry} will never be inherited from
-the plot.
-
-}
-
-\section{CRS}{
-
-
-\code{coord_sf()} ensures that all layers use a common CRS. You can
-either specify it using the \code{CRS} param, or \code{coord_sf} will
-take it from the first layer that defines a CRS.
-
-}
-
 \section{Specifying plot attributes}{
 
 
@@ -147,7 +103,8 @@ in another.
 
 \examples{
 
-if (require(maps) && require(sf)) {
+if (require(maps) && require(maptools) && require(sf) &&
+  utils::packageVersion("ggplot2") > "2.2.1") {
   US <- sf::st_as_sf(map('state', plot = FALSE, fill = TRUE))
   gf_sf( fill = ~ factor(nchar(ID)), data = US) \%>\%
   gf_refine(coord_sf())
@@ -169,5 +126,5 @@ if (require(maps) && require(sf)) {
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_sf]{ggplot2::geom_sf()}}
+\code{\link[ggplot2:geom_line]{ggplot2::geom_line()}}, \code{\link[=gf_point]{gf_point()}}
 }

@@ -1113,7 +1113,7 @@ gf_percents <-
 #' gf_histogram( ~ Sepal.Length | Species, alpha = 0.2, data = iris, bins = 20) %>%
 #'   gf_freqpoly( ~ Sepal.Length, data = iris, color = ~ Species, bins = 20)
 #' gf_freqpoly( ~ Sepal.Length, color = ~ Species, data = iris, bins = 20)
-#' if (utils::packageVersion("ggplot2") >= "2.2.1.9000") {
+#' if (utils::packageVersion("ggplot2") > "2.2.1") {
 #'   gf_dens( ~ Sepal.Length, data = iris, color = "navy") %>%
 #'     gf_freqpoly( stat(density) ~ Sepal.Length, data = iris,
 #'       color = "red", bins = 20)
@@ -1128,7 +1128,7 @@ gf_freqpoly <-
       binwidth =, bins = , center = , boundary =
     ),
     note =
-      if (packageVersion("ggplot2") <= "2.2.1") {
+      if (utils::packageVersion("ggplot2") <= "2.2.1") {
         "y may be omitted or ..density.. or ..count.. or ..ndensity.. or ..ncount.."
       } else {
         "y may be omitted or stat(density) or stat(count) or stat(ndensity) or stant(ncount)."
@@ -1919,16 +1919,17 @@ gf_fitdistr <-
 #' Mapping with shape files
 #'
 #' @inheritParams gf_point
-#' @inherit ggplot2::geom_sf
+# #' @inherit ggplot2::geom_sf
 #' @inherit gf_line
 #' @param geometry A column of class sfc containg simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.
-#' @seealso [`ggplot2::geom_sf()`]
+# #' @seealso [`ggplot2::geom_sf()`]
 #' @export
 #' @examples
 #'
-#' if (require(maps) && require(sf)) {
+#' if (require(maps) && require(maptools) && require(sf) &&
+#'   utils::packageVersion("ggplot2") > "2.2.1") {
 #'   US <- sf::st_as_sf(map('state', plot = FALSE, fill = TRUE))
 #'   gf_sf( fill = ~ factor(nchar(ID)), data = US) %>%
 #'   gf_refine(coord_sf())
@@ -1950,6 +1951,15 @@ gf_fitdistr <-
 #' }
 
 gf_sf <-
+  if (utils::packageVersion("ggplot2") <= "2.2.1") {
+    function(object = NULL, gformula = NULL, data = NULL, alpha,
+             color, fill, group, linetype, size, geometry, xlab,
+             ylab, title, subtitle, caption, stat = "sf", position
+             = "identity", show.legend = NA, show.help = NULL,
+             inherit = TRUE, environment = parent.frame(), ...) {
+      message("gf_sf() requires a newer version of ggplot2.")
+    }
+  } else {
     layer_factory(
       layer_fun = ggplot2::geom_sf,
       geom = "sf", stat = "sf",
@@ -1963,5 +1973,6 @@ gf_sf <-
           }
         }
     )
+  }
 
 
