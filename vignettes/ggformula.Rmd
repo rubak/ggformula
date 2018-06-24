@@ -15,10 +15,11 @@ have_packages <-
   require(dplyr) &&
   require(ggplot2) &&
   require(mosaicData) &&
-  require(mosaicModel) &&
   require(maps) &&
   require(mosaic) &&
-  require(dplyr)
+  require(dplyr) %%
+  requireNamespace("mosaicModel")
+  
 
 knitr::opts_chunk$set(
   fig.show = "hold",
@@ -35,7 +36,7 @@ cat(
 ## Warning: Missing packages
 
 Because one or more of 
-`ggformula`, `ggplot2`, `dplyr`, `mosaicModel`, `mosaicData`,
+`ggformula`, `ggplot2`, `dplyr`, `mosaicData`, `mosaicModel`,
 `maps`, `mosaic`, and `dplyr`
 appears to be missing, this vignette is compiling
 without executing any code. 
