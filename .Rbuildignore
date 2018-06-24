@@ -8,4 +8,5 @@ cran-comments.md
 ^revdep$
 ^data-raw$
 ^README\.Rmd$
+^README\.md$
 ^README-.*\.png$
