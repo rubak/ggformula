@@ -13,12 +13,13 @@ library(tibble)
 library(ggformula)
 library(mosaic)
 library(mosaicData)
-library(NHANES)
 library(ggthemes)
 library(lubridate)
 theme_set(theme_bw(base_size = 7))
 data(Births, package = "mosaicData")
-data(NHANES, package = "NHANES")
+if (require(NHANES)) {
+  data(NHANES, package = "NHANES")
+}
 for (y in unique(Births$year)) {
   assign(paste0("Births",y),  Births %>% filter(year == y))
 }
