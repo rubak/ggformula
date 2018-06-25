@@ -72,7 +72,8 @@ layer_factory <- function(
   res <-
     function( xlab, ylab, title, subtitle, caption,
               show.legend , function_name, inherit,
-              environment = parent.frame(), ...) {
+              environment = parent.frame(),
+              ...) {
 
       eval(pre)
       # merge extras and dots into single list
@@ -86,7 +87,7 @@ layer_factory <- function(
 
       # show help if requested or if there are no arguments to the function
       if (is.null(show.help)) {
-        show.help <- length(match.call()) < 2 # && is.null(object)
+        show.help <- length(match.call()) < 2
       }
 
       if (show.help) {
@@ -106,6 +107,14 @@ layer_factory <- function(
         data <- object
         object <- NULL
       }
+
+      # not sure whether we should use the environment recorded in object or not,
+      # but this is how/where to do it.
+
+      # if (inherits(object, "gg") && packageVersion("ggplot2") > "2.2.1") {
+      #   environment <- object$plot_env
+      # }
+
 
       # # allow some operations in formulas without requiring I()
       # gformula <- mosaicCore::reop_formula(gformula)
@@ -166,14 +175,13 @@ layer_factory <- function(
            ) {
         extras_and_dots[[n]] <- NULL
       }
-      # evaluate any items that are still calls
-      # for (n in seq_along(extras_and_dots)) {
-      #   if (is.call(extras_and_dots[[n]]))
-      #     extras_and_dots[[n]] <- eval(extras_and_dots[[n]], environment)
-      # }
-      # return(extras_and_dots)
+
+      # evaluate any items that are names or still calls
       extras_and_dots <-
-        lapply(extras_and_dots, function(x) if(is.symbol(x)) eval(x, environment) else x)
+        lapply(extras_and_dots, function(x) {
+          if(is.symbol(x) || is.call(x)) eval(x, environment) else x
+        }
+        )
       #
       ########### end create extras_and_dots ##########
 
@@ -293,22 +301,25 @@ layer_factory <- function(
           p <- object + new_layer
         } else {
           p <-
-            ggplot(
-              data = ingredients$data,
-              mapping = ingredients[["mapping"]],
-              environment = environment
-            ) + new_layer
+            do.call(
+              ggplot,
+              list( data = ingredients$data,
+                    mapping = ingredients[["mapping"]]
+              ), envir = environment
+            ) +
+            new_layer
         }
       } else {
         if (add) {
           p <- object + new_layer + ingredients[["facet"]]
         } else {
-          p <-
-            ggplot(
+          p <- do.call(
+            ggplot,
+            list(
               data = ingredients$data,
-              mapping = ingredients[["mapping"]],
-              environment = environment
-            ) +
+              mapping = ingredients[["mapping"]]
+            ), envir= environment
+          ) +
             new_layer +
             ingredients[["facet"]]
         }
