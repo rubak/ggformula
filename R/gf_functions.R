@@ -1976,3 +1976,20 @@ gf_sf <-
   }
 
 
+#' Create an "empty" plot
+#'
+#' This is primarily useful as a way to start a sequence of piped
+#' plot layers.
+#'
+#' @param environment An environment passed to [`ggplot2::ggplot()`]
+#' @return A plot with now layers.
+#' @examples
+#' gf_empty()
+#' gf_empty() %>%
+#'   gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species)
+#'
+#' @export
+gf_empty <- function(environment = parent.frame()) {
+  ggplot2::ggplot(environment = environment)
+}
+
