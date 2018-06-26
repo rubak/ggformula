@@ -36,6 +36,7 @@ Suggests:
     scales,
     maps,
     maptools,
+    rgeos,
     sf,
     purrr,
     ggthemes
