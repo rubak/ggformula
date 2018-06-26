@@ -103,7 +103,8 @@ in another.
 
 \examples{
 
-if (require(maps) && require(maptools) && require(sf) &&
+if (require(maps) && require(maptools) &&
+  require(sf) && require(rgeos) &&
   utils::packageVersion("ggplot2") > "2.2.1") {
   US <- sf::st_as_sf(map('state', plot = FALSE, fill = TRUE))
   gf_sf( fill = ~ factor(nchar(ID)), data = US) \%>\%
