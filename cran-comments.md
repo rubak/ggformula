@@ -18,9 +18,18 @@ R CMD check results
 
 Checked with `devtools::revdep_check()`.  
 
-Error in `mosaicCore` and warning in `mosaic` should go away once `mosaic`, `mosaicCore` 
-and `ggformula` are all updated.  All three check cleaning against each other in the
-versions being submitted.
+Checked fastR2     : 0 errors | 1 warning  | 0 notes
+Checked mosaic     : 0 errors | 0 warnings | 1 note 
+Checked mosaicCore : 0 errors | 0 warnings | 0 notes
+Checked mosaicData : 0 errors | 0 warnings | 0 notes
+Checked mosaicModel: 0 errors | 0 warnings | 0 notes
+Checked supernova  : 0 errors | 0 warnings | 0 notes
 
+An updated fastR2 will be heading to CRAN in the next couple days. (The reported
+issues has to do with ggplot2 now exporting a stat() when mosaic already has had
+a stat() function for some time.  The new mosaic::stat() is ggplot2::stat() aware.)
 
+The mosaic note is about the size of the package which is riding right at the 5
+Mb limit, sometimes just under, sometimes just over.  An updated mosaic will be
+coming to CRAN very soon (before fastR2).
 
