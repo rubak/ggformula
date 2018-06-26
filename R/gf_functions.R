@@ -1891,16 +1891,16 @@ gf_fun <- function(object = NULL, formula, xlim, ..., inherit = FALSE) {
 #'   gf_dhistogram( ~ g, data = Dat) %>%
 #'     gf_fitdistr(dist = "dgamma")
 #'
-#'   gf_dhistogram( ~ f, data = Dat) %>%
-#'     gf_fitdistr(dist = "df")
-#'
 #'   gf_dhistogram( ~ g, data = Dat) %>%
 #'     gf_fun(mosaicCore::fit_distr_fun( ~ g, data = Dat, dist = "dgamma"))
+#'
+#'   gf_dhistogram( ~ f, data = Dat) %>%
+#'     gf_fitdistr(dist = "df", start = list(df1 = 2, df2 = 50))
 #'
 #'   # fitted parameters are default argument values
 #'   args(
 #'     mosaicCore::fit_distr_fun( ~ f, data = Dat, dist = "df",
-#'       start = list(df1 = 10, df2 = 10)))
+#'       start = list(df1 = 2, df2 = 50)))
 #'   args(mosaicCore::fit_distr_fun( ~ g, data = Dat, dist = "dgamma"))
 #'
 #' }
