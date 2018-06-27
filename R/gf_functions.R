@@ -926,6 +926,13 @@ gf_dhistogram <-
 
 #' Formula interface to stat_density()
 #'
+#' Computes and draws a kernel density estimate, which is a smoothed version of the
+#' histogram and is a useful alternative when the data come from an unerlying smooth
+#' distribution.
+#' The only difference between `gf_dens()` and `gf_density()` is the default geom
+#' used to show the density curve: `gf_density()` uses an area geom (which can be filled).
+#' `gf_dens()` using a line geom (which cannot be filled).
+#'
 #' @inherit ggplot2::geom_density description references
 #' @inherit gf_line
 #' @inheritParams ggplot2::geom_density
@@ -936,7 +943,7 @@ gf_dhistogram <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#' @seealso [ggplot2::geom_density()]
+#' @seealso [`gf_ash()`], [`ggplot2::geom_density()`]
 #' @export
 #' @examples
 #' gf_dens()
