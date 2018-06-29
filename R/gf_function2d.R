@@ -23,8 +23,10 @@
 #' gf_function_tile(fun = function(x, y) x * y) %>%
 #' gf_function_contour(fun = function(x, y) x * y, color = "white") %>%
 #'   gf_refine(scale_fill_viridis_c())
-#' gf_function_contour(x * y ~ x + y, color = "white") %>%
-#'   gf_refine(scale_fill_viridis_c())
+#' gf_fun_tile(x * y ~ x + y, xlim = c(-3,3), ylim = c(-2,2)) %>%
+#'   gf_fun_contour(x * y ~ x + y, color = "white") %>%
+#'   gf_refine(scale_fill_viridis_c()) %>%
+#'   gf_labs(fill = "product")
 #' @importFrom dplyr "%>%"
 #' @export
 #'
@@ -63,11 +65,11 @@ gf_function_2d <-
      x =  seq(xlim[1], xlim[2], length.out = resolution[1]),
      y =  seq(ylim[1], ylim[2], length.out = resolution[2])
     ) %>%
-    dplyr::mutate(f.value = fun(x, y))
+    dplyr::mutate(value = fun(x, y))
 
   res <- object
-  if (tile) res <- object %>% gf_tile(f.value ~ x + y, data = Layer_Data, ...)
-  if (contour) res <- res %>% gf_contour(f.value ~ x + y, data = Layer_Data, ...)
+  if (tile) res <- object %>% gf_tile(value ~ x + y, data = Layer_Data, ...)
+  if (contour) res <- res %>% gf_contour(value ~ x + y, data = Layer_Data, ...)
   res
   }
 

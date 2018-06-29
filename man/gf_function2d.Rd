@@ -68,6 +68,8 @@ gf_function_2d( fun = function(x, y) x + y, contour = FALSE)
 gf_function_tile(fun = function(x, y) x * y) \%>\%
 gf_function_contour(fun = function(x, y) x * y, color = "white") \%>\%
   gf_refine(scale_fill_viridis_c())
-gf_function_contour(x * y ~ x + y, color = "white") \%>\%
-  gf_refine(scale_fill_viridis_c())
+gf_fun_tile(x * y ~ x + y, xlim = c(-3,3), ylim = c(-2,2)) \%>\%
+  gf_fun_contour(x * y ~ x + y, color = "white") \%>\%
+  gf_refine(scale_fill_viridis_c()) \%>\%
+  gf_labs(fill = "product")
 }
