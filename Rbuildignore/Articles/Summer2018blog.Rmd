@@ -1,0 +1,126 @@
+---
+title: "Project MOSAIC migrates to ggformula"
+author: "R Pruim"
+date: "7/5/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.show = "hold",
+  fig.width = 4,
+  fig.height = 3,
+  fig.align = "center")
+library(mosaic)
+theme_set(theme_bw(base_size = 10))
+```
+
+Last summer, 
+Project MOSAIC announced `ggformula`, a new package that provides a formula interface to
+`ggplot2` graphics in R.
+(See, for example, 
+[*ggformula: another option for teaching graphics in R to beginners*](https://www.r-bloggers.com/ggformula-another-option-for-teaching-graphics-in-r-to-beginners/).)
+This package provides a happy medium between `lattice` and `ggplot2` that allows
+beginners to "do powerful things quickly" by adopting the formula interface of
+`lattice` and R's statistical modeling functions as a means to produce `ggplot2`
+graphics.
+
+Over the past year, our experience with `ggformula` in our classes and in
+faculty development workshops together with the feedback we have received from
+other users have demonstrated `ggformula` to be flexible, yet easy to learn. As
+part of an ecosystem that emphasizes a formula interface of `lattice` and the
+core R statistical modeling functions early on and adds `tidyverse` concepts
+later, `ggformula` fits better with the rest of our toolkit than do either
+`lattice` or `ggplot2`, providing opportunities for more creativity with less
+volume.
+
+The recent releases of several Project MOSAIC R packages (`mosaic`,
+`mosaicData`, `mosaicCore`, and `ggformula`) and the related `fastR2` package
+mark the official migration of Project MOSAIC from `lattice` to `ggformula` as
+its primary graphics system.  Future development includes plans to release
+an updated version of `mosaicModel` which will interoperate with `ggformula`
+and a new package called `latticeExtra` (currently only available via Github)
+which adds additional functionality but relies on additional packages beyond `ggplot2`.
+
+
+Many of the recent changes to the Project MOSAIC suite of packages will go largely
+unnoticed by most users but were necesary to allow `ggformula` to interoperate
+with the newest version of `ggplot2`. Among the small number of more noticeable
+changes are a change in `gf_smooth()` so that it no longer displays confidence
+bands by default (use `se = TRUE` to turn them on), expanded support for "rugs",
+and the addition of `gf_sf()` for improved support for choropleth maps (based on
+the new `geom_sf()` in `ggplot2`). Along the way, we also did some light
+housekeeping (improving documentation, etc.) and migrated most of our package
+examples from `lattice` to `ggformula`.
+
+Users of `lattice`-based Project MOSAIC materials should have relatively little
+trouble migrating to `ggformula` since the types of plots that were easiest to
+construct with `lattice` can be created very similarly using `ggformula`.  For
+example, the following two commands are essentially equivalent (although the
+resulting plots have a different appearence).
+
+```{r, histograms}
+    histogram( ~ age | sex, data = HELPrct,    width = 2, col  = "navy")
+gf_dhistogram( ~ age | sex, data = HELPrct, binwidth = 2, fill = "navy")
+```
+
+It is much simpler, however, to create complex plots using `ggformula` because
+multiple layers can be stacked using the `tidyverse` pipe (`%>%`, which we
+often read as "then").
+
+```{r, multilayer}
+gf_jitter(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species, alpha = 0.6) %>%
+  gf_density2d(alpha = 0.3) %>%
+  gf_jitter(geom = "rug", alpha = 0.6) %>%
+  gf_lm(linetype = "dashed")
+```
+
+As part of the migration to `ggformula`, a number of [related resources](https://cran.r-project.org/web/packages/mosaic/vignettes/mosaic-resources.html)
+have been or are being converted from `lattice` to `ggformula` as well. These
+include companion volumes for several popular statistics text books 
+(**add references for Lock5, Slueth, IPS?**), 
+our series of ["Little Books"](https://github.com/ProjectMOSAIC/LittleBooks), 
+the [*Minimal R Vignette*](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalRgg.pdf),
+and a 
+[side-by-side comparison of `lattice` and `ggformula](https://cran.r-project.org/web/packages/mosaic/vignettes/ggformula-lattice.pdf).
+In addition, the second
+edition of [*Foundations and Applications of Statistics*](https://bookstore.ams.org/amstext-28/)
+(Pruim, 2018) uses `ggformula` throughout.
+
+An eventual migration from `ggformula` to native `ggplot2`, while not strictly
+necessary (since the same plots can be made in either system), is easier than
+the migration from `lattice` since the underlying grammar and much of the
+nomenclature of `ggformula` is borrowed from `ggplot2`.  In the meantime,
+equivalent `ggformula` code is generally less verbose and simpler for novices to
+understand and produce.  And the use of `%>%` for layering avoids the errors
+that creap in when moving between `tidyverse`, which also uses `%>%`, and
+`ggplot2` which uses `+`.  Indeed, data flows can be directed seamlessly into
+`ggformula` plotting commands.  This can be useful as a debugging step when
+creating data pipelines or as a way to create a plot for which there is no
+need to save the pre-processed data.
+
+```{r, Galton}
+Galton %>%
+  filter(sex == "M") %>%  # select only male adult children
+  group_by(family) %>%      #
+  sample_n(1) %>%           # choose only one male from each family
+  ungroup %>%               #
+  mutate(                     # compute z-scores for parents' heights
+    zfather = round(mosaic::zscore(father), 2),
+    zmother = round(mosaic::zscore(mother), 2)
+  ) %>% 
+  gf_jitter(zfather ~ zmother, alpha = 0.5, 
+            title = "Standardized heights of parents",
+            caption = "Source: Galton") %>%
+  gf_lm()
+```
+
+
+It has been over a year since I have used either `lattice` or `ggplot2` for
+anything other than comparison examples. My co-authors and I have found the
+switch from `lattice` to `ggformula` to be both straightforward (for us) and
+advantageous (for our students). We encourage you to give it a try in your own
+work and with your students.
