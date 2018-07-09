@@ -101,6 +101,11 @@
     
     
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial("introduction", package = "ggformula")
+##  learnr::run_tutorial("refining", package = "ggformula")</code></pre>
 <div id="ggformula" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ggformula" class="anchor"></a>ggformula</h1></div>
@@ -122,11 +127,6 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#using-ggformula" class="anchor"></a>Using ggformula</h2>
 <p>The following example illustrates a typical plot constructed with ggformula.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggformula)
-<span class="co">#&gt; Loading required package: ggplot2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; New to ggformula?  Try the tutorials: </span>
-<span class="co">#&gt;  learnr::run_tutorial("introduction", package = "ggformula")</span>
-<span class="co">#&gt;  learnr::run_tutorial("refining", package = "ggformula")</span>
 <span class="kw"><a href="reference/gf_jitter.html">gf_jitter</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width, <span class="dt">data =</span> iris, <span class="dt">color =</span> <span class="op">~</span><span class="st"> </span>Species,
           <span class="dt">width =</span> <span class="fl">0.05</span>, <span class="dt">height =</span> <span class="fl">0.05</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/gf_density_2d.html">gf_density2d</a></span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">%&gt;%</span>
@@ -137,7 +137,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
   ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/gf_theme.html">gf_theme</a></span>(<span class="kw">theme_bw</span>()) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/gf_theme.html">gf_theme</a></span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">"navy"</span>, <span class="dt">face =</span> <span class="st">"italic"</span>))</code></pre></div>
-<p><img src="README-example-1.png" width="700"></p>
+<p><img src="index_files/figure-html/example-1.png" width="672"></p>
 <div id="tutorials" class="section level3">
 <h3 class="hasAnchor">
 <a href="#tutorials" class="anchor"></a>Tutorials</h3>

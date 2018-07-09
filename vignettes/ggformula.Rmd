@@ -16,9 +16,8 @@ have_packages <-
   require(ggplot2) &&
   require(mosaicData) &&
   require(maps) &&
-  require(mosaic) &&
-  require(dplyr) %%
-  requireNamespace("mosaicModel")
+  requireNamespace("mosaicModel") &&
+  requireNamespace("mosaic") 
   
 
 knitr::opts_chunk$set(
@@ -36,9 +35,8 @@ cat(
 ## Warning: Missing packages
 
 Because one or more of 
-`ggformula`, `ggplot2`, `dplyr`, `mosaicData`, `mosaicModel`,
-`maps`, `mosaic`, and `dplyr`
-appears to be missing, this vignette is compiling
+`ggformula`, `ggplot2`, `dplyr`, `mosaic`, `mosaicData`, `mosaicModel`,
+and `maps`, appears to be missing, this vignette is compiling
 without executing any code. 
 
 "
@@ -578,7 +576,7 @@ Prior to `ggplot2` version 2.3,
 basic maps could be created using `gf_polygon()`.
 
 ```{r, fig.width = 6, fig.height = 3, out.width = "75%"}
-if (require(maps) && require(mosaic) && require(dplyr)) {
+if (require(maps) && require(dplyr)) {
   US <- map_data("state") %>%
     dplyr::mutate(name_length = nchar(region))
   States <- US %>%
@@ -601,7 +599,7 @@ information from multiple shape files.
 
 
 ```{r, fig.width = 6, fig.height = 3, out.width = "75%"}
-if (require(maps) && require(mosaic) && require(dplyr) && require(sf) && require(purrr)) {
+if (require(maps) && require(dplyr) && require(sf) && require(purrr)) {
   USshape <- 
     sf::st_as_sf(maps::map('state', plot = FALSE, fill = TRUE)) %>%
     dplyr::mutate(
