@@ -1,7 +1,7 @@
 ---
 title: "Project MOSAIC migrates to ggformula"
 author: "R Pruim"
-date: "7/5/2018"
+date: "7/9/2018"
 output:
   pdf_document: default
   html_document: default
@@ -78,14 +78,13 @@ gf_jitter(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species, alpha = 0.
   gf_lm(linetype = "dashed")
 ```
 
-As part of the migration to `ggformula`, a number of [related resources](https://cran.r-project.org/web/packages/mosaic/vignettes/mosaic-resources.html)
+As part of the migration to `ggformula`, a number of [related resources](https://projectmosaic.github.io/mosaic/articles/mosaic-resources.html)
 have been or are being converted from `lattice` to `ggformula` as well. These
-include companion volumes for several popular statistics text books 
-(**add references for Lock5, Slueth, IPS?**), 
-our series of ["Little Books"](https://github.com/ProjectMOSAIC/LittleBooks), 
+include [companion volumes for several popular statistics text books](https://projectmosaic.github.io/mosaic/articles/mosaic-resources.html#textbook-related),
+our series of ["Little Books"](https://projectmosaic.github.io/mosaic/articles/mosaic-resources.html#project-mosaic-little-books), 
 the [*Minimal R Vignette*](https://cran.r-project.org/web/packages/mosaic/vignettes/MinimalRgg.pdf),
 and a 
-[side-by-side comparison of `lattice` and `ggformula](https://cran.r-project.org/web/packages/mosaic/vignettes/ggformula-lattice.pdf).
+[side-by-side comparison of `lattice` and `ggformula`](https://projectmosaic.github.io/mosaic/articles/ggformula-lattice.html).
 In addition, the second
 edition of [*Foundations and Applications of Statistics*](https://bookstore.ams.org/amstext-28/)
 (Pruim, 2018) uses `ggformula` throughout.
