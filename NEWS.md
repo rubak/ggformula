@@ -1,6 +1,6 @@
 
 
-# ggformula 0.8.0.9000 (to be released as 1.0.0?)
+# ggformula 0.8.0.9000
 
  * `ggformula` now requires `ggplot2 (>= 3.0.0)`.  This should take care of issues in 0.8.0 when `ggplot2` was upgraded *after* upgrading `ggformula`.
  * `pkgdown` website created at https://projectmosaic.github.io/ggformula/
