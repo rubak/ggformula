@@ -12,12 +12,21 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+#' @rdname makeFun
 #' @importFrom mosaicCore makeFun df_stats na.warn
+#' @inherit mosaicCore::makeFun
 #' @export
-mosaicCore::makeFun
+makeFun <- mosaicCore::makeFun
 
+#' Calculate statistics on a variable
+#'
+#' @rdname df_stats
+#' @inherit mosaicCore::df_stats
+#' @inheritParams mosaicCore::df_stats
 #' @export
-mosaicCore::df_stats
+df_stats <- mosaicCore::df_stats
 
+#' @rdname na.warn
+#' @inherit mosaicCore::na.warn
 #' @export
-mosaicCore::na.warn
+na.warn <- mosaicCore::na.warn
