@@ -46,15 +46,6 @@ gf_jitter(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species,
 
 ![](README-example-1.png)
 
-### Tutorials
+### More Information
 
-Interactive tutorials demonstrating the package functionality can be run with
-
-``` r
-learnr::run_tutorial("introduction", package = "ggformula")
-learnr::run_tutorial("refining", package = "ggformula")
-```
-
-### Package Vignette
-
-The package vignette is available at <https://cran.r-project.org/package=ggformula/vignettes/ggformula.html>.
+Find out more about `ggformula` at [projectmosiac.github.io/ggformula](https://projectmosaic.github.io/ggformula).
