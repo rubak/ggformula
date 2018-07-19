@@ -28,6 +28,7 @@ Suggests:
     mosaicModel,
     mosaicData,
     testthat,
+    vdiffr,
     knitr,
     rmarkdown,
     lubridate,
