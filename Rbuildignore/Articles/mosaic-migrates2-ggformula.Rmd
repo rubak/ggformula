@@ -28,6 +28,7 @@ beginners to "do powerful things quickly" by adopting the formula interface of
 `lattice` and R's statistical modeling functions as a means to produce `ggplot2`
 graphics.
 
+
 Over the past year, our experience with `ggformula` in our classes and in
 faculty development workshops together with the feedback we have received from
 other users have demonstrated `ggformula` to be flexible, yet easy to learn. As
@@ -42,7 +43,7 @@ The recent releases of several Project MOSAIC R packages (`mosaic`,
 mark the official migration of Project MOSAIC from `lattice` to `ggformula` as
 its primary graphics system.  Future development includes plans to release
 an updated version of `mosaicModel` which will interoperate with `ggformula`
-and a new package called `latticeExtra` (currently only available via Github)
+and a new package called `ggformulaExtra` (currently only available via Github)
 which adds additional functionality but relies on additional packages beyond `ggplot2`.
 
 
@@ -56,7 +57,30 @@ the new `geom_sf()` in `ggplot2`). Along the way, we also did some light
 housekeeping (improving documentation, etc.) and migrated most of our package
 examples from `lattice` to `ggformula`.
 
-Users of `lattice`-based Project MOSAIC materials should have relatively little
+The basic form of the formula interface is 
+
+```{r, eval = FALSE}
+goal(y ~ x, data = myData)
+```
+
+which corresponds to SAS code like
+
+```
+PROC GOAL DATA = MYDATA; MODEL Y = X; RUN;
+```
+
+`goal()` can be replaced by a graphing (e.g., `gf_point()`) or modeling
+(e.g., `lm()`) function with the number of variables involved in the formula
+varying with the complexity of the plot or model desired.
+
+```{r} 
+library(mosaic)              # load the mosaic package (and ggformula)
+gf_point(length ~ width, data = KidsFeet)                  # scatter plot 
+      lm(length ~ width, data = KidsFeet) %>% msummary()   # linear model
+```
+
+
+Users of `lattice`-based Project MOSAIC materials should have little
 trouble migrating to `ggformula` since the types of plots that were easiest to
 construct with `lattice` can be created very similarly using `ggformula`.  For
 example, the following two commands are essentially equivalent (although the
@@ -68,14 +92,16 @@ gf_dhistogram( ~ age | sex, data = HELPrct, binwidth = 2, fill = "navy")
 ```
 
 It is much simpler, however, to create complex plots using `ggformula` because
-multiple layers can be stacked using the `tidyverse` pipe (`%>%`, which we
-often read as "then").
+multiple layers can be stacked using the `maggrittr` pipe (`%>%`, which we
+often read as "then") familiar to users of the `tidyverse` suite of packages (and
+many others as well).
 
 ```{r, multilayer}
-gf_jitter(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species, alpha = 0.6) %>%
-  gf_density2d(alpha = 0.3) %>%
-  gf_jitter(geom = "rug", alpha = 0.6) %>%
-  gf_lm(linetype = "dashed")
+gf_jitter(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) %>%
+  gf_density2d(alpha = 0.4) %>%
+  gf_jitter(geom = "rug", alpha = 0.7) %>%
+  gf_lm(linetype = "dashed") %>%
+  gf_refine(scale_color_brewer(type = "qual"))
 ```
 
 As part of the migration to `ggformula`, a number of [related resources](https://projectmosaic.github.io/mosaic/articles/mosaic-resources.html)
