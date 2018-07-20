@@ -17,6 +17,10 @@ library(ggformula)
 
 # ggformula
 
+```{r, echo = FALSE, out.width = 200}
+knitr::include_graphics("logo.png")
+```
+
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ggformula)](https://cran.r-project.org/package=ggformula)
 
 ## Formula interface to ggplot2
