@@ -122,8 +122,8 @@ in another.
 
 \examples{
 if (require(mosaicData)) {
-  gf_hex(i1 ~ age, data = HELPrct, bins = 15) \%>\%
-  gf_density2d(i1 ~ age, data = HELPrct, color = "red", alpha = 0.5)
+  gf_hex(avg_drinks ~ age, data = HELPrct, bins = 15) \%>\%
+  gf_density2d(avg_drinks ~ age, data = HELPrct, color = "red", alpha = 0.5)
 }
 }
 \seealso{

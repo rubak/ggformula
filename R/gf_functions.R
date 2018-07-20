@@ -411,8 +411,8 @@ gf_quantile <-
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
-#'   gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) %>%
-#'   gf_density_2d(i1 ~ age, data = HELPrct)
+#'   gf_jitter(avg_drinks ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) %>%
+#'   gf_density_2d(avg_drinks ~ age, data = HELPrct)
 #' }
 
 gf_density_2d <-
@@ -428,8 +428,8 @@ gf_density_2d <-
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
-#'   gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) %>%
-#'   gf_density2d(i1 ~ age, data = HELPrct)
+#'   gf_jitter(avg_drinks ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) %>%
+#'   gf_density2d(avg_drinks ~ age, data = HELPrct)
 #' }
 
 gf_density2d <-
@@ -454,8 +454,8 @@ gf_density2d <-
 #' @export
 #' @examples
 #' if (require(mosaicData)) {
-#'   gf_hex(i1 ~ age, data = HELPrct, bins = 15) %>%
-#'   gf_density2d(i1 ~ age, data = HELPrct, color = "red", alpha = 0.5)
+#'   gf_hex(avg_drinks ~ age, data = HELPrct, bins = 15) %>%
+#'   gf_density2d(avg_drinks ~ age, data = HELPrct, color = "red", alpha = 0.5)
 #' }
 gf_hex <-
   layer_factory(
@@ -1771,7 +1771,7 @@ gf_coefline <- function(object = NULL, coef = NULL, model = NULL, ...) {
   if (is.null(coef)) coef <- coef(model)
   if (length(coef) > 2) warning("Ignoring all but first two values of coef.")
   if (length(coef) < 2) stop("coef must be of length at least 2.")
-  gf_abline(object = object, intercept = coef[1], slope = coef[2], ..., inherit.aes = FALSE)
+  gf_abline(object = object, intercept = coef[1], slope = coef[2], ..., inherit = FALSE)
 }
 
 utils::globalVariables(c("x"))

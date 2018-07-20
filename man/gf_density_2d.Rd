@@ -141,12 +141,12 @@ in another.
 
 \examples{
 if (require(mosaicData)) {
-  gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) \%>\%
-  gf_density_2d(i1 ~ age, data = HELPrct)
+  gf_jitter(avg_drinks ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) \%>\%
+  gf_density_2d(avg_drinks ~ age, data = HELPrct)
 }
 if (require(mosaicData)) {
-  gf_jitter(i1 ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) \%>\%
-  gf_density2d(i1 ~ age, data = HELPrct)
+  gf_jitter(avg_drinks ~ age, alpha = 0.2, data = HELPrct, width = 0.4, height = 0.4) \%>\%
+  gf_density2d(avg_drinks ~ age, data = HELPrct)
 }
 }
 \seealso{
