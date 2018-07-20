@@ -15,15 +15,15 @@ knitr::opts_chunk$set(
 library(ggformula)
 ```
 
-# ggformula
+# ggformula <img src="docs/logo.png" align="right" />
 
-```{r, echo = FALSE, out.width = 200}
+```{r, include = FALSE, echo = FALSE, out.width = 200}
 knitr::include_graphics("logo.png")
 ```
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ggformula)](https://cran.r-project.org/package=ggformula)
 
-## Formula interface to ggplot2
+## Formula interface to ggplot2 
 
 `ggformula` introduces a family of graphics functions, `gf_point()`,
 `gf_density()`, and so on, bring the formula interface to `ggplot()`. This
