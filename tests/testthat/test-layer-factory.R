@@ -108,6 +108,127 @@ test_that(
   }
 )
 
+test_that(
+  "gf_boxplot()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_boxplot1",
+      gf_boxplot(Sepal.Length ~ Species, color = ~ Species, data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_boxplot2",
+      # move boxplots away a bit by adjusting dodge
+      gf_boxplot(age ~ substance, data = mosaicData::HELPrct, color = ~ sex,
+                 position = position_dodge(width = 0.9))
+    )
+    vdiffr::expect_doppelganger(
+      "gf_boxplot3",
+      gf_boxplot(age ~ substance | sex, data = mosaicData::HELPrct, coef = 5, width = 0.4) %>%
+        gf_jitter(width = 0.2, alpha = 0.3, seed = 123)
+    )
+  }
+)
+
+
+
+test_that(
+  "gf_coefline()",
+  {
+    mdl <- lm(Sepal.Length ~ Sepal.Width, data = iris)
+    vdiffr::expect_doppelganger(
+      "gf_coefline1",
+      gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+        gf_coefline(coef = coef(mdl))
+    )
+    vdiffr::expect_doppelganger(
+      "gf_coefline2",
+      gf_point(Sepal.Length ~ Sepal.Width, data = iris) %>%
+        gf_coefline(model = mdl)
+    )
+  }
+)
+
+test_that(
+  "gf_contour(), gf_density_2d(), gf_density2d()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_contour1",
+      gf_density_2d(eruptions ~ waiting, data = faithful, alpha = 0.5, color = "navy") %>%
+        gf_contour(density ~ waiting + eruptions, data = faithfuld, bins = 10, color = "red")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_contour2",
+      gf_jitter(avg_drinks ~ age,  data = mosaicData::HELPrct,
+                seed = 123,
+                color = ~ sex, alpha = 0.2, width = 0.4, height = 0.4) %>%
+        gf_density_2d()
+    )
+    vdiffr::expect_doppelganger(
+      "gf_contour3",
+      gf_jitter(avg_drinks ~ age,  data = mosaicData::HELPrct,
+                seed = 123,
+                color = ~ sex, alpha = 0.2, width = 0.4, height = 0.4) %>%
+        gf_density2d()
+    )
+  }
+)
+test_that(
+  "gf__counts(), gf_props(), gf_percents()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_counts1",
+      gf_counts( ~ substance, data = mosaicData::HELPrct, fill = ~ sex, position = position_dodge())
+    )
+    vdiffr::expect_doppelganger(
+      "gf_props1",
+      gf_props( ~ substance, data = mosaicData::HELPrct, fill = ~ sex, position = position_dodge())
+    )
+    vdiffr::expect_doppelganger(
+      "gf_percents1",
+      gf_percents( ~ substance, data = mosaicData::HELPrct, fill = ~ sex, position = position_dodge())
+    )
+  }
+)
+
+test_that(
+  "gf_crossbar(), gf_errorbar(), gf_pointrange()",
+  {
+    HELP2 <- mosaicData::HELPrct %>%
+      dplyr::group_by(substance, sex) %>%
+      dplyr::summarise(
+        mean.age = mean(age),
+        median.age = median(age),
+        max.age = max(age),
+        min.age = min(age),
+        sd.age = sd(age),
+        lo = mean.age - sd.age,
+        hi = mean.age + sd.age
+      )
+
+    vdiffr::expect_doppelganger(
+      "gf_pointrange1",
+      gf_jitter(age ~ substance, data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+        gf_pointrange( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+        gf_facet_grid( ~ sex)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_errorbar1",
+      gf_jitter(age ~ substance, data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+        gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
+        gf_facet_grid( ~ sex)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_crossbar1",
+      gf_jitter(age ~ substance, data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+        gf_boxplot( age ~ substance,  data = mosaicData::HELPrct, color = "red") %>%
+        gf_crossbar( mean.age + lo + hi ~ substance,  data = HELP2) %>%
+        gf_facet_grid( ~ sex)
+    )
+  }
+)
 
 test_that(
   "gf_point()",
