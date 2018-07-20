@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 library(ggformula)
 ```
 
-# ggformula <img src="docs/logo.png" align="right" />
+# ggformula <img src="docs/logo-150.png" align="right" />
 
 ```{r, include = FALSE, echo = FALSE, out.width = 200}
 knitr::include_graphics("logo.png")
