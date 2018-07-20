@@ -170,7 +170,7 @@ See details and examples.</p></td>
     <tr>
       <th>gformula</th>
       <td><p>A formula with shape <code>~x</code> or <code>y ~ x</code>.
-<code>y</code> may be <code>..density..</code> or <code>..count..</code> or <code>..ndensity..</code> or <code>..ncount..</code>.
+<code>y</code> may be <code>stat(density)</code> or <code>stat(count)</code> or <code>stat(ndensity)</code> or <code>stat(ncount)</code>.
 Faceting can be achieved by including <code>|</code> in the formula.</p></td>
     </tr>
     <tr>
@@ -256,7 +256,7 @@ of the attributes of the layer are mapped.</p></td>
       <th>...</th>
       <td><p>Additional arguments.  Typically these are
 (a) ggplot2 aesthetics to be set with <code>attribute = value</code>,
-(b) ggplot2 aesthetics to be mapped with <code>attribute = ~expression</code>, or
+(b) ggplot2 aesthetics to be mapped with <code>attribute = ~ expression</code>, or
 (c) attributes of the layer as a whole, which are set with <code>attribute = value</code>.</p></td>
     </tr>
     <tr>
@@ -320,7 +320,7 @@ in another.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>gf_ash</span>(~<span class='no'>Sepal.Length</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>)</div><div class='img'><img src='gf_ash-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_ash</span>(~<span class='no'>Sepal.Length</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)</div><div class='img'><img src='gf_ash-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>gf_ash</span>(~<span class='no'>Sepal.Length</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>Species</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='gf_ash-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ggplot</span>(<span class='no'>faithful</span>, <span class='fu'>aes</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>eruptions</span>)) +
-  <span class='fu'>geom_histogram</span>(<span class='fu'>aes</span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>..density..</span>),
+  <span class='fu'>geom_histogram</span>(<span class='fu'>aes</span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>stat</span>(<span class='no'>density</span>)),
     <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"lightskyblue"</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"gray50"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>) +
   <span class='fu'>geom_ash</span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"red"</span>) +
   <span class='fu'>geom_ash</span>(<span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"forestgreen"</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>2</span>) +

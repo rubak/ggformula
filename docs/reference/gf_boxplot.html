@@ -417,6 +417,7 @@ box plots. The American Statistician 32, 12-16.</p>
   <span class='co'># half-width.</span>
   <span class='fu'>gf_boxplot</span>(<span class='no'>age</span> ~ <span class='no'>substance</span> <span class='kw'>|</span> <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
+  <span class='co'># move boxplots away a bit by adjusting dodge</span>
   <span class='fu'>gf_boxplot</span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodge</span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.9</span>))
 }</div><div class='img'><img src='gf_boxplot-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
