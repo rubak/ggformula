@@ -792,11 +792,11 @@ gf_count <-
 #' @seealso [ggplot2::geom_col()]
 #' @export
 #' @examples
-#' D <- data.frame(
+#' SomeData <- data.frame(
 #'   group = LETTERS[1:3],
 #'   count = c(20, 25, 18)
 #' )
-#' gf_col(count ~ group, data = D)
+#' gf_col(count ~ group, data = SomeData)
 #'
 #' # A Pareto chart
 #'
@@ -1640,7 +1640,7 @@ gf_errorbar <-
 gf_errorbarh <-
   layer_factory(
     geom = "errorbarh",
-    aes_form = y ~ x + xmin + xmax,
+    aes_form = y ~ xmin + xmax,
     extras = alist(
       alpha = , color = , group = , linetype = , size =
       )
