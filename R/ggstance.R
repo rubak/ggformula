@@ -59,8 +59,8 @@ gf_countsh <-
 
 gf_colh <-
   layer_factory(
-    geom = "colh", stat = "counth", position = "stackv",
-    aes_form = list(~ y, y ~ .),
+    geom = "colh", position = "stackv",
+    aes_form = list(y ~ x),
     extras = alist(
       alpha = , color = , fill = , group = , linetype = , size = ,
       width = NULL, binwidth = NULL)
@@ -74,7 +74,7 @@ gf_propsh <-
     aes_form = list( ~ y, y ~ .),
     extras =
       alist(alpha = , color = , fill = , group = ,
-            linetype = , size = , ylab = "proportion"),
+            linetype = , size = , xlab = "proportion"),
     aesthetics =
       if (utils::packageVersion("ggplot2") <= "2.2.1") {
         aes(x = ..count.. / sum(..count..))
@@ -90,7 +90,7 @@ gf_percentsh <-
     geom = "barh", stat = "counth", position = "stackv",
     aes_form = list( ~ y, y ~ .),
     extras = alist(alpha = , color = , fill = , group = ,
-                   linetype = , size = , ylab = "percent"),
+                   linetype = , size = , xlab = "percent"),
     aesthetics =
       if (utils::packageVersion("ggplot2") <= "2.2.1") {
         aes(x = 100 * ..count.. / sum(..count..))

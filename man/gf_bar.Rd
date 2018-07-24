@@ -41,17 +41,17 @@ gf_countsh(object = NULL, gformula = NULL, data = NULL, alpha, color,
 
 gf_colh(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
   group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "colh", stat = "counth", position = "stackv",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+  subtitle, caption, geom = "colh", stat = "identity",
+  position = "stackv", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 
 gf_propsh(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, xlab, ylab = "proportion", title, subtitle, caption,
+  group, linetype, size, xlab = "proportion", ylab, title, subtitle, caption,
   geom = "barh", stat = "counth", position = "stackv", show.legend = NA,
   show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
 
 gf_percentsh(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  fill, group, linetype, size, xlab, ylab = "percent", title, subtitle,
+  fill, group, linetype, size, xlab = "percent", ylab, title, subtitle,
   caption, geom = "barh", stat = "counth", position = "stackv",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
