@@ -231,6 +231,33 @@ test_that(
 )
 
 test_that(
+  "gf_histogram() and gf_dhistogram",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_histogram1",
+      gf_histogram( ~ Sepal.Length, data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_histogram2",
+      gf_histogram( ~ Sepal.Length | Species ~ ., fill = ~ Species, data = iris, alpha = 0.5,
+                    binwidth = 0.25)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dhistogram1",
+      gf_dhistogram( ~ Sepal.Length,  data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dhistogramh1",
+      gf_dhistogramh( Sepal.Length ~ .,  data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dhistogramh2",
+      gf_dhistogramh( Sepal.Length ~ stat(ndensity),  data = iris)
+    )
+  }
+)
+
+test_that(
   "gf_point()",
   {
     vdiffr::expect_doppelganger(
