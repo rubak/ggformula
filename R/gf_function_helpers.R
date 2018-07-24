@@ -119,8 +119,11 @@ layer_factory <- function(
       # # allow some operations in formulas without requiring I()
       # gformula <- mosaicCore::reop_formula(gformula)
 
-      # convert y ~ 1 into ~ y if a 1-sided formula is an option
-      if (any(sapply(aes_form, function(f) length(f) == 2L))) {
+      # convert y ~ 1 into ~ y if a 1-sided formula is an option and 2-sided is not
+      if (
+        any(sapply(aes_form, function(f) length(f) == 2L)) &&
+        ! any(sapply(aes_form, function(f) length(f) == 3L))
+      ) {
         gformula <- response2explanatory(gformula)
       }
 
@@ -611,10 +614,12 @@ gf_ingredients <-
 
     mapped_list <- as.list(aes_df[["expr"]][aes_df$map])
     names(mapped_list) <- aes_df[["role"]][aes_df$map]
+    # . is placeholder for "no aesthetic mapping", so remove the dots
+    mapped_list[mapped_list == "."] <- NULL
     more_mapped_list <-
       lapply(aesthetics, function(x) deparse(rlang::get_expr(x))) %>%
       stats::setNames(names(aesthetics))
-    mapped_list <-  c(mapped_list, more_mapped_list)
+    mapped_list <-  modifyList(more_mapped_list, mapped_list)
 
     set_list <- as.list(aes_df[["expr"]][!aes_df$map])
     names(set_list) <- aes_df[["role"]][!aes_df$map]
