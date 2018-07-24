@@ -13,7 +13,8 @@ LazyData: TRUE
 LazyLoad: TRUE
 Depends:
     R (>= 3.1),
-    ggplot2 (>= 3.0)
+    ggplot2 (>= 3.0),
+    ggstance (>= 0.3.1)
 Imports:
     mosaicCore,
     rlang,
