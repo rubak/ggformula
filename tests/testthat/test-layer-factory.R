@@ -109,6 +109,45 @@ test_that(
 )
 
 test_that(
+  "gf_barh() and gf_colh()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_barh1",
+      gf_barh(Species ~ ., data = iris)
+    )
+    SomeData <- data.frame(
+      group = LETTERS[1:3],
+      count = c(20, 25, 18)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_colh1",
+      gf_colh(group ~ count, data = SomeData)
+    )
+  }
+)
+
+test_that(
+  "gf_contour(), gf_density2d(), and gf_density_2d()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_countour1",
+      gf_point(eruptions ~ waiting, data = faithful) %>%
+      gf_contour(density ~ waiting + eruptions, data = faithfuld)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_density2d",
+      gf_point(eruptions ~ waiting, data = faithful) %>%
+      gf_density2d(eruptions ~ waiting, data = faithful)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_density_2d",
+      gf_point(eruptions ~ waiting, data = faithful) %>%
+      gf_density_2d(eruptions ~ waiting, data = faithful)
+    )
+  }
+)
+
+test_that(
   "gf_boxplot()",
   {
     vdiffr::expect_doppelganger(
@@ -128,7 +167,6 @@ test_that(
     )
   }
 )
-
 
 
 test_that(
@@ -172,6 +210,37 @@ test_that(
     )
   }
 )
+
+test_that(
+  "gf_countsh(), gf_percentssh(), gf_propssh()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_countsh1",
+      gf_countsh(~ substance, data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_countsh2",
+      gf_countsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_percentsh1",
+      gf_percentsh(~ substance, data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_percentsh2",
+      gf_percentsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_propsh1",
+      gf_propsh(~ substance, data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_propsh2",
+      gf_propsh(substance ~ ., data = mosaicData::HELPrct, fill = ~sex, position = "dodgev")
+    )
+  }
+)
+
 test_that(
   "gf__counts(), gf_props(), gf_percents()",
   {
@@ -226,6 +295,59 @@ test_that(
         gf_boxplot( age ~ substance,  data = mosaicData::HELPrct, color = "red") %>%
         gf_crossbar( mean.age + lo + hi ~ substance,  data = HELP2) %>%
         gf_facet_grid( ~ sex)
+    )
+  }
+)
+
+test_that(
+  "gf_crossbarh(), gf_errorbarh(), gf_pointrangeh()",
+  {
+    HELP2 <- mosaicData::HELPrct %>%
+      dplyr::group_by(substance, sex) %>%
+      dplyr::summarise(
+        mean.age = mean(age),
+        median.age = median(age),
+        max.age = max(age),
+        min.age = min(age),
+        sd.age = sd(age),
+        lo = mean.age - sd.age,
+        hi = mean.age + sd.age
+      )
+
+    vdiffr::expect_doppelganger(
+      "gf_pointrangeh1",
+      gf_jitter(substance ~ age, data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, height = 0.2, width = 0, color = "skyblue") %>%
+        gf_pointrangeh( substance ~ mean.age + lo + hi,  data = HELP2) %>%
+        gf_facet_grid(sex ~ .)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_errorbarh1",
+      gf_jitter(substance ~ age, data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, height = 0.2, width = 0, color = "skyblue") %>%
+        gf_errorbarh(substance ~ lo + hi,  data = HELP2, inherit = FALSE) %>%
+        gf_facet_grid(sex ~ .)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_crossbarh1",
+      gf_jitter(substance ~ age, data = mosaicData::HELPrct, seed = 123,
+                alpha = 0.5, height = 0.2, width = 0, color = "skyblue") %>%
+        gf_crossbarh( substance ~ mean.age + lo + hi,  data = HELP2) %>%
+        gf_facet_grid(sex ~ .)
+    )
+  }
+)
+
+
+test_that(
+  "gf_curve() and gf_segment()",
+  {
+    SomeData <- data.frame(x1 = 2.62, x2 = 3.57, y1 = 21.0, y2 = 15.0)
+    vdiffr::expect_doppelganger(
+      "gf_curve_segment1",
+      gf_point(mpg ~ wt, data = mtcars) %>%
+      gf_curve(y1 + y2 ~ x1 + x2, data = SomeData, color = "navy") %>%
+      gf_segment(y1 + y2 ~ x1 + x2, data = SomeData, color = "red")
     )
   }
 )
