@@ -44,6 +44,8 @@ gf_fun_contour(object = NULL, formula = NULL, xlim = NULL, ylim = NULL,
 
 \item{ylim}{y limits for generating points to be plotted.}
 
+\item{...}{additional arguments passed to \code{\link[=gf_tile]{gf_tile()}} or \code{\link[=gf_contour]{gf_contour()}}.}
+
 \item{tile}{A logical indicating whether the tile layer should be drawn.}
 
 \item{contour}{A logical indicating whether the contour layer should be drawn.}

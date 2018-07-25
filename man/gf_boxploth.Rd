@@ -48,6 +48,8 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
+\item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
+
 \item{outlier.color}{Default aesthetics for outliers. Set to \code{NULL} to inherit from the
   aesthetics used for the box.
 
@@ -192,7 +194,8 @@ if (require(mosaicData)) {
   gf_boxploth(substance ~ age | sex, data = HELPrct, coef = 5, height = 0.4) \%>\%
     gf_jitter(height = 0.2, alpha = 0.3)
   # move boxplots away a bit by adjusting dodge
-  gf_boxploth(substance ~ age, data = HELPrct, color = ~ sex, position = position_dodgev(height = 0.9))
+  gf_boxploth(substance ~ age, data = HELPrct, color = ~ sex,
+    position = position_dodgev(height = 0.9))
 }
 }
 \seealso{
