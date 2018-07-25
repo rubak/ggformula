@@ -21,6 +21,7 @@ Imports:
     magrittr,
     tibble,
     stringr,
+    tidyr,
     dplyr,
     grid
 Suggests:

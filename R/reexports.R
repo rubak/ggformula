@@ -18,11 +18,18 @@ NULL
 #' @export
 makeFun <- mosaicCore::makeFun
 
+utils::globalVariables(c("stat", "value"))
+
 #' Calculate statistics on a variable
 #'
 #' @rdname df_stats
 #' @inherit mosaicCore::df_stats
 #' @inheritParams mosaicCore::df_stats
+#' @importFrom tidyr gather
+#' @importFrom dplyr %>% bind_rows
+#' @importFrom rlang is_character f_rhs eval_tidy quos
+#' @importFrom stats as.formula na.exclude
+
 #' @export
 df_stats <- mosaicCore::df_stats
 
