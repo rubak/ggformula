@@ -6,7 +6,11 @@ cran-comments.md
 ^inst/tutorials/introduction/rsconnect$
 ^inst/tutorials/refining/rsconnect$
 ^revdep$
+^docs$
+^index.Rmd$
 ^data-raw$
 ^README\.Rmd$
 ^README\.md$
 ^README-.*\.png$
+# test-layer-factory.R
+# ^tests/figs$
