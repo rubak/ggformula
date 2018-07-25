@@ -103,6 +103,7 @@ gf_percentsh <-
 #'
 #' @inherit ggstance::geom_boxploth description references
 #' @inherit gf_line
+#' @inheritParams gf_boxplot
 #' @inheritParams ggstance::geom_boxploth
 #'
 #' @param ... Additional arguments.  Typically these are
@@ -126,7 +127,8 @@ gf_percentsh <-
 #'   gf_boxploth(substance ~ age | sex, data = HELPrct, coef = 5, height = 0.4) %>%
 #'     gf_jitter(height = 0.2, alpha = 0.3)
 #'   # move boxplots away a bit by adjusting dodge
-#'   gf_boxploth(substance ~ age, data = HELPrct, color = ~ sex, position = position_dodgev(height = 0.9))
+#'   gf_boxploth(substance ~ age, data = HELPrct, color = ~ sex,
+#'     position = position_dodgev(height = 0.9))
 #' }
 
 gf_boxploth <-
@@ -241,4 +243,56 @@ gf_violinh <-
     extras = alist(alpha = , color = , fill = , group = , linetype = ,
                    size = , weight = , draw_quantiles = NULL, trim = TRUE,
                    scale = "area", bw = , adjust = 1, kernel = "gaussian")
+  )
+
+#' Formula interface to geom_errorbarh()
+#'
+#' @inherit ggplot2::geom_errorbarh description references
+#' @inherit gf_line
+#' @inheritParams ggplot2::geom_errorbarh
+#' @param gformula A formula with shape `y ~ x + xmin + xmax`.
+#'   Faceting can be achieved by including `|` in the formula.
+#'
+#' @param ... Additional arguments.  Typically these are
+#'   (a) ggplot2 aesthetics to be set with `attribute = value`,
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
+#'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
+#' @section Note:
+#'   There is discrepancy between the information required for `gf_errorbar()`
+#'   and `gf_errobarh()`.  It expected that this will change in a future release
+#'   of `ggplot2`.
+#'
+#' @seealso [ggplot2::geom_errorbarh()]
+#' @export
+#' @examples
+#' if (require(mosaicData) && require(dplyr)) {
+#' HELP2 <- HELPrct %>%
+#'   group_by(substance, sex) %>%
+#'   summarise(
+#'     mean.age = mean(age),
+#'     median.age = median(age),
+#'     max.age = max(age),
+#'     min.age = min(age),
+#'     sd.age = sd(age),
+#'     lo = mean.age - sd.age,
+#'     hi = mean.age + sd.age
+#'     )
+#'
+#'   gf_jitter(substance ~ age, data = HELPrct,
+#'       alpha = 0.5, height = 0.2, width = 0, color = "skyblue") %>%
+#'     gf_errorbarh( substance ~ lo + hi,  data = HELP2, inherit = FALSE) %>%
+#'     gf_facet_grid( ~ sex)
+#'   gf_jitter(age ~ substance, data = HELPrct,
+#'       alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
+#'     gf_errorbar( lo + hi ~ substance,  data = HELP2) %>%
+#'     gf_facet_grid( ~ sex)
+#' }
+
+gf_errorbarh <-
+  layer_factory(
+    geom = "errorbarh",
+    aes_form = y ~ xmin + xmax,
+    extras = alist(
+      alpha = , color = , group = , linetype = , size =
+    )
   )
