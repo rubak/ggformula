@@ -12,6 +12,7 @@
 #' @param contour A logical indicating whether the contour layer should be drawn.
 #' @param resolution  A numeric vector of length 1 or 2 specifiying the
 #'   number of grid points at which the function is evaluated (in each dimension).
+#' @param ... additional arguments passed to [`gf_tile()`] or [`gf_contour()`].
 #' @return A gg plot.
 #'
 #' @rdname gf_function2d
