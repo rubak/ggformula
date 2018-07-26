@@ -125,6 +125,16 @@ test_that(
     )
   }
 )
+test_that(
+  "gf_bin2d()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_bin2d1",
+      gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) %>%
+        gf_refine(scale_fill_viridis_c(begin = 0.1, end = 0.9))
+    )
+  }
+)
 
 test_that(
   "gf_contour(), gf_density2d(), and gf_density_2d()",

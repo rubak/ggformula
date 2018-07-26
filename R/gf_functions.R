@@ -752,6 +752,32 @@ gf_tile <-
     extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
   )
 
+#' Formula interface to geom_bin2d()
+#'
+#' `geom_bin2d()` uses [`ggplot2::stat_bin2d()`] to bin the data before using
+#' [`gf_tile()`] to display the results.
+#'
+#' @inherit ggplot2::geom_tile references
+#' @inherit gf_tile
+#'
+#' @param ... Additional arguments.  Typically these are
+#'   (a) ggplot2 aesthetics to be set with `attribute = value`,
+#'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
+#'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
+#' @seealso [`ggplot2::geom_bin2d()`], [`gf_tile()`]
+#' @export
+#' @examples
+#' gf_bin2d(eruptions ~ waiting, data = faithful, bins = 15) %>%
+#'   gf_refine(scale_fill_viridis_c(begin = 0.1, end = 0.9))
+
+gf_bin2d <-
+  layer_factory(
+    geom = "tile",
+    stat = "bin2d",
+    aes_form = list(y ~ x),
+    extras = alist(alpha = , color = , fill = , group = , linetype = , size = )
+  )
+
 #' Formula interface to geom_count()
 #'
 #' @inherit ggplot2::geom_count description references
