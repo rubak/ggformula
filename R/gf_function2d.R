@@ -69,8 +69,14 @@ gf_function_2d <-
     dplyr::mutate(value = fun(x, y))
 
   res <- object
-  if (tile) res <- object %>% gf_tile(value ~ x + y, data = Layer_Data, ...)
-  if (contour) res <- res %>% gf_contour(value ~ x + y, data = Layer_Data, ...)
+  if (tile) res <-
+    res %>%
+    gf_tile(value ~ x + y, data = Layer_Data, ...) %>%
+    gf_labs(fill = "")
+  if (contour) res <-
+    res %>%
+    gf_contour(value ~ x + y, data = Layer_Data, ...) %>%
+    gf_labs(fill = "")
   res
   }
 
