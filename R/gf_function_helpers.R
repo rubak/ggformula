@@ -316,13 +316,14 @@ layer_factory <- function(
         if (add) {
           p <- object + new_layer + ingredients[["facet"]]
         } else {
-          p <- do.call(
-            ggplot,
-            list(
-              data = ingredients$data,
-              mapping = ingredients[["mapping"]]
-            ), envir= environment
-          ) +
+          p <-
+            do.call(
+              ggplot,
+              list(
+                data = ingredients$data,
+                mapping = ingredients[["mapping"]]
+              ), envir= environment
+            ) +
             new_layer +
             ingredients[["facet"]]
         }
