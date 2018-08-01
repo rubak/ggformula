@@ -719,6 +719,7 @@ test_that(
 test_that(
   "gf_rect()",
   {
+    set.seed(1234)
     SomeData <- expand.grid(x = 1:10, y=1:10)
     SomeData$angle <- runif(100, 0, 2*pi)
     SomeData$speed <- runif(100, 0, sqrt(0.1 * SomeData$x))
