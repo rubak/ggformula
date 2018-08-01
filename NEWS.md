@@ -1,9 +1,12 @@
 
 
-# ggformula 0.8.0.9000
+# ggformula 0.9.0
 
  * `ggformula` now requires `ggplot2 (>= 3.0.0)`.  This should take care of issues in 0.8.0 when `ggplot2` was upgraded *after* upgrading `ggformula`.
  * `pkgdown` website created at https://projectmosaic.github.io/ggformula/
+ * Several horizontal versions of geom and stats are implemented using `ggstance`.
+ * `vdiffr` is used for testing plot output
+ 
 
 # ggformula 0.8.0
 
