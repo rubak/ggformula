@@ -23,7 +23,7 @@ layer_factory(geom = "point", position = "identity", stat = "identity",
 
 \item{aes_form}{A single formula or a list of formulas specifying
 how attributes are inferred from the formula.  Use \code{NULL} if the
-funciton may be used without a formula.}
+function may be used without a formula.}
 
 \item{extras}{An alist of additional arguments (potentially with defaults)}
 
