@@ -25,7 +25,7 @@ NA
 #' @param pre code to run as a "pre-process".
 #' @param aes_form A single formula or a list of formulas specifying
 #'   how attributes are inferred from the formula.  Use `NULL` if the
-#'   funciton may be used without a formula.
+#'   function may be used without a formula.
 #' @param extras An alist of additional arguments (potentially with defaults)
 #' @param note A note to add to the quick help.
 #' @param aesthetics Additional aesthetics (typically created using

@@ -957,7 +957,7 @@ gf_dhistogram <-
 #' Formula interface to stat_density()
 #'
 #' Computes and draws a kernel density estimate, which is a smoothed version of the
-#' histogram and is a useful alternative when the data come from an unerlying smooth
+#' histogram and is a useful alternative when the data come from an underlying smooth
 #' distribution.
 #' The only difference between `gf_dens()` and `gf_density()` is the default geom
 #' used to show the density curve: `gf_density()` uses an area geom (which can be filled).
@@ -1923,7 +1923,7 @@ gf_fitdistr <-
 #' @inheritParams gf_point
 # #' @inherit ggplot2::geom_sf
 #' @inherit gf_line
-#' @param geometry A column of class sfc containg simple features data. (Another option
+#' @param geometry A column of class sfc containing simple features data. (Another option
 #'   is that `data` may contain a column named `geometry`.)  `geometry` is never
 #'   inherited.
 # #' @seealso [`ggplot2::geom_sf()`]

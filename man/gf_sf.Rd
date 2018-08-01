@@ -32,7 +32,7 @@ for mapping linetype.}
 
 \item{size}{A numeric size or a formula used for mapping size.}
 
-\item{geometry}{A column of class sfc containg simple features data. (Another option
+\item{geometry}{A column of class sfc containing simple features data. (Another option
 is that \code{data} may contain a column named \code{geometry}.)  \code{geometry} is never
 inherited.}
 

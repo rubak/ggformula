@@ -109,7 +109,7 @@ a gg object
 }
 \description{
 Computes and draws a kernel density estimate, which is a smoothed version of the
-histogram and is a useful alternative when the data come from an unerlying smooth
+histogram and is a useful alternative when the data come from an underlying smooth
 distribution.
 The only difference between \code{gf_dens()} and \code{gf_density()} is the default geom
 used to show the density curve: \code{gf_density()} uses an area geom (which can be filled).
