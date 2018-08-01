@@ -49,6 +49,7 @@ layer_factory <- function(
   note = NULL,
   aesthetics = aes(),
   inherit.aes = TRUE,
+  check.aes = TRUE,
   data = NULL,
   layer_fun = ggplot2::layer
 ) {
@@ -252,7 +253,7 @@ layer_factory <- function(
             mapping = ingredients[["mapping"]],
             position = position,
             params = ingredients[["params"]],
-            check.aes = TRUE, check.param = FALSE,
+            check.aes = check.aes, check.param = FALSE,
             show.legend = show.legend,
             inherit.aes = inherit
           )
@@ -379,6 +380,7 @@ layer_factory <- function(
 
   formals(res) <- formals_for_res
   assign("inherit.aes", inherit.aes, environment(res))
+  assign("check.aes", check.aes, environment(res))
   assign("pre", pre, environment(res))
   assign("extras", extras, environment(res))
   res

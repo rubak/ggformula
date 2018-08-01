@@ -6,7 +6,7 @@
 \usage{
 layer_factory(geom = "point", position = "identity", stat = "identity",
   pre = { }, aes_form = y ~ x, extras = alist(), note = NULL,
-  aesthetics = aes(), inherit.aes = TRUE, data = NULL,
+  aesthetics = aes(), inherit.aes = TRUE, check.aes = TRUE, data = NULL,
   layer_fun = ggplot2::layer)
 }
 \arguments{

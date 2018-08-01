@@ -869,15 +869,18 @@ gf_col <-
 #' gf_point((c(0,1)) ~ (c(0,5)))
 #' gf_frame((c(0,1)) ~ (c(0,5)))
 #' gf_blank((c(0,1)) ~ (c(0,5)))
+#' # gf_blank() can be used to expand the view
+#' gf_point((c(0,1)) ~ (c(0,5))) %>%
+#'   gf_blank((c(0,3)) ~ (c(-2,7)))
 
 gf_blank <-
-  layer_factory(geom = "blank")
+  layer_factory(geom = "blank", check.aes = FALSE)
 
 #' @rdname gf_blank
 #' @export
 #'
 gf_frame <-
-  layer_factory(geom = "blank")
+  layer_factory(geom = "blank", check.aes = FALSE)
 
 
 #' Formula interface to geom_histogram()

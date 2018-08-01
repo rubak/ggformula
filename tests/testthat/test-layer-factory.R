@@ -432,7 +432,7 @@ test_that(
 )
 
 test_that(
-  "gf_empty() and gf_frame()",
+  "gf_empty(), gf_blank(), and gf_frame()",
   {
     vdiffr::expect_doppelganger(
       "gf_empty1",
@@ -449,6 +449,11 @@ test_that(
       "gf_frame1",
       gf_frame(c(0,10) ~ c(0,5)) %>%
         gf_labs(title = "frame")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_blank1",
+      gf_point((c(0,1)) ~ (c(0,5))) %>%
+        gf_blank((c(0,3)) ~ (c(-2,7)))
     )
   }
 )
