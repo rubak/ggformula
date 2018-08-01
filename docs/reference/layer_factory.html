@@ -62,7 +62,7 @@ is used to create the layer functions in the ggformula package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.8.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0</span>
       </span>
     </div>
 
@@ -145,7 +145,7 @@ is used to create the layer functions in the ggformula package.</p>
 
     <pre class="usage"><span class='fu'>layer_factory</span>(<span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
   <span class='kw'>pre</span> <span class='kw'>=</span> { }, <span class='kw'>aes_form</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>x</span>, <span class='kw'>extras</span> <span class='kw'>=</span> <span class='fu'>alist</span>(), <span class='kw'>note</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='fu'>aes</span>(), <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='fu'>aes</span>(), <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>check.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>layer_fun</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/layer'>layer</a></span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -174,7 +174,7 @@ is used to create the layer functions in the ggformula package.</p>
       <th>aes_form</th>
       <td><p>A single formula or a list of formulas specifying
 how attributes are inferred from the formula.  Use <code>NULL</code> if the
-funciton may be used without a formula.</p></td>
+function may be used without a formula.</p></td>
     </tr>
     <tr>
       <th>extras</th>
