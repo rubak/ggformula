@@ -669,14 +669,14 @@ gf_violin <-
 #' @seealso [ggplot2::geom_spoke()]
 #' @export
 #' @examples
-#' D <- expand.grid(x = 1:10, y=1:10)
-#' D$angle <- runif(100, 0, 2*pi)
-#' D$speed <- runif(100, 0, sqrt(0.1 * D$x))
+#' SomeData <- expand.grid(x = 1:10, y=1:10)
+#' SomeData$angle <- runif(100, 0, 2*pi)
+#' SomeData$speed <- runif(100, 0, sqrt(0.1 * SomeData$x))
 #'
-#' gf_point(y ~ x, data = D) %>%
+#' gf_point(y ~ x, data = SomeData) %>%
 #'   gf_spoke(y ~ x, angle = ~ angle, radius = 0.5)
 #'
-#' gf_point(y ~ x, data = D) %>%
+#' gf_point(y ~ x, data = SomeData) %>%
 #'   gf_spoke(y ~ x, angle = ~ angle, radius = ~ speed)
 
 gf_spoke <-
@@ -1639,7 +1639,14 @@ gf_errorbar <-
 #' @export
 #' @examples
 #' gf_rect( 1 + 2 ~ 3 + 4, alpha = 0.3, color = "red")
-#'
+#' # use data = data.frame() so we get 1 rectangle and not 1 per row of faithful
+#' # use inherit = FALSE because we are not reusing eruptions and waiting
+#' gf_point(eruptions ~ waiting, data = faithful) %>%
+#'   gf_rect(1.5 + 3 ~ 45 + 68, fill = "red", alpha = 0.2,
+#'           data = data.frame(), inherit = FALSE) %>%
+#'   gf_rect(3 + 5.5 ~ 68 + 100, fill = "green", alpha = 0.2,
+#'           data = data.frame(), inherit = FALSE)
+
 gf_rect <-
   layer_factory(
     geom = "rect",
