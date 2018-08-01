@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formula interface to geom_violin() — gf_violin • ggformula</title>
+<title>Formula interface to geom_bin2d() — gf_bin2d • ggformula</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,12 +30,10 @@
 
 
 
-<meta property="og:title" content="Formula interface to geom_violin() — gf_violin" />
+<meta property="og:title" content="Formula interface to geom_bin2d() — gf_bin2d" />
 
-<meta property="og:description" content="A violin plot is a compact display of a continuous distribution. It is a
-blend of geom_boxplot() and geom_density(): a
-violin plot is a mirrored density plot displayed in the same way as a
-boxplot." />
+<meta property="og:description" content="geom_bin2d() uses ggplot2::stat_bin2d() to bin the data before using
+gf_tile() to display the results." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -133,33 +131,22 @@ boxplot." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Formula interface to geom_violin()</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/gf_functions.R'><code>R/gf_functions.R</code></a>, <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/ggstance.R'><code>R/ggstance.R</code></a></small>
-    <div class="hidden name"><code>gf_violin.Rd</code></div>
+    <h1>Formula interface to geom_bin2d()</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/gf_functions.R'><code>R/gf_functions.R</code></a></small>
+    <div class="hidden name"><code>gf_bin2d.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A violin plot is a compact display of a continuous distribution. It is a
-blend of <code>geom_boxplot()</code> and <code>geom_density()</code>: a
-violin plot is a mirrored density plot displayed in the same way as a
-boxplot.</p>
+    <p><code>geom_bin2d()</code> uses <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_bin2d'>ggplot2::stat_bin2d()</a></code> to bin the data before using
+<code><a href='gf_tile.html'>gf_tile()</a></code> to display the results.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gf_violin</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>alpha</span>, <span class='no'>color</span>, <span class='no'>fill</span>,
-  <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>weight</span>, <span class='kw'>draw_quantiles</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"area"</span>, <span class='no'>bw</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"violin"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"ydensity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"dodge"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)
-
-<span class='fu'>gf_violinh</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>alpha</span>, <span class='no'>color</span>,
-  <span class='no'>fill</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>weight</span>, <span class='kw'>draw_quantiles</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"area"</span>, <span class='no'>bw</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"violinh"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"xdensity"</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"dodgev"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>gf_bin2d</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>alpha</span>, <span class='no'>color</span>, <span class='no'>fill</span>,
+  <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"tile"</span>,
+  <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"bin2d"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,16 +164,7 @@ Faceting can be achieved by including <code>|</code> in the formula.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>The data to be displayed in this layer. There are three
-options:</p>
-<p>If <code>NULL</code>, the default, the data is inherited from the plot
-data as specified in the call to <code>ggplot()</code>.</p>
-<p>A <code>data.frame</code>, or other object, will override the plot
-data. All objects will be fortified to produce a data frame. See
-<code>fortify()</code> for which variables will be created.</p>
-<p>A <code>function</code> will be called with a single argument,
-the plot data. The return value must be a <code>data.frame.</code>, and
-will be used as the layer data.</p></td>
+      <td><p>A data frame with the variables to be plotted.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -214,44 +192,6 @@ for mapping linetype.</p></td>
       <td><p>A numeric size or a formula used for mapping size.</p></td>
     </tr>
     <tr>
-      <th>weight</th>
-      <td><p>Useful for summarized data, <code>weight</code> provides a count
-of the number of values with the given combination of <code>x</code> and <code>y</code> values.</p></td>
-    </tr>
-    <tr>
-      <th>draw_quantiles</th>
-      <td><p>If <code>not(NULL)</code> (default), draw horizontal lines
-at the given quantiles of the density estimate.</p></td>
-    </tr>
-    <tr>
-      <th>trim</th>
-      <td><p>If <code>TRUE</code> (default), trim the tails of the violins
-to the range of the data. If <code>FALSE</code>, don't trim the tails.</p></td>
-    </tr>
-    <tr>
-      <th>scale</th>
-      <td><p>if "area" (default), all violins have the same area (before trimming
-the tails). If "count", areas are scaled proportionally to the number of
-observations. If "width", all violins have the same maximum width.</p></td>
-    </tr>
-    <tr>
-      <th>bw</th>
-      <td><p>The smoothing bandwidth to be used.
-If numeric, the standard deviation of the smoothing kernel.
-If character, a rule to choose the bandwidth, as listed in
-<code><a href='http://www.rdocumentation.org/packages/stats/topics/bandwidth'>stats::bw.nrd()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>adjust</th>
-      <td><p>A multiplicate bandwidth adjustment. This makes it possible
-to adjust the bandwidth while still using the a bandwidth estimator.
-For example, <code>adjust = 1/2</code> means use half of the default bandwidth.</p></td>
-    </tr>
-    <tr>
-      <th>kernel</th>
-      <td><p>Kernel. See list of available kernels in <code>density()</code>.</p></td>
-    </tr>
-    <tr>
       <th>xlab</th>
       <td><p>Label for x-axis. See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
     </tr>
@@ -276,26 +216,22 @@ See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>geom</th>
-      <td><p>Use to override the default connection between
-<code>geom_violin</code> and <code>stat_ydensity</code>.</p></td>
+      <td><p>A character string naming the geom used to make the layer.</p></td>
     </tr>
     <tr>
       <th>stat</th>
-      <td><p>Use to override the default connection between
-<code>geom_violin</code> and <code>stat_ydensity</code>.</p></td>
+      <td><p>A character string naming the stat used to make the layer.</p></td>
     </tr>
     <tr>
       <th>position</th>
-      <td><p>Position adjustment, either as a string, or the result of
-a call to a position adjustment function.</p></td>
+      <td><p>Either a character string naming the position function used
+for the layer or a position object returned from a call to a position function.</p></td>
     </tr>
     <tr>
       <th>show.legend</th>
-      <td><p>logical. Should this layer be included in the legends?
-<code>NA</code>, the default, includes if any aesthetics are mapped.
-<code>FALSE</code> never includes, and <code>TRUE</code> always includes.
-It can also be a named logical vector to finely select the aesthetics to
-display.</p></td>
+      <td><p>A logical indicating whether this layer should be included in
+the legends.  <code>NA</code>, the default, includes layer in the legends if any
+of the attributes of the layer are mapped.</p></td>
     </tr>
     <tr>
       <th>show.help</th>
@@ -336,6 +272,17 @@ This provides an alternative to
 <code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
 <code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
 of <span class="pkg">lattice</span>.</p>
+    <p>Positional attributes (a.k.a, aesthetics) are specified using the formula in <code>gformula</code>.
+Setting and mapping of additional attributes can be done through the
+use of additional arguments.
+Attributes can be set can be set using arguments of the form <code>attribute = value</code> or
+mapped using arguments of the form <code>attribute = ~ expression</code>.</p>
+<p>In formulas of the form <code>A | B</code>, <code>B</code> will be used to form facets using
+<code>facet_wrap()</code> or <code>facet_grid()</code>.
+This provides an alternative to
+<code><a href='gf_facet_grid.html'>gf_facet_wrap()</a></code> and
+<code><a href='gf_facet_grid.html'>gf_facet_grid()</a></code> that is terser and may feel more familiar to users
+of <span class="pkg">lattice</span>.</p>
     
     <h2 class="hasAnchor" id="evaluation"><a class="anchor" href="#evaluation"></a>Evaluation</h2>
 
@@ -344,26 +291,19 @@ of <span class="pkg">lattice</span>.</p>
 This will typically do the right thing when formulas are created on the fly, but might not
 be the right thing if formulas created in one environment are used to create plots
 in another.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Hintze, J. L., Nelson, R. D. (1998) Violin Plots: A Box
-Plot-Density Trace Synergism. The American Statistician 52, 181-184.</p>
+    <p>Evaluation of the <span class="pkg">ggplot2</span> code occurs in the environment of <code>gformula</code>.
+This will typically do the right thing when formulas are created on the fly, but might not
+be the right thing if formulas created in one environment are used to create plots
+in another.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_violin'>ggplot2::geom_violin()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_bin2d'>ggplot2::geom_bin2d()</a></code>, <code><a href='gf_tile.html'>gf_tile()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'>require</span>(<span class='no'>mosaicData</span>)) {
-  <span class='fu'>gf_violin</span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>)
-  <span class='fu'>gf_violin</span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>)
-}</div><div class='img'><img src='gf_violin-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='kw'>if</span> (<span class='fu'>require</span>(<span class='no'>mosaicData</span>)) {
-  <span class='fu'>gf_violinh</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>)
-  <span class='fu'>gf_violinh</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>)
-}</div><div class='img'><img src='gf_violin-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>gf_bin2d</span>(<span class='no'>eruptions</span> ~ <span class='no'>waiting</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>faithful</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>15</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_fill_viridis_c</span>(<span class='kw'>begin</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>0.9</span>))</div><div class='img'><img src='gf_bin2d-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -375,8 +315,6 @@ Plot-Density Trace Synergism. The American Statistician 52, 181-184.</p>
       <li><a href="#specifying-plot-attributes">Specifying plot attributes</a></li>
 
       <li><a href="#evaluation">Evaluation</a></li>
-
-      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

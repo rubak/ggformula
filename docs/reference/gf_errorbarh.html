@@ -131,7 +131,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Formula interface to geom_errorbarh()</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/gf_functions.R'><code>R/gf_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/ggstance.R'><code>R/ggstance.R</code></a></small>
     <div class="hidden name"><code>gf_errorbarh.Rd</code></div>
     </div>
 
@@ -316,13 +316,13 @@ in another.</p>
 
   <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>,
       <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'>gf_errorbarh</span>( <span class='no'>substance</span> ~ <span class='no'>mean.age</span> + <span class='no'>lo</span> + <span class='no'>hi</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>) <span class='kw'>%&gt;%</span>
+    <span class='fu'>gf_errorbarh</span>( <span class='no'>substance</span> ~ <span class='no'>lo</span> + <span class='no'>hi</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>( ~ <span class='no'>sex</span>)
   <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>,
       <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='gf_errorbar.html'>gf_errorbar</a></span>( <span class='no'>lo</span> + <span class='no'>hi</span> ~ <span class='no'>substance</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>( ~ <span class='no'>sex</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown aesthetics: x</span></div><div class='img'><img src='gf_errorbarh-1.png' alt='' width='700' height='433' /></div></pre>
+}</div><div class='img'><img src='gf_errorbarh-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

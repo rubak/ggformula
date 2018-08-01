@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formula interface to geom_crossbar() — gf_crossbar • ggformula</title>
+<title>Formula interface to geom_boxploth() — gf_boxploth • ggformula</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Formula interface to geom_crossbar() — gf_crossbar" />
+<meta property="og:title" content="Formula interface to geom_boxploth() — gf_boxploth" />
 
-<meta property="og:description" content="Various ways of representing a vertical interval defined by x,
-ymin and ymax. Each case draws a single graphical object." />
+<meta property="og:description" content="Horizontal version of geom_boxplot()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -131,27 +130,23 @@ ymin and ymax. Each case draws a single graphical object." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Formula interface to geom_crossbar()</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/gf_functions.R'><code>R/gf_functions.R</code></a>, <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/ggstance.R'><code>R/ggstance.R</code></a></small>
-    <div class="hidden name"><code>gf_crossbar.Rd</code></div>
+    <h1>Formula interface to geom_boxploth()</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ProjectMOSAIC/ggformula/blob/master/R/ggstance.R'><code>R/ggstance.R</code></a></small>
+    <div class="hidden name"><code>gf_boxploth.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Various ways of representing a vertical interval defined by <code>x</code>,
-<code>ymin</code> and <code>ymax</code>. Each case draws a single graphical object.</p>
+    <p>Horizontal version of <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_boxplot'>geom_boxplot</a>()</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gf_crossbar</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>alpha</span>, <span class='no'>color</span>,
-  <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='kw'>fatten</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>, <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"crossbar"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)
-
-<span class='fu'>gf_crossbarh</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>alpha</span>, <span class='no'>color</span>,
-  <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='kw'>fatten</span> <span class='kw'>=</span> <span class='fl'>2.5</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>, <span class='no'>caption</span>,
-  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"crossbarh"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
+    <pre class="usage"><span class='fu'>gf_boxploth</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>alpha</span>, <span class='no'>color</span>,
+  <span class='no'>fill</span>, <span class='no'>group</span>, <span class='no'>linetype</span>, <span class='no'>size</span>, <span class='no'>coef</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outlier.fill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outlier.shape</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>outlier.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
+  <span class='kw'>outlier.stroke</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>outlier.alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>notch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>notchwidth</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>varwidth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>, <span class='no'>caption</span>,
+  <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"boxploth"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"boxploth"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"dodgev"</span>,
   <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)</pre>
     
@@ -166,7 +161,7 @@ See details and examples.</p></td>
     </tr>
     <tr>
       <th>gformula</th>
-      <td><p>A formula with shape <code>y + ymin + ymax ~ x</code>.
+      <td><p>A formula with shape <code>y ~ x</code>.
 Faceting can be achieved by including <code>|</code> in the formula.</p></td>
     </tr>
     <tr>
@@ -191,6 +186,10 @@ will be used as the layer data.</p></td>
       <td><p>A color or a formula used for mapping color.</p></td>
     </tr>
     <tr>
+      <th>fill</th>
+      <td><p>A color for filling, or a formula used for mapping fill.</p></td>
+    </tr>
+    <tr>
       <th>group</th>
       <td><p>Used for grouping.</p></td>
     </tr>
@@ -204,10 +203,79 @@ for mapping linetype.</p></td>
       <td><p>A numeric size or a formula used for mapping size.</p></td>
     </tr>
     <tr>
-      <th>fatten</th>
-      <td><p>A multiplicative factor used to increase the size of the
-middle bar in <code>geom_crossbar()</code> and the middle point in
-<code>geom_pointrange()</code>.</p></td>
+      <th>coef</th>
+      <td><p>Length of the whiskers as multiple of IQR. Defaults to 1.5.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.color</th>
+      <td><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
+  aesthetics used for the box.</p>
+<p>In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.fill</th>
+      <td><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
+aesthetics used for the box.</p>
+<p>In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.</p>
+<p>Sometimes it can be useful to hide the outliers, for example when overlaying
+the raw data points on top of the boxplot. Hiding the outliers can be achieved
+by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the y-axis will be the
+same with outliers shown and outliers hidden.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.shape</th>
+      <td><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
+  aesthetics used for the box.</p>
+<p>In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.size</th>
+      <td><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
+  aesthetics used for the box.</p>
+<p>In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.stroke</th>
+      <td><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
+  aesthetics used for the box.</p>
+<p>In the unlikely event you specify both US and UK spellings of colour, the
+  US spelling will take precedence.</p></td>
+    </tr>
+    <tr>
+      <th>outlier.alpha</th>
+      <td><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
+aesthetics used for the box.</p>
+<p>In the unlikely event you specify both US and UK spellings of colour, the
+US spelling will take precedence.</p>
+<p>Sometimes it can be useful to hide the outliers, for example when overlaying
+the raw data points on top of the boxplot. Hiding the outliers can be achieved
+by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
+it only hides them, so the range calculated for the y-axis will be the
+same with outliers shown and outliers hidden.</p></td>
+    </tr>
+    <tr>
+      <th>notch</th>
+      <td><p>If <code>FALSE</code> (default) make a standard box plot. If
+<code>TRUE</code>, make a notched box plot. Notches are used to compare groups;
+if the notches of two boxes do not overlap, this suggests that the medians
+are significantly different.</p></td>
+    </tr>
+    <tr>
+      <th>notchwidth</th>
+      <td><p>For a notched box plot, width of the notch relative to
+the body (default 0.5)</p></td>
+    </tr>
+    <tr>
+      <th>varwidth</th>
+      <td><p>If <code>FALSE</code> (default) make a standard box plot. If
+<code>TRUE</code>, boxes are drawn with widths proportional to the
+square-roots of the number of observations in the groups (possibly
+weighted, using the <code>weight</code> aesthetic).</p></td>
     </tr>
     <tr>
       <th>xlab</th>
@@ -238,8 +306,8 @@ See also <code><a href='gf_aux.html'>gf_labs()</a></code>.</p></td>
     </tr>
     <tr>
       <th>stat</th>
-      <td><p>The statistical transformation to use on the data for this
-layer, as a string.</p></td>
+      <td><p>Use to override the default connection between
+<code>geom_boxplot</code> and <code>stat_boxplot</code>.</p></td>
     </tr>
     <tr>
       <th>position</th>
@@ -304,41 +372,25 @@ in another.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_linerange'>ggplot2::geom_crossbar()</a></code></p></div>
+    <div class='dont-index'><p><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_boxplot'>ggstance::geom_boxploth()</a>, <code>fivenum()</code>, <code><a href='http://www.rdocumentation.org/packages/mosaicCore/topics/df_stats'>df_stats()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'>require</span>(<span class='no'>mosaicData</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'>require</span>(<span class='no'>dplyr</span>)) {
-<span class='no'>HELP2</span> <span class='kw'>&lt;-</span> <span class='no'>HELPrct</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>substance</span>, <span class='no'>sex</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(
-    <span class='kw'>mean.age</span> <span class='kw'>=</span> <span class='fu'>mean</span>(<span class='no'>age</span>),
-    <span class='kw'>median.age</span> <span class='kw'>=</span> <span class='fu'>median</span>(<span class='no'>age</span>),
-    <span class='kw'>max.age</span> <span class='kw'>=</span> <span class='fu'>max</span>(<span class='no'>age</span>),
-    <span class='kw'>min.age</span> <span class='kw'>=</span> <span class='fu'>min</span>(<span class='no'>age</span>),
-    <span class='kw'>sd.age</span> <span class='kw'>=</span> <span class='fu'>sd</span>(<span class='no'>age</span>),
-    <span class='kw'>lo</span> <span class='kw'>=</span> <span class='no'>mean.age</span> - <span class='no'>sd.age</span>,
-    <span class='kw'>hi</span> <span class='kw'>=</span> <span class='no'>mean.age</span> + <span class='no'>sd.age</span>
-    )
-
-  <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>,
-      <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_linerange.html'>gf_pointrange</a></span>( <span class='no'>mean.age</span> + <span class='no'>lo</span> + <span class='no'>hi</span> ~ <span class='no'>substance</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>( ~ <span class='no'>sex</span>)
-  <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>,
-      <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_errorbar.html'>gf_errorbar</a></span>( <span class='no'>lo</span> + <span class='no'>hi</span> ~ <span class='no'>substance</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>( ~ <span class='no'>sex</span>)
-  <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>age</span> ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>,
-      <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'>gf_crossbar</span>( <span class='no'>mean.age</span> + <span class='no'>lo</span> + <span class='no'>hi</span> ~ <span class='no'>substance</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>( ~ <span class='no'>sex</span>)
-  <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>,
-      <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"skyblue"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'>gf_crossbarh</span>( <span class='no'>substance</span> ~ <span class='no'>mean.age</span> + <span class='no'>lo</span> + <span class='no'>hi</span>,  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELP2</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='gf_facet_grid.html'>gf_facet_grid</a></span>( ~ <span class='no'>sex</span>)
-}</div><div class='img'><img src='gf_crossbar-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'>require</span>(<span class='no'>mosaicData</span>)) {
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>)
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>varwidth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>)
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>, <span class='kw'>outlier.color</span> <span class='kw'>=</span> <span class='st'>"gray50"</span>)
+  <span class='co'># longer whiskers</span>
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>, <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+  <span class='co'># Note: height for boxplots is full width of box.</span>
+  <span class='co'>#   For jittering, it is the half-height.</span>
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span> <span class='kw'>|</span> <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>coef</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='gf_jitter.html'>gf_jitter</a></span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
+  <span class='co'># move boxplots away a bit by adjusting dodge</span>
+  <span class='fu'>gf_boxploth</span>(<span class='no'>substance</span> ~ <span class='no'>age</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>color</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>,
+    <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodgev</span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>0.9</span>))
+}</div><div class='img'><img src='gf_boxploth-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

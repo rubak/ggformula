@@ -297,11 +297,11 @@ in another.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>D</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+    <pre class="examples"><div class='input'><span class='no'>SomeData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
   <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>3</span>],
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>20</span>, <span class='fl'>25</span>, <span class='fl'>18</span>)
 )
-<span class='fu'>gf_col</span>(<span class='no'>count</span> ~ <span class='no'>group</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>D</span>)</div><div class='img'><img src='gf_col-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>gf_col</span>(<span class='no'>count</span> ~ <span class='no'>group</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>SomeData</span>)</div><div class='img'><img src='gf_col-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># A Pareto chart</span>
 
 <span class='kw'>if</span>(<span class='fu'>require</span>(<span class='no'>dplyr</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'>require</span>(<span class='no'>mosaicData</span>)) {
