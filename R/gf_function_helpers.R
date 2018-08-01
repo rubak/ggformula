@@ -34,6 +34,8 @@ NA
 #'   for example.
 #' @param inherit.aes A logical indicating whether aesthetics should be
 #'   inherited from prior layers.
+#' @param check.aes A logical indicating whether a warning should be emited
+#'   when aesthetics provided don't match what is expected.
 #' @param data A data frame or `NULL` or `NA`.
 #' @param layer_fun The function used to create the layer.
 #' @return A function.

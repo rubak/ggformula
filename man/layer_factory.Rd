@@ -37,6 +37,9 @@ for example.}
 \item{inherit.aes}{A logical indicating whether aesthetics should be
 inherited from prior layers.}
 
+\item{check.aes}{A logical indicating whether a warning should be emited
+when aesthetics provided don't match what is expected.}
+
 \item{data}{A data frame or \code{NULL} or \code{NA}.}
 
 \item{layer_fun}{The function used to create the layer.}
