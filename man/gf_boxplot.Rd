@@ -8,8 +8,8 @@ gf_boxplot(object = NULL, gformula = NULL, data = NULL, alpha, color,
   fill, group, linetype, size, coef, outlier.color = NULL,
   outlier.fill = NULL, outlier.shape = 19, outlier.size = 1.5,
   outlier.stroke = 0.5, outlier.alpha = NULL, notch = FALSE,
-  notchwidth = 0.5, varwidth = FALSE, xlab, ylab, title, subtitle, caption,
-  geom = "boxplot", stat = "boxplot", position = "dodge",
+  notchwidth = 0.5, varwidth = FALSE, xlab, ylab, title, subtitle,
+  caption, geom = "boxplot", stat = "boxplot", position = "dodge",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 }

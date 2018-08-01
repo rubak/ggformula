@@ -4,10 +4,11 @@
 \alias{gf_sf}
 \title{Mapping with shape files}
 \usage{
-gf_sf(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, geometry, xlab, ylab, title, subtitle, caption,
-  stat = "sf", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
+gf_sf(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, geometry, xlab, ylab, title, subtitle,
+  caption, stat = "sf", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = TRUE, environment = parent.frame(),
+  ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

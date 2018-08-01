@@ -5,17 +5,19 @@
 \alias{gf_dens}
 \title{Formula interface to stat_density()}
 \usage{
-gf_density(object = NULL, gformula = NULL, data = NULL, alpha = 0.5,
-  color, fill, group, linetype, size, kernel = "gaussian", n = 512,
-  trim = FALSE, xlab, ylab, title, subtitle, caption, geom = "area",
-  stat = "density", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
+gf_density(object = NULL, gformula = NULL, data = NULL,
+  alpha = 0.5, color, fill, group, linetype, size, kernel = "gaussian",
+  n = 512, trim = FALSE, xlab, ylab, title, subtitle, caption,
+  geom = "area", stat = "density", position = "identity",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), ...)
 
-gf_dens(object = NULL, gformula = NULL, data = NULL, alpha = 0.5, color,
-  group, linetype, size, kernel = "gaussian", n = 512, trim = FALSE, xlab,
-  ylab, title, subtitle, caption, geom = "line", stat = "density",
-  position = "identity", show.legend = NA, show.help = NULL,
-  inherit = TRUE, environment = parent.frame(), ...)
+gf_dens(object = NULL, gformula = NULL, data = NULL, alpha = 0.5,
+  color, group, linetype, size, kernel = "gaussian", n = 512,
+  trim = FALSE, xlab, ylab, title, subtitle, caption, geom = "line",
+  stat = "density", position = "identity", show.legend = NA,
+  show.help = NULL, inherit = TRUE, environment = parent.frame(),
+  ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

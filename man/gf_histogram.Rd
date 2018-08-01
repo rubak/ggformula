@@ -7,27 +7,27 @@
 \alias{gf_dhistogramh}
 \title{Formula interface to geom_histogram()}
 \usage{
-gf_histogram(object = NULL, gformula = NULL, data = NULL, bins = 25,
-  binwidth, alpha = 0.5, color, fill, group, linetype, size, xlab, ylab,
-  title, subtitle, caption, geom = "bar", stat = "bin",
+gf_histogram(object = NULL, gformula = NULL, data = NULL,
+  bins = 25, binwidth, alpha = 0.5, color, fill, group, linetype, size,
+  xlab, ylab, title, subtitle, caption, geom = "bar", stat = "bin",
   position = "stack", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 
-gf_dhistogram(object = NULL, gformula = NULL, data = NULL, bins = 25,
-  binwidth, alpha = 0.5, color, fill, group, linetype, size, xlab, ylab,
-  title, subtitle, caption, geom = "bar", stat = "bin",
+gf_dhistogram(object = NULL, gformula = NULL, data = NULL,
+  bins = 25, binwidth, alpha = 0.5, color, fill, group, linetype, size,
+  xlab, ylab, title, subtitle, caption, geom = "bar", stat = "bin",
   position = "stack", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 
-gf_histogramh(object = NULL, gformula = NULL, data = NULL, bins = 25,
-  binwidth, alpha = 0.5, color, fill, group, linetype, size, xlab, ylab,
-  title, subtitle, caption, geom = "barh", stat = "binh",
+gf_histogramh(object = NULL, gformula = NULL, data = NULL,
+  bins = 25, binwidth, alpha = 0.5, color, fill, group, linetype, size,
+  xlab, ylab, title, subtitle, caption, geom = "barh", stat = "binh",
   position = "stackv", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 
-gf_dhistogramh(object = NULL, gformula = NULL, data = NULL, bins = 25,
-  binwidth, alpha = 0.5, color, fill, group, linetype, size, xlab, ylab,
-  title, subtitle, caption, geom = "barh", stat = "binh",
+gf_dhistogramh(object = NULL, gformula = NULL, data = NULL,
+  bins = 25, binwidth, alpha = 0.5, color, fill, group, linetype, size,
+  xlab, ylab, title, subtitle, caption, geom = "barh", stat = "binh",
   position = "stackv", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 }

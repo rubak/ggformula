@@ -11,50 +11,53 @@
 \alias{gf_percentsh}
 \title{Formula interface to geom_bar()}
 \usage{
-gf_bar(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, width = NULL, xlab, ylab, title, subtitle, caption,
-  geom = "bar", stat = "count", position = "stack", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
-
-gf_counts(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "bar", stat = "count", position = "stack",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
-
-gf_props(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, xlab, ylab = "proportion", title, subtitle, caption,
-  geom = "bar", stat = "count", position = "stack", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
-
-gf_percents(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  fill, group, linetype, size, xlab, ylab = "percent", title, subtitle,
+gf_bar(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, width = NULL, xlab, ylab, title, subtitle,
   caption, geom = "bar", stat = "count", position = "stack",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 
+gf_counts(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, width = NULL, binwidth = NULL, xlab,
+  ylab, title, subtitle, caption, geom = "bar", stat = "count",
+  position = "stack", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
+
+gf_props(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, xlab, ylab = "proportion", title,
+  subtitle, caption, geom = "bar", stat = "count",
+  position = "stack", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
+
+gf_percents(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, fill, group, linetype, size, xlab, ylab = "percent", title,
+  subtitle, caption, geom = "bar", stat = "count",
+  position = "stack", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
+
 gf_countsh(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  fill, group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab,
-  title, subtitle, caption, geom = "barh", stat = "counth",
+  fill, group, linetype, size, width = NULL, binwidth = NULL, xlab,
+  ylab, title, subtitle, caption, geom = "barh", stat = "counth",
   position = "stackv", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 
-gf_colh(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, width = NULL, binwidth = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "colh", stat = "identity",
+gf_colh(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, width = NULL, binwidth = NULL, xlab,
+  ylab, title, subtitle, caption, geom = "colh", stat = "identity",
   position = "stackv", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 
-gf_propsh(object = NULL, gformula = NULL, data = NULL, alpha, color, fill,
-  group, linetype, size, xlab = "proportion", ylab, title, subtitle, caption,
-  geom = "barh", stat = "counth", position = "stackv", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
+gf_propsh(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  fill, group, linetype, size, xlab = "proportion", ylab, title,
+  subtitle, caption, geom = "barh", stat = "counth",
+  position = "stackv", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 
-gf_percentsh(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  fill, group, linetype, size, xlab = "percent", ylab, title, subtitle,
-  caption, geom = "barh", stat = "counth", position = "stackv",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+gf_percentsh(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, fill, group, linetype, size, xlab = "percent", ylab, title,
+  subtitle, caption, geom = "barh", stat = "counth",
+  position = "stackv", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

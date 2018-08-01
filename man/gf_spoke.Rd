@@ -5,8 +5,8 @@
 \title{Formula interface to geom_spoke()}
 \usage{
 gf_spoke(object = NULL, gformula = NULL, data = NULL, angle, radius,
-  alpha, color, group, linetype, size, xlab, ylab, title, subtitle, caption,
-  geom = "spoke", stat = "identity", position = "identity",
+  alpha, color, group, linetype, size, xlab, ylab, title, subtitle,
+  caption, geom = "spoke", stat = "identity", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 }

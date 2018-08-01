@@ -5,13 +5,13 @@
 \alias{gf_frame}
 \title{Formula interface to geom_blank()}
 \usage{
-gf_blank(object = NULL, gformula = NULL, data = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "blank", stat = "identity",
+gf_blank(object = NULL, gformula = NULL, data = NULL, xlab, ylab,
+  title, subtitle, caption, geom = "blank", stat = "identity",
   position = "identity", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 
-gf_frame(object = NULL, gformula = NULL, data = NULL, xlab, ylab, title,
-  subtitle, caption, geom = "blank", stat = "identity",
+gf_frame(object = NULL, gformula = NULL, data = NULL, xlab, ylab,
+  title, subtitle, caption, geom = "blank", stat = "identity",
   position = "identity", show.legend = NA, show.help = NULL,
   inherit = TRUE, environment = parent.frame(), ...)
 }

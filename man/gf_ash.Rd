@@ -6,10 +6,11 @@
 \alias{geom_ash}
 \title{Average Shifted Histograms}
 \usage{
-gf_ash(object = NULL, gformula = NULL, data = NULL, alpha, color, group,
-  linetype, size, xlab, ylab, title, subtitle, caption, geom = "line",
-  stat = "ash", position = "identity", show.legend = NA,
-  show.help = NULL, inherit = TRUE, environment = parent.frame(), ...)
+gf_ash(object = NULL, gformula = NULL, data = NULL, alpha, color,
+  group, linetype, size, xlab, ylab, title, subtitle, caption,
+  geom = "line", stat = "ash", position = "identity",
+  show.legend = NA, show.help = NULL, inherit = TRUE,
+  environment = parent.frame(), ...)
 
 stat_ash(mapping = NULL, data = NULL, geom = "line",
   position = "identity", na.rm = FALSE, show.legend = NA,

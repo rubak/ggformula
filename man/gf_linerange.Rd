@@ -7,26 +7,26 @@
 \alias{gf_pointrangeh}
 \title{Formula interface to geom_linerange() and geom_pointrange()}
 \usage{
-gf_linerange(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  group, linetype, size, xlab, ylab, title, subtitle, caption,
+gf_linerange(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, group, linetype, size, xlab, ylab, title, subtitle, caption,
   geom = "linerange", stat = "identity", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 
-gf_pointrange(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  group, linetype, size, fatten = 2, xlab, ylab, title, subtitle, caption,
-  geom = "pointrange", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+gf_pointrange(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, group, linetype, size, fatten = 2, xlab, ylab, title, subtitle,
+  caption, geom = "pointrange", stat = "identity",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 
-gf_linerangeh(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  group, linetype, size, xlab, ylab, title, subtitle, caption,
+gf_linerangeh(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, group, linetype, size, xlab, ylab, title, subtitle, caption,
   geom = "linerangeh", stat = "identity", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
 
-gf_pointrangeh(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  group, linetype, size, xlab, ylab, title, subtitle, caption,
+gf_pointrangeh(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, group, linetype, size, xlab, ylab, title, subtitle, caption,
   geom = "pointrangeh", stat = "identity", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)

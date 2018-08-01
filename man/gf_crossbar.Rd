@@ -5,17 +5,17 @@
 \alias{gf_crossbarh}
 \title{Formula interface to geom_crossbar()}
 \usage{
-gf_crossbar(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  group, linetype, size, fatten = 2.5, xlab, ylab, title, subtitle, caption,
-  geom = "crossbar", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+gf_crossbar(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, group, linetype, size, fatten = 2.5, xlab, ylab, title,
+  subtitle, caption, geom = "crossbar", stat = "identity",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 
-gf_crossbarh(object = NULL, gformula = NULL, data = NULL, alpha, color,
-  group, linetype, size, fatten = 2.5, xlab, ylab, title, subtitle, caption,
-  geom = "crossbarh", stat = "identity", position = "identity",
-  show.legend = NA, show.help = NULL, inherit = TRUE,
-  environment = parent.frame(), ...)
+gf_crossbarh(object = NULL, gformula = NULL, data = NULL, alpha,
+  color, group, linetype, size, fatten = 2.5, xlab, ylab, title,
+  subtitle, caption, geom = "crossbarh", stat = "identity",
+  position = "identity", show.legend = NA, show.help = NULL,
+  inherit = TRUE, environment = parent.frame(), ...)
 }
 \arguments{
 \item{object}{When chaining, this holds an object produced in the earlier portions

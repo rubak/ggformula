@@ -4,8 +4,8 @@
 \alias{gf_hex}
 \title{Formula interface to geom_hex()}
 \usage{
-gf_hex(object = NULL, gformula = NULL, data = NULL, bins, binwidth, alpha,
-  color, fill, group, size, xlab, ylab, title, subtitle, caption,
+gf_hex(object = NULL, gformula = NULL, data = NULL, bins, binwidth,
+  alpha, color, fill, group, size, xlab, ylab, title, subtitle, caption,
   geom = "hex", stat = "binhex", position = "identity",
   show.legend = NA, show.help = NULL, inherit = TRUE,
   environment = parent.frame(), ...)
