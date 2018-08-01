@@ -145,7 +145,7 @@ test_that(
       gf_contour(density ~ waiting + eruptions, data = faithfuld)
     )
     vdiffr::expect_doppelganger(
-      "gf_density2d",
+      "gf_density2d2",
       gf_point(eruptions ~ waiting, data = faithful) %>%
       gf_density2d(eruptions ~ waiting, data = faithful)
     )
@@ -285,7 +285,7 @@ test_that(
       )
 
     vdiffr::expect_doppelganger(
-      "gf_pointrange1",
+      "gf_pointrange2",
       gf_jitter(age ~ substance, data = mosaicData::HELPrct, seed = 123,
                 alpha = 0.5, width = 0.2, height = 0, color = "skyblue") %>%
         gf_pointrange( mean.age + lo + hi ~ substance,  data = HELP2) %>%
@@ -363,6 +363,202 @@ test_that(
 )
 
 test_that(
+  "gf_dens() and gf_density",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_dens1",
+      gf_dens( ~ Sepal.Length, data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dens2",
+      gf_dens( ~ Sepal.Length, data = iris, color = ~ Species)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_density1",
+      gf_density( ~ Sepal.Length, fill = ~ Species, data = iris, alpha = 0.5)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_density2",
+      gf_density( ~ Sepal.Length | Species ~ ., fill = ~ Species, data = iris, alpha = 0.5)
+    )
+  }
+)
+test_that(
+  "gf_dist()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_dist1",
+      gf_dist("norm", mean = 10, sd = 2)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dist2",
+      gf_dist("norm", fill = ~(abs(x) <= 2), geom = "area")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dist3",
+      gf_dist("norm", fill = "red", kind = "histogram")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dist4",
+      gf_dist("norm", color = "red", kind = "qqstep", resolution = 25) %>%
+        gf_dist("norm", color = "black", kind = "qq", resolution = 25, size = 2, alpha = 0.5)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dist5",
+      gf_dist("binom", size = 20, prob = 0.25, plot_size = 2)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dist6",
+      gf_dist("binom", params = list(size = 20, prob = 0.25), size = 2)
+    )
+  }
+)
+
+test_that(
+  "gf_dotplot()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_dotplot1",
+      gf_dotplot( ~ Sepal.Length, fill = ~ Species, data = iris, binwidth = 0.2) %>%
+        gf_labs(title = "dotdensity")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_dotplot2",
+      gf_dotplot( ~ Sepal.Length, fill = ~ Species, data = iris,
+                  binwidth = 0.2, method = "histodot") %>%
+        gf_labs(title = "histodot")
+    )
+  }
+)
+
+test_that(
+  "gf_empty() and gf_frame()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_empty1",
+      gf_empty() %>%
+        gf_labs(title = "empty")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_empty2",
+      gf_empty() %>%
+        gf_point(Sepal.Length ~ Sepal.Width, data = iris, color = ~ Species) %>%
+        gf_labs(title = "empty + point")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_frame1",
+      gf_frame(c(0,10) ~ c(0,5)) %>%
+        gf_labs(title = "frame")
+    )
+  }
+)
+
+test_that(
+  "gf_fitdistr()",
+  {
+    set.seed(12345)
+    Dat <- data.frame(g = rgamma(500, 3, 10), f = rf(500, df1 = 3, df2 = 47))
+    vdiffr::expect_doppelganger(
+      "gf_fitdistr1",
+      gf_fitdistr( ~ length, data = mosaicData::KidsFeet, inherit = FALSE) %>%
+        gf_dhistogram( ~ length, data = mosaicData::KidsFeet, binwidth = 0.5,
+                       alpha = 0.25)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_fitdistr2",
+      gf_dhistogram( ~ g, data = Dat) %>%
+        gf_fitdistr(dist = "dgamma")
+    )
+  }
+)
+
+test_that(
+  "gf_freqpoly()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_freqpoly1",
+      gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_freqpoly2",
+      gf_freqpoly( ~ Sepal.Length, color = ~Species, data = iris,
+                   binwidth = 0.5)
+    )
+  }
+)
+
+test_that(
+  "gf_freqpoly()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_fun1",
+      gf_fun( sin(x) ~ x, color = ~"sin", xlim = pi * c(-2, 2)) %>%
+        gf_fun( cos(x) ~ x, color = ~"cosine", xlim = pi * c(-2, 2))
+      )
+    vdiffr::expect_doppelganger(
+      "gf_fun2",
+      gf_point(length ~ width, data = mosaicData::KidsFeet) %>%
+        gf_fun( 4 * cos(5* x) + 24 ~ x, color = ~"cosine", xlim = pi * c(-2, 2)) %>%
+        gf_labs(color = "")
+      )
+  }
+)
+
+test_that(
+  "gf_fun2d()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_fun2d1",
+      gf_function_2d( fun = function(x, y) sin(2 * x * y), xlim = c(-pi, pi), ylim = c(-pi, pi)) %>%
+        gf_refine(scale_fill_viridis_c())
+    )
+    vdiffr::expect_doppelganger(
+      "gf_fun2d2",
+      gf_function_2d( fun = function(x, y) x + y, contour = FALSE)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_fun2d3",
+      gf_function_tile(fun = function(x, y) x * y) %>%
+        gf_function_contour(fun = function(x, y) x * y, color = "white") %>%
+        gf_refine(scale_fill_viridis_c())
+    )
+    vdiffr::expect_doppelganger(
+      "gf_fun2d4",
+      gf_fun_tile(x * y ~ x + y, xlim = c(-3,3), ylim = c(-2,2)) %>%
+        gf_fun_contour(x * y ~ x + y, color = "white") %>%
+        gf_refine(scale_fill_viridis_c()) %>%
+        gf_labs(fill = "product")
+    )
+    vdiffr::expect_doppelganger(
+      "gf_fun2d5",
+      gf_fun( sin(x) ~ x, color = ~"sin", xlim = pi * c(-2, 2)) %>%
+        gf_fun( cos(x) ~ x, color = ~"cosine", xlim = pi * c(-2, 2))
+    )
+    vdiffr::expect_doppelganger(
+      "gf_fun2d6",
+      gf_point(length ~ width, data = mosaicData::KidsFeet) %>%
+        gf_fun( 4 * cos(5* x) + 24 ~ x, color = ~"cosine", xlim = pi * c(-2, 2)) %>%
+        gf_labs(color = "")
+    )
+  }
+)
+
+
+test_that(
+  "gf_hex()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_hex1",
+      gf_hex(avg_drinks ~ age, data = mosaicData::HELPrct, bins = 15) %>%
+        gf_density2d(avg_drinks ~ age, data = mosaicData::HELPrct,
+                     color = "yellow", alpha = 0.5)
+    )
+  }
+)
+
+
+
+test_that(
   "gf_histogram() and gf_dhistogram",
   {
     vdiffr::expect_doppelganger(
@@ -390,6 +586,55 @@ test_that(
 )
 
 test_that(
+  "gf_line()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_line1",
+      gf_line(births ~ date, data = mosaicData::Births78)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_line2",
+      gf_line(births ~ date, color = ~ wday, data = mosaicData::Births78)
+    )
+  }
+)
+
+test_that(
+  "gf_label() and gf_text()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_label1",
+      gf_label(width ~ length, data = mosaicData::KidsFeet, label = ~ name)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_text1",
+      gf_text(width ~ length, data = mosaicData::KidsFeet, label = ~ name)
+    )
+  }
+)
+
+test_that(
+  "gf_linerange() and gf_pointrange()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_linerange1",
+      gf_linerange(low_temp + high_temp ~ date,
+                   data = mosaicData::Weather, color = ~ avg_temp) %>%
+      gf_facet_grid(city ~ year, scale = "free") %>%
+        gf_refine(scale_color_viridis_c(option = "C", begin = 0.1, end = 0.8))
+    )
+    vdiffr::expect_doppelganger(
+      "gf_pointrange1",
+      gf_pointrange(avg_temp + low_temp + high_temp ~ date,
+                   data = mosaicData::Weather %>% head(200),
+                   color = ~ avg_temp) %>%
+      gf_facet_grid(city ~ year, scale = "free") %>%
+        gf_refine(scale_color_viridis_c(option = "C", begin = 0.1, end = 0.8))
+    )
+  }
+)
+
+test_that(
   "gf_point()",
   {
     vdiffr::expect_doppelganger(
@@ -404,15 +649,85 @@ test_that(
 )
 
 test_that(
-  "gf_line()",
+  "gf_qq(), gf_qqstep(), gf_qqline()",
   {
     vdiffr::expect_doppelganger(
-      "gf_line1",
-      gf_line(births ~ date, data = mosaicData::Births78)
+      "gf_qq1",
+      gf_qq(~ age | substance, data = mosaicData::HELPrct) %>%
+        gf_qqline()
     )
     vdiffr::expect_doppelganger(
-      "gf_line2",
-      gf_line(births ~ date, color = ~ wday, data = mosaicData::Births78)
+      "gf_qqstep1",
+      gf_qqstep(~ age | substance, data = mosaicData::HELPrct) %>%
+        gf_qqline()
+    )
+  }
+)
+
+
+
+test_that(
+  "gf_quantile()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_quantile",
+      gf_point((1/hwy) ~ displ, data = mpg) %>%
+        gf_quantile((1/hwy) ~ displ, quantiles = 0.5, color = "red") %>%
+        gf_quantile((1/hwy) ~ displ, quantiles = c(0.2, 0.8))
+    )
+  }
+)
+
+
+test_that(
+  "gf_raster(), gf_tile(), gf_density2d()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_raster1",
+      gf_raster(density ~ eruptions + waiting, data = faithfuld)
+    )
+    vdiffr::expect_doppelganger(
+      "gf_tile1",
+      gf_tile(density ~ eruptions + waiting, data = faithfuld) %>%
+        gf_contour(density ~ eruptions + waiting, color = "yellow") %>%
+        gf_refine(scale_fill_viridis_c(begin = 0.2))
+    )
+    vdiffr::expect_doppelganger(
+      "gf_density2d1",
+      gf_density2d(eruptions ~ waiting, data = faithful)
+    )
+  }
+)
+
+test_that(
+  "gf_rect()",
+  {
+    vdiffr::expect_doppelganger(
+      "gf_rect1",
+      gf_rect(1.5 + 3 ~ 40 + 68, fill = "red", alpha = 0.2) %>%
+      gf_rect(3 + 5.5 ~ 68 + 100, fill = "green", alpha = 0.2) %>%
+        gf_point(eruptions ~ waiting, data = faithful)
+    )
+  }
+)
+
+test_that(
+  "gf_rect()",
+  {
+    SomeData <- expand.grid(x = 1:10, y=1:10)
+    SomeData$angle <- runif(100, 0, 2*pi)
+    SomeData$speed <- runif(100, 0, sqrt(0.1 * SomeData$x))
+
+    vdiffr::expect_doppelganger(
+      "gf_spoke1",
+      gf_point(y ~ x, data = SomeData) %>%
+        gf_spoke(y ~ x, angle = ~ angle, radius = 0.5)
+    )
+
+    vdiffr::expect_doppelganger(
+      "gf_spoke2",
+      gf_point(y ~ x, data = SomeData) %>%
+        gf_spoke(y ~ x, angle = ~ angle, radius = ~ speed)
     )
   }
 )
