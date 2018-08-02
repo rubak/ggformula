@@ -21,9 +21,9 @@ Imports:
     tibble,
     stringr,
     tidyr,
-    dplyr,
     grid
 Suggests:
+    dplyr,
     lattice,
     mosaic,
     mosaicModel,
