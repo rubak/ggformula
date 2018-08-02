@@ -25,5 +25,12 @@ Checked mosaicData : 0 errors | 0 warnings | 0 notes
 Checked mosaicModel: 0 errors | 0 warnings | 0 notes
 Checked supernova  : 0 errors | 0 warnings | 0 notes
 
+## Comments
+
+This is a resubmission.  I've removed the (unnecessary) import of dplyr (it is now in
+suggests).  The error found in the mosaic package in your previous checks is unrelated
+to ggformula and I can't reproduce it locally or in win builder.
+
+I hope that means we are good to go.
 
 
