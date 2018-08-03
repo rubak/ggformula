@@ -1026,6 +1026,11 @@ gf_dens <-
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
+#' @section Warning:
+#' Dotplots in `ggplot2` (and hence in `ggformula`) often require some fiddling because
+#' the default y-axis is meaningless and the ideal size of the dots depends on the
+#' aspect ratio of the plot.
+#'
 #' @seealso [ggplot2::geom_dotplot()]
 #' @export
 #' @examples
