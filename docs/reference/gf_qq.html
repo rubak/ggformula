@@ -64,7 +64,7 @@ through these points." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggformula</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.0.9000</span>
       </span>
     </div>
 
@@ -149,21 +149,22 @@ through these points.</p>
 
     <pre class="usage"><span class='fu'>gf_qq</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>group</span>,
   <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>, <span class='kw'>dparams</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"qq"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)
+  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"qq"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)
 
 <span class='fu'>gf_qqline</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>group</span>,
   <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>, <span class='kw'>dparams</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
   <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>, <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"line"</span>,
   <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"qqline"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)
+  <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(),
+  <span class='no'>...</span>)
 
 <span class='fu'>gf_qqstep</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>group</span>,
   <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/stats/topics/Normal'>qnorm</a></span>, <span class='kw'>dparams</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='no'>title</span>,
-  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"step"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"qq"</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)</pre>
+  <span class='no'>subtitle</span>, <span class='no'>caption</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"step"</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"qq"</span>,
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>show.help</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inherit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
