@@ -23,14 +23,20 @@ library(ggformula)
 ## ggplot2 via formulas and pipes
 
 `ggformula` introduces a family of graphics functions, `gf_point()`,
-`gf_density()`, and so on, bring the formula interface to `ggplot()`. This
-captures and extends the excellent simplicity of the `lattice`-graphics formula
+`gf_density()`, and so on, bringing the formula interface to `ggplot()`. This
+captures and extends the excellent simplicity of the `lattice`-graphics' formula
 interface, while providing the intuitive "add this component" capabilities of
 `ggplot2` using `maggrittr` pipes.
 
 ## Installation
 
-You can install ggformula from github with:
+You can install from CRAN with
+
+```{r, eval = FALSE}
+install.packages("ggformula")
+```
+
+or from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
