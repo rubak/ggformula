@@ -126,7 +126,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>The following example illustrates a typical plot constructed with ggformula.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggformula)
 <span class="kw"><a href="reference/gf_jitter.html">gf_jitter</a></span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width, <span class="dt">data =</span> iris, <span class="dt">color =</span> <span class="op">~</span><span class="st"> </span>Species,
-          <span class="dt">width =</span> <span class="fl">0.05</span>, <span class="dt">height =</span> <span class="fl">0.05</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">%&gt;%</span>
+          <span class="dt">width =</span> <span class="fl">0.05</span>, <span class="dt">height =</span> <span class="fl">0.05</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">seed =</span> <span class="dv">123</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/gf_density_2d.html">gf_density2d</a></span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/gf_aux.html">gf_labs</a></span>(<span class="dt">title =</span> <span class="st">"A famous data set"</span>,
           <span class="dt">caption =</span> <span class="st">"Data available in datasets package"</span>,
