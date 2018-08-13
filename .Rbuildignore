@@ -7,6 +7,7 @@ cran-comments.md
 ^inst/tutorials/refining/rsconnect$
 ^revdep$
 ^docs$
+^logo.*\.png$
 ^index.Rmd$
 ^data-raw$
 ^README\.Rmd$
