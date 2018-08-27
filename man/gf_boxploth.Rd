@@ -197,6 +197,13 @@ if (require(mosaicData)) {
   gf_boxploth(substance ~ age, data = HELPrct, color = ~ sex,
     position = position_dodgev(height = 0.9))
 }
+# combining boxplots and histograms
+  gf_histogram(~ eruptions, data = faithful) \%>\%
+    gf_boxploth(0 ~ eruptions, alpha = 0, width = 2)
+  gf_histogram(~ eruptions, data = faithful) \%>\%
+    gf_boxploth(-2 ~ eruptions, alpha = 0, width = 2)
+  gf_histogram(~ eruptions, data = faithful) \%>\%
+    gf_boxploth(32 ~ eruptions, alpha = 0, width = 2)
 }
 \seealso{
 \link[ggplot2:geom_boxplot]{ggstance::geom_boxploth()}, \code{\link[=fivenum]{fivenum()}}, \code{\link[=df_stats]{df_stats()}}
