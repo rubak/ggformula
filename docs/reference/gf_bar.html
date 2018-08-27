@@ -378,7 +378,7 @@ in another.</p>
   <span class='fu'>gf_percents</span>( ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodge</span>())
   <span class='kw'>if</span> (<span class='fu'>require</span>(<span class='no'>scales</span>)) {
     <span class='fu'>gf_props</span>( ~ <span class='no'>substance</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>HELPrct</span>, <span class='kw'>fill</span> <span class='kw'>=</span> ~ <span class='no'>sex</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>position_dodge</span>()) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_y_continuous</span>(<span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/scales/topics/percent_format'>percent</a></span>))
+      <span class='fu'><a href='gf_aux.html'>gf_refine</a></span>(<span class='fu'>scale_y_continuous</span>(<span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/scales/topics/number_format'>percent</a></span>))
   }
 }</div><div class='output co'>#&gt; <span class='message'>Loading required package: scales</span></div><div class='img'><img src='gf_bar-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
