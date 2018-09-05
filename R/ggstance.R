@@ -257,17 +257,13 @@ gf_violinh <-
 #' @inherit ggplot2::geom_errorbarh description references
 #' @inherit gf_line
 #' @inheritParams ggplot2::geom_errorbarh
-#' @param gformula A formula with shape `y ~ x + xmin + xmax`.
+#' @param gformula A formula with shape `y ~ xmin + xmax`.
 #'   Faceting can be achieved by including `|` in the formula.
 #'
 #' @param ... Additional arguments.  Typically these are
 #'   (a) ggplot2 aesthetics to be set with `attribute = value`,
 #'   (b) ggplot2 aesthetics to be mapped with `attribute = ~ expression`, or
 #'   (c) attributes of the layer as a whole, which are set with `attribute = value`.
-#' @section Note:
-#'   There is discrepancy between the information required for `gf_errorbar()`
-#'   and `gf_errobarh()`.  It expected that this will change in a future release
-#'   of `ggplot2`.
 #'
 #' @seealso [ggplot2::geom_errorbarh()]
 #' @export
